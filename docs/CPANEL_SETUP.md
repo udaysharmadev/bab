@@ -1,6 +1,6 @@
 # Bad at Boating — cPanel LiteSpeed setup
 
-Target origin: **https://bab.validussentinel.com**. Public deployment has not been performed or tested from this workspace. The production browser build, HTTP routes, authoritative Colyseus rooms and WebSocket endpoint run in the same Node app. On HTTPS the browser automatically uses `wss://bab.validussentinel.com`; development-only `/game` proxying is not used in production. Protocol3 / basin-0.5 / waterworks-1.
+Target origin: **https://bab.validussentinel.com**. On 2026-10-20, the public `/health` endpoint returned HTTP 200 and `npm run check:deployment -- https://bab.validussentinel.com` passed its four-client HTTPS/WSS smoke test from this workspace. That verified health, title and directory-guard routes, four WebSocket seats, the four-ready launch barrier, advancing server ticks, disconnect pause and same-seat reconnect. The production browser build, authoritative Colyseus rooms and WebSocket endpoint run in the same Node app. On HTTPS the browser automatically uses `wss://bab.validussentinel.com`; development-only `/game` proxying is not used in production. This does not verify cPanel account settings, Node 24 availability, sustained load or human play quality. Protocol3 / basin-0.5 / waterworks-1.
 
 ## Hosting requirements
 
@@ -97,4 +97,4 @@ Before an update, announce the restart to players, stop the app in the panel, an
 - [LiteSpeed: CloudLinux Selector and WebSockets](https://docs.litespeedtech.com/lsws/cp/cpanel/cloudlinux/): automatic WebSocket proxying for Selector apps and HTTPS `wss://` behavior.
 - [cPanel Application Manager](https://docs.cpanel.net/cpanel/software/application-manager/): provider-controlled Passenger features and environment variables.
 
-This workspace can verify a local Node process, but cannot verify your cPanel account's selected Node version, DNS/TLS mapping, LiteSpeed Selector integration, WSS upgrades or public four-client behavior. Complete the smoke test on the destination before treating it as deployed.
+The public four-client smoke test passed from this workspace on 2026-10-20, including real WSS seat assignment and reconnect. The test cannot inspect the cPanel account's selected Node version or confirm how the hosting panel is configured. Re-run the smoke test after each deployment; separately measure provider capacity and complete human playtests before launch.

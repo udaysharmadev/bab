@@ -22,9 +22,9 @@ npm run start:production
 
 Open **http://localhost:2567**. `PORT` overrides the default; `/health` gives the service health response.
 
-For cPanel Node.js Selector / LiteSpeed deployment at `bab.validussentinel.com`, follow [the deployment guide](docs/CPANEL_SETUP.md). The same-origin client automatically connects with WSS under HTTPS; public WebSocket support must be confirmed with the actual host smoke test.
+For cPanel Node.js Selector / LiteSpeed deployment at `bab.validussentinel.com`, follow [the deployment guide](docs/CPANEL_SETUP.md). The same-origin client automatically connects with WSS under HTTPS; the domain passed a four-client deployment smoke test on 2026-10-20.
 
-For **cPanel Node App**, use [the setup guide](docs/CPANEL_SETUP.md) and `releases/Bad-at-Boating-cPanel.zip`. The prebuilt package includes a CommonJS `app.js` startup and runtime lockfile. Select Node24, install with `npm ci --omit=dev --ignore-scripts`, configure one persistent process/HTTPS/WSS and a private `BOAT_SAVE_DB`. Public deployment is not yet tested. `node scripts/check-deployment.mjs https://YOUR-SUBDOMAIN` verifies a private four-client room after deployment. Rebuild the ZIP with `node scripts/package-cpanel.mjs` after a successful production build.
+For **cPanel Node App**, use [the setup guide](docs/CPANEL_SETUP.md) and `releases/Bad-at-Boating-cPanel.zip`. The prebuilt package includes a CommonJS `app.js` startup and runtime lockfile. Select Node24, install with `npm ci --omit=dev --ignore-scripts`, configure one persistent process/HTTPS/WSS and a private `BOAT_SAVE_DB`. The public domain passed a four-client HTTPS/WSS deployment smoke test on 2026-10-20; the cPanel account's Node version and configuration still need to be confirmed by its owner. `node scripts/check-deployment.mjs https://YOUR-SUBDOMAIN` verifies a private four-client room after deployment. Rebuild the ZIP with `node scripts/package-cpanel.mjs` after a successful production build.
 
 ## Start a crew
 
@@ -32,7 +32,7 @@ For **cPanel Node App**, use [the setup guide](docs/CPANEL_SETUP.md) and `releas
 
 Practice and Controls were removed from the title at the user’s request. The service retains a fewer-player mode for internal fixtures; it is not offered by the menu. Friends-mode lobby paddling is currently disabled until all four are ready; waiting-dock practice/tethering is a future onboarding refinement. The small menu button or Escape opens controls, invitation, graphics, checkpoint and leave actions. A local menu releases your blade while the shared room continues.
 
-Localhost invites work on the same machine. For friends on the same network, open using the host computer's LAN address before copying the invite. Internet play requires hosting and HTTPS/WSS; this prototype has not been publicly deployed. Full/expired rooms show a specific error in the title menu; they never silently put someone in a different crew.
+Localhost invites work on the same machine. For friends on the same network, open using the host computer's LAN address before copying the invite. Internet play requires hosting and HTTPS/WSS; `bab.validussentinel.com` passed a four-client connection smoke test, while hosting capacity and human play quality still need validation. Full/expired rooms show a specific error in the title menu; they never silently put someone in a different crew.
 
 ## Hold-to-row controls
 
