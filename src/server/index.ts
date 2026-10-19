@@ -36,4 +36,4 @@ const server = new Server({
 server.define('boat', BoatRoom);
 const port = Number(process.env.PORT ?? 2567);
 await server.listen(port, '0.0.0.0');
-console.log(`Bad at Boating authority listening on http://localhost:${port}`);
+console.log(`Bad at Boating authority listening on port ${port}`);

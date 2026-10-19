@@ -2,7 +2,7 @@
   "name": "bad-at-boating",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "server": "node --import tsx src/server/index.ts",
@@ -11,8 +11,10 @@
     "test": "node --import tsx --test --test-concurrency=1 tests/*.test.ts",
     "test:browser": "node tests/browser.mjs",
     "test:graphics": "node tests/graphics.mjs",
-    "start": "node --import tsx src/server/index.ts",
-    "start:production": "node build/server.mjs",
+    "check:deployment": "node scripts/check-deployment.mjs",
+    "start": "node app.js",
+    "start:production": "node app.js",
+    "deploy:cpanel": "bash deploy.sh",
     "test:network": "node --import tsx --test tests/network-stress.test.ts"
   },
   "dependencies": {

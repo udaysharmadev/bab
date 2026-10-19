@@ -22,6 +22,8 @@ npm run start:production
 
 Open **http://localhost:2567**. `PORT` overrides the default; `/health` gives the service health response.
 
+For cPanel Node.js Selector / LiteSpeed deployment at `bab.validussentinel.com`, follow [the deployment guide](docs/CPANEL_SETUP.md). The same-origin client automatically connects with WSS under HTTPS; public WebSocket support must be confirmed with the actual host smoke test.
+
 For **cPanel Node App**, use [the setup guide](docs/CPANEL_SETUP.md) and `releases/Bad-at-Boating-cPanel.zip`. The prebuilt package includes a CommonJS `app.js` startup and runtime lockfile. Select Node24, install with `npm ci --omit=dev --ignore-scripts`, configure one persistent process/HTTPS/WSS and a private `BOAT_SAVE_DB`. Public deployment is not yet tested. `node scripts/check-deployment.mjs https://YOUR-SUBDOMAIN` verifies a private four-client room after deployment. Rebuild the ZIP with `node scripts/package-cpanel.mjs` after a successful production build.
 
 ## Start a crew

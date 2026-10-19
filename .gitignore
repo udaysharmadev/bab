@@ -6,3 +6,10 @@ dist/
 data/
 build/
 releases/
+.env.*
+!.env.example
+tmp/
+logs/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
