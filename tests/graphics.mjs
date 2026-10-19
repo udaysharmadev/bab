@@ -12,7 +12,7 @@ try {
   const page = await browser.newPage({viewport:{width:1440,height:960}});
   page.on('pageerror',error=>errors.push(error.message));
   page.on('console',message=>{if(message.type()==='error'||/GL_INVALID_(?:OPERATION|ENUM|VALUE)/.test(message.text()))errors.push(message.text())});
-  const views=process.env.NATURE_ONLY ? ['shore','trees','grass','shore&low'] : ['crew','underside','spikes','log','vortex','vortex&low','wreck','gorge','rapids','timber','narrows','finish','waterwheel','shore','trees','grass','shore&low'];
+  const views=process.env.NATURE_ONLY ? ['shore','trees','grass','shore&low'] : ['crew','underside','spikes','log','vortex','vortex&low','wreck','gorge','rapids','timber','narrows','finish','millstone','boulders','wheel2','haven','waterwheel','shore','trees','grass','shore&low'];
   for (const view of views) {
     await page.goto(`http://127.0.0.1:5174/tests/graphics.html?view=${view}${noRefraction?'&noRefraction':''}`);
     await page.waitForFunction(()=>Number(document.body.dataset.frames)>35);
@@ -51,7 +51,7 @@ try {
     await page.waitForTimeout(250);
     const play=page.getByRole('button',{name:'Play with Friends',exact:true});
     assert(await play.isVisible());
-    assert.equal(await page.getByRole('button',{name:'Practice',exact:true}).count(),0);
+    assert.equal(await page.getByRole('button',{name:/Practice/}).count(),0);
     assert.equal(await page.getByRole('button',{name:'Controls',exact:true}).count(),0);
     assert.equal(await page.locator('.title-eyebrow,.tagline,.title-footer,.title-location').count(),0);
     const rect=await play.boundingBox(); assert(rect && rect.x>=0 && rect.y>=0 && rect.y+rect.height<height);

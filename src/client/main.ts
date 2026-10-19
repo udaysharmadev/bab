@@ -2,7 +2,7 @@ import { Client, CloseCode, type Room } from '@colyseus/sdk';
 import { RiverScene } from './scene';
 import { GameAudio } from './audio';
 import { PHYSICS_VERSION, PROTOCOL_VERSION, SEATS, type Snapshot } from '../shared/protocol';
-import { rowingAction, paddleKey } from './input';
+import { PaddleInput, paddleKey } from './input';
 import './style.css';
 
 function element<T extends HTMLElement>(id: string): T {
@@ -67,13 +67,14 @@ function storedVoyage(): SavedVoyage | undefined {
   } catch { /* Storage is optional; recovery codes can be copied from the menu. */ }
   return undefined;
 }
-const keys = new Set<string>();
+const input = new PaddleInput();
+const keys = input.keyboard;
 const dialogOpen = () => !!document.querySelector('dialog[open]');
 function sendRow() {
   if (!room || !connected || !room.connection.isOpen || seat < 0 || latest?.stage !== 'playing' || latest.condition !== 'afloat' || latest.paused || latest.complete) return;
-  room.send('row', { seq: ++seq, ...rowingAction(keys) });
+  room.send('row', { seq: ++seq, ...input.action() });
 }
-function release() { keys.clear(); sendRow(); }
+function release() { input.clear(); sendRow(); }
 function connectionNotice() {
   if (!room) return;
   element('crew-waiting').hidden = connected && !latest?.paused;
@@ -87,10 +88,11 @@ function closeMenu() { menu.close(); focusGame(); }
 function openMenu() { release(); if (room && !menu.open) menu.showModal(); }
 function showTitle(message = '') {
   scene.presentation = 'title'; title.hidden = false;
-  for (const id of ['lobby', 'failure', 'finish-screen', 'crew-waiting', 'menu-button', 'loading']) element(id).hidden = true;
+  for (const id of ['lobby', 'failure', 'finish-screen', 'crew-waiting', 'menu-button', 'loading', 'touch-controls', 'reset-vote-banner', 'lobby-countdown']) element(id).hidden = true;
   element('menu-message').textContent = message;
   element('resume-crew').hidden = !sessionStorage.getItem('bad-at-boating-reconnect');
-  element('continue-voyage').hidden = !storedVoyage() || !!storedVoyage()?.finished;
+  const stored = storedVoyage();
+  element('continue-voyage').hidden = !stored || !!stored.finished;
 }
 function clearRoom() {
   audio.clear();
@@ -98,6 +100,9 @@ function clearRoom() {
   scene.snapshot = undefined; scene.targetPosition.set(0, 0, 0); scene.targetRotation.identity();
   for (const person of scene.people) person.visible = false;
   for (const key of ['seat', 'stage', 'mode', 'condition', 'tick', 'strokes', 'position', 'rotation', 'resetId', 'blades', 'ack', 'paused']) delete document.body.dataset[key];
+  // Hide HUD elements that belong to the game session.
+  element('touch-controls').hidden = true;
+  element('reset-vote-banner').hidden = true;
 }
 async function leaveRoom() {
   const previous = room; room = undefined;
@@ -138,17 +143,53 @@ function onSnapshot(snapshot: Snapshot) {
   if (seat >= 0) seq = Math.max(seq, snapshot.ack[seat] ?? 0);
   title.hidden = true; element('loading').hidden = true; element('menu-button').hidden = false;
   element('lobby').hidden = snapshot.stage !== 'lobby';
-  element('failure').hidden = snapshot.stage !== 'playing' || snapshot.condition !== 'sunk';
+  const sunk = snapshot.stage === 'playing' && snapshot.condition === 'sunk';
+  element('failure').hidden = !sunk;
+  if (sunk && snapshot.obstacleId) {
+    const label = snapshot.obstacleId.replace(/-(\d+)$/, ' $1').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    element('obstacle-name').textContent = ` Hit: ${label}.`;
+  } else { element('obstacle-name').textContent = ''; }
   element('finish-screen').hidden = !snapshot.complete || snapshot.condition !== 'afloat';
   connectionNotice();
   renderCrew(snapshot);
   const me = snapshot.crew.find(m => m.seat === seat);
   element('ready').textContent = me?.ready ? 'Ready ✓' : 'Ready to Row';
-  element<HTMLButtonElement>('ready').disabled = snapshot.crew.filter(m => m.connected).length !== 4;
+  const fullCrew = snapshot.crew.filter(m => m.connected).length === 4;
+  element<HTMLButtonElement>('ready').disabled = !fullCrew;
+  element('ready').title = fullCrew ? 'All four players must be ready. Click again to cancel.' : 'Waiting for all 4 seats to be filled';
   if (snapshot.checkpoint > lastCheckpoint) toast('Checkpoint reached.');
   lastCheckpoint = snapshot.checkpoint;
   const stopped = snapshot.stage !== 'playing' || snapshot.condition !== 'afloat' || snapshot.paused || snapshot.complete;
   if (stopped) release();
+  // G2: Lobby countdown display.
+  const cdEl = element('lobby-countdown');
+  const countdown = snapshot.countdownSeconds;
+  cdEl.hidden = !countdown || countdown <= 0;
+  if (countdown && countdown > 0) cdEl.textContent = `Launching in ${countdown}…`;
+  // G1: Reset vote banner — visible while an afloat mid-run vote is in progress.
+  const voteBanner = element('reset-vote-banner');
+  if (snapshot.resetVotes && snapshot.resetVotesNeeded && !stopped) {
+    voteBanner.hidden = false;
+    element('reset-vote-text').textContent = `Return to checkpoint: ${snapshot.resetVotes}/${snapshot.resetVotesNeeded} agree · ${snapshot.resetVoteSeconds ?? 0}s`;
+    const voted = snapshot.resetVoters?.includes(seat) ?? false;
+    element<HTMLButtonElement>('agree-reset').disabled = voted;
+    element('agree-reset').textContent = voted ? 'Agreed' : 'Agree';
+    element('withdraw-reset').hidden = !voted;
+  } else {
+    voteBanner.hidden = true;
+  }
+  // F3: Finish time display.
+  const ftEl = element('finish-time');
+  if (snapshot.finishTimeMs) {
+    const mins = Math.floor(snapshot.finishTimeMs / 60000);
+    const secs = Math.floor((snapshot.finishTimeMs % 60000) / 1000);
+    ftEl.textContent = `Crew session time ${mins}:${String(secs).padStart(2, '0')}`;
+  } else {
+    ftEl.textContent = '';
+  }
+  element('stroke-summary').textContent = `Your strokes: ${snapshot.strokes[seat] ?? 0}`;
+  element('touch-controls').hidden = stopped || !connected;
+
   const data = document.body.dataset;
   data.tick = String(snapshot.tick); data.seat = String(seat); data.checkpoint = String(snapshot.checkpoint);
   data.stage = snapshot.stage; data.mode = snapshot.mode; data.condition = snapshot.condition;
@@ -260,6 +301,8 @@ element('ready').addEventListener('click', () => {
 });
 for (const id of ['leave', 'failure-leave', 'finish-leave', 'connection-leave']) element(id).addEventListener('click', () => void leaveRoom());
 for (const id of ['reset', 'retry-checkpoint']) element(id).addEventListener('click', () => { release(); room?.send('reset'); closeMenu(); focusGame(); });
+element('agree-reset').addEventListener('click', () => { release(); room?.send('reset', true); focusGame(); });
+element('withdraw-reset').addEventListener('click', () => { room?.send('reset', false); focusGame(); });
 element('replay').addEventListener('click', () => { release(); room?.send('restart'); focusGame(); });
 element('menu-button').addEventListener('click', openMenu);
 element('resume').addEventListener('click', closeMenu);
@@ -267,6 +310,11 @@ for (const id of ['show-controls']) element(id).addEventListener('click', () => 
 for (const dialog of [menu, controls, joinDialog]) dialog.addEventListener('close', focusGame);
 element<HTMLInputElement>('reduced-motion').checked = scene.reducedMotion;
 element('reduced-motion').addEventListener('change', event => scene.reducedMotion = (event.target as HTMLInputElement).checked);
+// Sync reduced-motion when the OS preference changes without a reload (U6).
+matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', event => {
+  scene.reducedMotion = event.matches;
+  element<HTMLInputElement>('reduced-motion').checked = event.matches;
+});
 element('low-quality').addEventListener('change', event => scene.setLowQuality((event.target as HTMLInputElement).checked));
 element<HTMLInputElement>('sound-enabled').checked = audio.enabled;
 element<HTMLInputElement>('sound-volume').value = String(audio.volume);
@@ -291,6 +339,17 @@ window.addEventListener('keydown', event => {
 window.addEventListener('keyup', event => { const key=paddleKey(event);if(key && keys.delete(key))sendRow(); }, {capture:true});
 window.addEventListener('blur', release);
 document.addEventListener('visibilitychange', () => { if (document.hidden) release(); });
+for (const button of element('touch-controls').querySelectorAll<HTMLButtonElement>('button[data-key]')) {
+  button.addEventListener('pointerdown', event => {
+    event.preventDefault();
+    if (!connected || dialogOpen() || document.hidden || latest?.stage !== 'playing' || latest.condition !== 'afloat' || latest.paused || latest.complete) return;
+    button.setPointerCapture(event.pointerId);
+    input.touches.set(event.pointerId, button.dataset.key!);
+    unlockSound(); focusGame(); sendRow();
+  });
+  const lift = (event: PointerEvent) => { if (input.touches.delete(event.pointerId)) sendRow(); };
+  for (const type of ['pointerup', 'pointercancel', 'lostpointercapture'] as const) button.addEventListener(type, lift);
+}
 // Mouse movement and mouse buttons are deliberately not bound to paddles.
 setInterval(() => {
   connectionNotice();

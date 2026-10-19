@@ -33,6 +33,9 @@ export class RiverWater extends Water {
   captureFrames = 0;
   private readonly normalizedX: Float32Array;
   private readonly foamObstacles = [...ROCKS.map(r => new T.Vector3(r.x, r.z, r.radius)), ...PYLONS.map(p => new T.Vector3(p.x, p.z, .27)), ...SPIKES.map(p => new T.Vector3(p.x, p.z, p.radius))];
+  // Cached scratch objects for the per-frame update() hot path — avoids GC pressure.
+  private readonly _scaleOne = new T.Vector3(1, 1, 1);
+  private readonly _forward = new T.Vector3(0, 0, 1);
   constructor() {
     super(new T.PlaneGeometry(26, 174, 48, 320), {
       textureWidth: 768, textureHeight: 768, waterNormals: rippleNormals(),
@@ -204,14 +207,16 @@ export class RiverWater extends Water {
     const uniforms = this.material.uniforms;
     uniforms.time!.value = time;
     uniforms.dryHull!.value = intact ? 1 : 0;
-    (uniforms.hullWorldInverse!.value as T.Matrix4).compose(position,rotation,new T.Vector3(1,1,1)).invert();
+    (uniforms.hullWorldInverse!.value as T.Matrix4).compose(position,rotation,this._scaleOne).invert();
     (uniforms.eye!.value as T.Vector3).copy(camera.position);
     (uniforms.boatPosition!.value as T.Vector2).set(position.x, position.z);
-    const direction = new T.Vector3(0, 0, 1).applyQuaternion(rotation);
-    (uniforms.boatDirection!.value as T.Vector2).set(direction.x, direction.z).normalize();
+    this._forward.set(0, 0, 1).applyQuaternion(rotation);
+    (uniforms.boatDirection!.value as T.Vector2).set(this._forward.x, this._forward.z).normalize();
     uniforms.boatSpeed!.value = speed;
     // Geometry runs at 20 Hz; shader normals/reflections run at display rate.
-    if (Math.abs(time - this.lastGeometryTime) < .05) return;
+    // Checkpoint/reconnect can relocate the hull without advancing server time.
+    // Do not leave the water window behind during a same-tick reset.
+    if (Math.abs(time - this.lastGeometryTime) < .05 && Math.abs(position.z + 65 - this.position.z) < .5) return;
     this.lastGeometryTime = time;
     this.position.z = position.z + 65;
     const p = this.geometry.getAttribute('position'), widths = this.geometry.getAttribute('channelWidth');

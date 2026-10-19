@@ -2,7 +2,7 @@
   "result": "PASS",
   "automated": true,
   "humanPlaytest": false,
-  "base": "http://127.0.0.1:2571",
+  "base": "http://localhost:2571",
   "connections": 3,
   "checks": [
     "Silent open WebSocket triggers watchdog reconnect and same-seat resume",

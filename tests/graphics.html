@@ -1,9 +1,9 @@
 <!doctype html><html><head><meta charset="utf-8"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"><title>Bad at Boating — render fixture</title><style>html,body{margin:0;overflow:hidden}#world{position:fixed;inset:0;background:#a8c6c2}canvas{display:block}#label{position:fixed;left:20px;bottom:16px;color:#fff4cd;font:11px system-ui;text-shadow:0 1px 4px #123}</style></head><body><div id="world"></div><div id="label"></div><script type="module">
 import { RiverScene } from '/src/client/scene.ts';
 import { DT, PHYSICS_VERSION, PROTOCOL_VERSION } from '/src/shared/protocol.ts';
-import { SWEEPERS, sampleSweeper, sampleWaterwheel } from '/src/shared/world.ts';
+import { SWEEPERS, sampleSweeper, sampleWaterwheel, sampleWaterwheel2 } from '/src/shared/world.ts';
 const view = new URL(location.href).searchParams.get('view') ?? 'crew';
-const positions = {waterwheel:{x:0,y:.08,z:456},crew:{x:0,y:.08,z:0}, shore:{x:8,y:.08,z:2}, trees:{x:8,y:.08,z:8}, grass:{x:8,y:.08,z:2}, wreck:{x:0,y:-.15,z:25}, spikes:{x:-3,y:.08,z:50}, vortex:{x:0,y:.08,z:106}, log:{x:0,y:.08,z:86}, gorge:{x:0,y:.08,z:181}, rapids:{x:0,y:.08,z:310}, timber:{x:0,y:.08,z:419}, narrows:{x:0,y:.08,z:546}, finish:{x:0,y:.08,z:810}, underside:{x:0,y:.08,z:0}};
+const positions = {waterwheel:{x:0,y:.08,z:456},crew:{x:0,y:.08,z:0}, shore:{x:8,y:.08,z:2}, trees:{x:8,y:.08,z:8}, grass:{x:8,y:.08,z:2}, wreck:{x:0,y:-.15,z:25}, spikes:{x:-3,y:.08,z:50}, vortex:{x:0,y:.08,z:106}, log:{x:0,y:.08,z:86}, gorge:{x:0,y:.08,z:181}, rapids:{x:0,y:.08,z:310}, timber:{x:0,y:.08,z:419}, narrows:{x:0,y:.08,z:546}, millstone:{x:0,y:.08,z:870},boulders:{x:0,y:.08,z:950},wheel2:{x:0,y:.08,z:1030},haven:{x:0,y:.08,z:1100},finish:{x:0,y:.08,z:1390}, underside:{x:0,y:.08,z:0}};
 const scene = new RiverScene(document.getElementById('world'));
 if(new URL(location.href).searchParams.has('noRefraction'))scene.water.capture=()=>{scene.water.material.uniforms.refractionReady.value=0;};
 const tick = 480, time = tick * DT;
@@ -16,5 +16,5 @@ if(view==='grass') scene.followCamera=()=>{scene.camera.position.set(13.2,.9,-2)
 if(new URL(location.href).searchParams.has('low'))scene.setLowQuality(true);
 document.getElementById('label').textContent=`RENDER FIXTURE · ${view.toUpperCase()} · authored pose for graphics QA`;
 let previous=performance.now(), frames=0;
-function frame(now){const dt=Math.min((now-previous)/1000,.05);previous=now;scene.render(dt,now/1000);document.body.dataset.frames=String(++frames);const q=sampleWaterwheel(scene.time);document.body.dataset.wheelError=String(1-Math.abs(scene.wheel.quaternion.x*q.x+scene.wheel.quaternion.w*q.w));document.body.dataset.sweeperError=String(Math.max(...scene.sweepers.map((log,i)=>log.position.distanceTo(sampleSweeper(scene.time,SWEEPERS[i])))));requestAnimationFrame(frame)}requestAnimationFrame(frame);
+function frame(now){const dt=Math.min((now-previous)/1000,.05);previous=now;scene.render(dt,now/1000);document.body.dataset.frames=String(++frames);const q=sampleWaterwheel(scene.time);const q2=sampleWaterwheel2(scene.time);document.body.dataset.wheelError=String(Math.max(1-Math.abs(scene.wheel.quaternion.x*q.x+scene.wheel.quaternion.w*q.w),1-Math.abs(scene.wheel2.quaternion.x*q2.x+scene.wheel2.quaternion.w*q2.w)));document.body.dataset.sweeperError=String(Math.max(...scene.sweepers.map((log,i)=>log.position.distanceTo(sampleSweeper(scene.time,SWEEPERS[i])))));requestAnimationFrame(frame)}requestAnimationFrame(frame);
 </script></body></html>

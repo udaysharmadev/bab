@@ -1,6 +1,6 @@
 import * as T from 'three';
 import { SEATS, DT, type Snapshot } from '../shared/protocol';
-import { PYLONS, ROCKS, SPIKES, WHIRLPOOL, SWEEPERS, sampleSweeper, WATERWHEEL, sampleWaterwheel, CHECKPOINTS, FINISH_Z, ROUTE_SECTIONS, RAPIDS, channelHalfWidth, sampleWater } from '../shared/world';
+import { PYLONS, ROCKS, SPIKES, WHIRLPOOL, SWEEPERS, sampleSweeper, WATERWHEEL, WATERWHEEL2, sampleWaterwheel, sampleWaterwheel2, CHECKPOINTS, FINISH_Z, ROUTE_SECTIONS, RAPIDS, channelHalfWidth, sampleWater } from '../shared/world';
 
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { Sky } from 'three/addons/objects/Sky.js';
@@ -26,6 +26,7 @@ export class RiverScene {
   readonly boat = new T.Group();
   readonly sweepers: T.Group[] = [];
   readonly wheel = new T.Group();
+  readonly wheel2 = new T.Group();
   get sweeper() { return this.sweepers[0]!; }
   readonly chunks = new Map<number,T.Group>();
   readonly sky: Sky;
@@ -61,6 +62,9 @@ export class RiverScene {
   readonly look = new T.Vector3();
   readonly raycaster = new T.Raycaster();
   readonly occluders: T.Object3D[] = [];
+  // Shared per-frame scratch objects — never disposed, never mutated across frames.
+  private readonly dummy = new T.Object3D();
+  private readonly rippleMaterial = new T.MeshBasicMaterial({ color: '#e0efda', transparent: true, opacity: 0.6, side: T.DoubleSide, depthWrite: false });
   snapshot?: Snapshot;
   reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   lastReset = -1;
@@ -83,7 +87,9 @@ export class RiverScene {
     this.sun.position.set(-20, 36, 28);
     this.sun.castShadow = true;
     this.sun.shadow.mapSize.set(2048, 2048);
-    Object.assign(this.sun.shadow.camera, { left: -28, right: 28, top: 35, bottom: -20, near: 0.5, far: 100 });
+    // G-C fix: widen shadow frustum from ±28 to ±32 to cover full-width gorge sections.
+    // G-B fix: extend far from 100 to 130 to reduce shadow pop-in on visible distant chunks.
+    Object.assign(this.sun.shadow.camera, { left: -32, right: 32, top: 35, bottom: -20, near: 0.5, far: 130 });
     this.sun.shadow.bias = -0.0005;
     this.scene.add(this.sun, this.sun.target);
 
@@ -106,6 +112,7 @@ export class RiverScene {
     this.landscape();
     this.gorge();
     this.makeWaterwheel();
+    this.makeWaterwheel2();
     const bed = this.nature.stone.clone(); bed.vertexColors = false; bed.color.set('#999073'); bed.bumpScale = .025;
     for (let start = -30; start < FINISH_Z + 30; start += 60) {
       const centre = start + 30;
@@ -286,6 +293,7 @@ export class RiverScene {
       const words=symbols[section.kind as keyof typeof symbols];
       this.sign(words[0]!,words[1]!,channelHalfWidth(section.start-8)-1,section.start-8);
     }
+    for (const z of [1140, 1300]) this.sign('FAST WATER', 'SET YOUR LINE EARLY', channelHalfWidth(z - 8) - 1, z - 8);
     for(const z of CHECKPOINTS.filter(z=>z>=156)) {
       const width=channelHalfWidth(z);
       this.sign('CHECKPOINT','GREEN PENNANTS · REGROUP',-width+1,z-3,'#a3d19c');
@@ -308,7 +316,7 @@ export class RiverScene {
   }
 
   batchChunks() {
-    for(const chunk of [...this.chunks.values(),this.wheel]) {
+    for(const chunk of [...this.chunks.values(), this.wheel, this.wheel2]) {
       const batches=new Map<T.Material,T.Mesh[]>();
       for(const child of chunk.children)if(child instanceof T.Mesh && !(child instanceof T.InstancedMesh) && !Array.isArray(child.material)) {
         const batch=batches.get(child.material)??[];batch.push(child);batches.set(child.material,batch);
@@ -336,16 +344,44 @@ export class RiverScene {
       const a=i*Math.PI*2/wheel.blades;
       const paddle=this.mesh(new T.BoxGeometry(wheel.halfWidth*2,.3,.7),i%2?wood:paint,0,Math.cos(a)*wheel.radius,Math.sin(a)*wheel.radius,this.wheel);paddle.rotation.x=a;
     }
-    const axle=this.mesh(new T.CylinderGeometry(.18,.18,8,12),iron,wheel.x+2,wheel.y,wheel.z);axle.rotation.z=Math.PI/2;
+    const axle=this.mesh(new T.CylinderGeometry(.18,.18,8,12),iron,wheel.x+Math.sign(wheel.x)*2,wheel.y,wheel.z);axle.rotation.z=Math.PI/2;
     for(const z of [wheel.z-2,wheel.z+2]) {
       this.mesh(new T.BoxGeometry(2.6,5,1.1),wood,10.8,2,z);
       const brace=this.mesh(new T.BoxGeometry(.3,4,.3),wood,9.8,1.8,z);brace.rotation.z=-.3;
     }
-    this.sign('WORKING WATERWHEEL','KEEP LEFT · WATCH THE RED BLADES',-5.7,wheel.z-15);
+    this.sign('WORKING WATERWHEEL','KEEP RIGHT · WATCH THE RED BLADES',-5.7,wheel.z-15);
     // Green bypass markers make the permanently open route visible before commitment.
     for(const z of [wheel.z-5,wheel.z+5]) {
       this.mesh(new T.CylinderGeometry(.08,.12,1.3,8),mat('#567b54'),-2.7,.3,z);
       this.mesh(new T.BoxGeometry(.45,.28,.025),mat('#c2d7a0'),-2.5,1,z);
+    }
+  }
+
+  makeWaterwheel2() {
+    // Mirrored wheel on the opposite bank; axle extends toward the bank.
+    const wheel=WATERWHEEL2,wood=this.nature.bark,iron=mat('#41483f',{metalness:.7,roughness:.4}),paint=mat('#b84c31');
+    this.wheel2.position.set(wheel.x,wheel.y,wheel.z);this.scene.add(this.wheel2);
+    for(const side of [-1,1]) {
+      const ring=this.mesh(new T.TorusGeometry(wheel.radius,.08,7,64),iron,side*wheel.halfWidth,0,0,this.wheel2);ring.rotation.y=Math.PI/2;
+      for(let i=0;i<wheel.blades;i++) {
+        const a=i*Math.PI*2/wheel.blades;
+        const spoke=this.mesh(new T.CylinderGeometry(.065,.065,wheel.radius-.25,7),wood,side*wheel.halfWidth,Math.cos(a)*(wheel.radius+.25)/2,Math.sin(a)*(wheel.radius+.25)/2,this.wheel2);spoke.rotation.x=a;
+      }
+    }
+    for(let i=0;i<wheel.blades;i++) {
+      const a=i*Math.PI*2/wheel.blades;
+      const paddle=this.mesh(new T.BoxGeometry(wheel.halfWidth*2,.3,.7),i%2?wood:paint,0,Math.cos(a)*wheel.radius,Math.sin(a)*wheel.radius,this.wheel2);paddle.rotation.x=a;
+    }
+    const axle=this.mesh(new T.CylinderGeometry(.18,.18,8,12),iron,wheel.x+Math.sign(wheel.x)*2,wheel.y,wheel.z);axle.rotation.z=Math.PI/2;
+    for(const z of [wheel.z-2,wheel.z+2]) {
+      this.mesh(new T.BoxGeometry(2.6,5,1.1),wood,-10.8,2,z);
+      const brace=this.mesh(new T.BoxGeometry(.3,4,.3),wood,-9.8,1.8,z);brace.rotation.z=.3;
+    }
+    this.sign("DEVIL'S WHEEL",'KEEP LEFT · WATCH THE RED BLADES',5.7,wheel.z-15);
+    // Green markers indicate the open bypass.
+    for(const z of [wheel.z-5,wheel.z+5]) {
+      this.mesh(new T.CylinderGeometry(.08,.12,1.3,8),mat('#567b54'),2.7,.3,z);
+      this.mesh(new T.BoxGeometry(.45,.28,.025),mat('#c2d7a0'),2.5,1,z);
     }
   }
 
@@ -550,7 +586,7 @@ export class RiverScene {
     }
     if (snap?.condition === 'afloat') snap.blades.forEach((blade, i) => this.posePaddle(i, blade));
 
-    const dummy = new T.Object3D();
+    const dummy = this.dummy;
     for (let i = 0; i < this.flowTracers.length; i++) {
       const tracer = this.flowTracers[i]!;
       const flow = sampleWater(tracer.x, tracer.y, this.time);
@@ -605,7 +641,8 @@ export class RiverScene {
       snap.blades.forEach((blade, i) => {
         if (blade.force > 40 && blade.immersion > 0.1 && now - (this.ripples.filter(r => r.seat === i).at(-1)?.born ?? -1) > 0.15) {
           const geometry = new T.RingGeometry(0.06, 0.085, 14);
-          const material = new T.MeshBasicMaterial({ color: '#e0efda', transparent: true, opacity: 0.6, side: T.DoubleSide, depthWrite: false });
+          // Clone shared material so each ripple can fade opacity independently.
+          const material = this.rippleMaterial.clone();
           const mesh = new T.Mesh(geometry, material);
           const point = this.boat.localToWorld(new T.Vector3(blade.x, blade.y, blade.z));
           mesh.position.set(point.x, sampleWater(point.x, point.z, this.time).height + 0.025, point.z);
@@ -626,8 +663,12 @@ export class RiverScene {
     this.sweepers.forEach((log,i)=>{log.position.copy(sampleSweeper(this.time,SWEEPERS[i]!));log.visible=Math.abs(log.position.z-p.z)<165;});
     const wheelPose=sampleWaterwheel(this.time);this.wheel.quaternion.set(wheelPose.x,wheelPose.y,wheelPose.z,wheelPose.w);
     this.wheel.visible=Math.abs(WATERWHEEL.z-p.z)<165;
+    // Act 2 — second waterwheel in Devil's Staircase.
+    const wheel2Pose=sampleWaterwheel2(this.time);this.wheel2.quaternion.set(wheel2Pose.x,wheel2Pose.y,wheel2Pose.z,wheel2Pose.w);
+    this.wheel2.visible=Math.abs(WATERWHEEL2.z-p.z)<165;
     for(const [id,chunk] of this.chunks)chunk.visible=id*60>p.z-100&&id*60<p.z+180;
-    for(const lod of this.foliageLods)lod.mesh.geometry=this.lowQuality||Math.abs(lod.z-p.z)>65?lod.far:lod.near;
+    // G-A fix: increase foliage LOD cutoff from 65m to 80m for wide FOV/portrait views.
+    for(const lod of this.foliageLods)lod.mesh.geometry=this.lowQuality||Math.abs(lod.z-p.z)>80?lod.far:lod.near;
     for(const lod of this.undergrowthLods)lod.mesh.count=this.lowQuality?Math.ceil(lod.count*.55):lod.count;
     this.sky.position.z=p.z;
     const section=ROUTE_SECTIONS.find(section=>p.z>=section.start&&p.z<section.end);

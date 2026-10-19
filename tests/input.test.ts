@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { PaddleStroke, paddleKey } from '../src/client/input';
+import { PaddleInput, PaddleStroke, paddleKey } from '../src/client/input';
 import { validateRowIntent } from '../src/shared/protocol';
 
 const sample = (keys: string[], seat = 0, time = 0.8) => {
@@ -77,4 +77,17 @@ test('Cycle timing is independent of render frame rate and browser key-repeat fr
     const a=fast.sample(keys,0,tick/60);
     if(tick%2===0)assert.deepEqual(slow.sample(keys,0,tick/60),a);
   }
+});
+
+test('Keyboard and multiple touch pointers retain independent held actions', () => {
+  const input = new PaddleInput();
+  input.keyboard.add('KeyW'); input.touches.set(1, 'KeyW'); input.touches.set(2, 'KeyD');
+  assert.deepEqual(input.action(), {forward:1, turn:1});
+  input.touches.delete(1);
+  assert.deepEqual(input.action(), {forward:1, turn:1});
+  input.keyboard.clear();
+  assert.deepEqual(input.action(), {forward:0, turn:1});
+  input.touches.set(3, 'KeyD'); input.touches.delete(2);
+  assert.deepEqual(input.action(), {forward:0, turn:1});
+  input.clear(); assert.deepEqual(input.action(), {forward:0, turn:0});
 });

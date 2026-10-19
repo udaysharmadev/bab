@@ -1,6 +1,6 @@
 # Bad at Boating — cPanel LiteSpeed setup
 
-Target origin: **https://bab.validussentinel.com**. On 2026-10-20, the public `/health` endpoint returned HTTP 200 and `npm run check:deployment -- https://bab.validussentinel.com` passed its four-client HTTPS/WSS smoke test from this workspace. That verified health, title and directory-guard routes, four WebSocket seats, the four-ready launch barrier, advancing server ticks, disconnect pause and same-seat reconnect. The production browser build, authoritative Colyseus rooms and WebSocket endpoint run in the same Node app. On HTTPS the browser automatically uses `wss://bab.validussentinel.com`; development-only `/game` proxying is not used in production. This does not verify cPanel account settings, Node 24 availability, sustained load or human play quality. Earlier public smoke: protocol 3 / basin-0.5 / waterworks-1. Current repository: protocol 4; re-run the public smoke after this release is deployed.
+Target origin: **https://bab.validussentinel.com**. On 2026-10-20, the public `/health` endpoint returned HTTP 200 and `npm run check:deployment -- https://bab.validussentinel.com` passed its four-client HTTPS/WSS smoke test from this workspace. That verified health, title and directory-guard routes, four WebSocket seats, the four-ready launch barrier, advancing server ticks, disconnect pause and same-seat reconnect. The production browser build, authoritative Colyseus rooms and WebSocket endpoint run in the same Node app. On HTTPS the browser automatically uses `wss://bab.validussentinel.com`; development-only `/game` proxying is not used in production. This does not verify cPanel account settings, Node 24 availability, sustained load or human play quality. Earlier public smoke: protocol 3 / basin-0.5 / waterworks-1. Current repository: protocol 5; re-run the public smoke after this release is deployed.
 
 ## Hosting requirements
 
@@ -48,7 +48,7 @@ If your account only offers cPanel Application Manager using Apache Passenger (w
    ```
 
    Vite produces `dist/`; esbuild produces `build/server.mjs`; `app.js` is the Passenger entrypoint. Do not upload `node_modules` from another computer. The Node app serves `/`, `/health`, and Colyseus matchmaking/WebSocket routes from this same origin.
-4. Check `https://bab.validussentinel.com/health`. Expect JSON with `status:"ready"`, `protocol:4`, `physics:"basin-0.5"`. Then run the external multiplayer smoke test:
+4. Check `https://bab.validussentinel.com/health`. Expect JSON with `status:"ready"`, `protocol:5`, `physics:"basin-0.5"`. Then run the external multiplayer smoke test:
 
    ```sh
    npm run check:deployment -- https://bab.validussentinel.com
@@ -67,7 +67,7 @@ bash deploy.sh
 
 The script requires a clean checkout on the selected branch, fast-forward pulls `origin/main` by default (or `PRODUCTION_BRANCH`), installs the locked dependencies, builds into a staging directory, prunes development dependencies, publishes the frontend/server artifacts, and touches `tmp/restart.txt` only after a successful build. On a build or publish failure before the restart request, it restores the previous `dist/` and `build/server.mjs`. It never resets local commits or deletes save data. After each update, verify `/health` and run the deployment smoke test.
 
-The held-action controls update uses **protocol 4**. Restart the authority and refresh all four crew browsers together; a cached protocol-3 tab receives a version-mismatch error. The earlier public smoke result above describes the protocol-3 build, not verification of this new release. The world/checkpoint save format remains compatible.
+The held-action controls update uses **protocol 5**. Restart the authority and refresh all four crew browsers together; a cached protocol-3 tab receives a version-mismatch error. The earlier public smoke result above describes the protocol-3 build, not verification of this new release. The world/checkpoint save format remains compatible.
 
 For release version changes, take a stopped-app backup of the entire private save directory first. Protocol/world-incompatible saves are retained and rejected instead of being silently migrated. Restarting Passenger ends active in-memory rooms; players must rejoin and resume from the saved checkpoint.
 
@@ -100,3 +100,5 @@ Before an update, announce the restart to players, stop the app in the panel, an
 - [cPanel Application Manager](https://docs.cpanel.net/cpanel/software/application-manager/): provider-controlled Passenger features and environment variables.
 
 The public four-client smoke test passed from this workspace on 2026-10-20, including real WSS seat assignment and reconnect. The test cannot inspect the cPanel account's selected Node version or confirm how the hosting panel is configured. Re-run the smoke test after each deployment; separately measure provider capacity and complete human playtests before launch.
+
+Room creation is limited to eight attempts per minute per transport-reported IP in this single-process app. Joins/reconnects are not charged. Colyseus derives that IP from proxy headers: LiteSpeed/the trusted front proxy must overwrite client-supplied forwarding headers for this limit to be trustworthy. This is not distributed DDoS protection. The protocol-5 handoff release still requires public deployment and a fresh external smoke; local checks do not verify that rollout.

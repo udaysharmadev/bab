@@ -2,7 +2,42 @@
 
 20 October 2026 · Local authored multiplayer prototype · **ITERATE**.
 
-## Latest continuation — four-player WASD and connection recovery
+## Current handoff continuation — lifecycle and second-act review
+
+**20 October 2026: this batch is implemented and locally verified. The full game/PRD and public release remain incomplete.** Claude's existing uncommitted work was preserved, audited and corrected. The current authority/client use **protocol5 / basin-0.5 / waterworks-1**. Sections below this one are historical snapshots; their older routes/protocols/counts are not the current release status.
+
+- Four-ready launch has a real three-second countdown. Unready/disconnect cancels it; a returning lobby member must ready again. Countdown audio now runs during lobby snapshots and emits once per beat.
+- Afloat checkpoint return requires a strict majority within15 seconds: **3/4**, with duplicate votes ignored and usable Agree/Withdraw actions. Drop, leave, recovery, reset and finish clear stale votes. Sunk retry remains immediate. Completed boats reject checkpoint-reset commands, preserve completion when a finisher leaves, and Row Again returns friends to the four-ready dock.
+- Finish displays **crew session time** based on active simulation ticks, excluding lobby/disconnection pauses. This is not persisted total-voyage timing. Checkpoint/finish changes are saved immediately, while routine heartbeat/retry remains throttled.
+- Keyboard and each touch pointer own independent held inputs. Four directional touch buttons replace ambiguous screen-half diagonals. Practice Solo and the permanent stroke HUD are removed; stroke count remains in the menu. Existing all-seat WASD/arrows and combined crew forces are retained.
+- The inherited extension now has **1400m /19 beats /10 canonical checkpoints**, preserving the first nine checkpoint indices. Both wheels have real synchronized collision and marked clear bypasses. The first bypass is screen-right; the mirrored second wheel's bypass is screen-left. Its axle, warning text, Act2 camera volumes and final rapid warnings were corrected. Old Waterworks is no longer labelled as the finish.
+- Same-tick checkpoint relocation now moves/resamples the water window immediately; screenshot review caught the previous stale mesh showing bare riverbed. Security headers and room-creation admission limits were checked; the per-IP limit uses the framework AuthContext before allocation. Trusted hosting must sanitize forwarding headers (see CPANEL_SETUP.md).
+
+Observed verification for this batch:
+
+| Check | Actual result |
+|---|---|
+| TypeScript and complete suite | `npm run check` PASS; final `npm test`: **tests69 / pass69 / fail0** |
+| Four rendered multiplayer clients | **71/71 PASS**, `errors: []`; all-seat keys/arrows, simultaneous inputs, vote-backed fixture resets, every-seat reload, blur and offline recovery |
+| Native touchscreen | **5 checks PASS**, `errors: []`; held forward/reverse/both turns, blade release and menu/lobby behaviour |
+| Silent native socket recovery | **4 checks PASS**, `errors: []`; watchdog, no stale input replay, token-refresh reload, resumed rowing |
+| Complete game-flow browser fixture | PASS, `errors: []`; title/join/ready, layouts, real obstacle wreck, shared retry and wreck reconnect |
+| Graphics | **21 views +3 title sizes PASS**, `errors: []`; max751 calls /6,032,896 triangles within unchanged fixture budgets; both wheel phases checked |
+| Authored camera fixture | **92 cases PASS**, `errors: []`; both viewport shapes, reverse/roll/edge cases, new Act2 views; screenshots reviewed after water fix |
+| Production build | PASS,68 modules;821.19kB JS /227.64kB gzip. Existing >500kB bundle advisory remains. |
+| Local deployment smoke | **8 checks PASS** on final preview `http://localhost:2569`, protocol5, including all four real WS seats and reconnect |
+
+Evidence: `evidence/controls-after.json`, `touch.json`, `reconnect.json`, `browser.json`, `graphics.json`, `camera.json`, `network-stress.json` and checked screenshots. New lifecycle tests cover canceled launch, consent/withdrawal/expiry, immediate save acknowledgement, completed departure/restart and real HTTP room-admission limiting. These are automated local fixtures, not four-human traversal or hardware acceptance. Four simultaneous renderers increased final suite wall time; that is not a frame-rate or capacity certification.
+
+The local preview was restarted with the existing private database. Transient crew links can expire; refresh all tabs and create/join a fresh crew, or Continue Voyage from a saved checkpoint. The cPanel ZIP was regenerated from the final build. No cPanel configuration/public rollout is claimed for protocol5; the owner can run `bash deploy.sh` and then the documented external smoke.
+
+**PRD remaining:** production assets/animation/audio, full human navigation/balance and newcomer study, winding/rescue encounters, named-device frame/memory budgets, long Internet/load soak, streaming, additional regions and release gates. No phase/region acceptance gate is closed by this batch. See PRD_PROGRESS.md.
+
+**Next concrete game milestone:** run a four-human traversal of the1400m prototype, then use observed unfair-contact, camera/input and pacing notes for the next environment/animation polish batch. Hosting remains owner-managed.
+
+VERDICT: PASS
+
+## Historical continuation — four-player WASD and connection recovery
 
 **Current prompt: implementation and local verification COMPLETE; public rollout PENDING.** The public health endpoint still returned protocol 3 after this batch; the fixed repository and local preview use protocol 4. Run `bash deploy.sh` on cPanel, then refresh all four crew browsers. Checkpoint save layout/physics identifiers remain compatible.
 

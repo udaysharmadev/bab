@@ -95,6 +95,8 @@ try {
   await first.waitForFunction(()=>document.body.dataset.audioState==='running' && document.body.dataset.audioEnabled==='true');
   await first.getByLabel('Gentler camera').check(); await first.getByLabel('Lower graphics').check();
   await first.getByRole('button', { name: 'Return to Checkpoint', exact: true }).click();
+  for (const page of crew.slice(1,3)) await page.locator('#agree-reset').click();
+  await first.waitForFunction(()=>document.getElementById('reset-vote-banner').hidden);
   const layouts = [];
   for (const [width, height] of [[907, 510], [700, 982], [480, 900]]) {
     await first.setViewportSize({ width, height }); await first.waitForTimeout(150);

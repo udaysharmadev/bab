@@ -5,7 +5,7 @@ import {mkdir,writeFile} from 'node:fs/promises';
 
 const base=process.env.GAME_URL??'http://localhost:2569';
 const health=await fetch(`${base}/health`).then(reply=>reply.json());
-assert.equal(health.protocol,4);
+assert.equal(health.protocol,5);
 const browser=await chromium.launch({channel:process.env.BROWSER_CHANNEL??'chrome',headless:true});
 const members=[],errors=[],checks=[];
 const page=await browser.newPage({viewport:{width:640,height:480}});

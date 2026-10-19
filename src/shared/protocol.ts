@@ -1,4 +1,4 @@
-export const PROTOCOL_VERSION = 4;
+export const PROTOCOL_VERSION = 5;
 export const PHYSICS_VERSION = 'basin-0.5';
 export const DT = 1 / 60;
 export const SEATS = [
@@ -29,6 +29,16 @@ export type Snapshot = {
   stage: 'lobby' | 'playing';
   condition: 'afloat' | 'breaking' | 'sunk'; wreckAge: number; crashId: number; obstacleId: string | null;
   strokes: number[]; droppedSteps: number;
+  /** Seconds until expedition launches (lobby countdown). 0 or absent = no countdown active. */
+  countdownSeconds?: number;
+  /** Elapsed play time in milliseconds at finish. Absent until complete. */
+  finishTimeMs?: number;
+  /** How many crew members have voted for a mid-run reset (Return to Checkpoint). */
+  resetVotes?: number;
+  /** How many votes are needed for a mid-run reset. */
+  resetVotesNeeded?: number;
+  resetVoters?: number[];
+  resetVoteSeconds?: number;
 };
 
 export const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));

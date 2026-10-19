@@ -1,6 +1,6 @@
 import RAPIER from '@dimforge/rapier3d-compat';
 import { DT, SEATS, clamp, rotate, localToWorld, type Intent, type Blade, type Vec3, type RowAction } from './protocol';
-import { CHECKPOINTS, PYLONS, ROCKS, SPIKES, SWEEPERS, WATERWHEEL, sampleWaterwheel, FINISH_Z, channelHalfWidth, bladeReaction, sampleSweeper, sampleWater } from './world';
+import { CHECKPOINTS, PYLONS, ROCKS, SPIKES, SWEEPERS, WATERWHEEL, WATERWHEEL2, sampleWaterwheel, sampleWaterwheel2, FINISH_Z, channelHalfWidth, bladeReaction, sampleSweeper, sampleWater } from './world';
 
 let physicsReady: Promise<void> | undefined;
 export const initPhysics = () => physicsReady ??= RAPIER.init();
@@ -18,6 +18,7 @@ export class BoatSimulation {
   readonly sweeper: RAPIER.RigidBody;
   readonly sweepers: RAPIER.RigidBody[] = [];
   readonly wheel: RAPIER.RigidBody;
+  readonly wheel2: RAPIER.RigidBody;
   readonly events = new RAPIER.EventQueue(true);
   readonly hazards = new Map<number, string>();
   condition: 'afloat' | 'breaking' | 'sunk' = 'afloat';
@@ -93,6 +94,19 @@ export class BoatSimulation {
       const mid=(i+.5)*Math.PI*2/24,half=wheel.radius*Math.sin(Math.PI/24),angle=mid+Math.PI/2;
       wheelCollider(RAPIER.ColliderDesc.capsule(half,.08).setTranslation(side*wheel.halfWidth,Math.cos(mid)*wheel.radius*Math.cos(Math.PI/24),Math.sin(mid)*wheel.radius*Math.cos(Math.PI/24)).setRotation({x:Math.sin(angle/2),y:0,z:0,w:Math.cos(angle/2)}));
     }
+    // WATERWHEEL2: Devil's Staircase waterwheel — identical structure at new position.
+    const wheel2=WATERWHEEL2;
+    this.wheel2=this.world.createRigidBody(RAPIER.RigidBodyDesc.kinematicPositionBased().setTranslation(wheel2.x,wheel2.y,wheel2.z).setRotation(sampleWaterwheel2(0)));
+    const wheel2Collider=(shape:RAPIER.ColliderDesc)=>{const collider=this.world.createCollider(shape.setFriction(.45),this.wheel2);this.hazards.set(collider.handle,wheel2.id);};
+    for(let i=0;i<wheel2.blades;i++){
+      const angle=i*Math.PI*2/wheel2.blades,q={x:Math.sin(angle/2),y:0,z:0,w:Math.cos(angle/2)};
+      wheel2Collider(RAPIER.ColliderDesc.cuboid(wheel2.halfWidth,.15,.35).setTranslation(0,Math.cos(angle)*wheel2.radius,Math.sin(angle)*wheel2.radius).setRotation(q));
+      for(const side of [-1,1])wheel2Collider(RAPIER.ColliderDesc.capsule((wheel2.radius-.25)/2,.065).setTranslation(side*wheel2.halfWidth,Math.cos(angle)*(wheel2.radius+.25)/2,Math.sin(angle)*(wheel2.radius+.25)/2).setRotation(q));
+    }
+    for(const side of [-1,1])for(let i=0;i<24;i++){
+      const mid=(i+.5)*Math.PI*2/24,half=wheel2.radius*Math.sin(Math.PI/24),angle=mid+Math.PI/2;
+      wheel2Collider(RAPIER.ColliderDesc.capsule(half,.08).setTranslation(side*wheel2.halfWidth,Math.cos(mid)*wheel2.radius*Math.cos(Math.PI/24),Math.sin(mid)*wheel2.radius*Math.cos(Math.PI/24)).setRotation({x:Math.sin(angle/2),y:0,z:0,w:Math.cos(angle/2)}));
+    }
     this.updateBlades();
   }
 
@@ -137,6 +151,7 @@ export class BoatSimulation {
     // sinks. No wall-clock drift, client commands or synthetic hull force.
     this.sweepers.forEach((body, i) => body.setNextKinematicTranslation(sampleSweeper((this.tick + 1) * DT, SWEEPERS[i]!)));
     this.wheel.setNextKinematicRotation(sampleWaterwheel((this.tick+1)*DT));
+    this.wheel2.setNextKinematicRotation(sampleWaterwheel2((this.tick+1)*DT));
     if (this.condition !== 'afloat') {
       body.resetForces(true); body.resetTorques(true);
       // Flooded hull loses buoyancy. Gravity sinks the authoritative body.
@@ -254,7 +269,7 @@ export class BoatSimulation {
 
   reset(start = false) {
     this.condition = 'afloat'; this.wreckTicks = 0; this.obstacleId = null; this.complete = false;
-    if (start) { this.checkpoint = 0; this.complete = false; }
+    if (start) { this.checkpoint = 0; this.complete = false; this.revision = 0; }
     this.hull.setTranslation({ x: 0, y: 0.08, z: CHECKPOINTS[this.checkpoint] ?? 0 }, true);
     this.hull.setRotation({ x: 0, y: 0, z: 0, w: 1 }, true);
     this.hull.setLinvel({ x: 0, y: 0, z: 0 }, true);

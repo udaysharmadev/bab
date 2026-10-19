@@ -1,3 +1,4 @@
+import { rowingAction } from '../shared/rowing';
 export { PaddleStroke, rowingAction, type PaddleTarget } from '../shared/rowing';
 
 const bindings: Record<string, string> = {
@@ -13,4 +14,13 @@ export function paddleKey(event: { code?: string; key?: string }): string | unde
     if (value && Object.hasOwn(bindings, value.toLowerCase())) return bindings[value.toLowerCase()];
   }
   return undefined;
+}
+
+// Keep physical keys and each pointer independent: lifting a finger cannot
+// release a key (or a second finger) that is still held.
+export class PaddleInput {
+  readonly keyboard = new Set<string>();
+  readonly touches = new Map<number, string>();
+  action() { return rowingAction(new Set([...this.keyboard, ...this.touches.values()])); }
+  clear() { this.keyboard.clear(); this.touches.clear(); }
 }

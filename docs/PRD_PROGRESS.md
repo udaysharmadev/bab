@@ -1,10 +1,16 @@
 # Bad at Boating — PRD progress and remaining work
 
-19 October 2026. Live project companion to the archived `reference/boat_project/docs/PRD.md` and its original phase tracker. That archive describes the documentation deliverable's state and is intentionally preserved.
+20 October 2026. Live project companion to the archived `reference/boat_project/docs/PRD.md` and its original phase tracker. That archive describes the documentation deliverable's state and is intentionally preserved.
 
 **Current product state: a local networked prototype. No complete production phase is signed off.** Features can exist across phases while their exit gates remain open. No honest percentage of the whole game can be calculated from these unequal tasks; counting scaffolding, a polished region and a release gate as equal units would mislead.
 
 This inventory uses the implementation and observed verification summarized in `STATUS.md`. The earlier menu, arrow-only input, quiet run view and lethal-obstacle changes have scoped evidence. The latest iteration adds bounded water transmission, authored camera readability and a rerun multiplayer regression; AAA production quality and a finished region are still open. No full production phase or human acceptance gate is closed by those checks.
+
+## Current continuation — reviewed Claude handoff
+
+The inherited uncommitted additions have been reviewed and completed as a bounded prototype batch: 1400m/19 route beats/10 compatible checkpoint indices, a second physical wheel, Act 2 camera volumes and rapid warnings, cancellable four-ready countdown, strict-majority checkpoint consent with Agree/Withdraw/expiry, independent keyboard/touch ownership, immediate durable checkpoint writes and finish/departure/replay handling. Permanent stroke HUD and title Practice were removed to preserve the user's clean-screen preference. Same-tick recovery now relocates the water mesh immediately. Protocol5 requires all clients to refresh after deployment; the save layout/physics identifiers are retained. Current verification and limitations are recorded at the top of STATUS.md; older figures below are historical.
+
+These changes do not close human acceptance, production art, long-run memory/network load, streaming, winding/rescue encounters or the remaining regions. No AAA/zero-glitch claim or whole-game percentage is made.
 
 ## Latest continuation — water transmission, camera readability and multiplayer regression
 
@@ -106,10 +112,10 @@ Statuses retain the source meanings: `IN_TEST` = implementation exists but the f
 | T021 | 16/20/24 sample sweep | BACKLOG | Current implementation uses twenty points; no alternatives/cost comparison. |
 | T022 | Kinetic brace/contact caps | IN_TEST | Swept blade contact and 260 N cap fixture exist; persistent shaft contacts and worst-contact energy matrix remain. |
 | T023 | Capsize/grounded recovery | IMPLEMENTING | Old inversion/reset fallback is partial; lethal break/sink is a new user rule, not full capsize/grounding recovery completion. |
-| T024 | Timber Gorge route/checkpoints | IN_TEST | Initial 820m route/thirteen beats/nine safe checkpoint positions with geometry, contacts, rapids and phase checks. Durable crash/restore and waterwheel physical/bypass fixtures pass; human navigation/duration, winding/rescue/camera and full slice gate remain open. |
+| T024 | Timber Gorge route/checkpoints | IN_TEST | 1400m prototype route/nineteen beats/ten safe checkpoint positions with geometry, contacts, rapids and phase checks. Durable crash/restore and waterwheel physical/bypass fixtures pass; human navigation/duration, winding/rescue/camera and full slice gate remain open. |
 | T025 | Production boat/four crew rigs | IN_TEST | Distinct procedural crew, faces/headwear, grip-driven arms, stroke/wreck motion and textured varnished boat; production assets/skinning/animation review still open. |
 | T026 | Visual/gameplay water, spray/wake | IN_TEST | Shared displaced/reflective water, bounded High screen-space riverbed color/packed-depth transmission, normal detail, foam, hull-speed wake and immersion/force-triggered spray exist; human water-truth and production art acceptance remain. |
-| T027 | Camera volumes/readability | IN_TEST | Authored Whitewater/Timber/Iron Narrows/Last Descent volumes, reverse framing and geometric clearance pass 68 local route cases; blind four-human movement audits remain. |
+| T027 | Camera volumes/readability | IN_TEST | Authored Whitewater/Timber/Iron Narrows/Last Descent volumes, reverse framing and geometric clearance pass 92 local route cases; blind four-human movement audits remain. |
 | T028 | Latency/reconnect/load A/B | IN_TEST | Three real WS delay/jitter/application-message-drop profiles, blackout, reconnect races/expiry and forged burst pass. No TCP packet-loss study, smoothing A/B, long soak or room capacity model. |
 | T029 | Streaming/disposal benchmark | BLOCKED | Streaming not implemented; no long-run multi-region memory trend. |
 | T030 | Vote slice gate/next batch | BLOCKED | No finished slice, signed evidence-backed gate or real production throughput. |
@@ -119,7 +125,7 @@ Statuses retain the source meanings: `IN_TEST` = implementation exists but the f
 1. Maintain title/crew entry, held WASD/arrow individual blades, clean play view, real lethal contact and synchronized break/sink/retry. Current full suite:58 tests passing; targeted held-action browser check:25 checks passing; broad multiplayer evidence is recorded separately in `STATUS.md` and `evidence/browser.json`.
 2. Run the same controls with four real people and then the source's ≥12-newcomer study. Diagnose learning, fatigue, blade/hull causality, camera fairness and obstacle readability before adding world size.
 3. Close network/recovery risks: real Internet latency/TCP loss,30-minute four-client run, production-grace/network-change observation, contact/energy stress, complete capsize/grounding states and structured telemetry.
-4. Take the initial 820m route through actual four-human traversal and pacing, then finish production boat/crew assets, animation/audio, public save/rejoin validation and measured frame/memory budgets.
+4. Take the current 1400m prototype route through actual four-human traversal and pacing, then finish production boat/crew assets, animation/audio, public save/rejoin validation and measured frame/memory budgets.
 5. Prove streaming and authoring tools, then produce the remaining world in complete region batches. Finish platform integration, broad QA, release rehearsal and launch gates.
 
 ## Phase count after this iteration

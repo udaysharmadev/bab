@@ -5,6 +5,9 @@ export const CAMERA_VOLUMES = [
   { id: 'whitewater', start: 266, end: 372, height: 8.2, back: 11.6, ahead: 5.0 },
   { id: 'timber-works', start: 392, end: 484, height: 8.8, back: 12.4, ahead: 6.2 },
   { id: 'iron-narrows', start: 510, end: 618, height: 9.2, back: 11.0, ahead: 4.6 },
+  { id: 'millstone-gorge', start: 824, end: 924, height: 9.2, back: 11.0, ahead: 4.8 },
+  { id: 'devils-staircase', start: 996, end: 1094, height: 9.0, back: 12.0, ahead: 6.0 },
+  { id: 'final-rapids', start: 1142, end: 1378, height: 8.6, back: 11.8, ahead: 5.4 },
   { id: 'last-descent', start: 644, end: 748, height: 8.4, back: 12.0, ahead: 5.4 },
 ] as const;
 const smooth = (x: number) => { const t = Math.max(0, Math.min(1, x)); return t * t * (3 - 2 * t); };

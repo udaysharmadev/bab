@@ -1,10 +1,17 @@
 import { clamp, type Vec3 } from './protocol';
 
-export const CHECKPOINTS = [0, 48, 100, 156, 260, 380, 500, 630, 760] as const;
-export const FINISH_Z = 820;
+// Append checkpoints only: saved voyages store indices into this array.
+export const CHECKPOINTS = [0, 48, 100, 156, 260, 380, 500, 630, 760, 1100] as const;
+export const FINISH_Z = 1400;
 export const WATERWHEEL = {id:'sawyer-waterwheel',x:5,y:2.3,z:465,radius:3,halfWidth:1.5,period:18,blades:8} as const;
+// M-D: Second waterwheel in Devil's Staircase.
+export const WATERWHEEL2 = {id:'devil-waterwheel',x:-5,y:2.3,z:1040,radius:3.2,halfWidth:1.5,period:14,blades:8} as const;
 export function sampleWaterwheel(time:number) {
   const angle=time*Math.PI*2/WATERWHEEL.period;
+  return {x:Math.sin(angle/2),y:0,z:0,w:Math.cos(angle/2)};
+}
+export function sampleWaterwheel2(time:number) {
+  const angle=time*Math.PI*2/WATERWHEEL2.period;
   return {x:Math.sin(angle/2),y:0,z:0,w:Math.cos(angle/2)};
 }
 export type RouteSection = {
@@ -26,19 +33,32 @@ export const ROUTE_SECTIONS: readonly RouteSection[] = [
   { id: 'cedar-pool', name: 'Cedar Pool', start: 612, end: 650, kind: 'calm', hint: 'Reset your rhythm for the last descent.' },
   { id: 'last-descent', name: 'The Last Descent', start: 650, end: 742, kind: 'rapids', hint: 'Commit to a gap before the fast water.' },
   { id: 'home-reach', name: 'Home Reach', start: 742, end: 782, kind: 'calm', hint: 'One final stretch. Still together?' },
-  { id: 'grand-waterworks', name: 'The Grand Waterworks', start: 782, end: FINISH_Z, kind: 'finish', hint: 'Bring everybody under the bridge.' },
+  { id: 'grand-waterworks', name: 'Old Waterworks', start: 782, end: 830, kind: 'calm', hint: 'Under the bridge — then the river opens again.' },
+  // Act 2 — new sections
+  { id: 'millstone-gorge', name: 'Millstone Gorge', start: 830, end: 920, kind: 'narrows', hint: 'The gorge tightens. Thread the needle.' },
+  { id: 'boulder-garden', name: 'Boulder Garden', start: 920, end: 1000, kind: 'slalom', hint: 'Read the rocks. Pick a line and commit.' },
+  { id: 'devils-staircase', name: "Devil's Staircase", start: 1000, end: 1100, kind: 'rapids', hint: 'Two drops, one wheel. Fast water demands fast decisions.' },
+  { id: 'calm-haven', name: 'Calm Haven', start: 1100, end: 1140, kind: 'calm', hint: 'Checkpoint. Breathe. One final push ahead.' },
+  { id: 'finish-straight', name: 'The Finish Straight', start: 1140, end: FINISH_Z, kind: 'finish', hint: 'Everything you have. One last stroke.' },
 ];
 
 const smooth = (a: number, b: number, n: number) => {
   const t = clamp((n - a) / (b - a), 0, 1);
   return t * t * (3 - 2 * t);
 };
+// M-H: WIDTHS extended to cover Act 2 channel shaping.
 const WIDTHS = [
   [138, 12.5], [156, 12.5], [176, 8.5], [234, 8.5], [250, 12], [270, 12],
   [288, 8.5], [304, 8.5], [322, 6.5], [340, 6.5], [358, 8.5], [374, 12], [390, 12],
   [410, 8.5], [458, 8.5], [480, 12], [510, 12], [532, 8], [550, 6.5], [580, 6.5],
   [602, 9], [622, 12], [640, 12], [660, 8.5], [690, 8.5], [714, 7],
   [740, 12], [770, 12], [792, 11], [840, 12.5],
+  // Act 2 channel widths
+  [850, 8],  [870, 6.5], [890, 6.5], [910, 9],  [920, 12.5],
+  [940, 12.5],[960, 12],  [980, 10],  [1000, 9],
+  [1010, 7], [1030, 7],  [1060, 9],  [1090, 10], [1100, 12.5],
+  [1120, 12.5],[1140, 11], [1180, 10], [1220, 8.5],[1260, 10],
+  [1300, 12],[1340, 12.5], [1380, 12.5], [1400, 12.5],
 ] as const;
 
 export function channelHalfWidth(z: number): number {
@@ -68,6 +88,19 @@ export const ROCKS = [
   { id: 'descent-left', x: -4.3, z: 666, radius: 1.25 },
   { id: 'descent-right', x: 3.8, z: 688, radius: 1.2 },
   { id: 'descent-fork', x: -1.5, z: 716, radius: 1.1 },
+  // Act 2 — Boulder Garden
+  { id: 'boulder-a', x: 3.2, z: 928, radius: 1.4 },
+  { id: 'boulder-b', x: -4.1, z: 944, radius: 1.3 },
+  { id: 'boulder-c', x: 1.8, z: 960, radius: 1.15 },
+  { id: 'boulder-d', x: -2.6, z: 976, radius: 1.25 },
+  { id: 'boulder-e', x: 4.5, z: 990, radius: 1.1 },
+  { id: 'boulder-f', x: -1.2, z: 1004, radius: 1.2 },
+  // Act 2 — Finish Straight rocks
+  { id: 'finale-left', x: -4.8, z: 1160, radius: 1.1 },
+  { id: 'finale-right', x: 4.2, z: 1200, radius: 1.15 },
+  { id: 'finale-center', x: -2.0, z: 1250, radius: 1.0 },
+  { id: 'finale-fork', x: 3.5, z: 1300, radius: 1.2 },
+  { id: 'finale-last', x: -1.8, z: 1350, radius: 1.1 },
 ];
 // Upright iron teeth: render and collision share a submerged base at -0.35m.
 export const SPIKES = [
@@ -87,6 +120,18 @@ export const SPIKES = [
   { id: 'narrows-tooth-4', x: 4.3, z: 595.2, radius: 0.4, height: 1.45 },
   { id: 'descent-tooth-1', x: -5.8, z: 698, radius: 0.43, height: 1.7 },
   { id: 'descent-tooth-2', x: -4.9, z: 699.2, radius: 0.4, height: 1.45 },
+  // Act 2 — Millstone Gorge spikes
+  { id: 'mill-tooth-1', x: -4.2, z: 855, radius: 0.45, height: 1.8 },
+  { id: 'mill-tooth-2', x: -3.3, z: 856.4, radius: 0.40, height: 1.5 },
+  { id: 'mill-tooth-3', x: 3.8, z: 878, radius: 0.44, height: 1.7 },
+  { id: 'mill-tooth-4', x: 4.7, z: 879.3, radius: 0.40, height: 1.4 },
+  { id: 'mill-tooth-5', x: -4.5, z: 908, radius: 0.46, height: 1.85 },
+  { id: 'mill-tooth-6', x: -3.6, z: 909.1, radius: 0.41, height: 1.55 },
+  // Act 2 — Finish Straight spikes
+  { id: 'finale-tooth-1', x: -4.8, z: 1180, radius: 0.44, height: 1.75 },
+  { id: 'finale-tooth-2', x: -3.9, z: 1181.2, radius: 0.40, height: 1.45 },
+  { id: 'finale-tooth-3', x: 4.5, z: 1310, radius: 0.45, height: 1.8 },
+  { id: 'finale-tooth-4', x: 5.3, z: 1311.4, radius: 0.40, height: 1.5 },
 ];
 export const WHIRLPOOL = { x: -5, z: 112, radius: 5, depth: 0.55, swirl: 6, inward: 2 } as const;
 export type Sweeper = {
@@ -101,6 +146,9 @@ export const SWEEPERS: readonly Sweeper[] = [
   SWEEPER,
   { id: 'timber-gate-1', z: 427, halfLength: 2, radius: 0.35, amplitude: 4.6, period: 17, baseY: 0.16 },
   { id: 'timber-gate-2', z: 452, halfLength: 2.15, radius: 0.37, amplitude: 4.4, period: 21, baseY: 0.16 },
+  // Act 2 — Devil's Staircase sweeper (tighter amplitude in narrow channel)
+  { id: 'staircase-log', z: 1015, halfLength: 2.0, radius: 0.33, amplitude: 3.8, period: 13, baseY: 0.16 },
+  { id: 'staircase-log-2', z: 1055, halfLength: 2.2, radius: 0.36, amplitude: 3.6, period: 16, baseY: 0.15 },
 ];
 
 // Shared authoritative clock: clients display this pose; only the server collider
@@ -120,11 +168,22 @@ export const PYLONS = [
   { x: -5, z: 402 }, { x: 5, z: 402 },
   { x: -3.9, z: 560 }, { x: 3.9, z: 560 },
   { x: -4.2, z: 724 }, { x: 4.2, z: 724 },
+  // Act 2 pylons
+  { x: -3.5, z: 840 }, { x: 3.5, z: 840 },
+  { x: -2.8, z: 938 }, { x: 2.8, z: 938 },
+  { x: -3.2, z: 1090 }, { x: 3.2, z: 1090 },
+  { x: -4.0, z: 1155 }, { x: 4.0, z: 1155 },
+  { x: -3.6, z: 1240 }, { x: 3.6, z: 1240 },
+  { x: -4.2, z: 1340 }, { x: 4.2, z: 1340 },
 ];
 export const RAPIDS = [
   { start: 278, end: 358, strength: 1.3 },
   { start: 538, end: 602, strength: 0.6 },
   { start: 650, end: 734, strength: 1.65 },
+  // Act 2 rapids
+  { start: 1000, end: 1065, strength: 1.7 },
+  { start: 1140, end: 1260, strength: 1.4 },
+  { start: 1300, end: 1390, strength: 1.6 },
 ] as const;
 
 // Same sampler drives authoritative forces and client geometry. Same-runtime

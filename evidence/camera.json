@@ -65,8 +65,8 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 209,
-        "triangles": 1338626,
+        "calls": 207,
+        "triangles": 1280696,
         "geometries": 206,
         "textures": 9,
         "reflections": false,
@@ -179,8 +179,8 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 240,
-        "triangles": 568560,
+        "calls": 241,
+        "triangles": 599280,
         "geometries": 268,
         "textures": 13,
         "reflections": false,
@@ -217,8 +217,8 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 184,
-        "triangles": 412416,
+        "calls": 185,
+        "triangles": 443136,
         "geometries": 268,
         "textures": 13,
         "reflections": false,
@@ -255,8 +255,8 @@
       ],
       "volume": "whitewater",
       "stats": {
-        "calls": 253,
-        "triangles": 362870,
+        "calls": 254,
+        "triangles": 393590,
         "geometries": 309,
         "textures": 16,
         "reflections": false,
@@ -293,8 +293,8 @@
       ],
       "volume": "whitewater",
       "stats": {
-        "calls": 173,
-        "triangles": 172214,
+        "calls": 175,
+        "triangles": 207454,
         "geometries": 309,
         "textures": 16,
         "reflections": false,
@@ -331,8 +331,8 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 247,
-        "triangles": 335142,
+        "calls": 248,
+        "triangles": 365862,
         "geometries": 323,
         "textures": 16,
         "reflections": false,
@@ -369,8 +369,8 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 169,
-        "triangles": 146264,
+        "calls": 171,
+        "triangles": 183584,
         "geometries": 323,
         "textures": 16,
         "reflections": false,
@@ -407,8 +407,8 @@
       ],
       "volume": "timber-works",
       "stats": {
-        "calls": 224,
-        "triangles": 270470,
+        "calls": 226,
+        "triangles": 311830,
         "geometries": 323,
         "textures": 16,
         "reflections": false,
@@ -445,8 +445,8 @@
       ],
       "volume": "timber-works",
       "stats": {
-        "calls": 172,
-        "triangles": 159128,
+        "calls": 173,
+        "triangles": 189848,
         "geometries": 323,
         "textures": 16,
         "reflections": false,
@@ -483,8 +483,8 @@
       ],
       "volume": "timber-works",
       "stats": {
-        "calls": 235,
-        "triangles": 331334,
+        "calls": 236,
+        "triangles": 362054,
         "geometries": 334,
         "textures": 18,
         "reflections": false,
@@ -521,8 +521,8 @@
       ],
       "volume": "timber-works",
       "stats": {
-        "calls": 186,
-        "triangles": 180132,
+        "calls": 187,
+        "triangles": 210852,
         "geometries": 334,
         "textures": 18,
         "reflections": false,
@@ -559,8 +559,8 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 221,
-        "triangles": 330758,
+        "calls": 222,
+        "triangles": 361478,
         "geometries": 343,
         "textures": 18,
         "reflections": false,
@@ -597,8 +597,8 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 167,
-        "triangles": 134308,
+        "calls": 168,
+        "triangles": 165028,
         "geometries": 343,
         "textures": 18,
         "reflections": false,
@@ -635,8 +635,8 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 224,
-        "triangles": 374478,
+        "calls": 225,
+        "triangles": 405198,
         "geometries": 351,
         "textures": 18,
         "reflections": false,
@@ -673,8 +673,8 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 164,
-        "triangles": 139138,
+        "calls": 165,
+        "triangles": 169858,
         "geometries": 351,
         "textures": 18,
         "reflections": false,
@@ -711,8 +711,8 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 209,
-        "triangles": 298158,
+        "calls": 210,
+        "triangles": 328878,
         "geometries": 357,
         "textures": 19,
         "reflections": false,
@@ -749,8 +749,8 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 157,
-        "triangles": 120082,
+        "calls": 159,
+        "triangles": 157794,
         "geometries": 357,
         "textures": 19,
         "reflections": false,
@@ -787,9 +787,9 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 214,
-        "triangles": 327562,
-        "geometries": 365,
+        "calls": 213,
+        "triangles": 358042,
+        "geometries": 363,
         "textures": 20,
         "reflections": false,
         "refraction": false,
@@ -825,9 +825,9 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 173,
-        "triangles": 168894,
-        "geometries": 365,
+        "calls": 174,
+        "triangles": 199614,
+        "geometries": 363,
         "textures": 20,
         "reflections": false,
         "refraction": false,
@@ -863,9 +863,9 @@
       ],
       "volume": "last-descent",
       "stats": {
-        "calls": 202,
-        "triangles": 307024,
-        "geometries": 368,
+        "calls": 209,
+        "triangles": 340184,
+        "geometries": 374,
         "textures": 20,
         "reflections": false,
         "refraction": false,
@@ -901,9 +901,9 @@
       ],
       "volume": "last-descent",
       "stats": {
-        "calls": 174,
-        "triangles": 186720,
-        "geometries": 368,
+        "calls": 176,
+        "triangles": 219228,
+        "geometries": 374,
         "textures": 20,
         "reflections": false,
         "refraction": false,
@@ -939,10 +939,10 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 162,
-        "triangles": 171210,
-        "geometries": 368,
-        "textures": 20,
+        "calls": 218,
+        "triangles": 360008,
+        "geometries": 400,
+        "textures": 22,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -977,10 +977,466 @@
       ],
       "volume": "river",
       "stats": {
+        "calls": 170,
+        "triangles": 186768,
+        "geometries": 400,
+        "textures": 22,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 870,
+      "reverse": false,
+      "bounds": {
+        "left": 0.3981866326202357,
+        "right": 0.650224523039156,
+        "top": 0.5230878121085812,
+        "bottom": 0.8613466233402478
+      },
+      "camera": [
+        0.9,
+        9.28,
+        859
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "millstone-gorge",
+      "stats": {
+        "calls": 222,
+        "triangles": 360648,
+        "geometries": 415,
+        "textures": 23,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 870,
+      "reverse": true,
+      "bounds": {
+        "left": 0.37042962655034206,
+        "right": 0.616977464537539,
+        "top": 0.16166287524448214,
+        "bottom": 0.5075546714539949
+      },
+      "camera": [
+        0.9,
+        9.28,
+        859
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "millstone-gorge",
+      "stats": {
+        "calls": 164,
+        "triangles": 191826,
+        "geometries": 415,
+        "textures": 23,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 950,
+      "reverse": false,
+      "bounds": {
+        "left": 0.37209823949568976,
+        "right": 0.6761506664441221,
+        "top": 0.4378822766728356,
+        "bottom": 0.7954780396836226
+      },
+      "camera": [
+        0.9,
+        6.58,
+        939.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 221,
+        "triangles": 316022,
+        "geometries": 438,
+        "textures": 25,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 950,
+      "reverse": true,
+      "bounds": {
+        "left": 0.3384760552800938,
+        "right": 0.6426661003252112,
+        "top": 0.14899031967828297,
+        "bottom": 0.521231209393283
+      },
+      "camera": [
+        0.9,
+        6.58,
+        939.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 171,
+        "triangles": 205526,
+        "geometries": 438,
+        "textures": 25,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 1030,
+      "reverse": false,
+      "bounds": {
+        "left": 0.4041974825764958,
+        "right": 0.6428735593001172,
+        "top": 0.5425471196383755,
+        "bottom": 0.8542766068967957
+      },
+      "camera": [
+        0.9,
+        9.08,
+        1018
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "devils-staircase",
+      "stats": {
+        "calls": 241,
+        "triangles": 404014,
+        "geometries": 463,
+        "textures": 25,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 1030,
+      "reverse": true,
+      "bounds": {
+        "left": 0.37773288315989706,
+        "right": 0.611594037804859,
+        "top": 0.19475879503279092,
+        "bottom": 0.5100171025209804
+      },
+      "camera": [
+        0.9,
+        9.08,
+        1018
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "devils-staircase",
+      "stats": {
+        "calls": 172,
+        "triangles": 188768,
+        "geometries": 463,
+        "textures": 25,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 1100,
+      "reverse": false,
+      "bounds": {
+        "left": 0.3720982394956887,
+        "right": 0.6761506664441221,
+        "top": 0.4378822766728398,
+        "bottom": 0.7954780396836284
+      },
+      "camera": [
+        0.9,
+        6.58,
+        1089.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 223,
+        "triangles": 360722,
+        "geometries": 475,
+        "textures": 26,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 1100,
+      "reverse": true,
+      "bounds": {
+        "left": 0.33847605528009167,
+        "right": 0.6426661003252092,
+        "top": 0.14899031967828297,
+        "bottom": 0.521231209393283
+      },
+      "camera": [
+        0.9,
+        6.58,
+        1089.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 174,
+        "triangles": 215738,
+        "geometries": 475,
+        "textures": 26,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 1230,
+      "reverse": false,
+      "bounds": {
+        "left": 0.40059453655473715,
+        "right": 0.6464550830783397,
+        "top": 0.5266683421995274,
+        "bottom": 0.8428590167003888
+      },
+      "camera": [
+        0.9,
+        8.68,
+        1218.2
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "final-rapids",
+      "stats": {
+        "calls": 217,
+        "triangles": 358062,
+        "geometries": 494,
+        "textures": 27,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 1230,
+      "reverse": true,
+      "bounds": {
+        "left": 0.3733871138414554,
+        "right": 0.6151866257997511,
+        "top": 0.19004114188837412,
+        "bottom": 0.511397583118661
+      },
+      "camera": [
+        0.9,
+        8.68,
+        1218.2
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "final-rapids",
+      "stats": {
+        "calls": 172,
+        "triangles": 213782,
+        "geometries": 494,
+        "textures": 27,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 1390,
+      "reverse": false,
+      "bounds": {
+        "left": 0.3720982394956913,
+        "right": 0.6761506664441189,
+        "top": 0.4378822766728403,
+        "bottom": 0.7954780396836251
+      },
+      "camera": [
+        0.9,
+        6.58,
+        1379.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 157,
+        "triangles": 153578,
+        "geometries": 495,
+        "textures": 27,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 1390,
+      "reverse": true,
+      "bounds": {
+        "left": 0.3384760552800958,
+        "right": 0.6426661003252112,
+        "top": 0.14899031967827708,
+        "bottom": 0.5212312093932717
+      },
+      "camera": [
+        0.9,
+        6.58,
+        1379.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
         "calls": 158,
-        "triangles": 142666,
-        "geometries": 368,
-        "textures": 20,
+        "triangles": 167346,
+        "geometries": 495,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -1017,10 +1473,10 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 217,
-        "triangles": 315214,
-        "geometries": 368,
-        "textures": 20,
+        "calls": 218,
+        "triangles": 345934,
+        "geometries": 495,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -1057,10 +1513,10 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 206,
-        "triangles": 310074,
-        "geometries": 368,
-        "textures": 20,
+        "calls": 207,
+        "triangles": 340794,
+        "geometries": 495,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -1097,10 +1553,10 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 161,
-        "triangles": 97692,
-        "geometries": 368,
-        "textures": 20,
+        "calls": 162,
+        "triangles": 128412,
+        "geometries": 495,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -1137,10 +1593,10 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 161,
-        "triangles": 97692,
-        "geometries": 368,
-        "textures": 20,
+        "calls": 162,
+        "triangles": 128412,
+        "geometries": 495,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -1177,10 +1633,10 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 217,
-        "triangles": 330350,
-        "geometries": 368,
-        "textures": 20,
+        "calls": 218,
+        "triangles": 361070,
+        "geometries": 495,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -1217,10 +1673,10 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 208,
-        "triangles": 325234,
-        "geometries": 368,
-        "textures": 20,
+        "calls": 209,
+        "triangles": 355954,
+        "geometries": 495,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -1257,10 +1713,10 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 163,
-        "triangles": 112852,
-        "geometries": 368,
-        "textures": 20,
+        "calls": 164,
+        "triangles": 143572,
+        "geometries": 495,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -1297,10 +1753,10 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 163,
-        "triangles": 112852,
-        "geometries": 368,
-        "textures": 20,
+        "calls": 164,
+        "triangles": 143572,
+        "geometries": 495,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -1487,8 +1943,8 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 239,
-        "triangles": 639728,
+        "calls": 240,
+        "triangles": 670448,
         "geometries": 263,
         "textures": 13,
         "reflections": false,
@@ -1525,8 +1981,8 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 193,
-        "triangles": 455324,
+        "calls": 194,
+        "triangles": 486044,
         "geometries": 263,
         "textures": 13,
         "reflections": false,
@@ -1563,8 +2019,8 @@
       ],
       "volume": "whitewater",
       "stats": {
-        "calls": 255,
-        "triangles": 377142,
+        "calls": 256,
+        "triangles": 407862,
         "geometries": 304,
         "textures": 16,
         "reflections": false,
@@ -1602,7 +2058,7 @@
       "volume": "whitewater",
       "stats": {
         "calls": 190,
-        "triangles": 220802,
+        "triangles": 246482,
         "geometries": 304,
         "textures": 16,
         "reflections": false,
@@ -1639,8 +2095,8 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 247,
-        "triangles": 341740,
+        "calls": 248,
+        "triangles": 372460,
         "geometries": 318,
         "textures": 16,
         "reflections": false,
@@ -1677,8 +2133,8 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 193,
-        "triangles": 225408,
+        "calls": 194,
+        "triangles": 255060,
         "geometries": 318,
         "textures": 16,
         "reflections": false,
@@ -1715,8 +2171,8 @@
       ],
       "volume": "timber-works",
       "stats": {
-        "calls": 233,
-        "triangles": 304342,
+        "calls": 234,
+        "triangles": 335062,
         "geometries": 318,
         "textures": 16,
         "reflections": false,
@@ -1753,8 +2209,8 @@
       ],
       "volume": "timber-works",
       "stats": {
-        "calls": 205,
-        "triangles": 235198,
+        "calls": 206,
+        "triangles": 265918,
         "geometries": 318,
         "textures": 16,
         "reflections": false,
@@ -1791,8 +2247,8 @@
       ],
       "volume": "timber-works",
       "stats": {
-        "calls": 229,
-        "triangles": 330900,
+        "calls": 230,
+        "triangles": 361620,
         "geometries": 329,
         "textures": 18,
         "reflections": false,
@@ -1829,8 +2285,8 @@
       ],
       "volume": "timber-works",
       "stats": {
-        "calls": 180,
-        "triangles": 179698,
+        "calls": 181,
+        "triangles": 210418,
         "geometries": 329,
         "textures": 18,
         "reflections": false,
@@ -1867,8 +2323,8 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 222,
-        "triangles": 342396,
+        "calls": 223,
+        "triangles": 373116,
         "geometries": 338,
         "textures": 18,
         "reflections": false,
@@ -1905,8 +2361,8 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 185,
-        "triangles": 194384,
+        "calls": 188,
+        "triangles": 236744,
         "geometries": 338,
         "textures": 18,
         "reflections": false,
@@ -1944,7 +2400,7 @@
       "volume": "iron-narrows",
       "stats": {
         "calls": 221,
-        "triangles": 385276,
+        "triangles": 411476,
         "geometries": 342,
         "textures": 18,
         "reflections": false,
@@ -1981,8 +2437,8 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 178,
-        "triangles": 176542,
+        "calls": 179,
+        "triangles": 207262,
         "geometries": 342,
         "textures": 18,
         "reflections": false,
@@ -2019,8 +2475,8 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 207,
-        "triangles": 323024,
+        "calls": 208,
+        "triangles": 353744,
         "geometries": 346,
         "textures": 18,
         "reflections": false,
@@ -2057,8 +2513,8 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 180,
-        "triangles": 190426,
+        "calls": 181,
+        "triangles": 221146,
         "geometries": 346,
         "textures": 18,
         "reflections": false,
@@ -2095,9 +2551,9 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 212,
-        "triangles": 314224,
-        "geometries": 360,
+        "calls": 211,
+        "triangles": 344704,
+        "geometries": 358,
         "textures": 20,
         "reflections": false,
         "refraction": false,
@@ -2133,9 +2589,9 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 186,
-        "triangles": 251760,
-        "geometries": 360,
+        "calls": 187,
+        "triangles": 282444,
+        "geometries": 358,
         "textures": 20,
         "reflections": false,
         "refraction": false,
@@ -2171,9 +2627,9 @@
       ],
       "volume": "last-descent",
       "stats": {
-        "calls": 203,
-        "triangles": 307168,
-        "geometries": 363,
+        "calls": 210,
+        "triangles": 340328,
+        "geometries": 369,
         "textures": 20,
         "reflections": false,
         "refraction": false,
@@ -2209,9 +2665,9 @@
       ],
       "volume": "last-descent",
       "stats": {
-        "calls": 185,
-        "triangles": 230944,
-        "geometries": 363,
+        "calls": 187,
+        "triangles": 263804,
+        "geometries": 369,
         "textures": 20,
         "reflections": false,
         "refraction": false,
@@ -2247,10 +2703,10 @@
       ],
       "volume": "river",
       "stats": {
-        "calls": 161,
-        "triangles": 158762,
-        "geometries": 363,
-        "textures": 20,
+        "calls": 214,
+        "triangles": 347490,
+        "geometries": 395,
+        "textures": 22,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -2285,10 +2741,466 @@
       ],
       "volume": "river",
       "stats": {
+        "calls": 187,
+        "triangles": 277130,
+        "geometries": 395,
+        "textures": 22,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 870,
+      "reverse": false,
+      "bounds": {
+        "left": 0.3617131996184565,
+        "right": 0.7183800727274836,
+        "top": 0.521951748684827,
+        "bottom": 0.7070713709501342
+      },
+      "camera": [
+        1.6031250000000001,
+        16.467499999999998,
+        850.40625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "millstone-gorge",
+      "stats": {
+        "calls": 209,
+        "triangles": 361508,
+        "geometries": 398,
+        "textures": 22,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 870,
+      "reverse": true,
+      "bounds": {
+        "left": 0.3076782031967603,
+        "right": 0.6692035556104021,
+        "top": 0.31791522781915604,
+        "bottom": 0.5053078198436877
+      },
+      "camera": [
+        1.6031250000000001,
+        16.467499999999998,
+        850.40625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "millstone-gorge",
+      "stats": {
+        "calls": 170,
+        "triangles": 220066,
+        "geometries": 398,
+        "textures": 22,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 950,
+      "reverse": false,
+      "bounds": {
+        "left": 0.32700396293213335,
+        "right": 0.751054663845006,
+        "top": 0.46535002938168224,
+        "bottom": 0.6632619202917808
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        931.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 226,
+        "triangles": 327022,
+        "geometries": 433,
+        "textures": 25,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 950,
+      "reverse": true,
+      "bounds": {
+        "left": 0.274369393989837,
+        "right": 0.7024213292966154,
+        "top": 0.31109416108801824,
+        "bottom": 0.5125133795292416
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        931.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 187,
+        "triangles": 260832,
+        "geometries": 433,
+        "textures": 25,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 1030,
+      "reverse": false,
+      "bounds": {
+        "left": 0.3711129849693455,
+        "right": 0.7093853115493431,
+        "top": 0.535970637139928,
+        "bottom": 0.7066893686133576
+      },
+      "camera": [
+        1.6031250000000001,
+        16.11125,
+        1008.625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "devils-staircase",
+      "stats": {
+        "calls": 243,
+        "triangles": 421854,
+        "geometries": 458,
+        "textures": 25,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 1030,
+      "reverse": true,
+      "bounds": {
+        "left": 0.32054264272249217,
+        "right": 0.6617837919457724,
+        "top": 0.3345431402440424,
+        "bottom": 0.5065657198515549
+      },
+      "camera": [
+        1.6031250000000001,
+        16.11125,
+        1008.625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "devils-staircase",
+      "stats": {
+        "calls": 197,
+        "triangles": 267872,
+        "geometries": 458,
+        "textures": 25,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 1100,
+      "reverse": false,
+      "bounds": {
+        "left": 0.3270039629321363,
+        "right": 0.7510546638450089,
+        "top": 0.46535002938168474,
+        "bottom": 0.6632619202917838
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        1081.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 231,
+        "triangles": 401878,
+        "geometries": 470,
+        "textures": 26,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 1100,
+      "reverse": true,
+      "bounds": {
+        "left": 0.27436939398983934,
+        "right": 0.7024213292966156,
+        "top": 0.3110941610880191,
+        "bottom": 0.5125133795292415
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        1081.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 195,
+        "triangles": 300814,
+        "geometries": 470,
+        "textures": 26,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 1230,
+      "reverse": false,
+      "bounds": {
+        "left": 0.3658704158749382,
+        "right": 0.7139290538022927,
+        "top": 0.5250261966967172,
+        "bottom": 0.6986080701126114
+      },
+      "camera": [
+        1.6031250000000001,
+        15.39875,
+        1208.98125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "final-rapids",
+      "stats": {
+        "calls": 218,
+        "triangles": 359886,
+        "geometries": 489,
+        "textures": 27,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 1230,
+      "reverse": true,
+      "bounds": {
+        "left": 0.315351048249785,
+        "right": 0.6665492775431461,
+        "top": 0.3320850100402989,
+        "bottom": 0.5073176638379944
+      },
+      "camera": [
+        1.6031250000000001,
+        15.39875,
+        1208.98125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "final-rapids",
+      "stats": {
+        "calls": 182,
+        "triangles": 261374,
+        "geometries": 489,
+        "textures": 27,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 1390,
+      "reverse": false,
+      "bounds": {
+        "left": 0.32700396293213835,
+        "right": 0.751054663845006,
+        "top": 0.4653500293816775,
+        "bottom": 0.6632619202917759
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        1371.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
         "calls": 159,
-        "triangles": 144490,
-        "geometries": 363,
-        "textures": 20,
+        "triangles": 167850,
+        "geometries": 490,
+        "textures": 27,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 1390,
+      "reverse": true,
+      "bounds": {
+        "left": 0.2743693939898382,
+        "right": 0.7024213292966088,
+        "top": 0.31109416108802007,
+        "bottom": 0.5125133795292414
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        1371.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 159,
+        "triangles": 167850,
+        "geometries": 490,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -2325,10 +3237,10 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 207,
-        "triangles": 314594,
-        "geometries": 363,
-        "textures": 20,
+        "calls": 208,
+        "triangles": 345314,
+        "geometries": 490,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -2365,10 +3277,10 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 204,
-        "triangles": 290694,
-        "geometries": 363,
-        "textures": 20,
+        "calls": 205,
+        "triangles": 321414,
+        "geometries": 490,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -2405,10 +3317,10 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 166,
-        "triangles": 115742,
-        "geometries": 363,
-        "textures": 20,
+        "calls": 167,
+        "triangles": 146462,
+        "geometries": 490,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -2445,10 +3357,10 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 166,
-        "triangles": 115742,
-        "geometries": 363,
-        "textures": 20,
+        "calls": 167,
+        "triangles": 146462,
+        "geometries": 490,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -2485,10 +3397,10 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 209,
-        "triangles": 329754,
-        "geometries": 363,
-        "textures": 20,
+        "calls": 210,
+        "triangles": 360474,
+        "geometries": 490,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -2525,10 +3437,10 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 206,
-        "triangles": 305854,
-        "geometries": 363,
-        "textures": 20,
+        "calls": 207,
+        "triangles": 336574,
+        "geometries": 490,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -2565,10 +3477,10 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 171,
-        "triangles": 145180,
-        "geometries": 363,
-        "textures": 20,
+        "calls": 172,
+        "triangles": 175900,
+        "geometries": 490,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,
@@ -2605,10 +3517,10 @@
       ],
       "volume": "iron-narrows",
       "stats": {
-        "calls": 171,
-        "triangles": 145180,
-        "geometries": 363,
-        "textures": 20,
+        "calls": 172,
+        "triangles": 175900,
+        "geometries": 490,
+        "textures": 27,
         "reflections": false,
         "refraction": false,
         "captureCalls": 0,

@@ -1,13 +1,13 @@
 import { before, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { BoatSimulation, initPhysics } from '../src/shared/simulation';
-import { CHECKPOINTS, FINISH_Z, PYLONS, RAPIDS, ROCKS, ROUTE_SECTIONS, SPIKES, SWEEPERS, WATERWHEEL, channelHalfWidth, sampleSweeper, sampleWater } from '../src/shared/world';
+import { CHECKPOINTS, FINISH_Z, PYLONS, RAPIDS, ROCKS, ROUTE_SECTIONS, SPIKES, SWEEPERS, WATERWHEEL, WATERWHEEL2, channelHalfWidth, sampleSweeper, sampleWater } from '../src/shared/world';
 import { DT } from '../src/shared/protocol';
 
 before(initPhysics);
 
 test('Timber Gorge has contiguous authored beats, recovery bays and a finite final objective', () => {
-  assert.equal(FINISH_Z, 820);
+  assert.equal(FINISH_Z, 1400);
   assert.equal(ROUTE_SECTIONS[0]!.start, 0);
   assert.equal(ROUTE_SECTIONS.at(-1)!.end, FINISH_Z);
   for (let i = 1; i < ROUTE_SECTIONS.length; i++) assert.equal(ROUTE_SECTIONS[i - 1]!.end, ROUTE_SECTIONS[i]!.start);
@@ -104,7 +104,7 @@ test('Authored extension has a connected hull-width corridor at sampled timber p
     for (let z = 138; z <= FINISH_Z; z += 0.5) {
       const width = Math.min(channelHalfWidth(z - 1.9), channelHalfWidth(z), channelHalfWidth(z + 1.9));
       const solids = [
-        { x: WATERWHEEL.x, z: WATERWHEEL.z, rx: WATERWHEEL.halfWidth + 0.08, rz: WATERWHEEL.radius + 0.08 },
+        ...[WATERWHEEL, WATERWHEEL2].map(w => ({ x: w.x, z: w.z, rx: w.halfWidth + 0.08, rz: w.radius + 0.08 })),
         ...ROCKS.map(s => ({ x: s.x, z: s.z, rx: s.radius, rz: s.radius })),
         ...SPIKES.map(s => ({ x: s.x, z: s.z, rx: s.radius, rz: s.radius })),
         ...PYLONS.map(s => ({ x: s.x, z: s.z, rx: 0.27, rz: 0.27 })),

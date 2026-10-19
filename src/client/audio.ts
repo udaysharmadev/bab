@@ -1,14 +1,22 @@
-import { SEATS, clamp, type Snapshot } from '../shared/protocol';
+import { SEATS, DT, clamp, type Snapshot } from '../shared/protocol';
 import { sampleWater } from '../shared/world';
 
-export type SoundCue = { kind: 'stroke'; seat: number; effort: number } | { kind: 'break' } | {kind:'checkpoint'} | {kind:'finish'};
+export type SoundCue = { kind: 'stroke'; seat: number; effort: number } | { kind: 'break' } | {kind:'checkpoint'} | {kind:'finish'} | {kind:'recovery'} | {kind:'countdown';beat:number};
 export function soundCues(previous: Snapshot | undefined, next: Snapshot): SoundCue[] {
   // Joining/reconnecting never replays an old crash or accumulated rowing sounds.
-  if (!previous || next.tick < previous.tick || next.stage !== 'playing' || next.paused) return [];
+  if (!previous || next.tick < previous.tick || next.paused) return [];
   const cues: SoundCue[] = [];
+  if (next.stage === 'lobby') {
+    const beat = next.countdownSeconds ?? 0;
+    if (previous.stage === 'lobby' && beat > 0 && beat <= 3 && previous.countdownSeconds !== beat) cues.push({kind:'countdown',beat});
+    return cues;
+  }
+  if (next.stage !== 'playing') return [];
   if (next.crashId > previous.crashId && next.condition === 'breaking') cues.push({ kind: 'break' });
   if (next.checkpoint > previous.checkpoint) cues.push({ kind: 'checkpoint' });
   if (next.complete && !previous.complete) cues.push({ kind: 'finish' });
+  // F-D: recovery sound when the boat is auto-righted or unstuck.
+  if ((next.recoveryId ?? 0) > (previous.recoveryId ?? 0)) cues.push({ kind: 'recovery' });
   if (next.resetId === previous.resetId && next.condition === 'afloat') for (let seat = 0; seat < 4; seat++) {
     if ((next.strokes[seat] ?? 0) > (previous.strokes[seat] ?? 0)) cues.push({ kind: 'stroke', seat, effort: clamp((next.blades[seat]?.force ?? 80) / 280, .2, 1) });
   }
@@ -60,7 +68,8 @@ export class GameAudio {
     const cues = soundCues(this.previous, snapshot); this.previous = snapshot;
     if (!this.context || !this.water) return;
     const speed = Math.hypot(snapshot.velocity.x, snapshot.velocity.z);
-    const zone = sampleWater(snapshot.position.x, snapshot.position.z, snapshot.tick / 60).zone;
+    // B-E fix: use snapshot.tick * DT for consistent time with the simulation clock.
+    const zone = sampleWater(snapshot.position.x, snapshot.position.z, snapshot.tick * DT).zone;
     const level = snapshot.stage === 'playing' && !snapshot.paused && snapshot.condition === 'afloat'
       ? .06 + Math.min(.1, speed * .035) + (zone === 'rapids' ? .12 : zone === 'whirlpool' ? .06 : 0) : 0;
     this.water.gain.setTargetAtTime(level, this.context.currentTime, .12);
@@ -86,6 +95,13 @@ export class GameAudio {
       if (breaking) {
         for (let i = 0; i < 3; i++) this.tone(135 - i * 22, at + i * .045, .26, .16, 'triangle');
       } else this.tone(85 + (cue.kind === 'stroke' ? cue.seat : 0) * 8, at, .15, .035, 'sine');
+    } else if (cue.kind === 'recovery') {
+      // F-D: gentle rising pair of tones signals auto-recovery (capsized/grounded).
+      this.tone(330, at, .28, .06, 'sine'); this.tone(440, at + .14, .22, .05, 'sine');
+    } else if (cue.kind === 'countdown') {
+      // F-E: short blip each second; higher/louder on beat 1 (launch).
+      const freq = cue.beat === 1 ? 880 : 660;
+      this.tone(freq, at, .12, cue.beat === 1 ? .11 : .07, 'sine');
     } else {
       const notes = cue.kind === 'finish' ? [392, 494, 587, 784] : [523, 659, 784];
       notes.forEach((note, i) => this.tone(note, at + i * .11, .38, .075, 'sine'));

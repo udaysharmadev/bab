@@ -30,6 +30,7 @@ async function reset() {
  const old=await data(pages[0],'reset-id');
  await pages[0].getByRole('button',{name:'Open game menu'}).click();
  await pages[0].getByRole('button',{name:'Return to Checkpoint',exact:true}).click();
+ for (const page of pages.slice(1,3)) await page.locator('#agree-reset').click();
  await Promise.all(pages.map(page=>page.waitForFunction(old=>document.body.dataset.resetId!==old,old)));
  await wait(300);
 }

@@ -5,7 +5,7 @@ import { CrewMember } from '../src/client/crew';
 import { RiverWater } from '../src/client/water';
 import { HULL_RING, floorPlank, hullBottom } from '../src/client/hull';
 import { SEATS } from '../src/shared/protocol';
-import { channelHalfWidth, sampleWater, WHIRLPOOL } from '../src/shared/world';
+import { FINISH_Z, channelHalfWidth, sampleWater, WHIRLPOOL } from '../src/shared/world';
 import { stoneGeometry, treeGeometry, grassGeometry, distantFoliage } from '../src/client/nature';
 import { CAMERA_VOLUMES, riverCamera } from '../src/client/camera';
 import { riverbedGeometry } from '../src/client/riverbed';
@@ -13,7 +13,7 @@ import { riverbedGeometry } from '../src/client/riverbed';
 test('Authored cameras blend continuously, frame reverse travel and keep the eye inside the bank',()=>{
   for(const aspect of [1440/960,480/900])for(const speed of [-2,0,2])for(const gentle of [false,true]) {
     let previous=riverCamera(5,0,speed,aspect,gentle);
-    for(let z=.1;z<=820;z+=.1){
+    for(let z=.1;z<=FINISH_Z;z+=.1){
       const frame=riverCamera(5,z,speed,aspect,gentle);
       assert(Object.values(frame).filter(v=>typeof v==='number').every(Number.isFinite));
       assert(Math.abs(frame.x)<channelHalfWidth(frame.z)-1.5);
@@ -26,7 +26,7 @@ test('Authored cameras blend continuously, frame reverse travel and keep the eye
 });
 
 test('Submerged bed is finite, continuous between chunks and below the navigable hull lane',()=>{
-  for(let start=-30;start<850;start+=60){
+  for(let start=-30;start<FINISH_Z+30;start+=60){
     const a=riverbedGeometry(start),b=riverbedGeometry(start+60),p=a.getAttribute('position'),next=b.getAttribute('position');
     assert([...p.array,...a.getAttribute('normal').array].every(Number.isFinite));
     for(let i=0;i<p.count;i++){assert(p.getY(i)<=-.119);if(i%7>=2&&i%7<=4)assert.equal(p.getY(i),Math.fround(-1.8));}
@@ -84,13 +84,27 @@ test('Floor vertices stay within the tapered hull, and the underside is a closed
 
 test('Water window follows the crew through rapids and narrow channels with matching authoritative heights',()=>{
   const water=new RiverWater(),camera=new T.PerspectiveCamera();
-  for(const z of [156,315,429,566,710,800]){
+  for(const z of [156,315,429,566,710,800,870,950,1040,1100,1390]){
     water.update(z/20,camera,new T.Vector3(0,0,z),new T.Quaternion(),1);water.updateMatrixWorld(true);
     const p=water.geometry.getAttribute('position');
     for(let i=0;i<p.count;i+=41){
       const point=new T.Vector3().fromBufferAttribute(p,i).applyMatrix4(water.matrixWorld);
       assert(Math.abs(point.y-(sampleWater(point.x,point.z,z/20).height-.015))<.00002);
       assert(Math.abs(point.x)<=channelHalfWidth(point.z)+.401);
+    }
+  }
+});
+
+test('Same-tick checkpoint relocation moves the water window and resamples its channel immediately',()=>{
+  const water=new RiverWater(),camera=new T.PerspectiveCamera();
+  for(const z of [0,870,1030,1100,1390,48]) {
+    water.update(8,camera,new T.Vector3(0,0,z),new T.Quaternion(),0);
+    water.updateMatrixWorld(true);
+    assert.equal(water.position.z,z+65);
+    const p=water.geometry.getAttribute('position');
+    for(let i=0;i<p.count;i+=71){
+      const point=new T.Vector3().fromBufferAttribute(p,i).applyMatrix4(water.matrixWorld);
+      assert(Math.abs(point.y-(sampleWater(point.x,point.z,8).height-.015))<.00002);
     }
   }
 });

@@ -28,6 +28,7 @@ h1 i::after { content: ''; position: absolute; width: 16px; height: 31%; border-
 .quiet { background: transparent; border-color: transparent; font-size: 12px; }
 #menu-message { font-size: 12px; line-height: 1.6; max-width: min(370px, 90vw); min-height: 20px; }
 #menu-button { position: fixed; right: 18px; top: 18px; padding: 5px 10px; background: #153b3355; border-color: transparent; font-size: 18px; z-index: 2; }
+
 .lobby { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); width: 360px; max-width: calc(100% - 32px); padding: 20px 24px; background: var(--panel); border: 1px solid var(--line); border-radius: 7px; text-align: center; }
 h2 { font-size: 24px; margin: 0 0 12px; line-height: 1.1; letter-spacing: -.7px; }
 #crew-count { font-size: 12px; color: #d7ddc9; margin: 0 0 14px; }
@@ -36,14 +37,26 @@ h2 { font-size: 24px; margin: 0 0 12px; line-height: 1.1; letter-spacing: -.7px;
 .seat-dot { height: 20px; width: 20px; display: grid; place-items: center; border: 1px solid #fff3d577; border-radius: 50%; font-size: 10px; }
 .connected .seat-dot { background: var(--seat-color); color: #163d34; border-color: transparent; }
 .mine .seat-dot { outline: 2px solid #fff3d5; outline-offset: 2px; }
+
+/* G2: Lobby countdown */
+#lobby-countdown { font-size: 36px; font-family: Impact, 'Arial Black', sans-serif; color: #f3c577; margin: 8px 0; letter-spacing: 2px; }
+
 .lobby-actions { display: flex; gap: 8px; }
 .lobby-actions button { flex: 1; font-size: 12px; padding: 10px 8px; }
 .control-note { font-size: 10px; line-height: 1.7; margin: 12px 0 0; color: #cfdbc6; }
 .notice { position: fixed; top: 22%; left: 50%; transform: translateX(-50%); padding: 12px 18px; background: var(--panel); border-radius: 5px; font-size: 12px; max-width: calc(100% - 32px); text-align: center; }
+
+/* G1: Reset vote banner — offset below crew-waiting if both show */
+#reset-vote-banner { top: 32%; z-index: 3; }
+
 .result-screen { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: #102f2c75; text-align: center; }
 .result-screen h2 { font-family: Impact, 'Arial Black', sans-serif; font-size: clamp(48px, 8vh, 85px); text-transform: uppercase; margin: 0; }
 .result-screen p { font-size: 13px; margin: 3px 0 15px; }
 .result-screen .primary { min-width: 220px; }
+
+/* F3: Finish time */
+.finish-time { font-size: 20px !important; color: #f3c577; font-family: Impact, 'Arial Black', sans-serif; letter-spacing: 1px; margin: -8px 0 4px !important; }
+
 #toast { position: fixed; top: 65px; left: 50%; transform: translateX(-50%); background: var(--panel); border-radius: 5px; padding: 10px 16px; font-size: 12px; opacity: 0; transition: opacity .15s; pointer-events: none; z-index: 4; width: max-content; max-width: min(420px, calc(100% - 32px)); text-align: center; }
 #toast.show { opacity: 1; }
 dialog { width: 350px; max-width: calc(100% - 32px); max-height: calc(100dvh - 32px); overflow-y: auto; color: #fff3d5; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 26px; box-shadow: 0 10px 60px #0e2e3366; }
@@ -84,3 +97,11 @@ dt { font-size: 23px; color: #efbf6e; } dd { margin: 0; }
 }
 
 input[type=range] { width: 130px; accent-color: #e8bc72; }
+
+#touch-controls { display: none; }
+@media (pointer: coarse) {
+  #touch-controls { display: grid; grid-template-columns: repeat(3, 54px); gap: 6px; position: fixed; bottom: max(18px, env(safe-area-inset-bottom)); left: 18px; z-index: 2; }
+  #touch-controls button { padding: 10px; font-size: 25px; background: #143b33b8; touch-action: none; user-select: none; }
+  #touch-controls button:first-child { grid-column: 2; }
+  #touch-controls button:nth-child(2) { grid-column: 1; }
+}

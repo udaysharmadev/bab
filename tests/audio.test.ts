@@ -18,3 +18,14 @@ test('Audio follows actual one-shot events without replaying old sounds after jo
  assert.deepEqual(soundCues(start,snap({checkpoint:1})),[{kind:'checkpoint'}]);
  assert.deepEqual(soundCues(start,snap({complete:true})),[{kind:'finish'}]);
 });
+
+test('Lobby countdown beeps once per beat and never replays on join, pause or repeated snapshots',()=>{
+ const lobby=snap({stage:'lobby',tick:0});
+ const three={...lobby,countdownSeconds:3};
+ assert.deepEqual(soundCues(lobby,three),[{kind:'countdown',beat:3}]);
+ assert.deepEqual(soundCues(three,three),[]);
+ assert.deepEqual(soundCues(three,{...three,countdownSeconds:2}),[{kind:'countdown',beat:2}]);
+ assert.deepEqual(soundCues(undefined,three),[]);
+ assert.deepEqual(soundCues(lobby,{...three,paused:true}),[]);
+ assert.deepEqual(soundCues(three,lobby),[]);
+});
