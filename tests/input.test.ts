@@ -1,12 +1,22 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { PaddleStroke, paddleKey } from '../src/client/input';
+import { validateRowIntent } from '../src/shared/protocol';
 
 const sample = (keys: string[], seat = 0, time = 0.8) => {
   const stroke = new PaddleStroke();
   for (let t = 0; t < time; t += 1 / 60) stroke.sample(new Set(keys), seat, t);
   return stroke.sample(new Set(keys), seat, time);
 };
+
+test('Held-action messages reject forged axes, stale sequences and seat/force overrides', () => {
+  assert(validateRowIntent({seq:1,forward:1,turn:-1},0));
+  for (const message of [null, {seq:0,forward:1,turn:0}, {seq:10001,forward:1,turn:0},
+    {seq:1,forward:NaN,turn:0}, {seq:1,forward:1,turn:.5}, {seq:1,forward:2,turn:0},
+    {seq:1,forward:1,turn:0,seat:3}, {seq:1,forward:1,turn:0,thrust:999}, {seq:1,forward:1}]) {
+    assert.equal(validateRowIntent(message,0),false);
+  }
+});
 
 test('WASD and arrows normalize including uppercase and key-only events; aliases stay distinct', () => {
   for (const key of ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'KeyW', 'KeyA', 'KeyS', 'KeyD']) {
@@ -43,10 +53,10 @@ test('Opposites cancel; aliases do not double speed or cancel each other; diagon
   assert.equal(sample(['KeyW','KeyS']).dip,0);
   assert.equal(sample(['ArrowLeft','KeyD']).dip,0);
   assert.deepEqual(sample(['KeyW','ArrowUp']),sample(['ArrowUp']));
-  assert.equal(sample(['KeyW','KeyD'],1).dip,0);
-  assert.equal(sample(['KeyW','KeyD'],0).dip,1);
-  assert.equal(sample(['KeyW','KeyA'],0).dip,0);
-  assert.equal(sample(['KeyW','KeyA'],1).dip,1);
+  for (let seat=0;seat<4;seat++) {
+    assert.equal(sample(['KeyW','KeyD'],seat).dip,seat%2===0?0:1);
+    assert.equal(sample(['KeyW','KeyA'],seat).dip,seat%2===0?1:0);
+  }
   assert.equal(sample(['KeyW'],99).dip,0);
 });
 

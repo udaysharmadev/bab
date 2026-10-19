@@ -48,6 +48,22 @@ test('NET: four distinct seats, launch barrier, authority, forged inputs, drop/p
     await setTimeout(180);
     assert.equal(snapshots[0]!.ack[seats[0]!], 1);
     assert(snapshots[0]!.position.z < 5); assert.equal(snapshots[0]!.checkpoint, 0);
+    // Four simultaneous action streams: forward paddlers and steering
+    // paddlers must all be consumed, rather than one player's input winning.
+    const seq = [1, 0, 0, 0];
+    const pump = setInterval(() => rooms.forEach((room, i) => room.send('row', {
+      seq: ++seq[i]!, forward: i < 2 ? 1 : 0, turn: i < 2 ? 0 : 1,
+    })), 100);
+    try { await setTimeout(3800); } finally { clearInterval(pump); }
+    await until(() => snapshots[0]!.strokes.every(count => count >= 2));
+    const mixed = snapshots[0]!;
+    assert(mixed.ack.every((ack, i) => ack > (i === 0 ? 1 : 0)));
+    assert(mixed.position.z > .4 && mixed.rotation.y < -.05, 'W from two players and D from two must combine');
+    rooms.forEach((room, i) => room.send('row', { seq: ++seq[i]!, forward: 0, turn: 0 }));
+    await until(() => snapshots[0]!.ack.every((ack, i) => ack === seq[i]));
+    const lastAck = snapshots[0]!.ack[0]!;
+    for (const forged of [{seq:lastAck,forward:1,turn:0}, {seq:lastAck+1,forward:1,turn:0,seat:3}, {seq:lastAck+1,forward:99,turn:0}]) rooms[0]!.send('row',forged);
+    await setTimeout(100); assert.equal(snapshots[0]!.ack[0],lastAck);
     const token = rooms[0]!.reconnectionToken;
     rooms[0]!.reconnection.enabled = false;
     rooms[0]!.connection.close();
@@ -62,6 +78,7 @@ test('NET: four distinct seats, launch barrier, authority, forged inputs, drop/p
     await until(() => snapshots[1]?.paused === false && snapshots[0]!.tick > pausedTick);
     assert.equal(seats[0], oldSeat);
     assert.equal(snapshots[0]!.blades[oldSeat!]!.immersion, 0);
+    assert(snapshots[1]!.reconnectSeconds! <= 90);
     await rejoined.leave();
     await until(() => snapshots[1]?.crew.length === 3 && snapshots[1]?.stage === 'lobby');
     assert(snapshots[1]!.tick > pausedTick, 'Organiser leaving must not kill authoritative room');

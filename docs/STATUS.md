@@ -1,6 +1,37 @@
 # Bad at Boating — implementation status
 
-19 October 2026 · Local authored multiplayer prototype · **ITERATE**.
+20 October 2026 · Local authored multiplayer prototype · **ITERATE**.
+
+## Latest continuation — four-player WASD and connection recovery
+
+**Current prompt: implementation and local verification COMPLETE; public rollout PENDING.** The public health endpoint still returned protocol 3 after this batch; the fixed repository and local preview use protocol 4. Run `bash deploy.sh` on cPanel, then refresh all four crew browsers. Checkpoint save layout/physics identifiers remain compatible.
+
+- **Straight W/S from every seat:** requested straight-rowing assistance applies normal water-reaction force through the hull's centre of mass, avoiding unintended single-sided yaw. Deliberate steering and solid bracing retain the blade lever and existing force caps. Buoyancy, current, hazards, shared sinking and checkpoint ownership remain authoritative.
+- **Correct visible steering:** A/Left turns left and D/Right turns right through the actual +Z-facing gameplay camera. The previous tests had mistaken numeric yaw signs for visible direction; camera-projected regressions first reproduced that inversion, then passed after correction.
+- **All crew inputs count:** each member sends validated held axes on change plus a 10Hz heartbeat. Independent server-side controllers generate complete strokes at 60Hz. Two forward-rowing members and two steering members contribute simultaneously; no last-player-wins input replacement occurs. Stale commands lift the blade after one second without a heartbeat. Low-level bounded blade intent remains available for existing fixtures.
+- **Connection recovery:** SDK reconnection now works during the first five seconds after joining. Resume/sync/token storage runs after the JOIN acknowledgement and token refresh, fixing the expired-token failure on a later reload. Five seconds without snapshots triggers a fresh connection attempt. Disconnected crews see a countdown and usable Main Menu; abandoned room callbacks cannot return a player to an old crew. Pre-drop held commands are released, not replayed.
+
+Observed checks:
+
+| Check | Actual result |
+|---|---|
+| TypeScript and complete authority suite | `npm run check` PASS; `npm test`: **63/63 PASS** |
+| Four independent browser clients | **71/71 PASS**, `errors: []`; all-seat WASD, arrows, own-seat isolation, simultaneous crew actions, diagonals, aliases, dialogs, every-seat reload, blur, actual offline/reconnect and offline Main Menu |
+| Straight-course browser traces | **15 W/S/Up/Down samples PASS**; maximum projected heading deviation 0.00005791, below the 0.02 regression bound |
+| Silent native WebSocket recovery | **4/4 PASS**, `errors: []`; watchdog reconnect, no old input replay, refreshed-token reload and subsequent rowing |
+| Updated real WS impairment fixture | PASS for 80±35ms/10%, 180±70ms/25%, 300±100ms/15% ordered application-message drops; each seat adds at least two catches per profile; blackout/reconnect race/expiry/forgery checks pass |
+| Production build | **68 modules, 814.23kB JS / 225.76kB gzip, PASS**; existing chunk-size advisory remains |
+| Updated local preview | `http://localhost:2569`, protocol 4; **8 deployment smoke checks PASS** |
+
+Evidence: `evidence/controls-after.json`, `evidence/reconnect.json` and `evidence/network-stress.json`. Earlier four-renderer runs exposed unreliable wall-time stroke counting under local machine contention and then the real post-reconnect token failure. The final control fixture caps only test rendering near 15 FPS and measures held duration with server ticks, verifying the real input/network path at low frame rate. It is not a hardware frame-budget, long-soak, TCP packet-loss or human playtest result. The silent snapshot fixture preserves a real native socket and withholds application snapshots from the SDK; no browser offline/close event is injected for that check.
+
+The local preview authority was restarted with the existing persistent database; transient crew links expire on restart. The cPanel ZIP was regenerated from the verified build. No cPanel account configuration was changed or public protocol-4 release claimed.
+
+**PRD remaining:** T009/T013/T016 remain IN_TEST pending actual four-human usability/network-change observation and production acceptance. The wider PRD still needs the newcomer study, production assets/audio, hardware performance and long-soak/load evidence, streaming, further regions and release gates. No overall completion percentage or zero-glitch guarantee is inferred from automated tests.
+
+**Next milestone:** deploy protocol 4 with `bash deploy.sh`, rerun the public deployment smoke, then play one complete route with four humans and record input fairness, disconnect recovery and pacing issues.
+
+VERDICT: PASS for this local controls/recovery batch; public rollout and human production gates remain open.
 
 ## Latest continuation — gameplay water depth, camera readability and multiplayer regression
 

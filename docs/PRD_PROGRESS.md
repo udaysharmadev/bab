@@ -91,14 +91,14 @@ Statuses retain the source meanings: `IN_TEST` = implementation exists but the f
 | T006 | Constrained blade target/immersion | IN_TEST | Server-bounded proxy/immersion and complete held-action stroke fixtures exist; human acceptance open. |
 | T007 | Water-relative blade reaction | IN_TEST | Air-vs-immersed reaction fixtures exist; broader direction/energy and reviewer evidence remain. |
 | T008 | Four distributed stations | IN_TEST | Four-seat/yaw/rotation fixtures exist; full station geometry/torque coverage and review remain. |
-| T009 | Input usability | IN_TEST | Held WASD/arrows repeat complete strokes; automated all-seat direction and real-browser lifecycle checks pass. Manual reach/pull mapping superseded. Controller/remapping and newcomer usability clips remain. |
+| T009 | Input usability | IN_TEST | Server-clock held WASD/arrows, any-seat straight W/S assist, corrected camera-relative A/D and simultaneous mixed crew inputs have automated fixtures. Four-browser control/recovery evidence is in STATUS.md. Controller/remapping and newcomer usability clips remain. |
 | T010 | Camera follow/contact clearance | IN_TEST | Follow, ray occlusion and landscape/portrait framing exist; narrow/reverse/rolling/tunnel fairness matrix incomplete. |
 | T011 | Authoritative Colyseus room | IN_TEST | Running service and short local SDK/browser transport evidence; acceptance review/trace bundle open. |
 | T012 | Versioned schema/validator | IN_TEST | Finite/bounds/sequence/extra-fields/seat ownership checks exist; broad malicious-input fuzz/rate abuse suite remains. |
 | T013 | Four independent clients | IN_TEST | Current automated four-context create/join/ready/input/reconnect/wreck/retry regression passes; human gate remains separate. |
 | T014 | Server hull snapshots | IN_TEST | Server owns body/force/checkpoint; forgery and intent checks exist; independent acceptance trace remains. |
 | T015 | Blade/hull smoothing | IN_TEST | Snapshot presentation exists; controlled video latency/correction measurement not done. |
-| T016 | Safe seat reconnect | IN_TEST | Short deliberate drop/rejoin retains seat; real2-second test-grace expiry, duplicate-token race and simultaneous reconnect checks pass; production90-second observation, duplicate-tab UI and network changes remain. |
+| T016 | Safe seat reconnect | IN_TEST | Early-join reconnect enabled; handshake/token race fixed; silent-snapshot watchdog, same-seat resume, subsequent refresh and offline Main Menu have browser fixtures. Two-second grace expiry and reconnect races pass; production 90-second observation, duplicate-tab UI and real network changes remain. |
 | T017 | Slalom, narrow gate, cross-current | IN_TEST | Fixed pylons and cross-current river exist; genuine four-human traversal sessions and new lethal obstacle balance remain. |
 | T018 | Diagnostics/evidence | IN_TEST | Tick/ack/force/stroke/reset metrics and browser artifacts exist; structured RTT/correction/bandwidth/replay run bundle incomplete. |
 | T019 | ≥12 newcomer test | BACKLOG | Not run. Requires actual newcomers, consented unedited observations and survey. Automated clients do not count. |

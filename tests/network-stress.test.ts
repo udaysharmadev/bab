@@ -9,8 +9,8 @@ import {WebSocketTransport} from '@colyseus/ws-transport';
 import {Client,type Room} from '@colyseus/sdk';
 import {BoatRoom} from '../src/server/BoatRoom';
 import {initPhysics} from '../src/shared/simulation';
-import {PROTOCOL_VERSION,PHYSICS_VERSION,DT,type Snapshot} from '../src/shared/protocol';
-import {PaddleStroke} from '../src/client/input';
+import {PROTOCOL_VERSION,PHYSICS_VERSION,type Snapshot} from '../src/shared/protocol';
+import {rowingAction} from '../src/shared/rowing';
 
 async function until(check:()=>boolean,ms=7000){const start=Date.now();while(!check()){if(Date.now()-start>ms)throw new Error('Impairment condition timed out');await sleep(20);}}
 class StressRoom extends BoatRoom {
@@ -80,16 +80,17 @@ test('Real WebSocket impairment grid, blackout, reconnect races, expiry and rate
   for(let i=0;i<4;i++){const room=i===0?await sdk.create('boat',options):await sdk.joinById(rooms[0]!.roomId,options);rooms.push(room);watch(room,i);}
   rooms.forEach(room=>room.send('ready',true));await until(()=>snapshots.length===4&&snapshots.every(s=>s?.stage==='playing'));
   const authority=matchMaker.getLocalRoomById(rooms[0]!.roomId);assert(authority instanceof StressRoom);diagnosticRoom=authority;
-  const controllers=rooms.map(()=>new PaddleStroke()),seq=acks.slice(),keys=new Set(['KeyW']);
-  let started=performance.now();pump=setInterval(()=>rooms.forEach((room,i)=>{if(room.connection.isOpen)room.send('input',{seq:++seq[i]!,...controllers[i]!.sample(keys,i,(performance.now()-started)/1000)});}),1000/30);
+  const seq=acks.slice(),keys=new Set(['KeyW']);
+  pump=setInterval(()=>rooms.forEach((room,i)=>{if(room.connection.isOpen)room.send('row',{seq:++seq[i]!,...rowingAction(keys)});}),100);
   for(const profile of [{delay:80,jitter:35,loss:.10},{delay:180,jitter:70,loss:.25},{delay:300,jitter:100,loss:.15}]){
-   enabled=false;await sleep(550);authority.sim.reset(true);controllers.forEach(c=>c.reset());started=performance.now();
+   enabled=false;await sleep(550);authority.sim.reset(true);
    ({delay,jitter,loss}=profile);dropped=forwarded=bytes=0;enabled=true;
-   const before=authority.sim.tick;await sleep(4000);
+   const before=authority.sim.tick,beforeStrokes=authority.sim.strokes.slice();await sleep(4000);
    assert(authority.sim.tick>before+100);assert.equal(authority.sim.condition,'afloat');assert(authority.sim.maxSpeed<5);
+   assert(authority.sim.strokes.every((count,i)=>count-beforeStrokes[i]!>=2),'Every seat must keep rowing under delay/jitter');
    results.push({...profile,scope:'one-way ms; ordered application-message drop, not TCP packet loss',ticks:authority.sim.tick-before,dropped,forwarded,bytes,positionZ:authority.sim.hull.translation().z,strokes:authority.sim.strokes.slice()});
   }
-  blackoutUntil=Date.now()+1000;await sleep(650);assert(authority.sim.paddles.every(p=>p.dip===0),'Blackout must lift stale blades');
+  blackoutUntil=Date.now()+1700;await sleep(1500);assert(authority.sim.paddles.every(p=>p.dip===0),'Blackout must lift stale blades');
   results.push({case:'upstream-blackout',staleBladesLifted:true});
   enabled=false;blackoutUntil=0;keys.clear();await sleep(600);
   const token=rooms[0]!.reconnectionToken;rooms[0]!.reconnection.enabled=false;rooms[0]!.connection.close();

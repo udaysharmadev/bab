@@ -10,6 +10,8 @@
     "check": "tsc --noEmit",
     "test": "node --import tsx --test --test-concurrency=1 tests/*.test.ts",
     "test:browser": "node tests/browser.mjs",
+    "test:controls": "node tests/controls.mjs",
+    "test:reconnect": "node tests/reconnect.mjs",
     "test:graphics": "node tests/graphics.mjs",
     "check:deployment": "node scripts/check-deployment.mjs",
     "start": "node app.js",

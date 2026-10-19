@@ -8,7 +8,7 @@ const http = target.origin;
 const health = await fetch(`${http}/health`, { signal: AbortSignal.timeout(15000) });
 assert.equal(health.status, 200, 'Health request failed');
 const info = await health.json();
-assert.equal(info.protocol, 3, 'Client/server protocol mismatch');
+assert.equal(info.protocol, 4, 'Client/server protocol mismatch');
 assert.equal(info.physics, 'basin-0.5');
 assert.equal(info.status, 'ready');
 const title = await fetch(http, { signal: AbortSignal.timeout(15000) });

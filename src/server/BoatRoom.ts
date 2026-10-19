@@ -1,9 +1,10 @@
 import { Room, type Client } from '@colyseus/core';
 import { BoatSimulation } from '../shared/simulation';
-import { DT, PHYSICS_VERSION, PROTOCOL_VERSION, validateIntent, type Snapshot } from '../shared/protocol';
+import { DT, PHYSICS_VERSION, PROTOCOL_VERSION, validateIntent, validateRowIntent, type Snapshot, type RowIntent } from '../shared/protocol';
+import { PaddleStroke } from '../shared/rowing';
 import { voyageStore, VoyageConflict, type Voyage, type VoyageStore } from './voyages';
 
-type Member = { seat: number; connected: boolean; ready: boolean; lastReset: number };
+type Member = { seat: number; connected: boolean; ready: boolean; lastReset: number; stroke: PaddleStroke; row?: RowIntent; lastRowAt: number; disconnectedAt?: number };
 
 export class BoatRoom extends Room {
   maxClients = 4;
@@ -42,7 +43,14 @@ export class BoatRoom extends Room {
       const member = this.members.get(client.sessionId);
       if (!member?.connected || this.paused || this.stage !== 'playing' || this.sim.complete) return;
       const paddle = this.sim.paddles[member.seat]!;
-      if (validateIntent(message, paddle.intent.seq)) this.sim.accept(member.seat, message);
+      if (validateIntent(message, Math.max(paddle.intent.seq, member.row?.seq ?? 0))) { member.row = undefined; this.sim.accept(member.seat, message); }
+    });
+    this.onMessage('row', (client, message: unknown) => {
+      const member = this.members.get(client.sessionId);
+      if (!member?.connected || this.paused || this.stage !== 'playing' || this.sim.complete || this.sim.condition !== 'afloat') return;
+      if (validateRowIntent(message, Math.max(this.sim.paddles[member.seat]!.intent.seq, member.row?.seq ?? 0))) {
+        member.row = message; member.lastRowAt = Date.now();
+      }
     });
     this.onMessage('ready', (client, value: unknown) => {
       const member = this.members.get(client.sessionId);
@@ -52,6 +60,7 @@ export class BoatRoom extends Room {
         this.mode = 'expedition';
         this.stage = 'playing';
         this.sim.reset();
+        this.clearRowing();
       }
       this.sendSnapshot();
     });
@@ -60,6 +69,7 @@ export class BoatRoom extends Room {
       if (!member || this.stage !== 'playing' || this.sim.condition === 'breaking' || Date.now() - this.lastSharedReset < 2000) return;
       member.lastReset = this.lastSharedReset = Date.now();
       this.sim.reset();
+      this.clearRowing();
       this.sendSnapshot();
     });
     this.onMessage('sync', client => {
@@ -70,7 +80,7 @@ export class BoatRoom extends Room {
     this.onMessage('restart', client => {
       const member = this.members.get(client.sessionId);
       if (!member || !this.sim.complete || this.sim.condition !== 'afloat' || Date.now() - this.lastSharedReset < 2000) return;
-      member.lastReset = this.lastSharedReset = Date.now(); this.sim.reset(true); this.persistVoyage(); this.sendSnapshot();
+      member.lastReset = this.lastSharedReset = Date.now(); this.sim.reset(true); this.clearRowing(); this.persistVoyage(); this.sendSnapshot();
     });
     this.onMessage('*', () => { /* Ignore unrecognized commands, including hull state forgery. */ });
     this.setSimulationInterval(elapsed => {
@@ -78,7 +88,18 @@ export class BoatRoom extends Room {
       if (!this.paused && this.stage === 'playing' && !this.sim.complete) {
         this.debt += Math.min(elapsed / 1000, 0.25);
         let steps = 0;
-        while (this.debt >= DT && steps < 5) { this.sim.step(); this.debt -= DT; steps++; }
+        while (this.debt >= DT && steps < 5) {
+          for (const member of this.members.values()) {
+            if (!member.connected || !member.row) continue;
+            const action = Date.now() - member.lastRowAt < 1000 ? member.row : { forward: 0, turn: 0 };
+            const target = member.stroke.sampleAction(action, member.seat, this.sim.tick * DT);
+            this.sim.accept(member.seat, { seq: member.row.seq, ...target }, action);
+          }
+          const resetId = this.sim.resetId;
+          this.sim.step();
+          if (this.sim.resetId !== resetId) this.clearRowing();
+          this.debt -= DT; steps++;
+        }
         if (this.debt >= DT) { this.droppedSteps += Math.floor(this.debt / DT); this.debt %= DT; }
       } else this.debt = 0;
       this.persistVoyage();
@@ -101,7 +122,7 @@ export class BoatRoom extends Room {
     const occupied = new Set([...this.members.values()].map(m => m.seat));
     const seat = [0, 1, 2, 3].find(i => !occupied.has(i));
     if (seat === undefined) throw new Error('This boat already has four paddlers.');
-    this.members.set(client.sessionId, { seat, connected: true, ready: false, lastReset: 0 });
+    this.members.set(client.sessionId, { seat, connected: true, ready: false, lastReset: 0, stroke: new PaddleStroke(), lastRowAt: 0 });
     this.sim.setActive(seat, true);
     this.sendSeat(client);
     this.sendVoyage(client);
@@ -110,15 +131,16 @@ export class BoatRoom extends Room {
 
   onDrop(client: Client) {
     const member = this.members.get(client.sessionId);
-    if (member) { member.connected = false; this.sim.setActive(member.seat, false); }
+    if (member) { member.connected = false; member.disconnectedAt = Date.now(); this.sim.setActive(member.seat, false); }
     this.sim.releaseInputs();
+    this.clearRowing();
     this.sendSnapshot();
     void this.allowReconnection(client, this.reconnectGrace).catch(()=>{ /* Grace expiry/shutdown is handled by the room lifecycle. */ });
   }
 
   onReconnect(client: Client) {
     const member = this.members.get(client.sessionId);
-    if (member) { member.connected = true; this.sim.setActive(member.seat, true); }
+    if (member) { member.connected = true; member.disconnectedAt = undefined; this.sim.setActive(member.seat, true); }
     this.sendSeat(client);
     this.sendSnapshot();
   }
@@ -131,6 +153,7 @@ export class BoatRoom extends Room {
     if (this.mode === 'expedition') {
       this.stage = 'lobby';
       this.sim.reset();
+      this.clearRowing();
       for (const m of this.members.values()) m.ready = false;
     }
     this.sendSnapshot();
@@ -138,6 +161,10 @@ export class BoatRoom extends Room {
 
   sendSeat(client: Client) {
     client.send('seat', { seat: this.members.get(client.sessionId)?.seat, roomId: this.roomId });
+  }
+
+  private clearRowing() {
+    for (const member of this.members.values()) { member.row = undefined; member.stroke = new PaddleStroke(); }
   }
 
   private sendVoyage(client?: Client) {
@@ -168,6 +195,8 @@ export class BoatRoom extends Room {
   }
 
   snapshot(): Snapshot {
+    const remaining = [...this.members.values()].filter(m => !m.connected)
+      .map(m => this.reconnectGrace - (Date.now() - (m.disconnectedAt ?? Date.now())) / 1000);
     return {
       protocol: PROTOCOL_VERSION, physics: PHYSICS_VERSION, tick: this.sim.tick,
       position: { ...this.sim.hull.translation() }, rotation: { ...this.sim.hull.rotation() },
@@ -177,6 +206,7 @@ export class BoatRoom extends Room {
       checkpoint: this.sim.checkpoint, revision: this.sim.revision, resetId: this.sim.resetId,
       recoveryId: this.sim.recoveryId, recoveryReason: this.sim.recoveryReason,
       mode: this.mode, paused: this.paused, complete: this.sim.complete,
+      reconnectSeconds: Math.max(0, Math.ceil(Math.min(this.reconnectGrace, ...remaining))),
       stage: this.stage, condition: this.sim.condition, wreckAge: this.sim.wreckTicks * DT,
       crashId: this.sim.crashId, obstacleId: this.sim.obstacleId,
       strokes: this.sim.strokes, droppedSteps: this.droppedSteps,

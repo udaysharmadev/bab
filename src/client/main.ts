@@ -1,8 +1,8 @@
-import { Client, type Room } from '@colyseus/sdk';
+import { Client, CloseCode, type Room } from '@colyseus/sdk';
 import { RiverScene } from './scene';
 import { GameAudio } from './audio';
 import { PHYSICS_VERSION, PROTOCOL_VERSION, SEATS, type Snapshot } from '../shared/protocol';
-import { PaddleStroke, paddleKey } from './input';
+import { rowingAction, paddleKey } from './input';
 import './style.css';
 
 function element<T extends HTMLElement>(id: string): T {
@@ -56,6 +56,8 @@ let connecting = false;
 let connected = false;
 let lastCrew = '';
 let lastCheckpoint = 0;
+let lastSnapshotAt = 0;
+let reconnectStarted = 0;
 type SavedVoyage = {id:string;token:string;checkpoint:number;finished:boolean;savedAt:number;available:boolean;blocked?:boolean};
 let currentVoyage: SavedVoyage | undefined;
 function storedVoyage(): SavedVoyage | undefined {
@@ -65,11 +67,22 @@ function storedVoyage(): SavedVoyage | undefined {
   } catch { /* Storage is optional; recovery codes can be copied from the menu. */ }
   return undefined;
 }
-const input = { x: 0, z: 0, dip: 0 };
-const stroke = new PaddleStroke();
 const keys = new Set<string>();
 const dialogOpen = () => !!document.querySelector('dialog[open]');
-function release() { keys.clear(); Object.assign(input, stroke.reset()); }
+function sendRow() {
+  if (!room || !connected || !room.connection.isOpen || seat < 0 || latest?.stage !== 'playing' || latest.condition !== 'afloat' || latest.paused || latest.complete) return;
+  room.send('row', { seq: ++seq, ...rowingAction(keys) });
+}
+function release() { keys.clear(); sendRow(); }
+function connectionNotice() {
+  if (!room) return;
+  element('crew-waiting').hidden = connected && !latest?.paused;
+  if (connected && !latest?.paused) return;
+  const seconds = connected ? latest?.reconnectSeconds ?? 90 : Math.max(0, 90 - Math.floor((Date.now() - reconnectStarted) / 1000));
+  element('connection-message').textContent = connected
+    ? `A crewmate lost connection. Boat paused safely. Waiting for their seat to reconnect · ${seconds}s`
+    : `Your connection dropped. Reconnecting to your seat… · ${seconds}s`;
+}
 function closeMenu() { menu.close(); focusGame(); }
 function openMenu() { release(); if (room && !menu.open) menu.showModal(); }
 function showTitle(message = '') {
@@ -84,14 +97,17 @@ function clearRoom() {
   connected = false; release(); seat = -1; latest = undefined; lastCrew = ''; lastCheckpoint = 0; currentVoyage=undefined;
   scene.snapshot = undefined; scene.targetPosition.set(0, 0, 0); scene.targetRotation.identity();
   for (const person of scene.people) person.visible = false;
-  for (const key of ['seat', 'stage', 'mode', 'condition', 'tick', 'strokes', 'position', 'rotation', 'resetId', 'blades', 'ack']) delete document.body.dataset[key];
+  for (const key of ['seat', 'stage', 'mode', 'condition', 'tick', 'strokes', 'position', 'rotation', 'resetId', 'blades', 'ack', 'paused']) delete document.body.dataset[key];
 }
 async function leaveRoom() {
   const previous = room; room = undefined;
   sessionStorage.removeItem('bad-at-boating-reconnect');
   clearRoom(); closeMenu();
   const url = new URL(location.href); url.searchParams.delete('crew'); history.replaceState(null, '', url);
-  if (previous) await previous.leave();
+  if (previous) {
+    previous.reconnection.enabled = false;
+    if (previous.connection.isOpen) void previous.leave().catch(() => {});
+  }
   showTitle();
 }
 function renderCrew(snapshot: Snapshot) {
@@ -106,6 +122,7 @@ function renderCrew(snapshot: Snapshot) {
   element('crew-count').textContent = `Crew aboard · ${count} / 4`;
 }
 function onSnapshot(snapshot: Snapshot) {
+  lastSnapshotAt = Date.now();
   const enteringPlay = latest?.stage !== 'playing' && snapshot.stage === 'playing';
   if (latest && latest.resetId !== snapshot.resetId) release();
   if (latest && (latest.recoveryId ?? 0) !== (snapshot.recoveryId ?? 0)) {
@@ -123,7 +140,7 @@ function onSnapshot(snapshot: Snapshot) {
   element('lobby').hidden = snapshot.stage !== 'lobby';
   element('failure').hidden = snapshot.stage !== 'playing' || snapshot.condition !== 'sunk';
   element('finish-screen').hidden = !snapshot.complete || snapshot.condition !== 'afloat';
-  element('crew-waiting').hidden = !snapshot.paused && connected;
+  connectionNotice();
   renderCrew(snapshot);
   const me = snapshot.crew.find(m => m.seat === seat);
   element('ready').textContent = me?.ready ? 'Ready ✓' : 'Ready to Row';
@@ -135,6 +152,7 @@ function onSnapshot(snapshot: Snapshot) {
   const data = document.body.dataset;
   data.tick = String(snapshot.tick); data.seat = String(seat); data.checkpoint = String(snapshot.checkpoint);
   data.stage = snapshot.stage; data.mode = snapshot.mode; data.condition = snapshot.condition;
+  data.paused = String(snapshot.paused);
   data.crashId = String(snapshot.crashId); data.wreckAge = String(snapshot.wreckAge);
   data.strokes = String(snapshot.strokes[seat] ?? 0); data.position = JSON.stringify(snapshot.position);
   data.blades = JSON.stringify(snapshot.blades); data.ack = JSON.stringify(snapshot.ack);
@@ -153,14 +171,20 @@ async function connect(mode: 'friends' | 'practice' = 'friends', roomId?: string
     const token = sessionStorage.getItem('bad-at-boating-reconnect');
     const joined = resume && token ? await client.reconnect(token) : roomId ? await client.joinById(roomId, options) : await client.create('boat', options);
     room = joined; connected = true; seq = 0; lastCheckpoint = 0;
+    lastSnapshotAt = Date.now();
+    // Recover even if a connection drops immediately after joining. Defaults
+    // otherwise decline reconnection during the first five seconds.
+    Object.assign(joined.reconnection, { minUptime: 0, minDelay: 200, maxDelay: 2000, maxRetries: 40, maxEnqueuedMessages: 0 });
     sessionStorage.setItem('bad-at-boating-reconnect', joined.reconnectionToken);
     const url = new URL(location.href); url.searchParams.set('crew', joined.roomId); history.replaceState(null, '', url);
     joined.onMessage<{ seat: number }>('seat', message => {
+      if (room !== joined) return;
       seat = message.seat; element('seat-name').textContent = `Your paddle: ${SEATS[seat]?.name ?? 'Crew seat'}`;
       focusGame();
     });
-    joined.onMessage<Snapshot>('snapshot', onSnapshot);
+    joined.onMessage<Snapshot>('snapshot', snapshot => { if (room === joined) onSnapshot(snapshot); });
     joined.onMessage<SavedVoyage>('voyage', message => {
+      if (room !== joined) return;
       if (!message.available && currentVoyage?.available !== false) toast(message.blocked?'This voyage is active in another crew. Return to the main menu.':'Checkpoint saving is unavailable. Keep this crew open and try again.');
       if (message.available && (message.checkpoint>0 || storedVoyage()?.id===message.id)) {
         try { localStorage.setItem('bad-at-boating-voyage',JSON.stringify(message)); } catch { /* Recovery code remains available in the menu. */ }
@@ -171,18 +195,27 @@ async function connect(mode: 'friends' | 'practice' = 'friends', roomId?: string
       document.body.dataset.savedCheckpoint=String(message.checkpoint);
       document.body.dataset.saveAvailable=String(message.available);
     });
-    joined.onDrop(() => { audio.clear(); connected = false; release(); element('crew-waiting').hidden = false; });
-    joined.onReconnect(() => {
+    joined.onDrop(() => {
+      if (room !== joined) return;
+      audio.clear(); connected = false; reconnectStarted = Date.now(); release(); connectionNotice();
+    });
+    // The SDK replaces its token and sends JOIN acknowledgement after this
+    // callback. Resume on the next microtask so sync/input and saved tokens
+    // cannot race the handshake.
+    joined.onReconnect(() => queueMicrotask(() => {
+      if (room !== joined) { joined.reconnection.enabled = false; void joined.leave().catch(() => {}); return; }
+      lastSnapshotAt = Date.now();
       connected = true; release(); joined.send('sync');
       sessionStorage.setItem('bad-at-boating-reconnect', joined.reconnectionToken);
-    });
+      focusGame();
+    }));
     joined.onLeave((code) => {
       document.body.dataset.disconnectCode=String(code);
       if (room !== joined) return;
       room = undefined; sessionStorage.removeItem('bad-at-boating-reconnect');
       clearRoom(); closeMenu(); showTitle('Your crew connection ended. Start or join a boat.');
     });
-    joined.onError((_code, message) => toast(message ?? 'The crew connection ran into trouble.'));
+    joined.onError((_code, message) => { if (room === joined) toast(message ?? 'The crew connection ran into trouble.'); });
     joined.send('sync');
     focusGame();
   } catch (error) {
@@ -225,7 +258,7 @@ element('ready').addEventListener('click', () => {
   room?.send('ready', !latest?.crew.find(m => m.seat === seat)?.ready);
   focusGame();
 });
-for (const id of ['leave', 'failure-leave', 'finish-leave']) element(id).addEventListener('click', () => void leaveRoom());
+for (const id of ['leave', 'failure-leave', 'finish-leave', 'connection-leave']) element(id).addEventListener('click', () => void leaveRoom());
 for (const id of ['reset', 'retry-checkpoint']) element(id).addEventListener('click', () => { release(); room?.send('reset'); closeMenu(); focusGame(); });
 element('replay').addEventListener('click', () => { release(); room?.send('restart'); focusGame(); });
 element('menu-button').addEventListener('click', openMenu);
@@ -253,18 +286,22 @@ window.addEventListener('keydown', event => {
   if (!room || latest?.stage !== 'playing' || latest.condition !== 'afloat' || dialogOpen() || latest.paused || latest.complete || event.ctrlKey || event.metaKey || event.altKey) return;
   if (event.target instanceof HTMLElement && (event.target.closest('input, textarea, select') || event.target.isContentEditable)) return;
   const key=paddleKey(event);
-  if (key) { event.preventDefault(); keys.add(key); }
+  if (key) { event.preventDefault(); if (!keys.has(key)) { keys.add(key); sendRow(); } }
 }, {capture:true});
-window.addEventListener('keyup', event => { const key=paddleKey(event);if(key)keys.delete(key); }, {capture:true});
+window.addEventListener('keyup', event => { const key=paddleKey(event);if(key && keys.delete(key))sendRow(); }, {capture:true});
 window.addEventListener('blur', release);
 document.addEventListener('visibilitychange', () => { if (document.hidden) release(); });
 // Mouse movement and mouse buttons are deliberately not bound to paddles.
 setInterval(() => {
-  if (!room || !connected || seat < 0 || latest?.stage !== 'playing' || latest.condition !== 'afloat') return;
+  connectionNotice();
+  if (!room || !connected) return;
+  if (!document.hidden && Date.now() - lastSnapshotAt > 5000 && room.connection.isOpen) {
+    release(); room.connection.close(CloseCode.MAY_TRY_RECONNECT, 'Snapshot timeout'); return;
+  }
+  if (seat < 0 || latest?.stage !== 'playing' || latest.condition !== 'afloat') return;
   if (document.hidden || dialogOpen() || latest.paused || latest.complete) release();
-  Object.assign(input, stroke.sample(keys, seat, performance.now() / 1000));
-  room.send('input', { seq: ++seq, ...input });
-}, 1000 / 30);
+  else sendRow();
+}, 100);
 let previousTime = performance.now();
 function frame(now: number) {
   const dt = Math.min((now - previousTime) / 1000, 0.05); previousTime = now;

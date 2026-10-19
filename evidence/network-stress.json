@@ -10,15 +10,15 @@
       "loss": 0.1,
       "scope": "one-way ms; ordered application-message drop, not TCP packet loss",
       "ticks": 240,
-      "dropped": 85,
-      "forwarded": 697,
-      "bytes": 230255,
-      "positionZ": 3.8602635860443115,
+      "dropped": 54,
+      "forwarded": 417,
+      "bytes": 228117,
+      "positionZ": 3.987976312637329,
       "strokes": [
-        5,
-        6,
-        6,
-        5
+        4,
+        4,
+        4,
+        4
       ]
     },
     {
@@ -26,16 +26,16 @@
       "jitter": 70,
       "loss": 0.25,
       "scope": "one-way ms; ordered application-message drop, not TCP packet loss",
-      "ticks": 240,
-      "dropped": 213,
-      "forwarded": 559,
-      "bytes": 187893,
-      "positionZ": 3.539151906967163,
+      "ticks": 239,
+      "dropped": 127,
+      "forwarded": 342,
+      "bytes": 187694,
+      "positionZ": 3.809718132019043,
       "strokes": [
-        14,
-        15,
-        15,
-        15
+        6,
+        6,
+        6,
+        6
       ]
     },
     {
@@ -44,15 +44,15 @@
       "loss": 0.15,
       "scope": "one-way ms; ordered application-message drop, not TCP packet loss",
       "ticks": 240,
-      "dropped": 115,
-      "forwarded": 634,
-      "bytes": 218410,
-      "positionZ": 3.5666253566741943,
+      "dropped": 80,
+      "forwarded": 371,
+      "bytes": 202796,
+      "positionZ": 3.167182207107544,
       "strokes": [
-        20,
-        19,
-        22,
-        21
+        9,
+        9,
+        9,
+        9
       ]
     },
     {

@@ -29,7 +29,7 @@
     <p class="control-note">Hold W/↑ forward · S/↓ reverse · A/← D/→ turn<br>Each player controls their own paddle.</p>
   </section>
   <div id="loading" class="notice" role="status" hidden>Finding your boat…</div>
-  <div id="crew-waiting" class="notice" role="status" hidden>Connection interrupted. Holding the boat for the crew…</div>
+  <div id="crew-waiting" class="notice" role="status" hidden><p id="connection-message">Reconnecting to your crew…</p><button id="connection-leave">Main Menu</button></div>
   <section id="failure" class="result-screen" aria-label="Boat lost" hidden>
     <h2>All hands.<br>No boat.</h2><p>A collision broke the hull.</p><button id="retry-checkpoint" class="primary">Retry Checkpoint</button><button id="failure-leave" class="quiet">Main Menu</button>
   </section>

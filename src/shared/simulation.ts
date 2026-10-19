@@ -1,5 +1,5 @@
 import RAPIER from '@dimforge/rapier3d-compat';
-import { DT, SEATS, clamp, rotate, localToWorld, type Intent, type Blade, type Vec3 } from './protocol';
+import { DT, SEATS, clamp, rotate, localToWorld, type Intent, type Blade, type Vec3, type RowAction } from './protocol';
 import { CHECKPOINTS, PYLONS, ROCKS, SPIKES, SWEEPERS, WATERWHEEL, sampleWaterwheel, FINISH_Z, channelHalfWidth, bladeReaction, sampleSweeper, sampleWater } from './world';
 
 let physicsReady: Promise<void> | undefined;
@@ -8,6 +8,7 @@ export const initPhysics = () => physicsReady ??= RAPIER.init();
 type Paddle = {
   intent: Intent; age: number; x: number; z: number; dip: number;
   vx: number; vz: number; active: boolean; caught: boolean;
+  row?: RowAction;
 };
 
 export class BoatSimulation {
@@ -103,13 +104,13 @@ export class BoatSimulation {
     this.updateBlades();
   }
 
-  accept(seat: number, intent: Intent) {
+  accept(seat: number, intent: Intent, row?: RowAction) {
     const p = this.paddles[seat];
-    if (p?.active && this.condition === 'afloat') { p.intent = { ...intent }; p.age = 0; }
+    if (p?.active && this.condition === 'afloat') { p.intent = { ...intent }; p.row = row; p.age = 0; }
   }
 
   releaseInputs() {
-    for (const p of this.paddles) { p.intent.dip = 0; p.dip = 0; p.age = 999; p.vx = 0; p.vz = 0; p.caught = false; }
+    for (const p of this.paddles) { p.intent.dip = 0; p.dip = 0; p.age = 999; p.vx = 0; p.vz = 0; p.caught = false; p.row = undefined; }
     this.updateBlades();
   }
 
@@ -207,7 +208,13 @@ export class BoatSimulation {
         }
       }
       const magnitude = Math.hypot(force.x, force.z);
-      if (p.active) body.addForceAtPoint(force, point, true);
+      if (p.active) {
+        // Straight-rowing assist: W/S from any seat drives through the centre
+        // of mass, without accidental single-sided yaw. Deliberate turns and
+        // solid bracing retain the real blade lever and all force caps.
+        if (p.row && p.row.turn === 0 && state !== 'BRACE') body.addForce(force, true);
+        else body.addForceAtPoint(force, point, true);
+      }
       const caught = immersion > 0.2 && Math.hypot(relativeBlade.x, relativeBlade.z) > 0.4 && magnitude > 25;
       if (caught && !p.caught) this.strokes[i] = (this.strokes[i] ?? 0) + 1;
       p.caught = caught;
@@ -231,7 +238,7 @@ export class BoatSimulation {
     // a live rowing command has made no headway while the hull is actually at
     // the channel edge. This leaves ordinary bracing and coasting alone.
     const horizontalSpeed = Math.hypot(body.linvel().x, body.linvel().z);
-    const rowing = this.paddles.some(p => p.active && p.age < 0.25 && (Math.abs(p.intent.x) > 0.35 || Math.abs(p.intent.z) > 0.4));
+    const rowing = this.paddles.some(p => p.active && p.age < 0.25 && (p.row ? p.row.forward !== 0 || p.row.turn !== 0 : Math.abs(p.intent.x) > 0.35 || Math.abs(p.intent.z) > 0.4));
     const atBank = Math.abs(pos.x) > channelHalfWidth(pos.z) - 1.2;
     this.groundedTicks = rowing && atBank && horizontalSpeed < 0.08
       ? this.groundedTicks + 1
@@ -260,6 +267,7 @@ export class BoatSimulation {
     for (const p of this.paddles) {
       p.x = 0; p.z = 0; p.dip = 0; p.vx = 0; p.vz = 0; p.age = 999; p.caught = false;
       p.intent = { ...p.intent, x: 0, z: 0, dip: 0 };
+      p.row = undefined;
     }
     this.updateBlades();
   }

@@ -1,0 +1,14 @@
+{
+  "result": "PASS",
+  "automated": true,
+  "humanPlaytest": false,
+  "base": "http://127.0.0.1:2571",
+  "connections": 3,
+  "checks": [
+    "Silent open WebSocket triggers watchdog reconnect and same-seat resume",
+    "Held input from before interruption is released instead of replayed",
+    "Refresh after automatic reconnect uses the current token and retains the seat",
+    "WASD responds after watchdog recovery and refresh"
+  ],
+  "errors": []
+}

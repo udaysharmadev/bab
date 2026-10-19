@@ -1,4 +1,4 @@
-export const PROTOCOL_VERSION = 3;
+export const PROTOCOL_VERSION = 4;
 export const PHYSICS_VERSION = 'basin-0.5';
 export const DT = 1 / 60;
 export const SEATS = [
@@ -11,6 +11,8 @@ export const SEATS = [
 export type Vec3 = { x: number; y: number; z: number };
 export type Quat = Vec3 & { w: number };
 export type Intent = { seq: number; x: number; z: number; dip: number };
+export type RowAction = { forward: number; turn: number };
+export type RowIntent = RowAction & { seq: number };
 export type Blade = {
   x: number; y: number; z: number; immersion: number;
   force: number; state: 'AIR' | 'WATER' | 'BRACE' | 'DISABLED';
@@ -23,12 +25,23 @@ export type Snapshot = {
   checkpoint: number; revision: number; resetId: number;
   recoveryId?: number; recoveryReason?: 'none' | 'grounded' | 'capsized' | 'unstable';
   mode: 'practice' | 'expedition'; paused: boolean; complete: boolean;
+  reconnectSeconds?: number;
   stage: 'lobby' | 'playing';
   condition: 'afloat' | 'breaking' | 'sunk'; wreckAge: number; crashId: number; obstacleId: string | null;
   strokes: number[]; droppedSteps: number;
 };
 
 export const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
+
+export function validateRowIntent(value: unknown, previousSeq: number): value is RowIntent {
+  if (!value || typeof value !== 'object') return false;
+  const v = value as Record<string, unknown>;
+  return Object.keys(v).every(key => ['seq', 'forward', 'turn'].includes(key))
+    && typeof v.seq === 'number' && Number.isSafeInteger(v.seq)
+    && v.seq > previousSeq && v.seq <= previousSeq + 10000
+    && typeof v.forward === 'number' && [-1, 0, 1].includes(v.forward)
+    && typeof v.turn === 'number' && [-1, 0, 1].includes(v.turn);
+}
 
 export function validateIntent(value: unknown, previousSeq: number): value is Intent {
   if (!value || typeof value !== 'object') return false;

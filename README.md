@@ -47,7 +47,9 @@ Each player uses **their own keyboard in their own browser**, controlling only t
 | Release | Lift the blade and stop rowing; hull momentum remains |
 | Escape | Release and open the game menu |
 
-Hold one key: dry reach, catch, submerged pull and lift repeat automatically every1.7s. Turn actions choose forward/reverse sweeps for the assigned side; bow and stern agree on turn direction. Combine forward and turn to curve: the outer blade rows while the inner blade rests. Opposite directions cancel; WASD/arrow aliases do not double power. Individual forward strokes can yaw the shared hull, so coordinate with the other paddlers. Input is sampled at30Hz independently of visual frames; the authoritative server still limits blade movement and derives all water forces. Mouse movement, mouse buttons and Space do not operate a paddle. Normal gameplay shows only the small menu button; help stays in menus/lobby.
+Hold one key: dry reach, catch, submerged pull and lift repeat automatically every 1.7s. W/S use straight-rowing assistance, so any seat can drive forward/reverse without unintended one-sided steering. A/Left and D/Right turn in the visible requested direction from every seat. All four players' inputs contribute simultaneously: one can row forward while another steers. Combine forward and turn to curve: the outer blade rows while the inner blade rests. Opposite directions cancel; WASD/arrow aliases do not double power. Key changes send immediately, with a 10Hz heartbeat; the authority generates complete strokes at 60Hz, independent of browser frame rate and packet arrival cadence. Movement and bracing retain their force caps. Mouse movement, mouse buttons and Space do not operate a paddle. Normal gameplay shows only the small menu button; help stays in menus/lobby.
+
+Connection drops release held commands and pause the crew safely. Reconnect is enabled from the moment a seat joins, with a visible countdown and an accessible Main Menu action. A five-second snapshot silence forces a fresh connection attempt; stale rowing expires after one second without a heartbeat. Reconnecting never replays buffered old rowing commands. Protocol 4 requires refreshing all crew browsers after this update; canonical checkpoint saves remain compatible.
 
 ## Obstacles and shared failure
 
@@ -84,7 +86,8 @@ With the game running and Google Chrome installed:
 ```sh
 npm run test:browser
 npm run test:graphics
-node tests/controls.mjs
+npm run test:controls
+npm run test:reconnect
 ```
 
 `GAME_URL` selects another local endpoint, for example `http://localhost:2567` for a built server. `BROWSER_CHANNEL` defaults to `chrome`. The browser test uses four isolated automated crew clients and an extra client for error handling. It rows the actual shared boat into a rock with four key streams, checks sinking/reload/retry, and saves JSON/screenshots under `evidence/`. Automated clients are not human playtest participants.
@@ -95,7 +98,8 @@ node tests/controls.mjs
 
 - `src/shared/`: protocol, water/world layout and Rapier authoritative simulation.
 - `src/server/BoatRoom.ts`: room, seats, readiness, fixed-step lifecycle and reconnect.
-- `src/client/input.ts`: held WASD/arrow actions and complete repeating own-blade stroke controller.
+- `src/client/input.ts`: keyboard and arrow-key normalization.
+- `src/shared/rowing.ts`: held actions and server-clock repeating stroke controller.
 - `src/client/main.ts`: title, crew joining, gameplay, wreck/retry and menus.
 - `src/client/scene.ts`: procedural boat/world, split hull presentation and camera.
 - `src/client/nature.ts`: chipped stone, branched tree/foliage, grass/fern geometry, surface materials and lighter foliage assets.
