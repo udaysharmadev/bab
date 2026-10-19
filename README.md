@@ -93,7 +93,21 @@ npm run test:reconnect
 
 `GAME_URL` selects another local endpoint, for example `http://localhost:2567` for a built server. `BROWSER_CHANNEL` defaults to `chrome`. The browser test uses four isolated automated crew clients and an extra client for error handling. It rows the actual shared boat into a rock with four key streams, checks sinking/reload/retry, and saves JSON/screenshots under `evidence/`. Automated clients are not human playtest participants.
 
-`test:graphics` starts a temporary Vite fixture server on 5174, captures seventeen crew/hull/obstacle/route/nature/waterwheel views plus three title sizes and offline audio, rejects page/shader console errors and checks moving-log and waterwheel pose consistency and High/Low foliage cost. `NATURE_ONLY=1` limits the view loop to four shore/tree/grass/Low close-ups. These labelled rendering fixtures are authored views, not a claim that real players completed the route.
+`test:graphics` starts a temporary Vite fixture server on 5174, captures twenty-one crew/hull/obstacle/route/nature/waterwheel views plus three title sizes and offline audio, rejects page/shader console errors and checks moving-log and waterwheel pose consistency and High/Low foliage cost. `NATURE_ONLY=1` limits the view loop to four shore/tree/grass/Low close-ups. These labelled rendering fixtures are authored views, not a claim that real players completed the route.
+
+## Crew animation and endurance checks
+
+Crew posture follows the actual blade shaft: both wrists align to it, hands have mirrored thumb grips, and shoulder/head effort complements repeating strokes. Staggered blinks use absolute scene time. The same fixed-length arm solver handles rowing and wreck reactions. These are procedural rigs; production skinned assets and animation acceptance remain open.
+
+Stroke spray/ripples emit only during active afloat play with fresh snapshots; after250ms of silence emission stops. Reset/new-room/title transitions clear old effects. Ripples reuse one geometry while keeping independent disposable fade materials.
+
+```sh
+npm run test:animation
+SOAK_SECONDS=300 npm run test:soak
+# Omit SOAK_SECONDS for the default 30-minute run.
+```
+
+The opt-in soak opens an isolated in-memory authority on port2598 with four real SDK/WebSocket clients. It rows continuously, exercises consent resets and rotates dropped/reconnected seats, checking authority invariants, snapshot delivery and body/collider counts. Node's exposed GC enables comparable heap samples. The JSON evidence records actual elapsed time; a shorter run does not certify30 minutes, Internet performance, browser GPU memory or hosting capacity.
 
 ## Files
 
@@ -113,6 +127,6 @@ npm run test:reconnect
 
 ## Production limits
 
-This remains an 820m initial authored route with improved procedural art. Human usability/fun/fairness, gamepad/remapping, full capsize/grounding recovery, production asset/audio pipelines, lava encounter and a human-validated, polished Timber Gorge slice are pending. Durable checkpoint restore now has crash/reopen and browser evidence. Streaming, the fourteen-region journey, public cPanel/WSS deployment, portal integration, hardware performance/long-soak/load studies and launch readiness remain unclosed. The real WebSocket impairment fixture covers delay/jitter, ordered application-message drops, blackout, reconnect races/expiry and forged bursts; it is not a real Internet/TCP packet-loss study. See [the human playtest kit](docs/PLAYTEST_KIT.md) for the unrun participant gate. CI and Docker configuration exist; remote CI/container execution were not performed. Same-runtime replay tests do not establish cross-platform determinism.
+This remains a1400m prototype route with improved procedural art. Human usability/fun/fairness, gamepad/remapping, full capsize/grounding recovery, production asset/audio pipelines, lava encounter and a human-validated, polished Timber Gorge slice are pending. Durable checkpoint restore now has crash/reopen and browser evidence. Streaming, the fourteen-region journey, public cPanel/WSS deployment, portal integration, hardware performance/long-soak/load studies and launch readiness remain unclosed. The real WebSocket impairment fixture covers delay/jitter, ordered application-message drops, blackout, reconnect races/expiry and forged bursts; it is not a real Internet/TCP packet-loss study. See [the human playtest kit](docs/PLAYTEST_KIT.md) for the unrun participant gate. CI and Docker configuration exist; remote CI/container execution were not performed. Same-runtime replay tests do not establish cross-platform determinism.
 
 At each task end, report **current prompt delivered/pending**, **actual verification**, **PRD work remaining**, and **next concrete milestone**. Do not invent an overall game completion percentage or confuse prototype checks with a production gate.

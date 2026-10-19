@@ -38,6 +38,7 @@ function segment(mesh: T.Mesh, a: T.Vector3, b: T.Vector3) {
 export class CrewMember extends T.Group {
   readonly torso = new T.Group();
   readonly head = new T.Group();
+  readonly eyes = new T.Group();
   readonly arms: { upper: T.Mesh; lower: T.Mesh; hand: T.Mesh }[] = [];
   readonly shoulders = [new T.Vector3(-.19, .39, 0), new T.Vector3(.19, .39, 0)];
   readonly jointPositions: { shoulder: T.Vector3; elbow: T.Vector3; hand: T.Vector3 }[] = [];
@@ -77,11 +78,12 @@ export class CrewMember extends T.Group {
     crewMesh(new T.CylinderGeometry(.06, .065, .1, 10), skin, this.torso, 0, .5);
     const face = crewMesh(new T.SphereGeometry(.174, 18, 14), skin, this.head);
     face.scale.set(.94, 1.06, .92);
+    this.eyes.position.set(0, .02, .148); this.head.add(this.eyes);
     for (const side of [-1, 1]) {
       crewMesh(new T.SphereGeometry(.043, 9, 7), skin, this.head, side * .16, -.012, .005);
-      const eyeWhite = crewMesh(new T.SphereGeometry(.033, 10, 8), cloth('#fff8e5'), this.head, side * .064, .02, .145);
+      const eyeWhite = crewMesh(new T.SphereGeometry(.033, 10, 8), cloth('#fff8e5'), this.eyes, side * .064, 0, -.003);
       eyeWhite.scale.z = .4;
-      crewMesh(new T.SphereGeometry(.015, 9, 7), cloth('#242c2c'), this.head, side * .061, .019, .159);
+      crewMesh(new T.SphereGeometry(.015, 9, 7), cloth('#242c2c'), this.eyes, side * .061, -.001, .011);
       const brow = crewMesh(new T.BoxGeometry(.055, .014, .018), hair, this.head, side * .065, .071, .143);
       brow.rotation.z = side * -.15;
     }
@@ -110,47 +112,64 @@ export class CrewMember extends T.Group {
         glasses.scale.y = .8;
       }
     }
-    consolidate(this.head); consolidate(this.torso); consolidate(this);
+    consolidate(this.eyes); consolidate(this.head); consolidate(this.torso); consolidate(this);
     for (let i = 0; i < 2; i++) {
       const upper = crewMesh(new T.CylinderGeometry(.055, .06, 1, 9), shirt, this);
       const lower = crewMesh(new T.CylinderGeometry(.043, .052, 1, 9), skin, this);
-      const hand = crewMesh(new T.SphereGeometry(.053, 10, 8), skin, this);
-      hand.scale.set(.8, 1, .85); this.arms.push({ upper, lower, hand });
+      const palm = new T.SphereGeometry(.053, 10, 8).scale(.8, 1, .85);
+      const thumbSide = i ? -1 : 1;
+      const thumb = new T.CapsuleGeometry(.018, .032, 3, 7).rotateZ(thumbSide * -.7).translate(thumbSide * .036, .004, .018);
+      const gripGeometry = mergeGeometries([palm, thumb]);
+      const hand = crewMesh(gripGeometry ?? palm, skin, this);
+      if (gripGeometry) palm.dispose(); thumb.dispose();
+      this.arms.push({ upper, lower, hand });
     }
     this.pose({ x: station.side * 1.45, y: .62, z: station.z }, 0, 0);
   }
   react(age: number) {
-    this.torso.rotation.x = -.15; this.torso.rotation.z = Math.sin(age * 8 + this.seat) * .12;
-    this.head.rotation.x = -.1; this.torso.updateMatrix();
-    this.arms.forEach((arm, i) => {
+    this.torso.position.set(0, 0, 0);
+    this.torso.rotation.set(-.15, 0, Math.sin(age * 8 + this.seat) * .12);
+    this.head.rotation.set(-.1, 0, 0); this.eyes.scale.y = 1; this.torso.updateMatrix();
+    this.arms.forEach((_arm, i) => {
       const shoulder = this.shoulders[i]!.clone().applyMatrix4(this.torso.matrix);
-      const elbow = shoulder.clone().add(new T.Vector3(i ? .22 : -.22, .2, -.08));
-      const hand = elbow.clone().add(new T.Vector3(Math.sin(age * 11 + i) * .12, .25, .08));
-      segment(arm.upper, shoulder, elbow); segment(arm.lower, elbow, hand); arm.hand.position.copy(hand);
+      const hand = shoulder.add(new T.Vector3((i ? 1 : -1) * .25, .43 + Math.sin(age * 8 + i) * .055, Math.sin(age * 11 + i) * .1));
+      this.reachArm(i, hand);
     });
   }
   pose(blade: Vec3, time: number, force: number) {
-    this.head.rotation.x = 0;
     const station = SEATS[this.seat]!;
     const effort = clamp(force / 300, 0, 1);
     this.torso.rotation.x = clamp((blade.z - station.z) * .095, -.12, .12);
+    this.torso.rotation.y = -station.side * effort * .07;
     this.torso.rotation.z = -station.side * effort * .055;
     this.torso.position.y = Math.sin(time * 1.7 + this.seat) * .006;
-    this.head.rotation.y = Math.sin(time * .5 + this.seat * 1.3) * .09;
+    this.torso.position.z = clamp((blade.z - station.z) * .02, -.022, .022);
+    this.head.rotation.x = effort * .10;
+    this.head.rotation.y = Math.sin(time * .5 + this.seat * 1.3) * .09 + station.side * effort * .10;
     this.head.rotation.z = Math.sin(time * .8 + this.seat) * .025;
+    // Absolute shared time keeps blinks frame-rate independent and gives each
+    // crewmate a different cadence. No animation timer survives a reconnect.
+    const blinkPhase = (Math.max(0, time) + this.seat * 1.31) % (4.3 + this.seat * .37);
+    this.eyes.scale.y = .06 + .94 * T.MathUtils.smoothstep(Math.abs(blinkPhase - .12), 0, .12);
     this.torso.updateMatrix();
     const handle = new T.Vector3(station.side * .65, .97, station.z + .03);
     const tip = new T.Vector3(blade.x, blade.y, blade.z);
-    this.arms.forEach((arm, i) => {
-      const shoulder = this.shoulders[i]!.clone().applyMatrix4(this.torso.matrix);
+    const shaft = tip.clone().sub(handle).normalize();
+    this.arms.forEach((_arm, i) => {
       const grip = handle.clone().lerp(tip, i === (station.side < 0 ? 0 : 1) ? .28 : .015).sub(this.position);
-      const axis = grip.clone().sub(shoulder), distance = Math.min(.63, axis.length());
-      axis.normalize();
-      const hand = shoulder.clone().addScaledVector(axis, distance);
-      const bend = new T.Vector3(0, -.65, -.6).addScaledVector(axis, -new T.Vector3(0, -.65, -.6).dot(axis)).normalize();
-      const elbow = shoulder.clone().addScaledVector(axis, distance * .5).addScaledVector(bend, Math.sqrt(Math.max(0, .32 ** 2 - (distance * .5) ** 2)));
-      segment(arm.upper, shoulder, elbow); segment(arm.lower, elbow, hand); arm.hand.position.copy(hand);
-      this.jointPositions[i] = { shoulder, elbow, hand };
+      this.reachArm(i, grip, shaft);
     });
+  }
+  private reachArm(i: number, grip: T.Vector3, shaft?: T.Vector3) {
+    const arm = this.arms[i]!;
+    const shoulder = this.shoulders[i]!.clone().applyMatrix4(this.torso.matrix);
+    const axis = grip.clone().sub(shoulder), distance = Math.min(.63, axis.length());
+    axis.normalize();
+    const hand = shoulder.clone().addScaledVector(axis, distance);
+    const bend = new T.Vector3(0, -.65, -.6); bend.addScaledVector(axis, -bend.dot(axis)).normalize();
+    const elbow = shoulder.clone().addScaledVector(axis, distance * .5).addScaledVector(bend, Math.sqrt(Math.max(0, .32 ** 2 - (distance * .5) ** 2)));
+    segment(arm.upper, shoulder, elbow); segment(arm.lower, elbow, hand); arm.hand.position.copy(hand);
+    arm.hand.quaternion.setFromUnitVectors(up, shaft ?? axis);
+    this.jointPositions[i] = { shoulder, elbow, hand };
   }
 }

@@ -6,7 +6,13 @@
 
 This inventory uses the implementation and observed verification summarized in `STATUS.md`. The earlier menu, arrow-only input, quiet run view and lethal-obstacle changes have scoped evidence. The latest iteration adds bounded water transmission, authored camera readability and a rerun multiplayer regression; AAA production quality and a finished region are still open. No full production phase or human acceptance gate is closed by those checks.
 
-## Current continuation — reviewed Claude handoff
+## Current continuation — crew animation and endurance
+
+Procedural crew now have deterministic staggered blinks, effort/gaze/shoulder motion, shaft-aligned wrists and mirrored thumb grips. A shared two-bone solver retains arm lengths during rowing and wreck reactions. Paused/lobby/completed/sunk snapshots cannot keep emitting stroke spray/ripples; resets and title transitions clear stale effects. Shared ripple geometry removes repeated GPU geometry churn. New rig-cycle tests and real Chrome effects/pose QA supplement the existing grip/workspace checks. The opt-in four-client real-time soak records actual duration, reconnects, authority memory and collider counts; the current result and scope are in STATUS.md.
+
+This is an animation/reliability batch. Production modelling/skinning/audio, human feedback and long Internet/browser/hosting load studies remain open. No phase or human acceptance gate is closed.
+
+## Previous continuation — reviewed Claude handoff
 
 The inherited uncommitted additions have been reviewed and completed as a bounded prototype batch: 1400m/19 route beats/10 compatible checkpoint indices, a second physical wheel, Act 2 camera volumes and rapid warnings, cancellable four-ready countdown, strict-majority checkpoint consent with Agree/Withdraw/expiry, independent keyboard/touch ownership, immediate durable checkpoint writes and finish/departure/replay handling. Permanent stroke HUD and title Practice were removed to preserve the user's clean-screen preference. Same-tick recovery now relocates the water mesh immediately. Protocol5 requires all clients to refresh after deployment; the save layout/physics identifiers are retained. Current verification and limitations are recorded at the top of STATUS.md; older figures below are historical.
 

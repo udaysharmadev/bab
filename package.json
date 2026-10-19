@@ -13,6 +13,8 @@
     "test:controls": "node tests/controls.mjs",
     "test:touch": "node tests/touch.mjs",
     "test:reconnect": "node tests/reconnect.mjs",
+    "test:animation": "node tests/animation.mjs",
+    "test:soak": "node --expose-gc --import tsx tests/soak.ts",
     "test:graphics": "node tests/graphics.mjs",
     "check:deployment": "node scripts/check-deployment.mjs",
     "start": "node app.js",

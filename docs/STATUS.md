@@ -2,7 +2,37 @@
 
 20 October 2026 · Local authored multiplayer prototype · **ITERATE**.
 
-## Current handoff continuation — lifecycle and second-act review
+## Current continuation — crew animation and real-time endurance
+
+**20 October 2026: this bounded animation/stability batch is complete and locally verified.** Protocol5, physics, world layout, controls and server authority are unchanged. The entries below this section describe previous batches.
+
+- Crew rigs have staggered deterministic blinks, blade-focused head/shoulder effort, mirrored thumb grips and shaft-aligned wrists. A single two-bone solver now preserves both0.32m limb lengths for rowing and wreck reactions. Pose restoration after a wreck is deterministic; animation cannot move the physical hull.
+- Stroke spray/ripples are gated on playing, afloat, fresh simulation snapshots (not paused/complete; emission stops after250ms without an update). Stale snapshots can no longer emit during lobby, pause, completion or sinking. A reset/new room/title clears transient effects. Ripple meshes share one retained geometry; their independently fading materials are disposed on removal.
+- Added `npm run test:animation` for actual Chrome WebGL effect/resource and four-pose QA. Added opt-in `npm run test:soak` (default30 minutes; `SOAK_SECONDS=300` selects five minutes). The endurance fixture is a real-time in-process authority with four separate SDK/WebSocket connections and an isolated in-memory save database, not accelerated simulation or a public test endpoint.
+
+Observed verification:
+
+| Check | Actual result |
+|---|---|
+| TypeScript | `npm run check`: PASS |
+| Complete Node regression | `npm test`: **tests71 / pass71 / fail0** |
+| New rig checks | PASS across all seats and repeating forward/reverse/turn cycles; real shaft grip error<0.025m,0.32m arm lengths, wrist axes, blink cadence and wreck-to-pose restoration |
+| Real-time four-client endurance | **300.169s PASS**:24,423 received snapshots,753 catches,12 shared resets and7 rotating-seat reconnects; no invariant violations; maximum observed snapshot gap91ms |
+| Authority resource samples |21 samples with explicit GC; **8 bodies /817 colliders throughout**; heap33,615,760→35,905,784 bytes (+2.18MiB). Room disposed after all clients left. This bounded observation is not a leak-free guarantee. |
+| Chrome effects/resource fixture | PASS over480 active rendered frames: one ripple geometry,206 GPU geometries at both active/steady samples, bounded24–28 ripples/84 particles; all transient effects drained or cleared in stale-snapshot/pause/reset/lobby/finish/sunk/title cases; `errors: []` |
+| Crew pose screenshots | **4 PASS**, catch/pull/recovery/reverse; reviewed `evidence/crew-*.png`; `errors: []` |
+| Route/title graphics | **21 views +3 title sizes PASS**, `errors: []`; max751 calls /6,035,068 triangles within unchanged fixture budgets |
+| Production build | PASS,68 modules,823.93kB JS /228.67kB gzip; existing large-bundle advisory remains |
+
+Evidence: `evidence/soak.json`, `evidence/animation.json`, updated `graphics.json`/screenshots and `network-stress.json`. The full suite retains the existing actual networking, lifecycle, persistence and physics regressions. No new four-browser control run or public hosting run was needed/claimed for these client animation/effect changes. The existing preview on localhost:2569 serves the refreshed static build; no authority restart or crew invalidation was needed. The cPanel ZIP was regenerated.
+
+**PRD remaining:** the actual30-minute Internet/browser soak, hosting capacity/room churn, hardware memory/frame budgets, human full-route/newcomer study, production skinned rigs/animation/audio, winding/rescue encounter, streaming, remaining regions and release acceptance. The five-minute SDK test does not close those gates.
+
+**Next game milestone:** improve riverbank/obstacle composition and rescue readability using a four-human route recording, while completing the longer browser/network soak. Production art and human gate remain open; the full game is not declared finished.
+
+VERDICT: PASS
+
+## Previous handoff continuation — lifecycle and second-act review
 
 **20 October 2026: this batch is implemented and locally verified. The full game/PRD and public release remain incomplete.** Claude's existing uncommitted work was preserved, audited and corrected. The current authority/client use **protocol5 / basin-0.5 / waterworks-1**. Sections below this one are historical snapshots; their older routes/protocols/counts are not the current release status.
 

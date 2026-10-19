@@ -1,0 +1,222 @@
+{
+  "result": "PASS",
+  "realWebSockets": true,
+  "humanPlaytest": false,
+  "scope": "Local real-time single crew; no Internet latency, browser GPU, capacity or multi-hour certification",
+  "seconds": 300.169,
+  "protocol": 5,
+  "packets": 24423,
+  "totalCatches": 753,
+  "sharedResets": 12,
+  "reconnects": [
+    {
+      "seat": 0,
+      "frozenTick": 2412,
+      "resumedTick": 2419
+    },
+    {
+      "seat": 1,
+      "frozenTick": 4793,
+      "resumedTick": 4800
+    },
+    {
+      "seat": 2,
+      "frozenTick": 7171,
+      "resumedTick": 7178
+    },
+    {
+      "seat": 3,
+      "frozenTick": 9550,
+      "resumedTick": 9557
+    },
+    {
+      "seat": 0,
+      "frozenTick": 11928,
+      "resumedTick": 11936
+    },
+    {
+      "seat": 1,
+      "frozenTick": 14310,
+      "resumedTick": 14317
+    },
+    {
+      "seat": 2,
+      "frozenTick": 16685,
+      "resumedTick": 16693
+    }
+  ],
+  "maxGapMs": 91,
+  "forcedGc": true,
+  "memory": [
+    {
+      "seconds": 0,
+      "heap": 33615760,
+      "rss": 313098240,
+      "tick": 5,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 15,
+      "heap": 34607280,
+      "rss": 408190976,
+      "tick": 908,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 30,
+      "heap": 34453608,
+      "rss": 408715264,
+      "tick": 1814,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 45,
+      "heap": 34755648,
+      "rss": 410435584,
+      "tick": 2696,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 60,
+      "heap": 34840192,
+      "rss": 410763264,
+      "tick": 3602,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 76,
+      "heap": 34935944,
+      "rss": 411009024,
+      "tick": 4509,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 91,
+      "heap": 35139088,
+      "rss": 411598848,
+      "tick": 5390,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 106,
+      "heap": 35114880,
+      "rss": 400277504,
+      "tick": 6296,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 121,
+      "heap": 35158952,
+      "rss": 400506880,
+      "tick": 7190,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 136,
+      "heap": 35250320,
+      "rss": 400637952,
+      "tick": 8095,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 151,
+      "heap": 35224912,
+      "rss": 425558016,
+      "tick": 9001,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 166,
+      "heap": 35357528,
+      "rss": 425721856,
+      "tick": 9882,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 182,
+      "heap": 35445944,
+      "rss": 425934848,
+      "tick": 10788,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 197,
+      "heap": 35416824,
+      "rss": 426000384,
+      "tick": 11692,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 212,
+      "heap": 35752904,
+      "rss": 351748096,
+      "tick": 12575,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 227,
+      "heap": 35809080,
+      "rss": 352026624,
+      "tick": 13481,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 242,
+      "heap": 35793440,
+      "rss": 352419840,
+      "tick": 14365,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 257,
+      "heap": 35887200,
+      "rss": 172851200,
+      "tick": 15274,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 272,
+      "heap": 35838144,
+      "rss": 172441600,
+      "tick": 16181,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 287,
+      "heap": 35915360,
+      "rss": 172539904,
+      "tick": 17067,
+      "bodies": 8,
+      "colliders": 817
+    },
+    {
+      "seconds": 300,
+      "heap": 35905784,
+      "rss": 172654592,
+      "tick": 17829,
+      "bodies": 8,
+      "colliders": 817
+    }
+  ],
+  "violations": [],
+  "roomDisposed": true
+}

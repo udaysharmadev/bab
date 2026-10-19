@@ -7,9 +7,9 @@
     {
       "view": "crew",
       "stats": {
-        "calls": 554,
-        "triangles": 3299174,
-        "geometries": 182,
+        "calls": 536,
+        "triangles": 3299818,
+        "geometries": 178,
         "textures": 11,
         "reflections": true,
         "refraction": true,
@@ -24,9 +24,9 @@
     {
       "view": "underside",
       "stats": {
-        "calls": 554,
-        "triangles": 3299174,
-        "geometries": 182,
+        "calls": 540,
+        "triangles": 3299930,
+        "geometries": 178,
         "textures": 11,
         "reflections": true,
         "refraction": true,
@@ -41,9 +41,9 @@
     {
       "view": "spikes",
       "stats": {
-        "calls": 712,
-        "triangles": 5253418,
-        "geometries": 227,
+        "calls": 690,
+        "triangles": 5253770,
+        "geometries": 222,
         "textures": 14,
         "reflections": true,
         "refraction": true,
@@ -58,9 +58,9 @@
     {
       "view": "log",
       "stats": {
-        "calls": 751,
-        "triangles": 6032896,
-        "geometries": 238,
+        "calls": 729,
+        "triangles": 6033248,
+        "geometries": 233,
         "textures": 16,
         "reflections": true,
         "refraction": true,
@@ -75,9 +75,9 @@
     {
       "view": "vortex",
       "stats": {
-        "calls": 707,
-        "triangles": 4365324,
-        "geometries": 227,
+        "calls": 685,
+        "triangles": 4365856,
+        "geometries": 222,
         "textures": 16,
         "reflections": true,
         "refraction": true,
@@ -92,9 +92,9 @@
     {
       "view": "vortex&low",
       "stats": {
-        "calls": 253,
-        "triangles": 970424,
-        "geometries": 214,
+        "calls": 248,
+        "triangles": 970466,
+        "geometries": 210,
         "textures": 11,
         "reflections": false,
         "refraction": false,
@@ -109,9 +109,9 @@
     {
       "view": "wreck",
       "stats": {
-        "calls": 745,
-        "triangles": 5921126,
-        "geometries": 231,
+        "calls": 721,
+        "triangles": 5922806,
+        "geometries": 225,
         "textures": 14,
         "reflections": true,
         "refraction": true,
@@ -126,9 +126,9 @@
     {
       "view": "gorge",
       "stats": {
-        "calls": 744,
-        "triangles": 3119470,
-        "geometries": 238,
+        "calls": 718,
+        "triangles": 3119890,
+        "geometries": 232,
         "textures": 15,
         "reflections": true,
         "refraction": true,
@@ -143,9 +143,9 @@
     {
       "view": "rapids",
       "stats": {
-        "calls": 716,
-        "triangles": 1339306,
-        "geometries": 242,
+        "calls": 694,
+        "triangles": 1339658,
+        "geometries": 237,
         "textures": 16,
         "reflections": true,
         "refraction": true,
@@ -160,9 +160,9 @@
     {
       "view": "timber",
       "stats": {
-        "calls": 680,
-        "triangles": 1067646,
-        "geometries": 231,
+        "calls": 654,
+        "triangles": 1068066,
+        "geometries": 225,
         "textures": 14,
         "reflections": true,
         "refraction": true,
@@ -177,9 +177,9 @@
     {
       "view": "narrows",
       "stats": {
-        "calls": 668,
-        "triangles": 1272002,
-        "geometries": 216,
+        "calls": 642,
+        "triangles": 1272422,
+        "geometries": 210,
         "textures": 14,
         "reflections": true,
         "refraction": true,
@@ -194,9 +194,9 @@
     {
       "view": "finish",
       "stats": {
-        "calls": 513,
-        "triangles": 701314,
-        "geometries": 173,
+        "calls": 495,
+        "triangles": 701778,
+        "geometries": 168,
         "textures": 11,
         "reflections": true,
         "refraction": true,
@@ -211,9 +211,9 @@
     {
       "view": "millstone",
       "stats": {
-        "calls": 656,
-        "triangles": 1269106,
-        "geometries": 216,
+        "calls": 630,
+        "triangles": 1269526,
+        "geometries": 210,
         "textures": 14,
         "reflections": true,
         "refraction": true,
@@ -228,9 +228,9 @@
     {
       "view": "boulders",
       "stats": {
-        "calls": 651,
-        "triangles": 1077426,
-        "geometries": 221,
+        "calls": 629,
+        "triangles": 1077958,
+        "geometries": 216,
         "textures": 15,
         "reflections": true,
         "refraction": true,
@@ -245,9 +245,9 @@
     {
       "view": "wheel2",
       "stats": {
-        "calls": 698,
-        "triangles": 1389478,
-        "geometries": 229,
+        "calls": 676,
+        "triangles": 1390010,
+        "geometries": 224,
         "textures": 14,
         "reflections": true,
         "refraction": true,
@@ -262,9 +262,9 @@
     {
       "view": "haven",
       "stats": {
-        "calls": 660,
-        "triangles": 1305214,
-        "geometries": 219,
+        "calls": 638,
+        "triangles": 1305566,
+        "geometries": 214,
         "textures": 13,
         "reflections": true,
         "refraction": true,
@@ -279,8 +279,8 @@
     {
       "view": "waterwheel",
       "stats": {
-        "calls": 386,
-        "triangles": 1205296,
+        "calls": 384,
+        "triangles": 1204640,
         "geometries": 224,
         "textures": 12,
         "reflections": true,
@@ -296,8 +296,8 @@
     {
       "view": "shore",
       "stats": {
-        "calls": 394,
-        "triangles": 4946788,
+        "calls": 392,
+        "triangles": 4946132,
         "geometries": 192,
         "textures": 11,
         "reflections": true,
@@ -313,8 +313,8 @@
     {
       "view": "trees",
       "stats": {
-        "calls": 404,
-        "triangles": 5002876,
+        "calls": 402,
+        "triangles": 5002220,
         "geometries": 215,
         "textures": 11,
         "reflections": true,
@@ -330,8 +330,8 @@
     {
       "view": "grass",
       "stats": {
-        "calls": 366,
-        "triangles": 4963792,
+        "calls": 364,
+        "triangles": 4963136,
         "geometries": 199,
         "textures": 11,
         "reflections": true,
@@ -348,7 +348,7 @@
       "view": "shore&low",
       "stats": {
         "calls": 98,
-        "triangles": 1359612,
+        "triangles": 1358982,
         "geometries": 60,
         "textures": 6,
         "reflections": false,
@@ -397,7 +397,7 @@
   "audio": {
     "audible": {
       "peak": 0.1710934191942215,
-      "rms": 0.012793037937431853,
+      "rms": 0.012793037943987314,
       "left": 1.1086126109820242,
       "right": 0.16651724016862157,
       "samples": 264600

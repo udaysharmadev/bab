@@ -62,8 +62,9 @@ export class RiverScene {
   readonly look = new T.Vector3();
   readonly raycaster = new T.Raycaster();
   readonly occluders: T.Object3D[] = [];
-  // Shared per-frame scratch objects — never disposed, never mutated across frames.
+  // Reuse frame scratch and ripple geometry; each ripple owns only its fade material.
   private readonly dummy = new T.Object3D();
+  private readonly rippleGeometry = new T.RingGeometry(0.06, 0.085, 14);
   private readonly rippleMaterial = new T.MeshBasicMaterial({ color: '#e0efda', transparent: true, opacity: 0.6, side: T.DoubleSide, depthWrite: false });
   snapshot?: Snapshot;
   reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -491,16 +492,23 @@ export class RiverScene {
   }
 
   setSnapshot(snapshot: Snapshot) {
+    const discontinuity = !this.snapshot || snapshot.resetId !== this.lastReset;
     this.presentation = 'game'; this.snapshot = snapshot;
     this.lastSnapshotAt = performance.now();
     this.targetPosition.set(snapshot.position.x, snapshot.position.y, snapshot.position.z);
     this.targetRotation.set(snapshot.rotation.x, snapshot.rotation.y, snapshot.rotation.z, snapshot.rotation.w);
-    if (snapshot.resetId !== this.lastReset) {
+    if (discontinuity) {
+      this.clearStrokeEffects(); this.lastCrash = snapshot.crashId;
       this.position.copy(this.targetPosition); this.rotation.copy(this.targetRotation); this.lastReset = snapshot.resetId;
       this.boat.position.copy(this.position);
       this.followCamera(1, true);
     }
     for (let i = 0; i < 4; i++) this.people[i]!.visible = snapshot.crew.some(m => m.seat === i && m.connected);
+  }
+
+  private clearStrokeEffects() {
+    for (const ripple of this.ripples) { this.scene.remove(ripple.mesh); (ripple.mesh.material as T.Material).dispose(); }
+    this.ripples.length = 0; this.particles.length = 0; this.spray.count = 0; this.nextSpray = 0;
   }
 
   setLowQuality(low: boolean) {
@@ -559,6 +567,9 @@ export class RiverScene {
 
   render(dt: number, now: number) {
     const snap = this.snapshot;
+    const rowEffects = snap?.stage === 'playing' && !snap.paused && !snap.complete && snap.condition === 'afloat'
+      && performance.now() - this.lastSnapshotAt < 250;
+    if (!snap && (this.ripples.length || this.particles.length)) this.clearStrokeEffects();
     this.time = snap ? snap.tick * DT + (snap.paused || snap.stage === 'lobby' ? 0 : Math.min(0.1, (performance.now() - this.lastSnapshotAt) / 1000)) : now;
     const blend = 1 - Math.exp(-dt * 12);
     this.position.lerp(this.targetPosition, blend); this.rotation.slerp(this.targetRotation, blend);
@@ -618,7 +629,7 @@ export class RiverScene {
       this.lastCrash = snap.crashId;
       for (let i = 0; i < 40; i++) this.particles.push({ position: this.boat.position.clone().add(new T.Vector3(Math.sin(i * 2.4), .12, Math.cos(i * 2.4) * 1.5)), velocity: new T.Vector3(Math.sin(i * 2.4) * 1.4, 1.1 + (i % 7) * .28, Math.cos(i * 2.4) * 1.4), life: .9 });
     }
-    if (snap?.condition === 'afloat' && now > this.nextSpray) {
+    if (rowEffects && now > this.nextSpray) {
       this.nextSpray = now + .07;
       snap.blades.forEach(blade => {
         if (blade.immersion > .1 && blade.force > 35) for (let i = 0; i < 3; i++) {
@@ -637,13 +648,12 @@ export class RiverScene {
       dummy.position.copy(particle.position); dummy.rotation.set(0, 0, 0); dummy.scale.setScalar(.018 + particle.life * .022); dummy.updateMatrix(); this.spray.setMatrixAt(i, dummy.matrix);
     });
     this.spray.count = this.particles.length; this.spray.instanceMatrix.needsUpdate = true;
-    if (snap) {
+    if (rowEffects) {
       snap.blades.forEach((blade, i) => {
         if (blade.force > 40 && blade.immersion > 0.1 && now - (this.ripples.filter(r => r.seat === i).at(-1)?.born ?? -1) > 0.15) {
-          const geometry = new T.RingGeometry(0.06, 0.085, 14);
           // Clone shared material so each ripple can fade opacity independently.
           const material = this.rippleMaterial.clone();
-          const mesh = new T.Mesh(geometry, material);
+          const mesh = new T.Mesh(this.rippleGeometry, material);
           const point = this.boat.localToWorld(new T.Vector3(blade.x, blade.y, blade.z));
           mesh.position.set(point.x, sampleWater(point.x, point.z, this.time).height + 0.025, point.z);
           mesh.rotation.x = -Math.PI / 2; this.scene.add(mesh); this.ripples.push({ mesh, born: now, seat: i });
@@ -652,7 +662,7 @@ export class RiverScene {
     }
     for (let i = this.ripples.length - 1; i >= 0; i--) {
       const r = this.ripples[i]!; const age = now - r.born;
-      if (age > 1) { this.scene.remove(r.mesh); r.mesh.geometry.dispose(); (r.mesh.material as T.Material).dispose(); this.ripples.splice(i, 1); }
+      if (age > 1) { this.scene.remove(r.mesh); (r.mesh.material as T.Material).dispose(); this.ripples.splice(i, 1); }
       else { r.mesh.scale.setScalar(1 + age * 7); (r.mesh.material as T.MeshBasicMaterial).opacity = 0.6 * (1 - age); }
     }
 

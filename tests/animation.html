@@ -1,0 +1,43 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"><style>body{margin:0}#world{position:fixed;inset:0}</style></head><body><div id="world"></div><script type="module">
+import {RiverScene} from '/src/client/scene.ts';
+import {PaddleStroke} from '/src/shared/rowing.ts';
+import {PROTOCOL_VERSION,PHYSICS_VERSION,SEATS} from '/src/shared/protocol.ts';
+const scene=new RiverScene(document.getElementById('world'));scene.setLowQuality(true);
+const dry=SEATS.map(s=>({x:s.side*1.45,y:.62,z:s.z,immersion:0,force:0,state:'AIR'}));
+const wet=dry.map(b=>({...b,y:-.32,immersion:1,force:220,state:'WATER'}));
+const snapshot={protocol:PROTOCOL_VERSION,physics:PHYSICS_VERSION,tick:60,position:{x:0,y:.08,z:0},rotation:{x:0,y:0,z:0,w:1},velocity:{x:0,y:0,z:1},blades:wet,ack:[0,0,0,0],crew:SEATS.map((_,seat)=>({seat,connected:true,ready:true})),checkpoint:0,revision:0,resetId:1,mode:'practice',paused:false,complete:false,stage:'playing',condition:'afloat',wreckAge:0,crashId:0,obstacleId:null,strokes:[0,0,0,0],droppedSteps:0};
+const frame=(now,extra={})=>{scene.setSnapshot({...snapshot,tick:Math.round(now*60),...extra});scene.render(1/60,now);};
+window.checkEffects=()=>{
+ let disposed=0,ringGeometry;const geometryIds=new Set();
+ for(let i=0;i<240;i++){
+  frame(1+i/60);
+  for(const r of scene.ripples){geometryIds.add(r.mesh.geometry.uuid);if(!ringGeometry){ringGeometry=r.mesh.geometry;ringGeometry.addEventListener('dispose',()=>disposed++);}}
+ }
+ const active={ripples:scene.ripples.length,particles:scene.particles.length,geometries:scene.renderer.info.memory.geometries};
+ for(let i=0;i<240;i++)frame(5+i/60);
+ const steady={ripples:scene.ripples.length,particles:scene.particles.length,geometries:scene.renderer.info.memory.geometries};
+ scene.lastSnapshotAt=performance.now()-1000;
+ for(let i=0;i<90;i++)scene.render(1/60,9+i/60);
+ const stale={ripples:scene.ripples.length,particles:scene.particles.length};
+ for(let i=0;i<90;i++)frame(9+i/60,{paused:true});
+ const paused={ripples:scene.ripples.length,particles:scene.particles.length};
+ frame(11);const beforeReset=scene.ripples.length;
+ frame(11.01,{resetId:2,blades:dry});const reset={ripples:scene.ripples.length,particles:scene.particles.length};
+ const gated=[];
+ for(const extra of [{complete:true},{stage:'lobby'},{condition:'sunk'}]){
+  frame(12,{resetId:2,...extra});gated.push({state:JSON.stringify(extra),ripples:scene.ripples.length,particles:scene.particles.length});
+ }
+ frame(13,{resetId:2});scene.snapshot=undefined;scene.render(1/60,13.02);
+ const title={ripples:scene.ripples.length,particles:scene.particles.length};
+ return {active,steady,stale,paused,beforeReset,reset,gated,title,sharedGeometries:geometryIds.size,disposedSharedGeometry:disposed};
+};
+window.showCrew=({time,action=1})=>{
+ const controllers=SEATS.map(()=>new PaddleStroke());let targets;
+ for(let t=0;t<=time+.00001;t+=1/60)targets=controllers.map((c,i)=>c.sampleAction({forward:action,turn:0},i,t));
+ const blades=targets.map((b,i)=>({x:SEATS[i].side*(1.45+b.x*.35),y:.62-b.dip*1.05,z:SEATS[i].z+b.z*1.1,immersion:b.dip,force:b.dip*220,state:b.dip?'WATER':'AIR'}));
+ scene.followCamera=()=>{scene.camera.position.set(3.4,2.5,4.2);scene.camera.lookAt(0,.8,0);};scene.setLowQuality(false);
+ frame(time,{resetId:3,blades});
+ return {stats:JSON.parse(scene.renderer.domElement.dataset.renderInfo),grips:scene.people.map(p=>p.jointPositions.map(j=>j.hand.toArray()))};
+};
+document.body.dataset.ready='true';
+</script></body></html>
