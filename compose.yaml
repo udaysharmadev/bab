@@ -1,0 +1,12 @@
+services:
+  game:
+    build: .
+    init: true
+    ports:
+      - "2569:8080"
+    volumes:
+      - voyages:/app/data
+    restart: unless-stopped
+    stop_grace_period: 30s
+volumes:
+  voyages:

@@ -1,0 +1,963 @@
+---
+title: "ALL HANDS, NO RUDDER"
+subtitle: "Production-Ready Game Product Requirements Document | Working Title"
+version: "1.0 / Phase Zero expansion"
+date: "19 October 2026"
+status: "Specification / unbuilt"
+---
+
+# ALL HANDS, NO RUDDER
+
+**The definitive product, gameplay, world, physics, multiplayer, art, production, QA and delivery specification**  
+**Working title only — not trademark cleared**  
+**Version:** 1.0  |  **Baseline:** Phase Zero preproduction report supplied by project owner  |  **Research updated:** 19 October 2026  
+**Status:** DOCUMENTED; NOT BUILT, TESTED OR BENCHMARKED
+
+> **Creative north star:** One tiny, exquisite wooden boat. Four actual humans, each in charge of one physical paddle. A river world too beautiful to rush and too dangerous to survive without learning one another's rhythm.
+
+> **Non-negotiable gate:** Do not produce the fourteen-region world until four real people can control the same physical boat in a dull test basin, understand its behavior, and voluntarily request another run.
+
+## 0. Document control, source discipline, and reading rules
+
+This PRD expands the supplied **Phase Zero Preproduction Report — Four Players, One Tiny Boat, One Enormous Journey** (34 pages), preserving its working name, creative direction, production sequencing, platform assumption, physics proposal, fourteen-region world, and prototype-first discipline. The earlier report refers to a separate Phase Zero documentation pack; that pack was **not** included in the material supplied for this task. Its contents must not be presumed implemented or reviewed. This PRD establishes new actionable specifications and supporting files in this deliverable.
+
+Labels are operationally significant: **MANDATE** = user/Phase Zero creative constraint; **BASELINE** = selected implementation proposal subject to benchmark; **DESIGN TARGET** = planned quantitative test, not a measured result; **HYPOTHESIS** = must be validated on humans; **OPEN** = decision not yet made; **EXIT EVIDENCE** = artifact proving a phase gate passed. All numbers below that aren't attributed to third-party documentation are proposed design parameters and require tuning. The architectural model is a proposal, not an assertion that the game works.
+
+**Document ownership:** Product/game director owns design sign-off; technical director owns netcode/physics/performance sign-off; art director owns visual/readability sign-off; QA lead owns test evidence. On a small team, one person can hold multiple roles, but every sign-off must name a reviewer and link to evidence. **Change rules:** Any requirement tagged P0 or affecting four-paddle locomotion requires an Architecture Decision Record (ADR), reproduction/test evidence, and impacted test/phase updates. Design disagreements are settled by the pre-registered playtest gate, not by preference or flashy demo screenshots.
+
+### 0.1 Project decision snapshot
+
+| Dimension | Locked baseline for experiments | Explicitly not decided |
+|---|---|---|
+| Genre | Real-time four-human cooperative physics expedition | Secondary solo modes / PvP |
+| Platform | Desktop browser, keyboard/mouse and supported controllers | Mobile gameplay, Steam release |
+| Core vehicle | One shared wooden hull; four spatially distinct blade forces | Full articulated oar joints |
+| World | Coherent Grand Waterworks route, fourteen candidate regions | Exact map length, release-day region count |
+| Networking | Authoritative single-room physics, server accepts intent only | Prediction strategy, sustainable rooms/host |
+| Engine | Three.js + Rapier JS/WASM + Colyseus + TypeScript | Final renderer backend and hosting vendor |
+| Player fantasy | Improvised crew competence amid comic near-disasters | In-game economy, character abilities |
+| Primary launch channel | Own web build; CrazyGames compatibility studied early | Store acceptance / monetization decision |
+| Working title | All Hands, No Rudder | Brand legal clearance / public title |
+
+## 1. Product vision and design boundaries
+
+### 1.1 One-sentence pitch
+
+Four friends must row **one shared, steerless wooden boat** through a spectacular connected river-and-waterworks journey, using four physical paddles, imperfect timing and deliberate recovery to overcome the environment together.
+
+### 1.2 The real differentiator
+
+The boat is not a conventional vehicle with four passengers and four steering buttons. The four **blades are contact tools**: they enter water at physically distinct points, drag through moving currents, miss or scrape, brace against geometry, transmit force into the hull, and produce translation and yaw as a consequence. Water is simultaneously navigable terrain, force field, hazard and route architecture. That is the exact originality line against superficially similar co-op rafting/boating games.
+
+### 1.3 Pillars and anti-pillars
+
+1. **Shared causality:** Every real player matters each second. Port/bow and starboard/stern are not interchangeable.
+2. **Three verbs, endless expression:** Dip, pull, release; variations of space, depth, timing and local flow create mastery.
+3. **Beautiful danger:** Premium environmental art, tactile wood and water, accurate readable telegraphs. Spectacle never hides interactable mechanics.
+4. **Recover before reset:** Wrong turns and collisions create improvisation; hard failure is used intentionally, not reflexively.
+5. **One believable voyage:** Rivers, locks, lifts, pumped canals, glacier waterworks and cascade share visible hydrological logic.
+6. **Friendship stories without harassment:** Social dependency generates natural communication, not forced voice chat, grief systems or public humiliation.
+
+**Do not build:** a lobby dashboard as the game; WASD steering/throttle; fake animation-driven propulsion; battle passes; player levels/boat power upgrades; 30 disparate minigame arenas; a mandatory cinematic before first input; seasonality before the core works; or fourteen beautiful empty landscapes.
+
+### 1.4 Player experiences, not just features
+
+- **First 30 seconds:** My paddle affects water and the boat; I can name what dip/pull/release do.
+- **Minute 1–3:** We make our first clean straight run, accidentally rotate, and learn why.
+- **Minute 3–10:** We call a cadence and rescue one bad line without resetting.
+- **Hour 1:** We recognize distinct stations, anticipate currents, and make coordinated decisions.
+- **Mid-voyage:** A remote landmark foreshadows an intimidating structure that later becomes a navigable route.
+- **Endgame:** Four-player fluency makes a seemingly impossible mechanical waterfall sequence legible.
+- **Replay:** We test cleaner lines, fresh daily conditions or no-assist attempts rather than grind stronger paddles.
+
+### 1.5 Audience and accessible entry point
+
+Primary audience: groups of four friends who enjoy co-op, emerging skills, physics chaos, Discord calls, streaming and shareable moments. Secondary: viewers who understand the failure from motion; solo visitors who join friends from a web link; experienced route/speedrun players. A four-player requirement creates a cold-start acquisition problem: the marketing, invite flow and wait experience must deliberately solve it. Never quietly replace absent friends with simulated 'human' paddlers in a purported four-human flagship run.
+
+## 2. Research-grounded category position
+
+The attached Phase Zero study compares *Paddle Paddle Paddle*, *Fart Together*, *Chained Together*, *PEAK*, *RV There Yet?*, *Carry The Glass*, *Human: Fall Flat* and *Party Animals*. Fresh official source verification confirms that *Paddle Paddle Paddle* (2025) advertises one or two players, a single giant handcrafted level, frustration, and optional checkpoints [S01], whereas *Fart Together* (still listed as Coming Soon on 19 October 2026) explicitly advertises **2–4 players directing the same raft through force and timing** [S02]. This makes generic 'four people push one raft' dangerously weak positioning.
+
+| Competing concept | Product overlap | Keep / avoid / differentiate |
+|---|---|---|
+| Paddle Paddle Paddle | Two-person paddle-based obstacle expedition | Keep physical coordination; avoid being its four-player reskin, identical lava-parkour identity and unfair camera frustration |
+| Fart Together | 2–4 share one raft and synchronize directional force | Differentiate through blade immersion, unique station lever arms, current-relative force, bracing, full hydrology |
+| Chained Together | Shared fate, checkpoint/difficulty options | Keep clear run modes; avoid punitive repetition as the only challenge |
+| RV There Yet? | One memorable shared vehicle, recovery stories | Make *propulsion itself* cooperative rather than one driver plus tools |
+| PEAK | Beautiful co-op escalation; replayable daily conditions | Borrow changing conditions as a replay pattern, not survival inventory systems |
+| Human: Fall Flat | Emergent collision and generous physical possibility | Keep improvisation, simplify collision representation and network state |
+
+**Evidence caution:** Competitor popularity or review percentages are neither reliable causal evidence for design choices nor performance targets. Steam marketing descriptions tell us what products promise, not what players will enjoy here. Research supports hypotheses; four-human user tests decide them.
+
+**Market promise:** 'Four paddles. Zero steering wheel. Good luck.' The unusual control requirement must be made evident in a 10-second clip. A trailer should show a blade missing water, a late stern-side stroke causing yaw, a hand-braced wall recovery and a magnificent vista—all understandable without UI text.
+
+## 3. Product scope and priority hierarchy
+
+**P0 / must work:** four-human room; independent paddle control; server-authoritative hull; physical buoyancy/current; collisions/bracing; smooth observation; reconnect and checkpoint; persistent resume for adventure; one fully polished demonstration route; robust desktop browser entry. **P1 / important after core fun:** complete route tooling; multiple regions; scalable asset streaming; highly authored landmarks; weather; time trial; optional daily remix; clip/replay cues. **P2 / optional:** cosmetics without statistics, ghost racing, spectator, challenge badges, advanced water refraction, additional locales. **Excluded for v1:** combat, survival hunger/stamina, crafting, microtransaction upgrades, PvP, public text/voice chat, complex ragdoll dismemberment, mobile controls, cross-platform save sync outside integration constraints.
+
+### 3.1 Independent success criteria
+
+| Layer | Proposed gate | Measurement | Owner |
+|---|---|---|---|
+| First-input clarity | ≥75% of ≥12 new testers perform valid stroke within 30s | Timestamped instruction-free recording | UX/QA |
+| Motion causality | ≥80% score ≥4/5 on 'I understood why it moved' | Anonymous post-run survey + mechanic trace | Design |
+| Physical integrity | Air swing impulse ≤5% of matched immersed impulse | Paired isolated simulation tests | Physics |
+| Four-seat agency | Each seat measurably changes yaw/accel when isolated | Force-point unit tests, video evidence | Physics |
+| Multiplayer reliability | No hard desync/solver explosion in a 30-min four-client session | Automated traces + observer record | Netcode |
+| Human desire | Clear majority requests replay without being prompted | Debrief sheet; no fabricated success threshold | Design |
+| Visual performance | 1080p/60 fps Medium goal on later-defined reference rig | p50/p95 CPU/GPU captures | Rendering |
+| Journey continuity | No load-screen halt at region seams after streaming implementation | Long-run traversal soak | World systems |
+
+These are **candidate acceptance thresholds**, not measured results. Freeze them before the first playtest; record all failures, not just the best session.
+
+## 4. Core loop, session loop and progression
+
+### 4.1 Second-to-second physical loop
+
+**Observe** current/obstacle → **signal** planned movement by speech, ping or paddle cue → **dip** blade → **pull/push** through local water → **feel** resistance via animation, splash and hull acceleration → **correct** yaw/roll using distributed strokes → **recover** or cross the feature → **learn**. No UI control directly rotates the hull.
+
+### 4.2 A complete adventure session
+
+1. Browser opens directly into a playable river dock/loading basin after input capability detection; cinematic intro is skippable.
+2. Host creates a private crew with one click; receives deep link/code; social SDK launch can pre-create the room.
+3. Up to four people enter a **seat-ready** state. Occupied seats retain identity by stable account/guest token; players can swap seats before launch.
+4. The dock includes risk-free paddle training and a visible rescue rope to pull the vessel to its safe point if newcomers wedge it.
+5. In flagship **Expedition** mode, departure requires four connected human clients marked ready. Test/dev modes can deliberately override, flagged in telemetry.
+6. All four physically row between landmarks and checkpoint docks. Checkpoint activation is server-authoritative and idempotent.
+7. If someone disconnects, the room **freezes or idles safely according to selected policy**; the vacant paddle never applies phantom input. The remaining crew receives a seat status indicator and can wait/resume. Reconnect restores the same seat, checkpoint and authoritative snapshot.
+8. At a rest dock, party may pause, swap roles, share a route recap, or continue. Time-trial ranking never accrues during frozen or assisted states.
+9. At route completion, replay is offered through unchanged physics, ghost/condition variations and alternate run rules—not player power upgrades.
+
+### 4.3 Modes
+
+| Mode | Intent | Checkpoints | Leaderboard | Assist policy |
+|---|---|---|---|---|
+| Expedition | Recommended first completion; recoverable adventure | Frequent authored docks; candidate mastered spacing 5–10 min | No ranked completion times | Accessible camera/settings and safe unstuck allowed |
+| Challenge | High-stakes route with longer repetition | Sparse / region-delimited | Separate unassisted boards only after anti-cheat verification | No skip/unstuck time exploit |
+| Time Trial | Route mastery and clean lines | Restarts segment/run according to rules | Separate board per exact route/condition/build | Frozen sessions and reconnect invalidate competitive result |
+| Free-Paddle Practice | Individual/private learning and physics diagnostics | Infinite reset basin | None | Can allow 1–3 people without representing it as the flagship game |
+
+### 4.4 Checkpoint and fail contracts
+
+- Activation when **the hull** enters canonical authored capture volume and preconditions hold, not when a client claims a collision. All four crew share it.
+- Reset places hull at verified pose, velocity zero, hands to seat reference, hazard clocks to checkpoint-safe deterministic origin, collision overlap resolved, water sampler version pinned, and barrier removed **only after acknowledgement**.
+- Fail states: prolonged capsize/inversion, unrecoverable fall, timed hazard genuinely destroying the route, catastrophic stuck condition after recovery options exhausted. A superficial scrape, lean or roll must not automatically kill.
+- If all riders lose control in a dangerous current, the game still permits reverse strokes and wall bracing until the recovery window really ends.
+- A stuck detector uses low progress, low escape affordance, persistent contact topology and time hysteresis; never triggers because a group is intentionally waiting at a gate.
+- Checkpoints are denser before severe unavoidable setbacks; objective is to protect mastery, not remove difficulty.
+
+## 5. Input and player control specification
+
+### 5.1 One paddle, three intentional verbs
+
+Control the **blade workspace**, not the hull. A player's local spatial target is constrained by seat-specific reachable paddle geometry. Pointer/analog input moves that target at bounded maximum speed. Press/hold 'dip' lowers/rotates the blade until it physically intersects sampled water; moving immersed blade relative to water generates reaction force; release raises/feathers it and propulsive force decays according to actual submersion.
+
+| Action | Mouse/keyboard baseline | Controller baseline | Server sees |
+|---|---|---|---|
+| Aim workspace | Captured relative pointer or remappable keys | Stick | targetX, targetZ quantized |
+| Immerse | Hold left mouse/assigned key | Analog trigger | targetImmersion 0..1 |
+| Pull/push | Move pointer through workspace | Move stick | position/velocity target, NEVER thrust |
+| Release/feather | Release primary action | Release trigger | immersion decays |
+| Camera orbit | Separate configured mouse mode / keyboard | Other stick | Local only; cannot steer |
+| Center/reset pointer | Escape/shortcut; explicit re-capture | Camera-reset button | Client only |
+| Accessibility | Remappable immersion toggle, sensitivity and reduced range | Deadzone/hold alternatives | Same bounded intent protocol |
+
+**The pointer-camera conflict is an explicit risk.** Prototype alternate control schemes: (A) pointer-locked workspace with automatic third-person camera and separate look key; (B) direct stick workspace with free right-stick look; (C) mouse drag handle with view-key toggle. Test comprehension, precision, fatigue and camera frustration before committing. Default to automatic camera; a player should not need a second hand managing a camera to avoid an obstacle. Browser pointer lock must be invoked from a permitted user gesture, with clear Escape recovery.
+
+### 5.2 State machine and constraints
+
+Paddle states: `RAISED → ENTERING → IMMERSED → EXITING → RAISED`, with `BRACING` possible when a swept blade/pole collider contacts solid geometry, and `DISABLED` if seat disconnected. Transitions depend on sampled depth, permitted workspace, animator lag and collision. `aim` is filtered to feasible angular velocity and acceleration; server clamps target and **integrates physically attainable blade pose**, preventing instant full-length teleport strokes. Shoulder animation is an observer, not a source of movement.
+
+Seat arrangement: bow-port, bow-starboard, stern-port, stern-starboard. Each seat has a unique body-frame force anchor and lever arm. Port and starboard forward strokes yield opposite yaw contributions when used alone; fore/aft placement changes moment about the centre of mass. Every seat receives equally compelling encounter mechanics over the campaign; seating asymmetry is agency, not 'one best job'.
+
+**Input envelope (tune experimentally):** target update at fixed input cadence, each value schema-validated; hard bounds for travel, immersion, angle, stroke acceleration and timing; reject NaN/Infinity, stale/future sequence abuse, impossible velocity and out-of-room seat authority. Instant changes to a blade target are still rate-limited on server.
+
+### 5.3 Camera and control feedback contracts
+
+- First-person aim is **not** the default. Third-person view makes four-person mistakes observable.
+- Each active player sees their blade tip and approximate waterline even at minimum browser viewport.
+- Splash height and wooden resonance reflect submersion/collision; sound can teach a good catch better than a meter.
+- Optional practice-only vector overlay distinguishes paddle impulse, current and hull heading; it is never the normal HUD.
+- Preserve camera horizon through hull roll; never simply parent camera orientation to hull rotation.
+- The graphics and sound system may exaggerate feedback but may **not** invent propulsion or show a false blade impact.
+
+## 6. Authoritative boat and water physics
+
+### 6.1 Coordinate systems and simulation ownership
+
+World is Y-up metres; hull body frame +Z forward, +X starboard; every world-to-local transform has a unit test and visual debug basis. Server runs one **dynamic Rapier 3D rigid body** for the hull with composite low-complexity colliders, explicit centre of mass and tuned inertia. Render boat mesh is separate and far more detailed. Each seat's paddle handle/shaft/blade has client visual IK, while server integrates a lightweight constrained blade proxy and collision shape/cast. Stage engineering does not require fully jointed high-DOF oars.
+
+Fixed timestep initial experiment: `dt = 1/60 s`. Accumulate elapsed time with maximum catch-up steps; drop simulation debt with diagnostics rather than spiral into an unbounded blocking loop. Deterministic order: consume validated inputs; update dynamic obstacle/hydrology fields; derive blade poses; evaluate currents and submerged blade contacts; apply paddle reactions; apply buoyancy/drag; step rigid world and contacts; evaluate capsize/stuck/checkpoints; serialize snapshot and replay metadata. The exact application order is versioned for replay/debugging.
+
+### 6.2 Distributed buoyancy model
+
+Begin with 16–24 body-fixed buoyancy sample points along hull footprint and draft, strategically denser near bow/stern. Each sample world position `p_i` queries `Water.sample(p_i, simTime)` for height `h`, normal `n`, velocity `u` and zone metadata. An initial submerged-depth approximation is `d_i = clamp(h - p_i.y, 0, d_max)`. A restoring candidate force is `F_b,i = ρ g k_i d_i n` at `p_i`, where sample area/volume factor `k_i` is tuned; the model is **a discrete gameplay approximation**, not physically exact displaced-volume integration. Apply longitudinal/lateral drag at local submerged hull stations for stability.
+
+Physics test: upright still-water equilibrium for multiple payload masses; shift COM fore/aft; static and transient heel; different wave slopes; return from 10°, 25°, 45° roll; high frequency numerical oscillation; no energy creation over long idle periods. **Do not hide bad stability behind an arbitrary yaw lock or always-upright spring.** Compare a small analytic submerged-volume prototype only if samples fail the playtests.
+
+### 6.3 Water-relative propulsion
+
+For a blade point `p` at displacement `r` from hull COM, boat-point velocity is `v_hull(p) = v_COM + ω × r`. Include articulated/kinematic blade-relative contribution `v_blade`. Relative velocity is:
+
+`v_rel = (v_COM + ω × r + v_blade) - u_water(p,t)`
+
+Use projected blade orientation, immersed fraction and drag coefficient to calculate a *bounded initial* reaction approximation:
+
+`F_blade = -0.5 * ρ * C_d * A_sub * |v_rel| * v_rel`, decomposed across blade normal/tangent for plausibility. Applying the resulting reaction to hull at the distinct effective blade force point naturally generates torque (`τ = r × F`). The exact local impulse/force pair for kinematic motion, force sign convention and structural action-reaction must be validated with an isolated physics harness. **No implementation shall map a client 'forward' button directly to boat velocity.** Rapier documents `addForceAtPoint`/`applyImpulseAtPoint` for this class of interaction [S03].
+
+Required invariant tests: lifted blade <5% matched submerged impulse; proportional response to immersion before saturation; reverse sweep changes direction; port-only vs starboard-only opposite yaw; forward/back braking; one active station moves the hull; current changes same gesture; release eliminates ongoing muscle-powered thrust; identical recorded inputs under same simulation/water version have identical outcomes within deterministic harness tolerance.
+
+### 6.4 Hull drag, planing, collision and recovery
+
+Water-relative hull drag is anisotropic: low resistance along longitudinal keel, stronger side-slip drag, bounded angular drag tuned separately for pitch/roll/yaw. Avoid simultaneously over-damping and adding unreal steering snaps. Internal hull inertia, mass, lever-arm relation and shaft resistance are deliberately tuned toward **perceived physical causality** rather than exhaustive naval simulation. The boat can run aground; friction/drag must rise with shallow contact. Small glancing impacts modify real momentum, produce graded scrape/creak and leave the crew able to back out. Hard collisions use continuous collision detection where feasible; dynamic-contact-heavy scenes are regression-tested at maximum boat speed and worst-case tick lag.
+
+Paddle-on-wall states support controlled bracing/prying via bounded impulse; they must not produce a wall-climb exploit or unlimited energy. Use casts/sweeps and constraint-aware contacts before trying fully jointed simulated paddles. Separate the visual oar shaft from minimal contact geometry. Boat capsizing transitions through `STABLE → AT_RISK → ROLLING → CAPSIZED_RECOVERABLE → TERMINAL` using orientation *and time* hysteresis, not a one-frame angle threshold. When capsized, require a defined recovery affordance and legibility before hard fail.
+
+### 6.5 Hydrology authoring interface
+
+Water is **two-layer**: gameplay-authoritative sampler `water.sample(position, tick)` returns `height`, `normal`, `flowVelocity`, `turbulenceTag`, `surfaceId`, `seed`; GPU water renders geometry normals, foam, wakes, refraction/reflection and detail. High-frequency GPU waves do not produce arbitrary invisible physical pushes. Environmental vectors have stable sign and strength and are signalled through current streaks, debris drift, texture gradients and spatial audio.
+
+Hydrology field building blocks: uniform flow, accelerating chute, velocity blend seam, rotational eddy, cross-current, standing wave train, narrow hydraulic jump, tide pulse, lock water-level ramp, lift platform local surface transform, deep reservoir swells, geothermal upwelling, waterfall approach sheet. Each volume has a deterministic sample function, priority/blend rules and boundary continuity test. Visual effects may exceed physical resolution but must tell the truth about hazards.
+
+**Determinism caution:** Rapier JS/WASM documents cross-platform determinism for identical inputs/initial state and identical engine version, while warning that surrounding `Math.sin/cos` initialization can violate deterministic assumptions [S04]. Use seeded lookup/approved math for gameplay waves; log version, tick, event order and seed, and test hashes across CI platforms. Never promise deterministic multiplayer solely because Rapier itself is deterministic.
+
+### 6.6 Physics validation ladder
+
+| Scenario ID | Setup | Expected result |
+|---|---|---|
+| PHY-01 | No paddles submerged, still water | Stable floating equilibrium; no net horizontal propulsion |
+| PHY-02 | One blade immersed and dragged | Measured delta velocity/torque from its point of action |
+| PHY-03 | Four symmetric strokes | Mainly forward motion within allowable yaw variance |
+| PHY-04 | Only left then only right seats | Opposite yaw signs; predictable difference |
+| PHY-05 | Reverse and opposing crews | Braking and controlled pivot; bounded spin |
+| PHY-06 | Blade above surface | No phantom thrust; splash absent |
+| PHY-07 | Crossing flow seam and eddy | Water-relative force; readable current-driven boat reaction |
+| PHY-08 | Paddle touches hard wall | Contact bounded; no extreme velocity spikes |
+| PHY-09 | Grounded on bar | Forward progress slows; reverse/pry can escape |
+| PHY-10 | Wave, heel, capsize | Expected intermediate states and recovery duration |
+| PHY-11 | 100+ resets from checkpoint | Canonical state; no collider overlap and no force accumulation |
+| PHY-12 | 60-minute simulated still water | No energy growth or drift beyond pre-registered tolerance |
+
+## 7. Multiplayer architecture and operational protocol
+
+### 7.1 Network authority and deployment topology
+
+**Baseline:** TypeScript monorepo; browser renderer/input/UX client, Node.js Colyseus game service, server-local Rapier WASM physics worker or isolated room scheduler, PostgreSQL for durable checkpoint/save records, Redis only when horizontal scaling and presence require it. Every active 4-player crew occupies a **single authoritative room instance**. Server accepts *bounded paddle intention*; it alone computes boat motion, obstacle timing, checkpoint success and ranked legality. The renderer may show client-predicted local paddle motion instantly, but never becomes source of truth for the shared hull.
+
+```text
+ Four browser clients                       Trusted authoritative backend
+ +-----------------------+                +----------------------------------+
+ | Input -> local blade   | -- intents --> | Gateway / auth / room routing    |
+ | Camera / HUD          |                | Colyseus crew room               |
+ | Render interpolated   | <-- states --- |  fixed-step scheduler            |
+ | shared boat + world   |                |  Rapier + water sampler           |
+ | Asset streaming       |                |  deterministic obstacles         |
+ | Reconnect controller  |                |  checkpoint / seat validation     |
+ +-----------------------+                +------------------+---------------+
+                                                         |
+                                                durable transactional
+                                                   checkpoint data
+                                                         |
+                                                   PostgreSQL
+```
+
+**Event sequencing:** Server tick T consumes most recent admissible ordered input per seat; if no new packet, a short bounded last-intent hold then safe decay/release is used, not infinite powered stroking. Barrier `ready` can start the room; spectator state is read-only; rejoin token is scoped to session and seat. Snapshots include server tick, boat translation/quaternion, linear/angular velocity, four blade states, relevant obstacles/current version, crew and checkpoint flags. Snapshots are not exclusively delta-driven without a reliable full-snapshot recovery path.
+
+### 7.2 Input and snapshot contract
+
+```typescript
+// Illustrative types: schema, wire encoding and numeric ranges require benchmark.
+type SeatId = 'bowPort'|'bowStarboard'|'sternPort'|'sternStarboard';
+type PaddleIntent = {
+  roomId: string; seat: SeatId; seq: number;
+  clientTick: number; targetX: number; targetZ: number;
+  immersion: number; stance?: 'normal'|'brace';
+};
+type CrewSnapshot = {
+  serverTick: number; ackSeq: Record<SeatId, number>;
+  hull: { position: [number, number, number];
+          rotation: [number, number, number, number];
+          linear: [number, number, number]; angular: [number, number, number] };
+  blade: Record<SeatId, { pose: number[]; state: string }>;
+  worldSeed: number; hazardEpoch: number;
+  checkpointRevision: number; stateHash?: string;
+};
+```
+
+Wire values must be validated before allocating physics objects. Quantize within reasonable resolution; use binary serialization for hot loops. Protect with room-scoped rate limits, input sequence monotonicity, auth and input budgets. Never transmit full hull state from client as a trustable command. Never grant clients direct control of checkpoint revision. **Protocol version** and **physics version** are mandatory fields in handshake; incompatible versions result in a useful reconnect/reload message, never quiet desync.
+
+### 7.3 Latency mitigation strategies (A/B decision required)
+
+**A / baseline, lower complexity:** Instant local paddle animation and splashes; interpolate/extrapolate the authoritative shared boat conservatively; reconcile blade contact and hull relation to avoid visibly disconnected handles. Remote paddle animation is interpolated. Network corrections are smoothed within a short displacement/angle envelope; teleport only for checkpoint reset or extreme divergence. This avoids every client running the same heavy full-room world.
+
+**B / research branch:** Local shared-world prediction with delayed/estimated remote intents, input acknowledgement and rollback/replay of Rapier state, plus hard collision correction. Colyseus 0.18+ documents `predict.sim` as a possible primitive for objects or physics engines, but production use depends on the cost of replaying shared water/contacts and the instability caused by guessing three partners' inputs [S05]. Implement in a branch, not as a presumed best practice.
+
+**Decision experiment:** blind A/B with four actual players at RTT 50, 100, 150, 200 ms, jitter 0/20/50 ms, packet loss 0/1/3/5%. Record perceived response, visual separation blade/hull, p95 error in position/rotation, correction spikes, CPU, bandwidth, and player comfort. Do not assert rollback can solve shared-body uncertainty. The less complex approach wins when humans cannot meaningfully distinguish benefits.
+
+### 7.4 Connection lifecycle and failure policy
+
+Connection states: `NEW -> ROOM_CREATED/JOINED -> ASSET_READY -> SEAT_SELECTED -> READY -> ACTIVE -> DROPPED_RECONNECTABLE -> REJOINED` or `EXPIRED`. A host is an organiser, **not** the simulation authority. Host loss must not kill the room. Reconnection should use Colyseus support [S06] but choose and test a concrete grace period (initial hypothesis: 90s, configurable per mode). During disconnection, the absent seat enters `DISABLED`: release blade from water in bounded smooth steps, forbid new force, show unobtrusive disconnect and let the party wait at a safe/current-dependent state. If the room is in dangerous moving water, the recommended prototype policy is **server-time pause after a short synchronised notice**; evaluate grief and fairness. Freeze is invalid for ranked timing unless run is invalidated, and the room must cap idle resource lifetime.
+
+Rejoin procedure: verify token; reclaim same seat; load full state; reset local prediction and camera; wait for complete snapshot and assets; resume paddle input only after deterministic acknowledgement. Test under reload, tab backgrounding, browser network switch, seat collision, 2 simultaneous reconnects, expired tokens, duplicate tabs, stale build versions and malicious replay. When crew deliberately leaves, distinguish `leave` from transport loss and release capacity cleanly.
+
+### 7.5 Matchmaking, invitations and missing-crew problem
+
+Default **private link / party code** with one-click copy. CrazyGames instant multiplayer must create a joinable private room for party leader without a dead-end onboarding sequence [S07]. Support SDK-provided party state, room updates and invite parameters in adapter layer; never assume own URL-only invite is sufficient for the portal. Room data should reveal open/closed joinability and occupancy, not sensitive player data. Standalone web users may invite through private URL. Public matching is an optional later experiment; **the product cannot rely on public voice chat** to function. In a four-seat private flagship room, launch requires four humans. Provide a clearly labeled **practice dock** for 1–3 participants rather than fake teammates.
+
+A group may optionally enter tutorial practice before all four are present. The first arriving player should **do something physically meaningful within seconds** (paddle at a tethered dock or mini basin), not stare at a four-slot lobby. The UI transitions into expedition after all actual human players consent. The onboarding must preserve immediate CrazyGames joinability even while practising.
+
+### 7.6 Data durability and recovery
+
+Durable saved state records checkpoint identity, not opaque mid-collision physics snapshots. Sample fields: `saveId`, `partyOwnerId` (or stable guest/session scope), `worldVersion`, `physicsVersion`, `mode`, `regionId`, `checkpointId`, `checkpointRevision`, `spawnVersion`, `contentSeed`, `permissionPolicy`, timestamps. Write via compare-and-swap/transaction against current revision; `onCheckpoint` should be idempotent under retries and room handoff. Freeze server simulation at atomic checkpoint restoration; do not restore stale arbitrary forces. Client rendering can mask reset behind water spray/short camera movement, while simulation stays unambiguous. PostgreSQL backups, migration rollback and clean read-only fail mode belong to launch readiness.
+
+### 7.7 Server capacity and economics
+
+**No unsupported throughput claim.** Once core room workload exists, load-test 1/5/10/20/40 concurrent rooms per host class; sample CPU p50/p95/p99, event-loop delay, memory growth, room tick deadline misses, bandwidth in/out and reconnect storms. Use realistic 4-client traffic and moving obstacles, not an empty room benchmark. Derive cost per active crew-hour from *measured sustainable rooms*, total VM+bandwidth+DB+telemetry+idle capacity, and regional player latency. Do not infer launch economics from hosting price pages alone. Include monthly peak concurrency scenarios, error budget and service shutdown behavior.
+
+## 8. UX, camera, interface and social communication
+
+### 8.1 Minimal UI, game first
+
+Opening frames show **the actual rendered boat on water**, not a tiled dashboard. Title, compact 'Invite Crew', 'Practice', 'Settings' and 'Resume Voyage' appear as diegetic or small anchored controls, without blocking camera/world. The world remains alive while waiting for friends. At first playable state: four distinguishable colored seat markers, cursor/paddle guide, one simple 'Dip → Pull → Release' prompt and a 5-second 'try it' affordance. Tutorial steps respond to actual physical behavior (submerge, valid forward impulse, reverse pivot, cross-current); an onboarding checklist must never confuse four different people controlling separate seats.
+
+Normal HUD: minimally seat name/colour, crew connectivity, progress landmark, contextual danger cue, checkpoint confirmation and optional time. Do not add stamina meters, a battery bar or a physics-debugging vector to play mode. Privacy-safe streamer overlay can show brief crew identifiers and one cinematic region name, not a clutter of achievements.
+
+### 8.2 Camera system requirements
+
+Follow target derives from boat COM with look-ahead projected along velocity and imminent authored route; can bias toward next hazard and use authored camera volumes for ceilings, narrow locks, waterfalls and caves. Chase camera uses critically damped translation/orientation, terrain occlusion sweeps, bounded dynamic distance and camera collision. **Roll is communicated but not mirrored 1:1**; a readable horizon keeps player vestibular comfort. On impending drops the camera moves to show landing, not frame the boat in a dramatic close-up. Wrong camera behavior counts as a gameplay fairness bug.
+
+Camera must pass regression in tunnel pitch, wall scrape, quick 180° reversal, coasting backward, abrupt drop, swinging obstacles, checkpoint teleport, four-seat animation occlusion and tiny `907 × 510` portal viewport [S08]. Reduced motion setting disables screen shake, aggressive FOV changes, violent vignette and excessive camera impulse while preserving obstacle warnings.
+
+### 8.3 Co-op coordination language
+
+- **Voice optional, never required:** Players can use Discord/third-party chat, but the game provides visual cues and sparse contextual ping/callouts such as 'Brake', 'Left', 'Right', 'Together', 'Back', 'Hold'.
+- No permanent directional arrows saying which player is 'wrong'; provide evidence through paddle splash and boat response.
+- If a player disconnects, highlight only that seat and offer wait/reconnect action.
+- Stream/replay events record readable disasters: dramatic near-miss, near-capsize recovered, checkpoint, synchronized strokes, reverse escape. Events must not generate abusive blame messages.
+- If first-party text/chat is ever added, moderation, reporting, mute and platform preference integration are prerequisites; it is not P0.
+
+### 8.4 Accessibility and localization
+
+Provide full remapping and left-handed options; pointer sensitivity, bounded workspace size, deadzones and hold/toggle immersion options; no reliance on color alone for seat identity (include seat label and icon); scalable text in narrow iframe; subtitles/captions for announcements; visual equivalents for directional audio cues; flash and screen-shake reduction; readable contrast; reduced foam/particles option that does not hide flow direction; independent music/SFX sliders; pause/rejoin clarity; controller discovery and focus warnings. Avoid reaction-time-only obstacles in initial tutorial; make timing telegraphs audible, visual and spatial. Support keyboard-only navigation for all menus.
+
+Accessibility assists are **input transforms** and presentation aids, not hidden physics advantage in competitive modes. If a control assist changes authoritative force beyond canonical envelope, mark the run assisted and separate its rankings rather than covertly disadvantage users. Establish language-content plan after playtests; localization must not distort seat labels and screen-fixed prompts.
+
+## 9. World Bible: The Grand Waterworks
+
+### 9.1 World premise, continuity and causality
+
+A single inhabited watershed has been redirected by centuries of dams, logging, mills, towns, reservoirs, turbines, treatment systems, locks, boat lifts and high-altitude pumped canals. The boat begins on natural Willow Headwaters, descends through industry, is mechanically raised by waterworks into the mountains, crosses glacier-fed aqueducts, then returns toward the sea via the Great Cascade. **No arbitrary teleports between biome boxes.** Each major elevation gain is explained by lock chambers, vessel lifts, pumped flumes or counterweighted troughs; any fantastical water engineering is visually introduced before it becomes an obstacle.
+
+World traversal is **continuous from the player's perspective**, achieved through route-based streaming and regional prefetch rather than keeping the entire continent resident. Water flow and height surfaces need explicit continuity at seams; content can be teleported only as a documented recovery fail-safe and never disguised as normal travel. The source Phase Zero suggests roughly 4–5.5 hours of mastered first-pass traversal before retries; this is **an unvalidated design target**, not a launch-length commitment. Produce the world incrementally after the vertical-slice gate.
+
+### 9.2 Fourteen-region route atlas
+
+| Region | Visual identity / signature landmark | New mastery & authored beat | Recovery & estimated mastered traversal |
+|---|---|---|---|
+| **01 Willow Headwaters** | Warm cedar-lined small river, distant mill, gentle current | **Skill:** Catch/release; coordinated straight line and first counter-strokes. **Moment:** Split cedar posts and natural S-bend. | No fatal falls; sandy recovery banks; launch dock. **Target:** 12–18 min. |
+| **02 Timber Gorge** | Rafted logs, timber chutes, narrow basalt bends | **Skill:** Current read, collision angles and wall brace. **Moment:** Rolling-log boom opens a precision channel. | Side alcoves and backwater eddies. **Target:** 15–22 min. |
+| **03 Flooded Old Town** | Submerged streets, brick arches, roofs and bell tower | **Skill:** Corner braking, low clearance, momentum conservation. **Moment:** Boat squeezes under a half-submerged market arch. | Shop-floor side channels and town-square pools. **Target:** 18–25 min. |
+| **04 Storm Reservoir** | Vast open water, rain wall, partly inundated cranes | **Skill:** Waves, crosswind and keeping heading without landmarks. **Moment:** Stormfront surges through floating debris and sluice gates. | Protected coves and quay docks. **Target:** 17–25 min. |
+| **05 Dam Apron** | Scale reveal from lake rim to monumental spillway apron | **Skill:** Heavy current, timed gate approach, safe commitment. **Moment:** Enormous spillway lip into staged plunge pool. | Pre-drop catchment, rescue channels at bottom. **Target:** 18–26 min. |
+| **06 Turbine Underworks** | Giant industrial galleries and canal conduits | **Skill:** Read current direction, keep blades from moving machinery. **Moment:** Turbine bypass around rotating shaft frames. | Maintenance loop and counterflow pockets. **Target:** 18–25 min. |
+| **07 Treatment Labyrinth** | Colourful tanks, settling pools, sluices and filter bridges | **Skill:** Precise pivots and multi-gate timing. **Moment:** Gravity-switch canal loops around water treatment towers. | Recycling flow keeps missed route recoverable. **Target:** 16–24 min. |
+| **08 Lock Stair & Boat Lift** | Massive multilevel lock staircase and counterweighted ship lift | **Skill:** Deliberate stopping, stateful chambers and timing. **Moment:** Boat rises with an immense counterweight into open sky. | Protected side docks before each lift. **Target:** 20–28 min. |
+| **09 Cave Siphon** | Wet caverns, glowworms and siphon crown | **Skill:** Visibility, silhouette steering, pressure pulses. **Moment:** Siphon lifts boat over illuminated underground crest. | Calm side chamber and cave ledges. **Target:** 17–25 min. |
+| **10 Geothermal Pumpworks** | Steaming volcanic cliffs and enormous pumping screws | **Skill:** Thermal upwelling, piston rhythm and moving water frames. **Moment:** Pumped aqueduct turns uphill around red basalt. | Cooling pools, safety troughs and ramp return. **Target:** 19–28 min. |
+| **11 Glacier Spillways** | Cold cyan water, ice floes, snow walls | **Skill:** Reduced visibility, ice wakes, sudden current seams. **Moment:** Thread breakaway floes between blue ice gates. | Stable inlets and ice-free emergency channel. **Target:** 20–28 min. |
+| **12 High Aqueduct** | Slim high bridge arches across misty canyon | **Skill:** Long horizon steering, wind correction, loss-prevention. **Moment:** Spectacular crossing with cascades far below. | Catch channels beneath selected exposed turns. **Target:** 20–28 min. |
+| **13 Suspended Maintenance Channels** | Counterweighted rotating troughs at extreme altitude | **Skill:** Braking, phase synchronization and platform anticipation. **Moment:** Entire water channel physically rotates to join the next. | Lower re-entry troughs and maintenance docks. **Target:** 18–25 min. |
+| **14 Great Cascade** | Blue horizon, all water systems converge toward sea | **Skill:** Synthesis of current, waves, narrow gate, controlled drops. **Moment:** Multi-stage finale from sky channel to sunrise ocean basin. | Several visible intermediary rescue basins. **Target:** 20–30 min. |
+
+**Interpretation:** All fourteen are world **candidates**, not content already built and not a promise of a 14-region day-one launch. Region durations are hypotheses. The stage gates can reduce the first shipped route while preserving a coherent ending. The attached report's proposed 14-stop journey is the reference fantasy; do not convert this table into an uncontrolled parallel asset backlog.
+
+### 9.3 Region-specific authoring cards
+
+#### R01: Willow Headwaters
+
+**Composition:** Warm cedar-lined small river, distant mill, gentle current. **Skill focus:** Catch/release; coordinated straight line and first counter-strokes. **Hero moment:** Split cedar posts and natural S-bend. **Fail-forward route:** No fatal falls; sandy recovery banks; launch dock. **Audiovisual signature:** Birds, small water wash, oar close-ups. **First-time design objective:** First clean stroke, two-player side yaw and group cadence. **Mastered-time proposal:** 12–18 minutes, to be re-estimated after player data.
+
+**Entry:** foreground a recognizable landmark before the first advanced hazard; include a physically continuous transition from preceding waterway and a safe reading zone. **Teach:** a low-risk version of the region's defining mechanic before a timed/narrow version. **Remix:** combine a previously learned hazard with the new one without increasing both dimensions at once. **Climax:** a cinematic but manually steerable encounter; no surprise forced camera cut. **Exit:** provide a relief basin and clear visual thread toward the next water system. **Required acceptance:** four-client traversal; camera clearance; full reset/recovery route; hydrology seam test; medium/low graphics parity; memory release after streaming unload; acoustic readability; deterministic timing and at least one human observation session.
+
+#### R02: Timber Gorge
+
+**Composition:** Rafted logs, timber chutes, narrow basalt bends. **Skill focus:** Current read, collision angles and wall brace. **Hero moment:** Rolling-log boom opens a precision channel. **Fail-forward route:** Side alcoves and backwater eddies. **Audiovisual signature:** Taut chain clangs, wood knocks, gorge echoes. **First-time design objective:** First credible near-loss-and-save sequence. **Mastered-time proposal:** 15–22 minutes, to be re-estimated after player data.
+
+**Entry:** foreground a recognizable landmark before the first advanced hazard; include a physically continuous transition from preceding waterway and a safe reading zone. **Teach:** a low-risk version of the region's defining mechanic before a timed/narrow version. **Remix:** combine a previously learned hazard with the new one without increasing both dimensions at once. **Climax:** a cinematic but manually steerable encounter; no surprise forced camera cut. **Exit:** provide a relief basin and clear visual thread toward the next water system. **Required acceptance:** four-client traversal; camera clearance; full reset/recovery route; hydrology seam test; medium/low graphics parity; memory release after streaming unload; acoustic readability; deterministic timing and at least one human observation session.
+
+#### R03: Flooded Old Town
+
+**Composition:** Submerged streets, brick arches, roofs and bell tower. **Skill focus:** Corner braking, low clearance, momentum conservation. **Hero moment:** Boat squeezes under a half-submerged market arch. **Fail-forward route:** Shop-floor side channels and town-square pools. **Audiovisual signature:** Distant bells, rain drainage, creaking signage. **First-time design objective:** Readable choice between short risky and long safe lines. **Mastered-time proposal:** 18–25 minutes, to be re-estimated after player data.
+
+**Entry:** foreground a recognizable landmark before the first advanced hazard; include a physically continuous transition from preceding waterway and a safe reading zone. **Teach:** a low-risk version of the region's defining mechanic before a timed/narrow version. **Remix:** combine a previously learned hazard with the new one without increasing both dimensions at once. **Climax:** a cinematic but manually steerable encounter; no surprise forced camera cut. **Exit:** provide a relief basin and clear visual thread toward the next water system. **Required acceptance:** four-client traversal; camera clearance; full reset/recovery route; hydrology seam test; medium/low graphics parity; memory release after streaming unload; acoustic readability; deterministic timing and at least one human observation session.
+
+#### R04: Storm Reservoir
+
+**Composition:** Vast open water, rain wall, partly inundated cranes. **Skill focus:** Waves, crosswind and keeping heading without landmarks. **Hero moment:** Stormfront surges through floating debris and sluice gates. **Fail-forward route:** Protected coves and quay docks. **Audiovisual signature:** Deep thunder, wind, rain on hull. **First-time design objective:** Introduces environmental forces larger than any paddle. **Mastered-time proposal:** 17–25 minutes, to be re-estimated after player data.
+
+**Entry:** foreground a recognizable landmark before the first advanced hazard; include a physically continuous transition from preceding waterway and a safe reading zone. **Teach:** a low-risk version of the region's defining mechanic before a timed/narrow version. **Remix:** combine a previously learned hazard with the new one without increasing both dimensions at once. **Climax:** a cinematic but manually steerable encounter; no surprise forced camera cut. **Exit:** provide a relief basin and clear visual thread toward the next water system. **Required acceptance:** four-client traversal; camera clearance; full reset/recovery route; hydrology seam test; medium/low graphics parity; memory release after streaming unload; acoustic readability; deterministic timing and at least one human observation session.
+
+#### R05: Dam Apron
+
+**Composition:** Scale reveal from lake rim to monumental spillway apron. **Skill focus:** Heavy current, timed gate approach, safe commitment. **Hero moment:** Enormous spillway lip into staged plunge pool. **Fail-forward route:** Pre-drop catchment, rescue channels at bottom. **Audiovisual signature:** Alarm horn, gate piston, waterfall low end. **First-time design objective:** First large authored set-piece with fair preview. **Mastered-time proposal:** 18–26 minutes, to be re-estimated after player data.
+
+**Entry:** foreground a recognizable landmark before the first advanced hazard; include a physically continuous transition from preceding waterway and a safe reading zone. **Teach:** a low-risk version of the region's defining mechanic before a timed/narrow version. **Remix:** combine a previously learned hazard with the new one without increasing both dimensions at once. **Climax:** a cinematic but manually steerable encounter; no surprise forced camera cut. **Exit:** provide a relief basin and clear visual thread toward the next water system. **Required acceptance:** four-client traversal; camera clearance; full reset/recovery route; hydrology seam test; medium/low graphics parity; memory release after streaming unload; acoustic readability; deterministic timing and at least one human observation session.
+
+#### R06: Turbine Underworks
+
+**Composition:** Giant industrial galleries and canal conduits. **Skill focus:** Read current direction, keep blades from moving machinery. **Hero moment:** Turbine bypass around rotating shaft frames. **Fail-forward route:** Maintenance loop and counterflow pockets. **Audiovisual signature:** Metal resonance, pressure pulses, fan hum. **First-time design objective:** Water physically drives machinery around crew. **Mastered-time proposal:** 18–25 minutes, to be re-estimated after player data.
+
+**Entry:** foreground a recognizable landmark before the first advanced hazard; include a physically continuous transition from preceding waterway and a safe reading zone. **Teach:** a low-risk version of the region's defining mechanic before a timed/narrow version. **Remix:** combine a previously learned hazard with the new one without increasing both dimensions at once. **Climax:** a cinematic but manually steerable encounter; no surprise forced camera cut. **Exit:** provide a relief basin and clear visual thread toward the next water system. **Required acceptance:** four-client traversal; camera clearance; full reset/recovery route; hydrology seam test; medium/low graphics parity; memory release after streaming unload; acoustic readability; deterministic timing and at least one human observation session.
+
+#### R07: Treatment Labyrinth
+
+**Composition:** Colourful tanks, settling pools, sluices and filter bridges. **Skill focus:** Precise pivots and multi-gate timing. **Hero moment:** Gravity-switch canal loops around water treatment towers. **Fail-forward route:** Recycling flow keeps missed route recoverable. **Audiovisual signature:** Pump tick, air bubbles, echoing corridors. **First-time design objective:** Master rotate-in-place and forward/back coordination. **Mastered-time proposal:** 16–24 minutes, to be re-estimated after player data.
+
+**Entry:** foreground a recognizable landmark before the first advanced hazard; include a physically continuous transition from preceding waterway and a safe reading zone. **Teach:** a low-risk version of the region's defining mechanic before a timed/narrow version. **Remix:** combine a previously learned hazard with the new one without increasing both dimensions at once. **Climax:** a cinematic but manually steerable encounter; no surprise forced camera cut. **Exit:** provide a relief basin and clear visual thread toward the next water system. **Required acceptance:** four-client traversal; camera clearance; full reset/recovery route; hydrology seam test; medium/low graphics parity; memory release after streaming unload; acoustic readability; deterministic timing and at least one human observation session.
+
+#### R08: Lock Stair & Boat Lift
+
+**Composition:** Massive multilevel lock staircase and counterweighted ship lift. **Skill focus:** Deliberate stopping, stateful chambers and timing. **Hero moment:** Boat rises with an immense counterweight into open sky. **Fail-forward route:** Protected side docks before each lift. **Audiovisual signature:** Chains, ratchets, descending gates, rising water. **First-time design objective:** Clearly explains altitude gain using coherent machinery. **Mastered-time proposal:** 20–28 minutes, to be re-estimated after player data.
+
+**Entry:** foreground a recognizable landmark before the first advanced hazard; include a physically continuous transition from preceding waterway and a safe reading zone. **Teach:** a low-risk version of the region's defining mechanic before a timed/narrow version. **Remix:** combine a previously learned hazard with the new one without increasing both dimensions at once. **Climax:** a cinematic but manually steerable encounter; no surprise forced camera cut. **Exit:** provide a relief basin and clear visual thread toward the next water system. **Required acceptance:** four-client traversal; camera clearance; full reset/recovery route; hydrology seam test; medium/low graphics parity; memory release after streaming unload; acoustic readability; deterministic timing and at least one human observation session.
+
+#### R09: Cave Siphon
+
+**Composition:** Wet caverns, glowworms and siphon crown. **Skill focus:** Visibility, silhouette steering, pressure pulses. **Hero moment:** Siphon lifts boat over illuminated underground crest. **Fail-forward route:** Calm side chamber and cave ledges. **Audiovisual signature:** Reverb, dripping, pressure rumble. **First-time design objective:** Cameras remain readable in tight and dark spaces. **Mastered-time proposal:** 17–25 minutes, to be re-estimated after player data.
+
+**Entry:** foreground a recognizable landmark before the first advanced hazard; include a physically continuous transition from preceding waterway and a safe reading zone. **Teach:** a low-risk version of the region's defining mechanic before a timed/narrow version. **Remix:** combine a previously learned hazard with the new one without increasing both dimensions at once. **Climax:** a cinematic but manually steerable encounter; no surprise forced camera cut. **Exit:** provide a relief basin and clear visual thread toward the next water system. **Required acceptance:** four-client traversal; camera clearance; full reset/recovery route; hydrology seam test; medium/low graphics parity; memory release after streaming unload; acoustic readability; deterministic timing and at least one human observation session.
+
+#### R10: Geothermal Pumpworks
+
+**Composition:** Steaming volcanic cliffs and enormous pumping screws. **Skill focus:** Thermal upwelling, piston rhythm and moving water frames. **Hero moment:** Pumped aqueduct turns uphill around red basalt. **Fail-forward route:** Cooling pools, safety troughs and ramp return. **Audiovisual signature:** Steam hisses, deep percussive machinery. **First-time design objective:** Physical explanation for otherwise impossible climb. **Mastered-time proposal:** 19–28 minutes, to be re-estimated after player data.
+
+**Entry:** foreground a recognizable landmark before the first advanced hazard; include a physically continuous transition from preceding waterway and a safe reading zone. **Teach:** a low-risk version of the region's defining mechanic before a timed/narrow version. **Remix:** combine a previously learned hazard with the new one without increasing both dimensions at once. **Climax:** a cinematic but manually steerable encounter; no surprise forced camera cut. **Exit:** provide a relief basin and clear visual thread toward the next water system. **Required acceptance:** four-client traversal; camera clearance; full reset/recovery route; hydrology seam test; medium/low graphics parity; memory release after streaming unload; acoustic readability; deterministic timing and at least one human observation session.
+
+#### R11: Glacier Spillways
+
+**Composition:** Cold cyan water, ice floes, snow walls. **Skill focus:** Reduced visibility, ice wakes, sudden current seams. **Hero moment:** Thread breakaway floes between blue ice gates. **Fail-forward route:** Stable inlets and ice-free emergency channel. **Audiovisual signature:** Ice creaks, dry wind, muffled water. **First-time design objective:** New collisions without changing paddle verbs. **Mastered-time proposal:** 20–28 minutes, to be re-estimated after player data.
+
+**Entry:** foreground a recognizable landmark before the first advanced hazard; include a physically continuous transition from preceding waterway and a safe reading zone. **Teach:** a low-risk version of the region's defining mechanic before a timed/narrow version. **Remix:** combine a previously learned hazard with the new one without increasing both dimensions at once. **Climax:** a cinematic but manually steerable encounter; no surprise forced camera cut. **Exit:** provide a relief basin and clear visual thread toward the next water system. **Required acceptance:** four-client traversal; camera clearance; full reset/recovery route; hydrology seam test; medium/low graphics parity; memory release after streaming unload; acoustic readability; deterministic timing and at least one human observation session.
+
+#### R12: High Aqueduct
+
+**Composition:** Slim high bridge arches across misty canyon. **Skill focus:** Long horizon steering, wind correction, loss-prevention. **Hero moment:** Spectacular crossing with cascades far below. **Fail-forward route:** Catch channels beneath selected exposed turns. **Audiovisual signature:** Wind through pillars, open echo, bells. **First-time design objective:** Majesty with clear guardrails; no camera-induced falls. **Mastered-time proposal:** 20–28 minutes, to be re-estimated after player data.
+
+**Entry:** foreground a recognizable landmark before the first advanced hazard; include a physically continuous transition from preceding waterway and a safe reading zone. **Teach:** a low-risk version of the region's defining mechanic before a timed/narrow version. **Remix:** combine a previously learned hazard with the new one without increasing both dimensions at once. **Climax:** a cinematic but manually steerable encounter; no surprise forced camera cut. **Exit:** provide a relief basin and clear visual thread toward the next water system. **Required acceptance:** four-client traversal; camera clearance; full reset/recovery route; hydrology seam test; medium/low graphics parity; memory release after streaming unload; acoustic readability; deterministic timing and at least one human observation session.
+
+#### R13: Suspended Maintenance Channels
+
+**Composition:** Counterweighted rotating troughs at extreme altitude. **Skill focus:** Braking, phase synchronization and platform anticipation. **Hero moment:** Entire water channel physically rotates to join the next. **Fail-forward route:** Lower re-entry troughs and maintenance docks. **Audiovisual signature:** Gear creaks, cable strains, metallic rhythm. **First-time design objective:** Most demanding multi-crew timing problem. **Mastered-time proposal:** 18–25 minutes, to be re-estimated after player data.
+
+**Entry:** foreground a recognizable landmark before the first advanced hazard; include a physically continuous transition from preceding waterway and a safe reading zone. **Teach:** a low-risk version of the region's defining mechanic before a timed/narrow version. **Remix:** combine a previously learned hazard with the new one without increasing both dimensions at once. **Climax:** a cinematic but manually steerable encounter; no surprise forced camera cut. **Exit:** provide a relief basin and clear visual thread toward the next water system. **Required acceptance:** four-client traversal; camera clearance; full reset/recovery route; hydrology seam test; medium/low graphics parity; memory release after streaming unload; acoustic readability; deterministic timing and at least one human observation session.
+
+#### R14: Great Cascade
+
+**Composition:** Blue horizon, all water systems converge toward sea. **Skill focus:** Synthesis of current, waves, narrow gate, controlled drops. **Hero moment:** Multi-stage finale from sky channel to sunrise ocean basin. **Fail-forward route:** Several visible intermediary rescue basins. **Audiovisual signature:** Orchestral water swell, giant spray, triumphant quiet. **First-time design objective:** Feels earned through learnt mechanics, not surprise rules. **Mastered-time proposal:** 20–30 minutes, to be re-estimated after player data.
+
+**Entry:** foreground a recognizable landmark before the first advanced hazard; include a physically continuous transition from preceding waterway and a safe reading zone. **Teach:** a low-risk version of the region's defining mechanic before a timed/narrow version. **Remix:** combine a previously learned hazard with the new one without increasing both dimensions at once. **Climax:** a cinematic but manually steerable encounter; no surprise forced camera cut. **Exit:** provide a relief basin and clear visual thread toward the next water system. **Required acceptance:** four-client traversal; camera clearance; full reset/recovery route; hydrology seam test; medium/low graphics parity; memory release after streaming unload; acoustic readability; deterministic timing and at least one human observation session.
+
+### 9.4 World pacing and guidance rules
+
+Each region follows a **read / rehearse / combine / perform / release** arc. First 20–40 seconds show scenery and one decisive route cue. The player is never asked to learn a new camera rule, water behavior and moving-object collision simultaneously. A first-time obstacle gets one gentle legible example before high-consequence variants. Scenic breathers are explicitly playable with low water drag and satisfying smooth strokes, not empty scripted transit. The entire trip should repeatedly foreshadow waterworks landmarks (e.g., an aqueduct glimpsed many regions before its crossing).
+
+Each 8–12-minute block should ideally contain: one orientation beat, two to four variable-skill turns, one recovery possibility and one high-salience moment. These are **pacing hypotheses**, never a quota that generates repetitive gates. First draft checkpoints target roughly 5–10 minutes of already-mastered navigation, tightened where repeated punishment is unjust. The design documents must mark regions' **critical path**, side channel, return channel, hazard activation boundaries and owned streaming chunk IDs.
+
+## 10. Obstacles: systemic grammar and authored catalogue
+
+### 10.1 Design grammar
+
+Obstacles are made from a small reproducible set of player-readable verbs: **accelerate, brake, line up, counter-turn, pivot, brace, dodge, wait, enter, ride, reverse and rescue**. Physical sources include currents, surfaces, geometry, buoyancy changes, mechanical movers, falling/debris bodies, visibility, wind coupling and timed water-level change. Complexity should emerge from combining two familiar systems; rarely introduce three new elements together. Every obstacle needs: `id`, version, region/biome tags, entry/warning pose, physical volume/field params, safe line, recovery branches, failure state, contact/material response, accessibility signals, server-owned trigger clock, deterministic seed, debug gizmos, art/audio hooks, stream asset IDs and recorded regression fixture.
+
+### 10.2 Authorable obstacle prefab schema
+
+```yaml
+id: OB-001
+revision: 1
+kind: current_seam
+entry_volume: {shape: box, local_position: [0, 0, 0], size: [8, 3, 6]}
+warning: {visual: foam_line, audio: lateral_rush, duration_s: 3.0}
+physics: {field: current_blend, max_velocity: TUNE, ramp_m: TUNE}
+activation: {mode: proximity, deterministic_clock: true}
+recovery: {regions: [eddy_left, shallow_shelf], unstuck_allowed: true}
+seed: world_seed_xor_obstacle_id
+render: {prefab_id: water_seam_v1, quality_independent_gameplay: true}
+tests: [water_blend_continuity, all_seats_agency, reverse_escape, network_loss]
+```
+
+**Prefab authoring invariant:** designers may vary field strength, time window, geometry widths, collider and art IDs without changing netcode, hull ownership or reset semantics. Missing recovery or telegraph is a validation error for required obstacles, not a warning hidden in QA.
+
+### 10.3 Eighty challenge concepts, built from reusable primitives
+
+Cost column is **relative technical/content uncertainty** (L/M/H), not time or money. Recovery is intentionally authored; 'instant death' is not the default.
+
+| # | Obstacle | Family | What physics tests | Readable telegraph | Planned recovery | Risk |
+|---:|---|---|---|---|---|:---:|
+| OB-001 | **Current seam** | Hydrology | Side-current abruptly changes lateral flow | Foam boundary | Ferry-angle correction | L |
+| OB-002 | **Eddy pocket** | Hydrology | Local rotational flow yaw/hold | Circular surface drift | Paddle out via downstream shear | M |
+| OB-003 | **Whirlpool shoulder** | Hydrology | Vortex gradient spins bow | Spiralling scum | Reverse and brace at outer lane | M |
+| OB-004 | **Standing-wave train** | Hydrology | Repeated pitch/roll alters immersion | Visible wave peaks | Reduce speed, stabilize | M |
+| OB-005 | **Sluice surge** | Hydrology | Telegraphed current impulse | Bell and gate flash | Hold pocket or counterstroke | M |
+| OB-006 | **Gravel bar** | Hydrology | Hull shallows and grounds | Ripples/color change | Reverse/pry to channel | L |
+| OB-007 | **Reverse-flow lock** | Hydrology | Short flow reversal in narrow lock | Bubbles sweep upstream | Stage at side slack water | M |
+| OB-008 | **Waterfall lip** | Hydrology | High-speed commit point | Spray curtain and sound | Breakaway safe basin | M |
+| OB-009 | **Hydraulic jump** | Hydrology | Roll wave with intermittent blade contact | Foam wall | Enter angled and re-stabilize | H |
+| OB-010 | **Crossing wake** | Hydrology | Moving wake tilts hull | V-shaped visible crest | Cross head-on or correct roll | M |
+| OB-011 | **Waterwheel gap** | Machinery | Spoke timing plus paddle collision | Creaking wheel blades | Wait in eddy/pull backward | M |
+| OB-012 | **Swinging counterweight** | Machinery | Pendulum impacts sideways | Large shadow and horn | Backstroke into safe pocket | L |
+| OB-013 | **Piston sluice** | Machinery | Timed vertical gate | Red warning lights/air hiss | Stop short and re-align | M |
+| OB-014 | **Crusher lock** | Machinery | Opposing walls shrink lane | Ratcheting moving sides | Reverse before closure | M |
+| OB-015 | **Tilting weir plate** | Machinery | Surface ramps and tilts | Visible hinge actuator | Control entry angle | H |
+| OB-016 | **Screw wash** | Machinery | Rotating screw induces spiralling flow | Broad rotating foam | Cross behind vane | H |
+| OB-017 | **Chain-ferry cable** | Machinery | Tensioned moving rope blocks blade/hull | Bell, taut cable | Duck in slack-water gap | M |
+| OB-018 | **Lift-platform dock** | Machinery | Align boat on moving buoyant platform | Rail lights and dock arrows | Hold in staging basin | H |
+| OB-019 | **Conveyor rollers** | Machinery | Directional contact friction when shallow | Alternating roller bands | Reverse roll out | M |
+| OB-020 | **Rotating pipe arm** | Machinery | Low rotating boom scrapes paddle | Orange caution stripe | Dip/shallow stroke | L |
+| OB-021 | **Log boom** | Debris | Floating logs rotate and transfer impact | Log chain noises | Push away / choose side channel | M |
+| OB-022 | **Sawn-log flume** | Debris | Timed release of long floating timber | Wood mill horn | Wait in still bay | M |
+| OB-023 | **Barge crossing** | Debris | Heavy moving vessel blocks route | Hull horn and wake | Cross behind or reverse | H |
+| OB-024 | **Patrol-boat wake** | Debris | Overlapping wakes destabilize hull | Visible wave trails | Orient nose into crest | M |
+| OB-025 | **Barrel swarm** | Debris | Light objects redirect paddle/workspace | Floating metal drums | Clear with blade/bracing | M |
+| OB-026 | **Cargo pendulum** | Debris | Hanging crate swings near surface | Crane shadow | Wait/duck bow under gap | M |
+| OB-027 | **Crane bucket** | Debris | Large timed lowering collider | Cable creak and lamp | Reverse into refuge | H |
+| OB-028 | **Ferry chain** | Debris | Diagonal submerged chain catches hull | Chain buoys | Angle and lift paddle | M |
+| OB-029 | **Flood debris pulse** | Debris | Current launches clustered obstacles | Loud upstream collapse | Use sheltered inlet | H |
+| OB-030 | **Culvert drums** | Debris | Rolling cylindrical obstacles in culvert | Rolling clatter | Work around or wait | M |
+| OB-031 | **Canyon crosswind** | Weather | Wind pushes above-water hull | Flags and falling leaves | Use transverse counterstrokes | L |
+| OB-032 | **Bridge wind rotor** | Weather | Wind changes sign under bridge | Swinging pennants | Use slipstream timing | H |
+| OB-033 | **Thunderfront gust** | Weather | Short deterministic gust burst | Cloud wall and thunder lead | Brace/wait sheltered | M |
+| OB-034 | **Fog channel** | Weather | Sight lines shortened | Bell spacing and glow markers | Slow speed & follow sound | M |
+| OB-035 | **Heavy-rain curtain** | Weather | Visibility and wave texture change | Dark rain front | Choose familiar safe route | M |
+| OB-036 | **Wind tunnel** | Weather | Narrow funnel accelerates wind | Loud intake and banners | High-angle ferry control | L |
+| OB-037 | **Wave squall** | Weather | Disordered surface affecting submersion | Rising surface wave patterns | Reduce speed, staged recovery | H |
+| OB-038 | **Slush field** | Weather | High-drag cold water/ice slurry | Pale surface and drag sound | Find open clean path | M |
+| OB-039 | **Gust shadow** | Weather | Sudden loss of wind behind cover | Flag drop / calm pocket | Avoid over-correcting | L |
+| OB-040 | **Waterspout lane** | Weather | Moving vertical spray/flow impulse | Visible funnel and path | Dodge or enter protected pocket | H |
+| OB-041 | **Root maze** | Terrain | Submerged roots grab shaft/hull | Clear roots and ripples | Reverse and lever out | M |
+| OB-042 | **Telegraph rockfall** | Terrain | Rocks fall after shake cue | Pebbles and upper ledge crack | Stay under side shelter | M |
+| OB-043 | **Canyon collapse** | Terrain | Temporary channel reconfiguration | Cracking bridge silhouette | Take marked diversion | H |
+| OB-044 | **Low cave ceiling** | Terrain | Top clearance restricts paddle arc | Roof silhouettes | Feather blade and coast | M |
+| OB-045 | **Stalactite slalom** | Terrain | Narrow alternating stalactites | Visible rock spires | Pivot between safe columns | L |
+| OB-046 | **Hidden shoal glow** | Terrain | Light/ripples reveal shallow hazard | Surface color variation | Slide toward deep water | M |
+| OB-047 | **Mud shoal** | Terrain | High suction/ground friction | Silky brown shallow water | Rock boat/reverse stroke | L |
+| OB-048 | **Ice floes** | Terrain | Dynamic floes collide and close openings | Creasing ice and cracking | Follow channel wake | H |
+| OB-049 | **Reed blind turn** | Terrain | Vegetation hides downstream bend | Bending reed direction | Slow and inspect angle | L |
+| OB-050 | **Basalt slot** | Terrain | Tight, highly frictional walls | Black vertical rock lines | Bow-stern pivot maneuver | L |
+| OB-051 | **Boat elevator** | Vertical | Hull rides moving water-filled lift | Platform chains and water seal | Stop at landing slots | H |
+| OB-052 | **Lock rise** | Vertical | Rising chamber water changes surface height | Level marks and lamps | Wait/brace before exit | H |
+| OB-053 | **Pumped S-flume** | Vertical | Upward moving flow with hard S-bends | Visible rushing pumped current | Angle and hold stable line | H |
+| OB-054 | **Rotating water ring** | Vertical | Trough rotates with transformed gravity frame | Large support gears | Ride until exit aligns | H |
+| OB-055 | **Spillway chute** | Vertical | High-speed drop and landing roll | White-sheet water and spray | Land in broad catch basin | M |
+| OB-056 | **Tiered cascade basins** | Vertical | Multiple drops with interstitial braking | Successive lip glimpses | Rest basins between tiers | M |
+| OB-057 | **Counterweight bridge** | Vertical | Moving bridge grants narrow timed crossing | Hanging weights and ticks | Retreat to pond | H |
+| OB-058 | **Rotating trough** | Vertical | Water channel rotates toward next exit | Alarm and turning channel | Enter lower trough on miss | H |
+| OB-059 | **Siphon crest** | Vertical | Flow carries boat uphill over a crest | Rising water marks | Catch basin after crest | H |
+| OB-060 | **Drop rebound cushion** | Vertical | Strong upward current softens high landing | Bubbling foam bed | Re-center in turbulent basin | H |
+| OB-061 | **Brake line** | Precision | Approach marker requires gradual deceleration | Striped dock markers | Reverse after overshoot | L |
+| OB-062 | **Torque tutorial gate** | Precision | Offset blade station used for yaw control | Differential painted gates | Wide retry pocket | L |
+| OB-063 | **Dead-stop berth** | Precision | Boat must nearly stop in marked bay | Glowing bollards | Back away for reset | L |
+| OB-064 | **Offset pilings** | Precision | Staggered posts demand accurate turns | High contrast wooden poles | Back out along entry | L |
+| OB-065 | **Spin alignment** | Precision | Rotate nose to tiny moving exit | Rotating target ring | Expand gap in practice mode | L |
+| OB-066 | **Gust brace** | Precision | Counterwind while planted near wall | Windsock and brace marks | Slip toward safe lee | M |
+| OB-067 | **Wall plant / pry** | Precision | Use paddle to leverage away from corner | Wall scuff marks | Recover from wedge | M |
+| OB-068 | **Counter-current weave** | Precision | Alternate eddy and fast stream entries | Two-tone foam streaks | Eddy pause option | M |
+| OB-069 | **Alternating micro-gates** | Precision | Cadence through serial small gate windows | Sequential lantern pulses | Emergency widening side lane | M |
+| OB-070 | **Low-gate drift** | Precision | Coast under beam with raised paddles | Height warning chain | Stop before gate | L |
+| OB-071 | **Buoy-rope snag** | Comedy | Rope briefly catches shaft tip | Buoy twang and tension | Reverse to release tension | M |
+| OB-072 | **Folding pontoon** | Comedy | Floating floor rearranges route under load | Creasing hinge sound | Fall into broad re-entry pool | H |
+| OB-073 | **Runaway dock** | Comedy | Dock floats off after crew touches it | Rope snaps visibly | Ride it or steer around | M |
+| OB-074 | **Festival inflatables** | Comedy | Soft buoyant obstacles bounce boat | Bright character silhouettes | Squish and push aside | M |
+| OB-075 | **Swinging bell** | Comedy | Giant bell makes loud physics-readable impact | Shadow/swing arc | Regain line after bump | L |
+| OB-076 | **Tarp sail gust** | Comedy | Cloth catches wind and briefly pulls hull | Tarp billow and snap | Roll clear / counterstroke | M |
+| OB-077 | **Geyser fountain** | Comedy | Upward jet lifts bow on predictable timer | Pressure rumble and nozzle | Steer into catch pool | H |
+| OB-078 | **Seesaw pontoon** | Comedy | Floating pivot tips under boat load | Visible pivot and tilt | Back/forward weight balance | H |
+| OB-079 | **Duck parade** | Comedy | Moving harmless waterfowl convoy obstructs ideal line | Synchronized quacks | Wait or take lower-risk detour | M |
+| OB-080 | **Giant maintenance arm** | Comedy | Slow rotating paddle-like beam changes channel | Huge painted arc | Reverse to time new opening | M |
+
+### 10.4 Encounter authoring and scaling examples
+
+**Current seam + narrow gate:** learn seam in wide river; reverse vector on second pass; combine with gate after team can ferry-angle. Difficulty should change seam velocity, lane width or telegraph duration one axis at a time. **Boat lift + sway:** first lift travels vertically and stops. Second introduces a side-current during docking. Third combines with movement—but never silently changes paddle-to-force transfer. **Low ceiling + reverse current:** force players to coast with blades raised, then perform small controlled reverse strokes only when clear. **Glacier slot + ice floe:** first teach static slot line, then predict moving floe; safety route remains visible.
+
+All moving obstacle clocks use server ticks/seed; art/VFX can interpolate independently, but collision state and sound cues derive from the authoritative schedule. Network send rates do not change obstacle period. Hazard QA includes worst-case contact positions, slow-client view, high latency, active reconnect, capsize, and checkpoint reset into safe timing.
+
+### 10.5 Ten mandatory signature set pieces (production proposal)
+
+1. **The First Turn:** four players steer through paired cedar stakes; camera shows each stroke's effect.
+2. **Timber Avalanche:** logs drift into a narrowing gorge; bracing reverses a bad wedge.
+3. **Market Street Flood:** route choices across a half-submerged urban square; the shortcut requires port/stern correction.
+4. **Storm Gate:** crew holds position as reservoir sluice dumps current, then bursts through an opening.
+5. **The First Great Drop:** a dam spillway whose landing is shown long before entry; speed, bracing and recoverable basin.
+6. **Turbine Bypass:** high-speed eddy rotation through colossal rotating infrastructure, all four paddles use unique lever arms.
+7. **The Ascension:** enclosed boat lift rises into open daylight; physically coherent changed water height and control during docking.
+8. **Glacier Shatter:** breaking ice reveals one wider lower escape channel; missed high route becomes a story rather than unavoidable hard reset.
+9. **Sky Trough Turn:** water-carrying rotating canal aligns like a bridge; steady braking wins more than twitchy strokes.
+10. **The Great Cascade:** combines every learned force archetype in four staged, reset-friendly movements and culminates in a quiet ocean landing.
+
+Every set piece requires a **single screenshot silhouette**, a 5-second readable trailer moment, playtest comprehension note, explicit recovery contract, authored camera work and a pre-registered stop-loss condition if mechanics remain unfair.
+
+## 11. Art direction and ultra-high-fidelity rendering specification
+
+### 11.1 Visual thesis: storybook expedition realism
+
+The boat is the hero prop and must survive extreme close-up. Art language is **stylised, physically grounded, lovingly weathered**: expressive wood grain and roughness, wet varnish, believable paddle edges, cloth and rope, mist-shrouded distance, heroic waterworks silhouettes and legible character expressions. Avoid default glossy Unity-demo plastic, uniformly neon water, gray procedural rocks repeated endlessly, and expensive postprocessing covering poor composition. Ultra graphics quality should be the result of strong form, lighting and material authorship with a stable low-end path, **not** a promise that browser can run film-quality real-time fluid dynamics.
+
+Prioritization: 1) boat and four stroke animations, 2) water around blade and hull, 3) readable contact FX, 4) near-field rock/wood architecture, 5) silhouette of upcoming landmark, 6) environmental density, 7) screen-space luxury effects. Expensive scenic objects that don't reinforce play still need per-region performance cost. Materials grounded in plausible metals, bark, wet plaster, algae, carved basalt and glacier ice; exaggerated color composition separates each chapter without breaking cohesion.
+
+### 11.2 Boat and crew asset brief
+
+One boat at launch, visibly narrow enough to create four spatially distinct stations yet wide enough to see hand/shaft movements. Author high-resolution *source* asset with lower-resolution runtime tiers, clean collision shell, sockets named consistently, PBR texture sets and independent material IDs for dry wood/wet hull/rope/metal. Four characters have recognizable silhouettes from rear camera, varied clothing/helmets/hair but identical strength and physics privileges; cosmetics remain cosmetic. Paddle grip hand IK should follow server-derived meaningful blade pose through smoothed local render proxy. Physically honest animations include shoulder effort, windup, blade catch, failed air swing, shaft vibration, collision recoil, boat roll and celebration after safe docking. Capture 4-player preview from minimum embed size before committing character proportions.
+
+### 11.3 Water rendering feature tiers
+
+- **Baseline / WebGL2:** authored low-frequency water displacement congruent with simulation sampler; tiled scrolling flow normals; depth color; shoreline foam; screen-aware splash sprites; simple reflection approximation or environment reflection and fog; physically readable bow/hull wakes.
+- **High:** controlled planar/screen-space reflection where viable, improved refraction/depth blending, richer flow-map fields and contact foam, shore wetness, weather particles, GPU instancing and hierarchical LOD.
+- **Experimental Ultra/WebGPU:** enhanced compute-driven spray and higher-order shading **only if** parity and cost gates pass; never a branch that changes gameplay water, obstacle hazard timing or visibility standards.
+
+Three.js currently documents a renderer capable of WebGPU with WebGL2 fallback [S09], but warns of differences from legacy `ShaderMaterial`/`onBeforeCompile` behavior; choose either tested `WebGLRenderer` production baseline or a compatible TSL-first pipeline before assets depend on unsupported material paths. **The architecture must be verified in a side-by-side representative scene**, not picked from novelty. glTF 2.0 with Meshopt/Draco and KTX2/Basis textures is a suitable web asset pipeline; Three.js' loader documents these extensions and warns that ImageBitmap disposal requires care [S10].
+
+### 11.4 Lighting, staging and weather
+
+Use directional sunlight with deliberately tuned cascaded or single shadow coverage, atmospheric perspective, local lamps that actually illuminate fog volumes in authored hero shots, and grade presets by region. The first stage is warm golden hour, midgame industrial wet twilight, glacier high-noon cyan, aqueduct cloud haze, final dawn. Weather communicates physical current/wind before decorative particles. Volumetric fog approximations must preserve silhouettes and gates; rain should not hide narrow hazards. Under low settings, preserve warnings/route colors even if droplets or reflections are reduced.
+
+### 11.5 Rendering budgets (targets to benchmark)
+
+| Performance item | Candidate Medium target | High/Ultra policy |
+|---|---:|---|
+| Output | 1080p, 60 fps (16.67 ms frame) | Dynamic resolution and effects budgets as needed |
+| GPU typical frame | ≤10.5 ms planning headroom | Do not exceed measured hardware thermal envelope |
+| Main-thread game/render work | ≤4.0 ms planning target | Workers when measurement shows benefit |
+| Local physics preview contribution | ≤1.5 ms avg when used | Physics authority always server |
+| Network traffic | Aim <40 KB/s/client as initial budget | Validate 4-player snapshots and effect messages |
+| First meaningful playable | **Under measured platform gate**, CrazyGames initial payload ≤50 MB | Prioritize first dock rather than preload entire world |
+| Long soak | ≥90-minute continuous build QA | Track GPU/JS/WASM memory, chunks, stale listeners |
+
+These targets come from preproduction as **engineering budgets**, not observed results. Establish a publicly documented reference hardware/browser matrix in Phase One and use p95 as primary shipping indicator, not a best-case screenshot. Adapt shadow distance, particles, texture tier and render scale; never alter colliders or local flow.
+
+### 11.6 Chunk streaming and memory hygiene
+
+Divide world by **view-dependent route topology**, with cell prefetch based on velocity, route branches and visible elevation. Load hero landmark proxy kilometers of conceptual distance before detailed chunk enters; keep rollback/recovery corridor resident until the boat can no longer return. Resource ownership should be explicit: asset registry holds refcounts for GLTF textures, geometry, material, render targets, shaders, audio and physics colliders; on unload, call disposal and validate that GPU/JS memory stabilizes. Prefer instancing vegetation/beams and batching static small props to preserve draw-call budget. Zero visible hitch is design intent but may not be provable on every browser; record size/timing of stalls from decode/upload.
+
+**Chunk lifecycle:** `NOT_REQUESTED -> PREFETCHING -> CPU_READY -> GPU_READY -> ACTIVE -> RELEASE_PENDING -> DISPOSED`. A server-owned coarse collision/navigation representation must **not unload merely because client graphics chunk left view**. Asset streaming never controls simulation authority; render loading problems show low-cost proxy rather than stop physical time mid-hazard. Network snapshot includes only nearby relevant dynamic obstacles while far scheduled mechanics advance deterministically or lazily by analytic tick function.
+
+## 12. Animation, sound and haptic game feel
+
+Sound is a physics instrument. Design four different blade cues: `AIR` (whoosh, no splash), `ENTER` (distinct plop), `CATCH` (deep water shove), `SLOPPY/SHALLOW` (spray without full thrust); add `CONTACT` (shaft/stone knock), `HULL_SCRAPE`, `HARD_CRASH`, `CREAK/HEEL`, `FAST_CURRENT` and `SAFE_DOCK`. Mix prioritizes information over music at critical maneuvers; sounds follow world position for direction, then optional mono-compatible caption icons for accessibility. A boat stuck against wall must sound and shake differently from a current holding the boat nearly still. Each region has one distinct acoustic layer; no dialogue dependency.
+
+Animation event times must derive from server-accepted blade state and smoothed locally; client may show speculative pose but sound/VFX for confirmed contact should never contradict the boat's response. Sound speed/intensity thresholds calibrated against actual force/relative velocity. Use mild controller rumble only on supported browsers/devices and never as the sole hazard cue. Victory animation is short, skippable and must not interrupt the next invite/replay action. Add a brief 'quiet water' mood shift after a major set piece to amplify scale without uninterruptible cinematics.
+
+## 13. Technology matrix and architecture decision records
+
+| Technical decision | Baseline | Alternative | Verification required |
+|---|---|---|---|
+| Browser engine | Three.js TS | PlayCanvas | Equivalent boat/water/streaming/lighting benchmark |
+| Graphics backend | WebGL2 stable | WebGPU-enhanced/TSL | Chrome/Edge/Safari quality parity and material feature audit |
+| Physics | Rapier 3D WASM | Jolt or custom | Stable contact, determinism, frame cost in shared-room benchmark |
+| Server | Colyseus Node + room ownership | Custom WS transport | 4-client impairments, rooms/host, reconnect behavior |
+| Input synchronization | Authoritative input with local visual response | Shared sim prediction | Blind 50–200 ms A/B with humans |
+| Paddle geometry | Kinematic constrained blade/casts | Full dynamic joint | Energy/conservation, bracing and impulse stability |
+| Water force | Distributed buoyancy + analytic currents | Submerged-volume refinements | Perceptual benefit per ms CPU |
+| Persistence | PostgreSQL checkpoint state | File/SQLite prototype only | Transactional revision and recovery test |
+| World | Seamless visible journey, streamed | Region load breaks | 90+ min continuous route smoke test |
+
+Decision-log seed: **ADR-001** authoritative force-from-blade policy (accepted as design mandate); **ADR-002** distributed buoyancy first (provisional); **ADR-003** constrained paddle contact before dynamic joints (provisional); **ADR-004** server-owned room simulation (baseline); **ADR-005** render water vs physics water separation (baseline); **ADR-006** WebGL2 launch compatibility (baseline); **ADR-007** expedition 4-human gate (accepted); **ADR-008** fail-forward recovery (hypothesis); **ADR-009** CrazyGames compatibility early (baseline); **ADR-010** title `All Hands, No Rudder` working only (unresolved legal).
+
+## 14. CrazyGames, standalone browser and release integration
+
+**Constraint source:** CrazyGames documentation currently specifies Basic initial payload ≤50 MB, total asset ceiling ≤250 MB, ≤1,500 files; without SDK, total size is treated as initial download and capped at 50 MB; desktop Chrome/Edge compatibility matters, Safari may be disabled if weak, and Chromebook/4 GB performance matters [S11]. These are **platform requirements subject to update**, not the project's achieved measurements. For the first full-quality dock, stream region assets after playable state rather than frontloading all 14 regions. Link load checks to the actual `GameplayStart` timing. Avoid external tracking/login flow that conflicts with portal rules.
+
+### 14.1 Portal adapter contract
+
+Integrate **current supported HTML5 SDK** at app boundary with a provider abstraction: `init`, `getUser`, `getPlatformCapabilities`, `beginGameplay`, `setRoomStatus`, `onRoomJoinRequested`, `createInviteLink`, `setPaused`, `advertisementLifecycle`, `savePlatformData`, `isInstantMultiplayer`. Confirm function names against the actual installed SDK version at implementation; this is an **internal interface sketch**, not a pasted CrazyGames API. Standalone implementation is a separate adapter with guest tokens and private links.
+
+- Portal initial party launch must create a private **joinable** room directly, including when `isInstantMultiplayer` is set; update room status and invite parameters [S07].
+- Display platform-supplied username where platform asks; do not impersonate a signed-in user.
+- Joining a friend who is on an ongoing voyage should connect safely to live room and then seat/spectate according to vacancy. Avoid forcing a second home screen.
+- Handle mute/disable-chat preference if any social chat is added. We recommend no in-game chat for P0.
+- SDK must receive game state, start/pause/resume and advertisement events according to current docs. **Never** insert an untested mid-hazard advert that resumes while physics has progressed.
+- Basic Launch monetization is disabled; Full Launch requires appropriate platform SDK behavior [S12]. Do not assume acceptance because QA tests pass.
+- Validate at portal iframe widths, specifically `907×510`, browser focus changes, and full screen; prompts remain legible [S08].
+
+### 14.2 Advertising/monetization policy (open)
+
+If CrazyGames Full Launch monetization applies, permit ads **only at safe session transitions**, after explicit suspension agreement or on noncompetitive dock screens; coordinate server room pause, event heartbeat and reconnection, and comply with platform ad APIs. The initial business thesis favors reach and retention, but revenue estimates await actual DAU/region occupancy. No pay-to-win boat performance modifiers. Standalone donation/cosmetic experiments belong after a product/portal policy review.
+
+## 15. Security, privacy and abuse model
+
+Threats: client forged thrust or teleport; malicious repeated join/leave causing room CPU spikes; infinite blade stroke packet flooding; checkpoint revision tampering; replayed stale signed-in session; URL room enumeration; denial-of-service; chat abuse if added; tampering with ranked runs; privacy leakage from copied invite links. Controls: authenticated room tokens and randomized opaque codes; client rate limits; server-side all-physics validation; normalized numeric intent; max active rooms/IP heuristics and platform policy; bounded room idle timers; telemetry aggregation without raw personal conversations; avoid storing raw voice audio (none necessary); score submission from authoritative run record only; property-based fuzz and load tests.
+
+Privacy-conscious default: track anonymous session ID and aggregate gameplay events, not microphone, chat or camera. Retention and deletion periods require a published policy if user identity is persisted. Provide status/recovery UX when storage is temporarily unavailable; preserve local session safety and don't silently claim a checkpoint was saved until confirmed.
+
+## 16. Analytics, human research and evidence discipline
+
+### 16.1 Event dictionary (versioned, sampled where hot)
+
+| Event | Trigger | Minimum fields (privacy-safe) | Decision supported |
+|---|---|---|---|
+| `client_playable` | First controllable dock frame | build, platform, cold_load_ms, asset_bytes | Browser startup |
+| `crew_invite_created` | Valid room link produced | room session, adapter, party occupancy | Acquisition friction |
+| `crew_member_joined` | Seat allocated | seat, join_method, time_since_invite | Four-player funnel |
+| `tutorial_stroke_valid` | Server confirms immersed stroke | station, time_to_stroke, input_device | Input clarity |
+| `boat_force_event_sample` | Sampled paddle reaction | station, immersion_bin, force_bin, flow_zone | Causality and tuning |
+| `obstacle_enter/exit` | Server volume transitions | obstacle_id, region, mode, attempt, elapsed | Pacing bottlenecks |
+| `boat_recovery` | Verified escape from danger/stuck | cause tags, time in danger, seat contribution | Recoveries vs hard fails |
+| `checkpoint_confirmed` | Transaction committed | ID, revision, region, replay attempts | Save integrity |
+| `boat_reset` | Server canonical restore | obstacle_id, reason, mode, time_since_cp | Frustration |
+| `net_reconnect` | Seat recovered after drop | RTT bucket, duration, success, state mismatch | Reliability |
+| `render_perf_sample` | Consent-/policy-appropriate sampled interval | fps p95, GPU approx, heap, browser tier | Hardware budgets |
+| `session_end` | Graceful expiry | duration, mode, region, reason, crew count | Retention and funnel |
+
+All analytics definitions, sampling percentage and dashboard queries should be checked into `docs/ANALYTICS_SPEC.md` before telemetry is acted upon. Distinguish user-requested exit from forced network loss, reload, browser crash and ad pause; otherwise retention diagnosis becomes misleading. Never present correlation between loud laughter/streaming and 'fun' as proof. Use interviews to understand emotion and traces to diagnose physical causality.
+
+### 16.2 Playtest design and rigor
+
+Minimum initial program: 12 fresh individuals in four-person live crews (3 groups) at varied mouse/gamepad experience; supplement with 4–8 additional crews over iterations as capacity permits. Use recorded consent and observer checklist. Do not teach mechanics outside the approved onboarding; observer may intervene only after marked failure. Randomize control method A/B when testing; do not change physics mid-session without recording build and tuning hash. At exit ask: 'What made the boat move that way?', 'Who could have fixed it?', 'Was the failure yours, the group's, or the game?', 'Would you restart now?', and open-ended 'What felt unfair?'. Log unsuccessful sessions; no cherry-picked creator clips in success reporting.
+
+Separate **comprehension**, **control fatigue**, **predictability**, **near miss recoverability**, **social coordination**, **onboarding conversion** and **performance comfort**. Count spontaneous coordination commands, but interpret them alongside whether players enjoyed the result. Video synchronized to force traces is a powerful debugging aid; store only with consent and predefined deletion period.
+
+## 17. Quality assurance specification and test ownership
+
+### 17.1 Automated layers
+
+**Unit:** math/vector transform, water sampler continuity, force cap and immersion response, sequence validation, schema, interpolation boundary, checkpoint version conflict, deterministic obstacle timing. **Integration:** room join/rejoin; four distinct seat intents; full snapshot; reconnection race; packet reorder; lobby/portal adapter. **Simulation regression:** seed + input trace playback, collision energy ceiling, upright balance, wall bracing, overturn transition, obstacle fixture and canonical reset. **Browser automation:** launch-to-playable, pointer capture/escape, iframe size, focus/background behavior, WebGL2 fallback, keyboard menu, broken asset fallback. **Performance:** GPU/CPU capture, 4/8/16 room synthetic concurrent clients, chunk load/unload loops, 90-minute session and memory trend. **Manual:** four-human fairness and camera visibility, audio, accessibility, cross-browser.
+
+### 17.2 Hard-fail severity classification
+
+- **P0 / stop-ship:** boat controlled by hidden thrust, one seat decorative, unrecoverable hard desync, arbitrary paddle force exploit, infinite wedging, checkpoint corruption, four-member cannot join, >critical startup failure, severe photosensitivity/camera safety problem, pervasive collision tunnelling, high-frequency crash.
+- **P1 / fix for milestone:** unclear first stroke, camera blocking a common turn, missing recovery channel, nondeterministic scripted hazard, constant GPU upload stalls, unbounded memory growth, regional asset mismatch.
+- **P2 / planned polish:** cosmetic variation, micro foam detail, alternative sound mix, optional photographic reflections.
+
+Bug reports carry build hash, physics version, save/checkpoint revision, four seat input trace, tick/obstacle ID, expected vs actual behavior, video when available, reproducibility, device/browser, RTT/jitter/loss profile and severity. A bug is not `DONE` until verified on exact regression fixture and master branch.
+
+### 17.3 Network impairment grid
+
+| RTT | Jitter | Loss | Required test |
+|---:|---:|---:|---|
+| 0–25ms | 0 | 0% | Baseline local, force/video correlation |
+| 50ms | 10ms | 0% | Nominal regional play |
+| 100ms | 20ms | 1% | Typical mixed connection experiment |
+| 150ms | 30ms | 3% | Stress; inspect correction frequency |
+| 200ms | 50ms | 5% | Severe stress; truthful fallback/notice |
+| Variable | burst / reorder | 1–5% | Resume and duplicate packet defenses |
+| Disconnect | 2/30/90 sec | n/a | Seat ownership, graceful pauses, full resync |
+
+Thresholds for tolerated position/rotation errors, tick misses and motion sickness must be tuned and frozen after the first network benchmark. No matrix cell is claimed passing in this document.
+
+### 17.4 Content-completeness checklist per region
+
+A region cannot claim `DONE` until there is: authored entrance and exit with continuous geometry; navigable centerline and recognizable landmark; hydrology field/velocity debug export; checkpoint and fall-through routes; no-regression boat physics; collision and water surface matching; camera volume pass; low/medium/high visual profiles; enemy-free but hazard-rich gameplay; sound cues; tested stream prefetch/unload; different platform and latency run; event telemetry; four-human session; accessibility cue inspection; accepted art review; source/asset licensing; memory/performance capture. Terrain mesh alone means `IN_PROGRESS`, never `DONE`.
+
+## 18. Risk register, critical assumptions and fallback strategy
+
+| ID | Risk (preproduction) | Severity | Earliest validation | Fallback if invalid |
+|---|---|---|---|---|
+| RK-01 | Physically honest paddle is exhausting or non-intuitive | Critical | Single-player direct workspace spike | Reduce degrees of freedom / assist workspace, not fake hull steering |
+| RK-02 | Authoritative shared hull feels laggy to 4 clients | Critical | Phase 2 50–200ms A/B | Simplify physics contact, predictive presentation, consider bounded sim rollback |
+| RK-03 | Paddle-wall contact creates extreme kinetic energy | High | Kinematic contact harness | Remove prying from initial slice / cap impulses |
+| RK-04 | 14-region scope breaks delivery schedule | Critical | After vertical slice throughput | Ship a coherent fewer-region route with ending |
+| RK-05 | Camera hides hazards and makes failure unfair | High | First slalom and canyon view | Autocamera volumes with zoom/look-ahead tuning |
+| RK-06 | Water visual diverges from gameplay force | High | Wave/current harness | Tighten authoritative low-frequency sampler and clear flow cues |
+| RK-07 | WebGPU effects have low browser parity | Medium/high | Renderer A/B | WebGL2 baseline with optional extras |
+| RK-08 | Chunk system leaks browser memory | High | 90-min loop | Lower density; stronger lifecycle/disposal and region residency bounds |
+| RK-09 | Player cannot gather 4 humans | High | Invite onboarding test | Practice while waiting; clear social funnel; later approved matchmaking |
+| RK-10 | Lobby/SDK rules prevent portal listing | High | Platform integration spike | Standalone distribution; revise onboarding and SDK adapter |
+| RK-11 | Title infringes existing mark | High | Prepublic legal search | Use alternate pre-cleared finalist |
+| RK-12 | Hosting cost overshoots viable concurrent rooms | High | Physics room load test | Reduce per-room contacts/tick complexity; right-size regions and capacity |
+| RK-13 | Toxic blame/streamer grief loop | Medium | Moderated crew tests | Neutral feedback, private parties, easy mute/block for any future chat |
+| RK-14 | Long-distance fatigue beyond compelling playtime | High | Vertical slice + staged chapters | More relief/pacing, generous checkpoints, sensible split sessions |
+
+**Stop conditions:** If player agency, understandable physics, and willing repeat attempts all fail after two clearly specified control/physics prototype iterations, hold world production and reconcept; do not rescue an unfun boat with graphics. If network feel fails irreparably at ordinary RTT, pause commercial scope and solve architecture before content spend.
+
+## 19. Minimum feasible prototype and vertical slice
+
+### 19.1 The boring test basin — mandatory
+
+A **150 m × 60 m** prototype water rectangle, one placeholder wooden hull, 4 visible seats and blades, 8–12 pylons, one narrow gate, one cross-current field and one checkpoint dock. One real authoritative Colyseus room, four distinct browsers, simple sky, no cosmetics, giant world, inventory or advanced weather. Every physically meaningful motion comes from water/solid paddle interactions plus environmental forces, **not** hidden WASD thrust. Exact acceptance scripts from the source report are retained and expanded:
+
+| Test | Action | Required evidence |
+|---|---|---|
+| PROTO-01..04 | Each player alone strokes while other 3 lift paddles | Four force/torque traces, corresponding hull change |
+| PROTO-05 | Four synchronized clean forward pulls | Net forward acceleration with bounded yaw |
+| PROTO-06 | Port only, starboard only | Predictable sign reversal |
+| PROTO-07 | Opposing forward/reverse and braking | Controlled pivot/deceleration |
+| PROTO-08 | Deliberately miss water | No material propulsion |
+| PROTO-09 | Identical stroke in cross-current | Effect changes due to relative flow |
+| PROTO-10 | Brace paddle on wall | Bounded reaction; possible rescue |
+| PROTO-11 | Slalom then narrow gate | Team coordination is usable, not just theoretical |
+| PROTO-12 | Simulated 100/200ms, jitter and loss | Shared boat remains readable; failure modes logged |
+| PROTO-13 | Disconnect/reconnect one seat | Identity, no phantom stroke, full authoritative resync |
+| PROTO-14 | Repeated checkpoint reset | No persistent impulses / overlaps / divergent world |
+
+Phase Two human gate combines objective trace, participant comprehension and voluntary replay observations. Do not claim success from a single developer driving four seats on one machine.
+
+### 19.2 Vertical slice — 10–15 minutes, one spectacular region
+
+Recommended slice: **Timber Gorge** including a soft river introduction, early current seam, believable log impact, wall brace rescue, one moving waterwheel, dock, camera volumes, staged background gorge landmark, rain/sun transition, audio and full join/rejoin. The choice could change after Phase Two; log that as an ADR. Features include production-grade input visuals, one optimized water shader tier, 4 clean crew avatars, platform-ready boot, deterministic obstacle data, 60fps reference profile, one proper checkpoint and save, four human playtest. **Do not fill the slice with fifteen gimmicks.** Demonstrate core motion, a wonderful setting and recoverability.
+
+Vertical slice gate requires: unprompted new-player comprehension; named four-seat agency; legible camera at embed size; no hard desync in 30-min session; deterministic reset; graceful rejoin; full telemetry; measured p95 frame time and memory trend; content pipeline documented; at least one clip showing the actual USP within 10 seconds. Only on passing does full region production begin.
+
+## 20. Production phase plan, gates and sequencing
+
+The **Phase 00–12** plan retains the source report's dependency sequence with small early feasibility probes for networking/rendering. Phases are **evidence-gated**, not calendar-driven. P0 core research must be completed in each phase **before** feature implementation; implementation evidence and tracker update are the last steps of every phase. Parallel art feasibility is allowed as a low-cost spike, not mass content before gates.
+
+| Phase | Research / build deliverable | Exit evidence (mandatory) | Scope prevented until gate |
+|---|---|---|---|
+| **00 — Discovery** | PRD, competition/originality map, title research, technical assumptions, world atlas, initial backlog | Versioned docs, ADRs, reference URLs, open risk list | No physics implementation claimed |
+| **01 — Feasibility** | Compare renderer mini-scene; one floating hull; one blade + constrained contact; water sampler; simple room | Trace graphs, 60Hz tick logs, engine A/B, device captures | No extensive game content |
+| **02 — Four-player magic** | 4 independent browser clients, seats, physical strokes, slalom, current seam and recovery dock | ≥12 newcomers study, p50/p95 network tests, server-authority trace, recorded session | No region factory |
+| **03 — Advanced hydrology** | Buoyancy sweeps, lateral drag, capsize stages, wall bracing, wave/current library | PHY suite green, no force exploit, reproducible 30-min stress | No hero water cascade |
+| **04 — Vertical slice** | 10–15 min Timber Gorge polish, camera, art/audio, onboarding and checkpoint | Human four-crew evaluation, performance budget, memory and camera captures | No fourteen-region build |
+| **05 — Multiplayer hardening** | Reconnect, seat rights, input security, loss/jitter, saving, backend scaling spike | Impairment matrix, 90-sec reconnect experiment, rooms/host cost model | No production platform claims |
+| **06 — Seamless-world technology** | Route streaming, LOD, chunk eviction, hydrology seam continuity | Multi-region dummy path, soak and memory graph, collision stability | No continuous huge world art |
+| **07 — Obstacle factory** | Prefab schema, validation, debug tools, deterministic hazard tests | Designer can author 5 dissimilar hazards without code changes, tests pass | No scaled obstacle labor |
+| **08 — Regional production** | Complete route segments in milestone order, waterworks transitions, checkpoints | Each region full exit checklist; measured pacing per region | No 'terrain complete = done' |
+| **09 — Premium presentation** | Boat, avatars, water, sound, lighting, weather, title screens, cinematic landmarks | Art + gameplay readability review in Low/Medium/High | No pure polish as performance fix |
+| **10 — Optimization / QA** | Cross-browser, latency, 90-min soak, accessibility, save/reconnect stress | P0/P1 bug gates, cold boot, p95 CPU/GPU, privacy checks | No RC cut |
+| **11 — Release candidate** | Deploy/roll-back, QA portal integration, marketing assets and final legal name | Release rehearsal, contingency plan, portal QA tests, launch-owner signoff | No launch on red gate |
+| **12 — Launch / iteration** | Ship, monitor, triage, improve proven pain points, creator/social learnings | 7/30-day cohort reports and public patch log | No unmeasured roadmap promise |
+
+### 20.1 How work transitions phase to phase
+
+The phase owner must create **Research Questions → Findings & Evidence → Options → Decision/ADR → Implementation Tickets → Tests & Telemetry → Independent Review → Tracker Update → Gate Decision**. At the close of each phase, the exact `docs/PHASE_TRACKER.md` record includes planned vs done, evidence links, blockers, newly discovered unknowns and revision date. All later phases link their prerequisites; a gate cannot be marked `PASS` without evidence references. A `PARTIAL` gate must show remaining blockers, not be presented as shipped. Rework discovered in a future phase reopens the impacted prior phase acceptance and adds a regression.
+
+**Permitted status enum:** `BACKLOG`, `RESEARCHING`, `RESEARCHED`, `IMPLEMENTING`, `IN_TEST`, `BLOCKED`, `DONE`, `DEFERRED`, `CANCELLED`. Use `DONE` only when the ticket's test and reviewer acceptance criteria are attached. Phase gate enum: `NOT_STARTED`, `BLOCKED`, `REVIEW`, `PASS`, `FAIL`. Do not use `DONE` because code compiled, an AI agent claimed success, or screenshots looked good.
+
+### 20.2 Definition of Ready / Definition of Done
+
+**Ready** means the ticket names: player effect, acceptance metric, technical owner, input/output contract, prerequisites, test fixture, telemetry hook, perf budget, rollback plan and explicit exclusion. **Done** means: implementation merged; code and tests build clean; all relevant automated and four-browser manual tests pass; QA video/traces archived; p95 performance checked; no new P0/P1 issue; affected docs and tuning defaults updated; reviewer signed; tracker changed with evidence. An AI coding agent is a contributor, not the authoritative reviewer.
+
+### 20.3 Recommended parallel work lanes after gates
+
+After Phase Two, parallelize **physics/netcode**, **camera/UX**, **reusable world tooling**, **signature art prototypes**, **audio feedback**, and **QA instrumentation**; keep interfaces frozen by versioned contracts. During Phase Eight, operate region pipeline as conveyor: (1) narrative/geography route card, (2) blockout, (3) human traversal, (4) checkpoint/recovery, (5) prefab hazards and sound, (6) art pass, (7) stream/memory optimization, (8) acceptance. Prevent 'all regions blockout, none playable' failure by fully finishing one region before scaling asset production.
+
+## 21. First 30 tasks in strict dependency order
+
+| ID | Deliverable | Priority | Acceptance evidence |
+|---|---|---|---|
+| T001 | Freeze PRD v1 + assumption log | P0 | Docs peer reviewed and versioned |
+| T002 | Create TS workspace and deterministic CI | P0 | Unit tests/build/lint run locally and CI |
+| T003 | Render simple physical boat in an empty basin | P0 | Three.js reference build screenshot/video |
+| T004 | Float Rapier dynamic hull with sampled buoyancy | P0 | Upright/wave idle trace |
+| T005 | Create local current/water sampler contract | P0 | Height/flow discontinuity suite |
+| T006 | Implement constrained blade target and immersion | P0 | Blade above/below surface debug visualization |
+| T007 | Derive force from blade water-relative velocity | P0 | Paired air vs immersed stroke impulse test |
+| T008 | Apply distributed force at all four hull stations | P0 | Port/stern torque regression |
+| T009 | Test mouse/keyboard/controller workspaces | P0 | Observed first-input usability clips |
+| T010 | Add camera-follow baseline and collision clearance | P0 | Narrow gate, reverse and rolling test |
+| T011 | Boot real authoritative Colyseus room | P0 | One browser + server state trace |
+| T012 | Define versioned input schema and validator | P0 | Malicious input fuzz tests |
+| T013 | Make 4 browser clients independently connect | P0 | Distinct session/seat logs |
+| T014 | Replace local boat authority with server snapshots | P0 | Client force/position forgery rejected |
+| T015 | Smooth remote and local blade/hull presentation | P0 | Video visual lag experiment |
+| T016 | Add per-seat disconnect/reconnect with no ghost stroke | P0 | Drop + rejoin regression |
+| T017 | Add slalom pylons, narrow gate, cross-current | P0 | Four-seat traversal sessions |
+| T018 | Instrument force, tick, RTT and correction traces | P0 | Shareable run evidence bundle |
+| T019 | Conduct ≥12 newcomer first-stroke test | P0 | Unedited consented observations, survey |
+| T020 | Evaluate gate and revise control/physics or proceed | P0 | Dated PASS/FAIL/ITERATE decision |
+| T021 | Test 16/20/24 buoyancy sample alternatives | P0 | Stability-vs-cost sweep |
+| T022 | Implement kinetic wall-brace and contact force caps | P0 | Worst-contact energy tests |
+| T023 | Implement capsize + grounded recovery states | P0 | State machine / reset tests |
+| T024 | Author Timber Gorge script and checkpoint volumes | P0 | 10–15 min route test |
+| T025 | Produce boat close-up art, 4 readable crew rigs | P1 | Small iframe screenshot + animations |
+| T026 | Implement gameplay/visual water link, spray/wake | P1 | Water physics-truth visual review |
+| T027 | Implement camera volumes and read-ability audit | P0 | Blind four-human movement tests |
+| T028 | Test latency A/B, reconnect and load capacity | P0 | Impairment matrix + room cost model |
+| T029 | Benchmark chunk streaming and asset disposal | P0 | Long soak memory trend |
+| T030 | Vote vertical slice gate and schedule next batch | P0 | Signed proof-backed phase tracker |
+
+The production board should link to these stable IDs; when splitting ticket T024 into child tasks, preserve `T024` as the owning epic and keep evidence traceability. No fake due dates or invented sprint velocities appear here. Human/engineering staffing is an **OPEN** input; apply capacity planning once actual execution throughput is observed.
+
+## 22. Release criteria and measurable success
+
+### 22.1 Pre-public release gates
+
+- All four paddles provably participate and no velocity cheat path exists.
+- A new four-human group can discover the controls and finish at least one high-quality route segment without developer intervention.
+- Camera visibility and telegraph fairness reviewed at default embed dimensions.
+- No unrecoverable hard-desync or checkpoint corruption under pre-registered network profile; reconnect recovery works on browser refresh.
+- Platform SDK, invite/room and gameplay-start behavior tested on actual portal preview if CrazyGames distribution selected.
+- Cold-load size and asset count within published portal limits; own-site delivery measured under constrained bandwidth.
+- All critical/major QA defects closed with regression.
+- Browser compatibility table and frame p95 include real low-end/chromebook-like hardware, not dev workstation alone.
+- Accessibility critical flows function from keyboard/controller and basic motion/audio settings.
+- Live service has health checks, deploy rollback, snapshot/save backup and incident on-call procedure.
+- Title passed professional commercial availability review; no legal assertion is inferred from simple search.
+
+### 22.2 Post-launch learning KPIs, not invented forecasts
+
+Primary North Star candidate: **weekly successful four-person shared voyages or repeat attempts** (define exact event boundaries after launch channel is known). Supporting metrics: invite creation→4-seat join rate, median first valid stroke, % groups completing introductory bend, voluntary next-run rate, median first checkpoint, fatal vs recovered incident distribution, region churn, median/p95 server tick, disconnect per crew-hour, p95 graphics frame time and session duration by crew. Target numbers **remain TBD** until alpha data establish an honest baseline; do not set arbitrary revenue/DAU promises from competitor popularity.
+
+## 23. Brand, trailers and creator distribution
+
+Working title: **All Hands, No Rudder**. Alternate names from source research: **Rapids & Regrets**, **Oars & Errors**, **Nobody Turn Left**, **One Tiny Boat**. All need trademark, search, storefront and domain clearance; name research in the Phase Zero source is an initial creative pre-screen, not professional legal clearance. The core key art must portray four hands/people in the *same obviously fragile wooden boat*, tiny against grand architecture, with paddles pointing in conflicting directions and readable flow. A standalone thumbnail should communicate mechanic without explaining a skill tree.
+
+Trailer narrative: 0–3s spectacular canoe shot; 3–7s one blade misses water as hull yaws (clear cause); 7–12s a cross-current and a frantic coordinated recovery; 12–19s huge waterworks progression in ascending landmarks; 19–25s one triumphant controlled passage, quick comic knock, repeat crew callout; final logo plus `Play With 3 Friends`. Creator demo must be an honestly representative interactive slice with clear multiplayer joining and camera behavior. Never cut marketing from scripted events masquerading as live physics. No fabricated testimonials or performance claims.
+
+## 24. Open questions, decisions requiring experiments and version control
+
+1. Is four humans *always* required, or only for flagship mode? **Current answer:** mandatory for official Expedition, exceptions only for practice/dev and documented modes.
+2. Can the pointer directly operate a blade without camera confusion? **OPEN — first usability test.**
+3. Does a constrained kinematic blade preserve satisfying wall contact? **OPEN — isolated force harness.**
+4. Do true physically distributed forces look intuitive without debug vector UI? **OPEN — four-human study.**
+5. Is authoritative-only shared body satisfying at 150–200 ms RTT? **OPEN — latency A/B.**
+6. Which boat dimensions, mass, paddle surface and 16/20/24 buoyancy points produce satisfying feel? **OPEN — tuning matrix.**
+7. What browser/CPU/GPU pair becomes the actual Medium reference target? **OPEN — benchmark and portal demographic decision.**
+8. Should the first slice be Timber Gorge or a new combined Headwaters+Gorge? **OPEN — after Phase Two.**
+9. What fraction of 14 regions is a commercially sensible initial release? **OPEN — team/cost/prototype throughput.**
+10. What is the actual number of server rooms per core/host in moving-water scenes? **OPEN — load test.**
+11. Which paused-room policy avoids grief while preserving reconnect fairness? **OPEN — players and netcode test.**
+12. Can current CrazyGames SDK invitation/instant multiplayer and no-waiting requirements coexist with strict four-human start? **OPEN — adapter prototype.**
+13. Is `All Hands, No Rudder` legally and commercially usable? **OPEN — professional name clearance.**
+14. Is a multi-hour long route pleasant when players naturally split sessions? **OPEN — staged long-session study.**
+15. Which measured recovery/challenge modes actually motivate replay? **OPEN — alpha cohort telemetry.**
+
+## 25. Requirements traceability index
+
+| ID | Requirement / priority | Acceptance/test |
+|---|---|---|
+| FR-001 | Four independent real human players in flagship / P0 | PROTO-01..04; CREW-01 |
+| FR-002 | No fake boat thrust / P0 | PHY-01..07 and server input audit |
+| FR-003 | Water-relative blade interaction / P0 | PHY-02, PHY-06, PHY-07 |
+| FR-004 | Unique distributed force-point rotation / P0 | PHY-03..05 |
+| FR-005 | Stable buoyancy, drag and recovery / P0 | PHY-01, 08..12 |
+| FR-006 | Server-owned simulation and clock / P0 | NET-01..NET-08 |
+| FR-007 | Joining/seat retention/reconnect / P0 | NET-09..NET-15 |
+| FR-008 | Deterministic canonical checkpoint reset / P0 | PHY-11 and SAVE-01..04 |
+| FR-009 | First-play camera and input clarity / P0 | UX-01..08 |
+| FR-010 | High-fidelity scalable browser art / P1 | PERF-01..09 |
+| FR-011 | World continuity/hydrology seams / P1 | WORLD-01..06 |
+| FR-012 | Versioned obstacle authoring / P1 | TOOL-01..06 |
+| FR-013 | Platform-compatible multiplayer/SDK / P0 before portal launch | PORTAL-01..08 |
+| FR-014 | Four-human playtest gate before world production / P0 | Research study, Phase 02 PASS |
+| FR-015 | Transparent phase tracker and evidence-linked completion / P0 | QA audit of all phase status |
+
+For additional test case definitions and actual execution ledger, see the separate **TEST_MATRIX.md**. Requirement IDs must stay stable across commits; deprecation is recorded in `CHANGELOG.md`, not silently erased.
+
+## 26. Research bibliography (verified official/primary documentation)
+
+Source date: 19 October 2026. References support technical feasibility, platform rules and competitor positioning—not this game's untested behavior. Source baseline includes user's **Phase Zero Preproduction Report (34 pages)**, which itself contains a much larger reference set for water/graphics research.
+
+- **[S01]** Valve/Steam, *Paddle Paddle Paddle*, product page: https://store.steampowered.com/app/3570070/ (release Jul 25 2025, 1–2-player paddle premise and checkpoint descriptions).
+- **[S02]** Valve/Steam, *Fart Together*, product page: https://store.steampowered.com/app/5117550/Fart_Together/ (coming soon in research snapshot; 2–4-player shared raft).
+- **[S03]** Rapier, rigid body forces/impulses and application at world points: https://rapier.rs/docs/user_guides/javascript/rigid_body_forces_and_impulses/ .
+- **[S04]** Rapier, WASM/JS determinism and its preconditions: https://rapier.rs/docs/user_guides/javascript/determinism/ .
+- **[S05]** Colyseus, 0.18+ prediction/reconciliation, `predict.sim`, timestep and contracts: https://docs.colyseus.io/netcode/ and https://docs.colyseus.io/netcode/client-prediction .
+- **[S06]** Colyseus, seat retention and auto/manual reconnection: https://docs.colyseus.io/room/reconnection .
+- **[S07]** CrazyGames, Online With Friends / Instant Multiplayer requirements: https://docs.crazygames.com/requirements/multiplayer/ .
+- **[S08]** CrazyGames, Gameplay visual QA and iframe sizing: https://docs.crazygames.com/requirements/gameplay/ .
+- **[S09]** Three.js, WebGPURenderer fallback and material limitations: https://threejs.org/manual/pages/webgpurenderer .
+- **[S10]** Three.js, GLTFLoader supported extensions, texture/bitmap disposal: https://threejs.org/docs/pages/GLTFLoader.html and https://threejs.org/docs/pages/KTX2Loader.html .
+- **[S11]** CrazyGames, current file size, count and device/browser requirements: https://docs.crazygames.com/requirements/technical/ .
+- **[S12]** CrazyGames, Basic vs Full Launch, game SDK, privacy/ads: https://docs.crazygames.com/requirements/intro/ and https://docs.crazygames.com/sdk/game/ .
+- **[S13]** Glenn Fiedler, *Snapshot Interpolation/Networked Physics*: https://gafferongames.com/categories/networked-physics/ (background principles; not an endorsed current product implementation).
+- **[S14]** NVIDIA GPU Gems, effective wave/water rendering: https://developer.nvidia.com/gpugems/gpugems/part-i-natural-effects/chapter-1-effective-water-simulation-physical-models .
+- **[S15]** Khronos, glTF runtime 3D asset delivery: https://www.khronos.org/gltf/ .
+- **[S16]** Colyseus, server fixed timestep: https://docs.colyseus.io/netcode/server-input .
+- **[S17]** Colyseus load testing: https://docs.colyseus.io/tools/loadtest .
+- **[S18]** Trademark similarity/search entry point (not clearance): https://tmsearch.uspto.gov/ .
+- **[S19]** Steam, *Chained Together*: https://store.steampowered.com/app/2567870/ ; *PEAK*: https://store.steampowered.com/app/3527290/PEAK/ ; *RV There Yet?*: https://store.steampowered.com/app/3949040/RV_There_Yet/ .
+
+**Product truth line:** Everything above is a detailed **plan**, not shipped software. No live game, real four-person test result, physics trace, screenshot of running system, compliant portal build, passed benchmark or server capacity is claimed by this deliverable. The first actual engineering work is Phase 01 feasibility, followed by Phase 02 human fun validation. A spectacular production world is deliberately downstream.
+
+---
+
+**End of PRD v1.0.** The authoritative editable copy is `docs/PRD.md`. The living status of the project is `docs/PHASE_TRACKER.md`, and every technical implementation choice should have a corresponding ADR and linked test result.

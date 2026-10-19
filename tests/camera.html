@@ -1,0 +1,22 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"><style>body{margin:0;overflow:hidden}#world{position:fixed;inset:0}#label{position:fixed;bottom:12px;left:16px;font:11px system-ui;color:#fff4cd;text-shadow:0 1px 4px #123}</style></head><body><div id="world"></div><div id="label">CAMERA FIXTURE · authored route poses, not human traversal</div><script type="module">
+import * as T from 'three';
+import {RiverScene} from '/src/client/scene.ts';
+import {PROTOCOL_VERSION,PHYSICS_VERSION} from '/src/shared/protocol.ts';
+const scene=new RiverScene(document.getElementById('world'));scene.setLowQuality(true);let reset=0;
+window.checkCamera=({z,x=0,reverse=false,roll=0,gentle=false,low=true})=>{
+ scene.reducedMotion=gentle;scene.setLowQuality(low);
+ const q=new T.Quaternion().setFromEuler(new T.Euler(0,reverse?Math.PI:0,roll));
+ scene.setSnapshot({protocol:PROTOCOL_VERSION,physics:PHYSICS_VERSION,tick:480,position:{x,y:.08,z},rotation:{x:q.x,y:q.y,z:q.z,w:q.w},velocity:{x:0,y:0,z:reverse?-1.4:1.4},blades:[-1,1,-1,1].map((side,i)=>({x:side*1.45,y:.62,z:i<2?.95:-.95,immersion:0,force:0,state:'AIR'})),ack:[0,0,0,0],crew:[0,1,2,3].map(seat=>({seat,connected:true,ready:true})),checkpoint:0,revision:0,resetId:++reset,mode:'practice',paused:false,complete:false,stage:'playing',condition:'afloat',wreckAge:0,crashId:0,obstacleId:null,strokes:[0,0,0,0],droppedSteps:0});
+ scene.render(.016,8);scene.followCamera(1,true);scene.render(.016,8);
+ const sight=new T.Raycaster(),end=scene.camera.position.clone(),blocked=[];
+ // Actual merged cliff/land meshes participate, rather than the old sparse
+ // shore-only camera-occlusion list. Exclude undergrowth and overhead props.
+ for(const x of [-.65,.65]){
+  const from=new T.Vector3(x,1.3,0).applyQuaternion(scene.boat.quaternion).add(scene.boat.position),direction=end.clone().sub(from);
+  sight.set(from,direction.clone().normalize());sight.far=direction.length();
+  const hit=sight.intersectObjects([...scene.chunks.values()],true).find(hit=>hit.point.y>.5&&!hit.object.name.match(/tree|foliage|bough|grass|fern/));
+  if(hit)blocked.push({distance:hit.distance,position:hit.point.toArray()});
+ }
+ return {bounds:JSON.parse(scene.renderer.domElement.dataset.boatBounds),camera:end.toArray(),up:scene.camera.up.toArray(),volume:scene.renderer.domElement.dataset.cameraVolume,stats:JSON.parse(scene.renderer.domElement.dataset.renderInfo),blocked};
+};document.body.dataset.ready='true';
+</script></body></html>

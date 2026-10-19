@@ -1,0 +1,14 @@
+{
+  "result": "PASS",
+  "checks": [
+    "Recovery code opens the actual durable checkpoint in a frozen lobby",
+    "Four-ready launch retains the saved checkpoint rather than resetting to the start",
+    "Menu copies the private recovery code without placing it in the invite URL",
+    "Continue Voyage creates a fresh crew at the durable checkpoint after the old room closes",
+    "Browser refresh retains the resumed room and seat",
+    "A second live room cannot fork the same saved voyage"
+  ],
+  "errors": [],
+  "seededServerFixture": true,
+  "humanPlaytest": false
+}

@@ -1,0 +1,2625 @@
+{
+  "result": "PASS",
+  "fixture": true,
+  "humanPlaytest": false,
+  "browser": "155.0.8059.82",
+  "results": [
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 0,
+      "reverse": false,
+      "bounds": {
+        "left": 0.37209823949568965,
+        "right": 0.6761506664441221,
+        "top": 0.4378822766728393,
+        "bottom": 0.7954780396836282
+      },
+      "camera": [
+        0.9,
+        6.58,
+        -10.3
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 238,
+        "triangles": 1343702,
+        "geometries": 205,
+        "textures": 9,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 0,
+      "reverse": true,
+      "bounds": {
+        "left": 0.3384760552800953,
+        "right": 0.6426661003252098,
+        "top": 0.1489903196782862,
+        "bottom": 0.5212312093932968
+      },
+      "camera": [
+        0.9,
+        6.58,
+        -10.3
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 209,
+        "triangles": 1338626,
+        "geometries": 206,
+        "textures": 9,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 156,
+      "reverse": false,
+      "bounds": {
+        "left": 0.37209823949569,
+        "right": 0.6761506664441218,
+        "top": 0.4378822766728383,
+        "bottom": 0.7954780396836276
+      },
+      "camera": [
+        0.9,
+        6.58,
+        145.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 248,
+        "triangles": 985206,
+        "geometries": 250,
+        "textures": 11,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 156,
+      "reverse": true,
+      "bounds": {
+        "left": 0.3384760552800955,
+        "right": 0.6426661003252104,
+        "top": 0.1489903196782848,
+        "bottom": 0.5212312093932969
+      },
+      "camera": [
+        0.9,
+        6.58,
+        145.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 199,
+        "triangles": 830984,
+        "geometries": 250,
+        "textures": 11,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 210,
+      "reverse": false,
+      "bounds": {
+        "left": 0.37209823949569015,
+        "right": 0.6761506664441218,
+        "top": 0.4378822766728383,
+        "bottom": 0.7954780396836276
+      },
+      "camera": [
+        0.9,
+        6.58,
+        199.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 240,
+        "triangles": 568560,
+        "geometries": 268,
+        "textures": 13,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 210,
+      "reverse": true,
+      "bounds": {
+        "left": 0.3384760552800945,
+        "right": 0.6426661003252103,
+        "top": 0.1489903196782852,
+        "bottom": 0.521231209393297
+      },
+      "camera": [
+        0.9,
+        6.58,
+        199.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 184,
+        "triangles": 412416,
+        "geometries": 268,
+        "textures": 13,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 310,
+      "reverse": false,
+      "bounds": {
+        "left": 0.3969662692253926,
+        "right": 0.6506722765350481,
+        "top": 0.5147399566032271,
+        "bottom": 0.8358037231893962
+      },
+      "camera": [
+        0.9,
+        8.28,
+        298.4
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "whitewater",
+      "stats": {
+        "calls": 253,
+        "triangles": 362870,
+        "geometries": 309,
+        "textures": 16,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 310,
+      "reverse": true,
+      "bounds": {
+        "left": 0.3687577313630719,
+        "right": 0.6189828454512012,
+        "top": 0.18546276868070188,
+        "bottom": 0.5129315349273569
+      },
+      "camera": [
+        0.9,
+        8.28,
+        298.4
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "whitewater",
+      "stats": {
+        "calls": 173,
+        "triangles": 172214,
+        "geometries": 309,
+        "textures": 16,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 380,
+      "reverse": false,
+      "bounds": {
+        "left": 0.372098239495689,
+        "right": 0.6761506664441226,
+        "top": 0.4378822766728403,
+        "bottom": 0.7954780396836284
+      },
+      "camera": [
+        0.9,
+        6.58,
+        369.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 247,
+        "triangles": 335142,
+        "geometries": 323,
+        "textures": 16,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 380,
+      "reverse": true,
+      "bounds": {
+        "left": 0.3384760552800958,
+        "right": 0.6426661003252102,
+        "top": 0.1489903196782852,
+        "bottom": 0.5212312093932969
+      },
+      "camera": [
+        0.9,
+        6.58,
+        369.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 169,
+        "triangles": 146264,
+        "geometries": 323,
+        "textures": 16,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 419,
+      "reverse": false,
+      "bounds": {
+        "left": 0.40576147989803313,
+        "right": 0.6400616713130849,
+        "top": 0.541471513236072,
+        "bottom": 0.8423247917698697
+      },
+      "camera": [
+        0.9,
+        8.88,
+        406.6
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "timber-works",
+      "stats": {
+        "calls": 224,
+        "triangles": 270470,
+        "geometries": 323,
+        "textures": 16,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 419,
+      "reverse": true,
+      "bounds": {
+        "left": 0.379861192637193,
+        "right": 0.6100396562470003,
+        "top": 0.20761590193245805,
+        "bottom": 0.5114457321844733
+      },
+      "camera": [
+        0.9,
+        8.88,
+        406.6
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "timber-works",
+      "stats": {
+        "calls": 172,
+        "triangles": 159128,
+        "geometries": 323,
+        "textures": 16,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 456,
+      "reverse": false,
+      "bounds": {
+        "left": 0.40576147989803246,
+        "right": 0.6400616713130853,
+        "top": 0.5414715132360702,
+        "bottom": 0.842324791769869
+      },
+      "camera": [
+        0.9,
+        8.88,
+        443.6
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "timber-works",
+      "stats": {
+        "calls": 235,
+        "triangles": 331334,
+        "geometries": 334,
+        "textures": 18,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 456,
+      "reverse": true,
+      "bounds": {
+        "left": 0.37986119263719337,
+        "right": 0.6100396562470007,
+        "top": 0.20761590193245805,
+        "bottom": 0.5114457321844733
+      },
+      "camera": [
+        0.9,
+        8.88,
+        443.6
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "timber-works",
+      "stats": {
+        "calls": 186,
+        "triangles": 180132,
+        "geometries": 334,
+        "textures": 18,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 500,
+      "reverse": false,
+      "bounds": {
+        "left": 0.3720982394956895,
+        "right": 0.6761506664441228,
+        "top": 0.4378822766728403,
+        "bottom": 0.7954780396836284
+      },
+      "camera": [
+        0.9,
+        6.58,
+        489.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 221,
+        "triangles": 330758,
+        "geometries": 343,
+        "textures": 18,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 500,
+      "reverse": true,
+      "bounds": {
+        "left": 0.3384760552800938,
+        "right": 0.6426661003252119,
+        "top": 0.14899031967827692,
+        "bottom": 0.5212312093932887
+      },
+      "camera": [
+        0.9,
+        6.58,
+        489.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 167,
+        "triangles": 134308,
+        "geometries": 343,
+        "textures": 18,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 546,
+      "reverse": false,
+      "bounds": {
+        "left": 0.397944890308103,
+        "right": 0.649677055170653,
+        "top": 0.517744939680969,
+        "bottom": 0.8554853074282014
+      },
+      "camera": [
+        0.9,
+        9.28,
+        535
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 224,
+        "triangles": 374478,
+        "geometries": 351,
+        "textures": 18,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 546,
+      "reverse": true,
+      "bounds": {
+        "left": 0.3704296265503427,
+        "right": 0.6169774645375398,
+        "top": 0.16166287524447698,
+        "bottom": 0.5075546714539902
+      },
+      "camera": [
+        0.9,
+        9.28,
+        535
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 164,
+        "triangles": 139138,
+        "geometries": 351,
+        "textures": 18,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 585,
+      "reverse": false,
+      "bounds": {
+        "left": 0.397944890308103,
+        "right": 0.649677055170653,
+        "top": 0.5177449396809691,
+        "bottom": 0.8554853074282063
+      },
+      "camera": [
+        0.9,
+        9.28,
+        574
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 209,
+        "triangles": 298158,
+        "geometries": 357,
+        "textures": 19,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 585,
+      "reverse": true,
+      "bounds": {
+        "left": 0.3704296265503436,
+        "right": 0.6169774645375402,
+        "top": 0.16166287524447953,
+        "bottom": 0.5075546714539948
+      },
+      "camera": [
+        0.9,
+        9.28,
+        574
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 157,
+        "triangles": 120082,
+        "geometries": 357,
+        "textures": 19,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 630,
+      "reverse": false,
+      "bounds": {
+        "left": 0.3720982394956903,
+        "right": 0.6761506664441226,
+        "top": 0.4378822766728393,
+        "bottom": 0.7954780396836226
+      },
+      "camera": [
+        0.9,
+        6.58,
+        619.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 214,
+        "triangles": 327562,
+        "geometries": 365,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 630,
+      "reverse": true,
+      "bounds": {
+        "left": 0.3384760552800947,
+        "right": 0.6426661003252102,
+        "top": 0.14899031967827692,
+        "bottom": 0.5212312093932885
+      },
+      "camera": [
+        0.9,
+        6.58,
+        619.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 173,
+        "triangles": 168894,
+        "geometries": 365,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 710,
+      "reverse": false,
+      "bounds": {
+        "left": 0.4008899000040949,
+        "right": 0.6453722826348796,
+        "top": 0.523331041902814,
+        "bottom": 0.8334258309198166
+      },
+      "camera": [
+        0.9,
+        8.48,
+        698
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "last-descent",
+      "stats": {
+        "calls": 202,
+        "triangles": 307024,
+        "geometries": 368,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 710,
+      "reverse": true,
+      "bounds": {
+        "left": 0.37391901831471885,
+        "right": 0.6148907331665161,
+        "top": 0.19751000894529708,
+        "bottom": 0.5125937469954444
+      },
+      "camera": [
+        0.9,
+        8.48,
+        698
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "last-descent",
+      "stats": {
+        "calls": 174,
+        "triangles": 186720,
+        "geometries": 368,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 810,
+      "reverse": false,
+      "bounds": {
+        "left": 0.3720982394956882,
+        "right": 0.6761506664441241,
+        "top": 0.4378822766728393,
+        "bottom": 0.7954780396836318
+      },
+      "camera": [
+        0.9,
+        6.58,
+        799.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 162,
+        "triangles": 171210,
+        "geometries": 368,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 810,
+      "reverse": true,
+      "bounds": {
+        "left": 0.3384760552800947,
+        "right": 0.6426661003252085,
+        "top": 0.14899031967828297,
+        "bottom": 0.5212312093932827
+      },
+      "camera": [
+        0.9,
+        6.58,
+        799.7
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 158,
+        "triangles": 142666,
+        "geometries": 368,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 566,
+      "x": -4.5,
+      "reverse": false,
+      "gentle": false,
+      "bounds": {
+        "left": 0.40299149439427073,
+        "right": 0.6667498699842724,
+        "top": 0.48718012724293813,
+        "bottom": 0.881584362681215
+      },
+      "camera": [
+        -3.6,
+        9.28,
+        555
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 217,
+        "triangles": 315214,
+        "geometries": 368,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 566,
+      "x": -4.5,
+      "reverse": false,
+      "gentle": true,
+      "bounds": {
+        "left": 0.400895756749765,
+        "right": 0.6611036158087941,
+        "top": 0.4361752080293324,
+        "bottom": 0.823334646151474
+      },
+      "camera": [
+        -3.6,
+        9.28,
+        555
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 206,
+        "triangles": 310074,
+        "geometries": 368,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 566,
+      "x": -4.5,
+      "reverse": true,
+      "gentle": false,
+      "bounds": {
+        "left": 0.35469649342701337,
+        "right": 0.6089277657412946,
+        "top": 0.12300699908042001,
+        "bottom": 0.5417309755442274
+      },
+      "camera": [
+        -3.6,
+        9.28,
+        555
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 161,
+        "triangles": 97692,
+        "geometries": 368,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 566,
+      "x": -4.5,
+      "reverse": true,
+      "gentle": true,
+      "bounds": {
+        "left": 0.35469649342701337,
+        "right": 0.6089277657412946,
+        "top": 0.12300699908042001,
+        "bottom": 0.5417309755442274
+      },
+      "camera": [
+        -3.6,
+        9.28,
+        555
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 161,
+        "triangles": 97692,
+        "geometries": 368,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 566,
+      "x": 4.5,
+      "reverse": false,
+      "gentle": false,
+      "bounds": {
+        "left": 0.38980991474126114,
+        "right": 0.6548703257516713,
+        "top": 0.4859561933606734,
+        "bottom": 0.8866545231133725
+      },
+      "camera": [
+        4.9,
+        9.28,
+        555
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 217,
+        "triangles": 330350,
+        "geometries": 368,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 566,
+      "x": 4.5,
+      "reverse": false,
+      "gentle": true,
+      "bounds": {
+        "left": 0.3897680561211255,
+        "right": 0.6513584817464104,
+        "top": 0.4346103175917166,
+        "bottom": 0.828600548383712
+      },
+      "camera": [
+        4.9,
+        9.28,
+        555
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 208,
+        "triangles": 325234,
+        "geometries": 368,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 566,
+      "x": 4.5,
+      "reverse": true,
+      "gentle": false,
+      "bounds": {
+        "left": 0.3573649748876252,
+        "right": 0.6128743332243616,
+        "top": 0.12380785692585589,
+        "bottom": 0.534584141305902
+      },
+      "camera": [
+        4.9,
+        9.28,
+        555
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 163,
+        "triangles": 112852,
+        "geometries": 368,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "z": 566,
+      "x": 4.5,
+      "reverse": true,
+      "gentle": true,
+      "bounds": {
+        "left": 0.3573649748876252,
+        "right": 0.6128743332243616,
+        "top": 0.12380785692585589,
+        "bottom": 0.534584141305902
+      },
+      "camera": [
+        4.9,
+        9.28,
+        555
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 163,
+        "triangles": 112852,
+        "geometries": 368,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 0,
+      "reverse": false,
+      "bounds": {
+        "left": 0.3270039629321354,
+        "right": 0.751054663845008,
+        "top": 0.46535002938167885,
+        "bottom": 0.6632619202917798
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        -18.346875
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 234,
+        "triangles": 1343542,
+        "geometries": 201,
+        "textures": 9,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 0,
+      "reverse": true,
+      "bounds": {
+        "left": 0.27436939398984084,
+        "right": 0.702421329296615,
+        "top": 0.3110941610880221,
+        "bottom": 0.512513379529241
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        -18.346875
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 212,
+        "triangles": 1341196,
+        "geometries": 201,
+        "textures": 9,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 156,
+      "reverse": false,
+      "bounds": {
+        "left": 0.3270039629321352,
+        "right": 0.751054663845008,
+        "top": 0.46535002938167924,
+        "bottom": 0.6632619202917804
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        137.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 248,
+        "triangles": 985206,
+        "geometries": 245,
+        "textures": 11,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 156,
+      "reverse": true,
+      "bounds": {
+        "left": 0.2743693939898405,
+        "right": 0.702421329296615,
+        "top": 0.31109416108802224,
+        "bottom": 0.5125133795292415
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        137.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 216,
+        "triangles": 898238,
+        "geometries": 245,
+        "textures": 11,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 210,
+      "reverse": false,
+      "bounds": {
+        "left": 0.327003962932135,
+        "right": 0.7510546638450085,
+        "top": 0.46535002938167924,
+        "bottom": 0.6632619202917804
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        191.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 239,
+        "triangles": 639728,
+        "geometries": 263,
+        "textures": 13,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 210,
+      "reverse": true,
+      "bounds": {
+        "left": 0.27436939398984106,
+        "right": 0.702421329296615,
+        "top": 0.3110941610880229,
+        "bottom": 0.5125133795292421
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        191.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 193,
+        "triangles": 455324,
+        "geometries": 263,
+        "textures": 13,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 310,
+      "reverse": false,
+      "bounds": {
+        "left": 0.36090408679440134,
+        "right": 0.7194289620323507,
+        "top": 0.5169994029355873,
+        "bottom": 0.6935359128545548
+      },
+      "camera": [
+        1.6031250000000001,
+        14.68625,
+        289.3375
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "whitewater",
+      "stats": {
+        "calls": 255,
+        "triangles": 377142,
+        "geometries": 304,
+        "textures": 16,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 310,
+      "reverse": true,
+      "bounds": {
+        "left": 0.309915809132984,
+        "right": 0.6715616556957458,
+        "top": 0.32969751303969796,
+        "bottom": 0.5081442432768664
+      },
+      "camera": [
+        1.6031250000000001,
+        14.68625,
+        289.3375
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "whitewater",
+      "stats": {
+        "calls": 190,
+        "triangles": 220802,
+        "geometries": 304,
+        "textures": 16,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 380,
+      "reverse": false,
+      "bounds": {
+        "left": 0.32700396293213463,
+        "right": 0.7510546638450079,
+        "top": 0.46535002938167863,
+        "bottom": 0.6632619202917812
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        361.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 247,
+        "triangles": 341740,
+        "geometries": 318,
+        "textures": 16,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 380,
+      "reverse": true,
+      "bounds": {
+        "left": 0.2743693939898405,
+        "right": 0.7024213292966145,
+        "top": 0.3110941610880228,
+        "bottom": 0.5125133795292414
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        361.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 193,
+        "triangles": 225408,
+        "geometries": 318,
+        "textures": 16,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 419,
+      "reverse": false,
+      "bounds": {
+        "left": 0.37273494166736365,
+        "right": 0.7057768108682865,
+        "top": 0.5353785389188186,
+        "bottom": 0.7004756237018789
+      },
+      "camera": [
+        1.6031250000000001,
+        15.755,
+        396.9125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "timber-works",
+      "stats": {
+        "calls": 233,
+        "triangles": 304342,
+        "geometries": 318,
+        "textures": 16,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 419,
+      "reverse": true,
+      "bounds": {
+        "left": 0.32459313643980836,
+        "right": 0.659634852220219,
+        "top": 0.3410470321607665,
+        "bottom": 0.5072831380255863
+      },
+      "camera": [
+        1.6031250000000001,
+        15.755,
+        396.9125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "timber-works",
+      "stats": {
+        "calls": 205,
+        "triangles": 235198,
+        "geometries": 318,
+        "textures": 16,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 456,
+      "reverse": false,
+      "bounds": {
+        "left": 0.2359550533729109,
+        "right": 0.8809106079535952,
+        "top": 0.5234187359595194,
+        "bottom": 0.8246584113170112
+      },
+      "camera": [
+        0.8939220190355277,
+        9.395675024490112,
+        443.6837410710661
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "timber-works",
+      "stats": {
+        "calls": 229,
+        "triangles": 330900,
+        "geometries": 329,
+        "textures": 18,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 456,
+      "reverse": true,
+      "bounds": {
+        "left": 0.176889062151679,
+        "right": 0.8103427811111639,
+        "top": 0.2314229293668441,
+        "bottom": 0.5347152002349991
+      },
+      "camera": [
+        0.8939220190355277,
+        9.395675024490112,
+        443.6837410710661
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "timber-works",
+      "stats": {
+        "calls": 180,
+        "triangles": 179698,
+        "geometries": 329,
+        "textures": 18,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 500,
+      "reverse": false,
+      "bounds": {
+        "left": 0.3270039629321363,
+        "right": 0.7510546638450082,
+        "top": 0.4653500293816787,
+        "bottom": 0.6632619202917808
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        481.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 222,
+        "triangles": 342396,
+        "geometries": 338,
+        "textures": 18,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 500,
+      "reverse": true,
+      "bounds": {
+        "left": 0.2743693939898399,
+        "right": 0.702421329296615,
+        "top": 0.31109416108801846,
+        "bottom": 0.5125133795292385
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        481.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 185,
+        "triangles": 194384,
+        "geometries": 338,
+        "textures": 18,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 546,
+      "reverse": false,
+      "bounds": {
+        "left": 0.3609006977674897,
+        "right": 0.7175007559823572,
+        "top": 0.5181805276832357,
+        "bottom": 0.7032028159625373
+      },
+      "camera": [
+        1.6031250000000001,
+        16.467499999999998,
+        526.40625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 221,
+        "triangles": 385276,
+        "geometries": 342,
+        "textures": 18,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 546,
+      "reverse": true,
+      "bounds": {
+        "left": 0.30767820319676165,
+        "right": 0.6692035556104001,
+        "top": 0.31791522781914827,
+        "bottom": 0.5053078198436779
+      },
+      "camera": [
+        1.6031250000000001,
+        16.467499999999998,
+        526.40625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 178,
+        "triangles": 176542,
+        "geometries": 342,
+        "textures": 18,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 585,
+      "reverse": false,
+      "bounds": {
+        "left": 0.36090069776749045,
+        "right": 0.7175007559823573,
+        "top": 0.5181805276832335,
+        "bottom": 0.7032028159625343
+      },
+      "camera": [
+        1.6031250000000001,
+        16.467499999999998,
+        565.40625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 207,
+        "triangles": 323024,
+        "geometries": 346,
+        "textures": 18,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 585,
+      "reverse": true,
+      "bounds": {
+        "left": 0.30767820319676126,
+        "right": 0.6692035556104005,
+        "top": 0.31791522781914794,
+        "bottom": 0.5053078198436779
+      },
+      "camera": [
+        1.6031250000000001,
+        16.467499999999998,
+        565.40625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 180,
+        "triangles": 190426,
+        "geometries": 346,
+        "textures": 18,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 630,
+      "reverse": false,
+      "bounds": {
+        "left": 0.3270039629321355,
+        "right": 0.7510546638450082,
+        "top": 0.46535002938168224,
+        "bottom": 0.6632619202917838
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        611.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 212,
+        "triangles": 314224,
+        "geometries": 360,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 630,
+      "reverse": true,
+      "bounds": {
+        "left": 0.27436939398983934,
+        "right": 0.7024213292966137,
+        "top": 0.31109416108802257,
+        "bottom": 0.5125133795292415
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        611.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 186,
+        "triangles": 251760,
+        "geometries": 360,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 710,
+      "reverse": false,
+      "bounds": {
+        "left": 0.3658939427349859,
+        "right": 0.7125359924121923,
+        "top": 0.5227955032585636,
+        "bottom": 0.693305767529333
+      },
+      "camera": [
+        1.6031250000000001,
+        15.0425,
+        688.625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "last-descent",
+      "stats": {
+        "calls": 203,
+        "triangles": 307168,
+        "geometries": 363,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 710,
+      "reverse": true,
+      "bounds": {
+        "left": 0.31695646448874454,
+        "right": 0.6661078530734681,
+        "top": 0.33583153248066555,
+        "bottom": 0.5079273809521474
+      },
+      "camera": [
+        1.6031250000000001,
+        15.0425,
+        688.625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "last-descent",
+      "stats": {
+        "calls": 185,
+        "triangles": 230944,
+        "geometries": 363,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 810,
+      "reverse": false,
+      "bounds": {
+        "left": 0.32700396293213374,
+        "right": 0.751054663845009,
+        "top": 0.4653500293816821,
+        "bottom": 0.6632619202917818
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        791.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 161,
+        "triangles": 158762,
+        "geometries": 363,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 810,
+      "reverse": true,
+      "bounds": {
+        "left": 0.27436939398984056,
+        "right": 0.702421329296617,
+        "top": 0.3110941610880217,
+        "bottom": 0.5125133795292386
+      },
+      "camera": [
+        1.6031250000000001,
+        11.658125,
+        791.653125
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "river",
+      "stats": {
+        "calls": 159,
+        "triangles": 144490,
+        "geometries": 363,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 566,
+      "x": -4.5,
+      "reverse": false,
+      "gentle": false,
+      "bounds": {
+        "left": 0.36452845439142967,
+        "right": 0.7451146799050743,
+        "top": 0.5027333938842458,
+        "bottom": 0.7171871289556966
+      },
+      "camera": [
+        -2.8968749999999996,
+        16.467499999999998,
+        546.40625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 207,
+        "triangles": 314594,
+        "geometries": 363,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 566,
+      "x": -4.5,
+      "reverse": false,
+      "gentle": true,
+      "bounds": {
+        "left": 0.3570223728141412,
+        "right": 0.7367183212197449,
+        "top": 0.46800794802467605,
+        "bottom": 0.6806727185947561
+      },
+      "camera": [
+        -2.8968749999999996,
+        16.467499999999998,
+        546.40625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 204,
+        "triangles": 290694,
+        "geometries": 363,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 566,
+      "x": -4.5,
+      "reverse": true,
+      "gentle": false,
+      "bounds": {
+        "left": 0.2836476274632327,
+        "right": 0.6631339946236422,
+        "top": 0.29822794038172257,
+        "bottom": 0.5255693309404101
+      },
+      "camera": [
+        -2.8968749999999996,
+        16.467499999999998,
+        546.40625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 166,
+        "triangles": 115742,
+        "geometries": 363,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 566,
+      "x": -4.5,
+      "reverse": true,
+      "gentle": true,
+      "bounds": {
+        "left": 0.2836476274632327,
+        "right": 0.6631339946236422,
+        "top": 0.29822794038172257,
+        "bottom": 0.5255693309404101
+      },
+      "camera": [
+        -2.8968749999999996,
+        16.467499999999998,
+        546.40625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 166,
+        "triangles": 115742,
+        "geometries": 363,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 566,
+      "x": 4.5,
+      "reverse": false,
+      "gentle": false,
+      "bounds": {
+        "left": 0.3404186444044649,
+        "right": 0.7207425261084143,
+        "top": 0.5016430488564806,
+        "bottom": 0.7205184325611838
+      },
+      "camera": [
+        5.05550032564642,
+        16.467499999999998,
+        546.40625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 209,
+        "triangles": 329754,
+        "geometries": 363,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 566,
+      "x": 4.5,
+      "reverse": false,
+      "gentle": true,
+      "bounds": {
+        "left": 0.3388027495798446,
+        "right": 0.7171655139514787,
+        "top": 0.46666334428511325,
+        "bottom": 0.6840262761173763
+      },
+      "camera": [
+        5.05550032564642,
+        16.467499999999998,
+        546.40625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 206,
+        "triangles": 305854,
+        "geometries": 363,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 566,
+      "x": 4.5,
+      "reverse": true,
+      "gentle": false,
+      "bounds": {
+        "left": 0.2929287867700076,
+        "right": 0.668386466804798,
+        "top": 0.29909499394852246,
+        "bottom": 0.5219544896170858
+      },
+      "camera": [
+        5.05550032564642,
+        16.467499999999998,
+        546.40625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 171,
+        "triangles": 145180,
+        "geometries": 363,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "z": 566,
+      "x": 4.5,
+      "reverse": true,
+      "gentle": true,
+      "bounds": {
+        "left": 0.2929287867700076,
+        "right": 0.668386466804798,
+        "top": 0.29909499394852246,
+        "bottom": 0.5219544896170858
+      },
+      "camera": [
+        5.05550032564642,
+        16.467499999999998,
+        546.40625
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "volume": "iron-narrows",
+      "stats": {
+        "calls": 171,
+        "triangles": 145180,
+        "geometries": 363,
+        "textures": 20,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      },
+      "blocked": []
+    }
+  ],
+  "errors": []
+}

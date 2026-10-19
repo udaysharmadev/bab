@@ -1,0 +1,20 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"><title>Bad at Boating — render fixture</title><style>html,body{margin:0;overflow:hidden}#world{position:fixed;inset:0;background:#a8c6c2}canvas{display:block}#label{position:fixed;left:20px;bottom:16px;color:#fff4cd;font:11px system-ui;text-shadow:0 1px 4px #123}</style></head><body><div id="world"></div><div id="label"></div><script type="module">
+import { RiverScene } from '/src/client/scene.ts';
+import { DT, PHYSICS_VERSION, PROTOCOL_VERSION } from '/src/shared/protocol.ts';
+import { SWEEPERS, sampleSweeper, sampleWaterwheel } from '/src/shared/world.ts';
+const view = new URL(location.href).searchParams.get('view') ?? 'crew';
+const positions = {waterwheel:{x:0,y:.08,z:456},crew:{x:0,y:.08,z:0}, shore:{x:8,y:.08,z:2}, trees:{x:8,y:.08,z:8}, grass:{x:8,y:.08,z:2}, wreck:{x:0,y:-.15,z:25}, spikes:{x:-3,y:.08,z:50}, vortex:{x:0,y:.08,z:106}, log:{x:0,y:.08,z:86}, gorge:{x:0,y:.08,z:181}, rapids:{x:0,y:.08,z:310}, timber:{x:0,y:.08,z:419}, narrows:{x:0,y:.08,z:546}, finish:{x:0,y:.08,z:810}, underside:{x:0,y:.08,z:0}};
+const scene = new RiverScene(document.getElementById('world'));
+if(new URL(location.href).searchParams.has('noRefraction'))scene.water.capture=()=>{scene.water.material.uniforms.refractionReady.value=0;};
+const tick = 480, time = tick * DT;
+scene.setSnapshot({protocol:PROTOCOL_VERSION,physics:PHYSICS_VERSION,tick,position:positions[view],rotation:{x:0,y:0,z:0,w:1},velocity:{x:0,y:0,z:1},blades:[-1,1,-1,1].map((side,i)=>({x:side*1.45,y:i===0?-.32:.62,z:i<2?.95:-.95,immersion:i===0?1:0,force:i===0?120:0,state:i===0?'WATER':'AIR'})),ack:[0,0,0,0],crew:[0,1,2,3].map(seat=>({seat,connected:true,ready:true})),checkpoint:0,revision:0,resetId:0,mode:'practice',paused:false,complete:false,stage:'playing',condition:view==='wreck'?'breaking':'afloat',wreckAge:view==='wreck'?.35:0,crashId:view==='wreck'?1:0,obstacleId:null,strokes:[0,0,0,0],droppedSteps:0});
+if(view==='crew'||view==='underside') scene.followCamera=()=>{scene.camera.position.set(4.2,view==='underside'?.65:3.0,4.5);scene.camera.lookAt(0,.65,0);};
+if(view==='shore') scene.followCamera=()=>{scene.camera.position.set(9,3,-5);scene.camera.lookAt(15,.6,2);};
+if(view==='trees') scene.followCamera=()=>{scene.camera.position.set(12,3,-4);scene.camera.lookAt(21,4.5,10);};
+if(view==='waterwheel')scene.followCamera=()=>{scene.camera.position.set(-2,6,455);scene.camera.lookAt(5,2.2,465);};
+if(view==='grass') scene.followCamera=()=>{scene.camera.position.set(13.2,.9,-2);scene.camera.lookAt(16,.45,2);};
+if(new URL(location.href).searchParams.has('low'))scene.setLowQuality(true);
+document.getElementById('label').textContent=`RENDER FIXTURE · ${view.toUpperCase()} · authored pose for graphics QA`;
+let previous=performance.now(), frames=0;
+function frame(now){const dt=Math.min((now-previous)/1000,.05);previous=now;scene.render(dt,now/1000);document.body.dataset.frames=String(++frames);const q=sampleWaterwheel(scene.time);document.body.dataset.wheelError=String(1-Math.abs(scene.wheel.quaternion.x*q.x+scene.wheel.quaternion.w*q.w));document.body.dataset.sweeperError=String(Math.max(...scene.sweepers.map((log,i)=>log.position.distanceTo(sampleSweeper(scene.time,SWEEPERS[i])))));requestAnimationFrame(frame)}requestAnimationFrame(frame);
+</script></body></html>

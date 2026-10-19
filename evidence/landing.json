@@ -1,0 +1,116 @@
+{
+  "result": "PASS",
+  "results": [
+    {
+      "low": false,
+      "phases": [
+        {
+          "time": 0,
+          "draft": 0.08,
+          "maxDeckDifference": 0,
+          "stressDifference": 0,
+          "exteriorDifference": 38
+        },
+        {
+          "time": 2,
+          "draft": 0.08,
+          "maxDeckDifference": 0,
+          "stressDifference": 0,
+          "exteriorDifference": 40
+        },
+        {
+          "time": 5,
+          "draft": 0.08,
+          "maxDeckDifference": 0,
+          "stressDifference": 0,
+          "exteriorDifference": 33
+        },
+        {
+          "time": 8,
+          "draft": 0.08,
+          "maxDeckDifference": 0,
+          "stressDifference": 0,
+          "exteriorDifference": 25
+        },
+        {
+          "time": 13,
+          "draft": 0.08,
+          "maxDeckDifference": 0,
+          "stressDifference": 0,
+          "exteriorDifference": 31
+        },
+        {
+          "time": 19,
+          "draft": 0.08,
+          "maxDeckDifference": 0,
+          "stressDifference": 0,
+          "exteriorDifference": 33
+        },
+        {
+          "time": 27,
+          "draft": 0.08,
+          "maxDeckDifference": 0,
+          "stressDifference": 0,
+          "exteriorDifference": 25
+        }
+      ],
+      "legacyMax": 128
+    },
+    {
+      "low": true,
+      "phases": [
+        {
+          "time": 0,
+          "draft": 0.08,
+          "maxDeckDifference": 0,
+          "stressDifference": 0,
+          "exteriorDifference": 39
+        },
+        {
+          "time": 2,
+          "draft": 0.08,
+          "maxDeckDifference": 0,
+          "stressDifference": 0,
+          "exteriorDifference": 39
+        },
+        {
+          "time": 5,
+          "draft": 0.08,
+          "maxDeckDifference": 0,
+          "stressDifference": 0,
+          "exteriorDifference": 39
+        },
+        {
+          "time": 8,
+          "draft": 0.08,
+          "maxDeckDifference": 0,
+          "stressDifference": 0,
+          "exteriorDifference": 33
+        },
+        {
+          "time": 13,
+          "draft": 0.08,
+          "maxDeckDifference": 0,
+          "stressDifference": 0,
+          "exteriorDifference": 32
+        },
+        {
+          "time": 19,
+          "draft": 0.08,
+          "maxDeckDifference": 0,
+          "stressDifference": 0,
+          "exteriorDifference": 30
+        },
+        {
+          "time": 27,
+          "draft": 0.08,
+          "maxDeckDifference": 0,
+          "stressDifference": 0,
+          "exteriorDifference": 34
+        }
+      ],
+      "legacyMax": 126
+    }
+  ],
+  "errors": []
+}

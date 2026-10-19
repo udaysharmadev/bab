@@ -1,0 +1,11 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"><title>Audio render fixture</title></head><body><script type="module">
+import {GameAudio} from '/src/client/audio.ts';
+const render=async(muted)=>{
+ const context=new OfflineAudioContext(2,44100*3,44100),audio=new GameAudio(context);audio.setVolume(muted?0:.55);
+ audio.play({kind:'stroke',seat:0,effort:1},.05);audio.play({kind:'stroke',seat:1,effort:.7},.5);audio.play({kind:'break'},1);audio.play({kind:'checkpoint'},2);
+ const buffer=await context.startRendering();let peak=0,sum=0,count=0,left=0,right=0;
+ for(let c=0;c<2;c++)for(let i=0;i<buffer.length;i++){const sample=buffer.getChannelData(c)[i];if(!Number.isFinite(sample))throw Error('Non-finite audio');peak=Math.max(peak,Math.abs(sample));sum+=sample*sample;count++;if(i<44100*.4){if(c===0)left+=sample*sample;else right+=sample*sample;}}
+ return {peak,rms:Math.sqrt(sum/count),left,right,samples:count};
+};
+try{document.body.dataset.result=JSON.stringify({audible:await render(false),muted:await render(true)});}catch(error){document.body.dataset.error=String(error);}
+</script></body></html>

@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-19T18:10:45.221Z",
+  "base": "http://localhost:2570",
+  "automated": true,
+  "humanPlaytest": false,
+  "checks": [
+    "Main menu appears before a room is created; only Play with Friends and Join Crew are shown; extra title text/buttons are absent",
+    "Private crew is frozen safely at the dock; join form and invite links allocate four distinct seats",
+    "Four ready clients launch; ordinary gameplay shows only the small menu button",
+    "Mouse has no paddle effect; holding Up alone repeats at least two server-confirmed strokes on the local seat",
+    "Refresh rejoins the same crew and seat",
+    "Boat and paddles remain framed in landscape and portrait, with no permanent HUD panels",
+    "Actual rock contact produces one shared break/sink event; refresh retains the wreck and one retry restores the crew checkpoint",
+    "Full/expired invites return an actionable title-menu error and never create an unrelated crew"
+  ],
+  "firstObservedFailure": "breaking",
+  "seats": [
+    "0",
+    "1",
+    "2",
+    "3"
+  ],
+  "layouts": [
+    {
+      "width": 907,
+      "height": 510,
+      "bounds": {
+        "left": 0.39145446064488987,
+        "right": 0.6472701674799882,
+        "top": 0.4217310453569618,
+        "bottom": 0.7768185670280553
+      }
+    },
+    {
+      "width": 700,
+      "height": 982,
+      "bounds": {
+        "left": 0.31489220120398237,
+        "right": 0.7606821452966087,
+        "top": 0.439946485034999,
+        "bottom": 0.7031933679276238
+      }
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "bounds": {
+        "left": 0.3249008805095363,
+        "right": 0.7485772837007312,
+        "top": 0.45378890852659964,
+        "bottom": 0.6517118485549741
+      }
+    }
+  ],
+  "browser": "155.0.8059.82",
+  "errors": [],
+  "result": "PASS"
+}

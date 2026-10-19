@@ -1,0 +1,346 @@
+{
+  "result": "PASS",
+  "fixture": true,
+  "humanPlaytest": false,
+  "browser": "155.0.8059.82",
+  "results": [
+    {
+      "view": "crew",
+      "stats": {
+        "calls": 554,
+        "triangles": 3299174,
+        "geometries": 182,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 2,
+        "captureTriangles": 288,
+        "captureSize": [
+          936,
+          624
+        ]
+      }
+    },
+    {
+      "view": "underside",
+      "stats": {
+        "calls": 558,
+        "triangles": 3299286,
+        "geometries": 183,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 2,
+        "captureTriangles": 288,
+        "captureSize": [
+          936,
+          624
+        ]
+      }
+    },
+    {
+      "view": "spikes",
+      "stats": {
+        "calls": 709,
+        "triangles": 5252950,
+        "geometries": 227,
+        "textures": 14,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 6,
+        "captureTriangles": 864,
+        "captureSize": [
+          936,
+          624
+        ]
+      }
+    },
+    {
+      "view": "log",
+      "stats": {
+        "calls": 750,
+        "triangles": 6032692,
+        "geometries": 237,
+        "textures": 16,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ]
+      }
+    },
+    {
+      "view": "vortex",
+      "stats": {
+        "calls": 707,
+        "triangles": 4365504,
+        "geometries": 227,
+        "textures": 16,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ]
+      }
+    },
+    {
+      "view": "vortex&low",
+      "stats": {
+        "calls": 255,
+        "triangles": 970570,
+        "geometries": 215,
+        "textures": 11,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "view": "wreck",
+      "stats": {
+        "calls": 749,
+        "triangles": 6068006,
+        "geometries": 231,
+        "textures": 14,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ]
+      }
+    },
+    {
+      "view": "gorge",
+      "stats": {
+        "calls": 739,
+        "triangles": 3119536,
+        "geometries": 236,
+        "textures": 15,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ]
+      }
+    },
+    {
+      "view": "rapids",
+      "stats": {
+        "calls": 715,
+        "triangles": 1215094,
+        "geometries": 242,
+        "textures": 16,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ]
+      }
+    },
+    {
+      "view": "timber",
+      "stats": {
+        "calls": 672,
+        "triangles": 1056976,
+        "geometries": 229,
+        "textures": 14,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 6,
+        "captureTriangles": 864,
+        "captureSize": [
+          936,
+          624
+        ]
+      }
+    },
+    {
+      "view": "narrows",
+      "stats": {
+        "calls": 664,
+        "triangles": 1272070,
+        "geometries": 215,
+        "textures": 14,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ]
+      }
+    },
+    {
+      "view": "finish",
+      "stats": {
+        "calls": 522,
+        "triangles": 896092,
+        "geometries": 170,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ]
+      }
+    },
+    {
+      "view": "waterwheel",
+      "stats": {
+        "calls": 379,
+        "triangles": 1145210,
+        "geometries": 220,
+        "textures": 12,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ]
+      }
+    },
+    {
+      "view": "shore",
+      "stats": {
+        "calls": 396,
+        "triangles": 4963888,
+        "geometries": 192,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ]
+      }
+    },
+    {
+      "view": "trees",
+      "stats": {
+        "calls": 405,
+        "triangles": 5044828,
+        "geometries": 215,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ]
+      }
+    },
+    {
+      "view": "grass",
+      "stats": {
+        "calls": 366,
+        "triangles": 4963792,
+        "geometries": 199,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ]
+      }
+    },
+    {
+      "view": "shore&low",
+      "stats": {
+        "calls": 99,
+        "triangles": 1364652,
+        "geometries": 60,
+        "textures": 6,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ]
+      }
+    }
+  ],
+  "titleViews": [
+    {
+      "width": 1440,
+      "height": 960,
+      "playButton": {
+        "x": 108,
+        "y": 524.34375,
+        "width": 285,
+        "height": 46
+      }
+    },
+    {
+      "width": 907,
+      "height": 510,
+      "playButton": {
+        "x": 68.015625,
+        "y": 280.4375,
+        "width": 230,
+        "height": 34
+      }
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "playButton": {
+        "x": 117.5,
+        "y": 707,
+        "width": 245,
+        "height": 40
+      }
+    }
+  ],
+  "audio": {
+    "audible": {
+      "peak": 0.1710934191942215,
+      "rms": 0.01279303794277799,
+      "left": 1.1086126109820242,
+      "right": 0.16651724016862157,
+      "samples": 264600
+    },
+    "muted": {
+      "peak": 0,
+      "rms": 0,
+      "left": 0,
+      "right": 0,
+      "samples": 264600
+    }
+  },
+  "errors": []
+}

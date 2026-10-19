@@ -1,0 +1,150 @@
+{
+  "result": "PASS",
+  "realWebSockets": true,
+  "humanPlaytest": false,
+  "reconnectBoundary": "Server snapshot received on the replacement socket, after JOIN acknowledgement",
+  "results": [
+    {
+      "delay": 80,
+      "jitter": 35,
+      "loss": 0.1,
+      "scope": "one-way ms; ordered application-message drop, not TCP packet loss",
+      "ticks": 240,
+      "dropped": 85,
+      "forwarded": 697,
+      "bytes": 230255,
+      "positionZ": 3.8602635860443115,
+      "strokes": [
+        5,
+        6,
+        6,
+        5
+      ]
+    },
+    {
+      "delay": 180,
+      "jitter": 70,
+      "loss": 0.25,
+      "scope": "one-way ms; ordered application-message drop, not TCP packet loss",
+      "ticks": 240,
+      "dropped": 213,
+      "forwarded": 559,
+      "bytes": 187893,
+      "positionZ": 3.539151906967163,
+      "strokes": [
+        14,
+        15,
+        15,
+        15
+      ]
+    },
+    {
+      "delay": 300,
+      "jitter": 100,
+      "loss": 0.15,
+      "scope": "one-way ms; ordered application-message drop, not TCP packet loss",
+      "ticks": 240,
+      "dropped": 115,
+      "forwarded": 634,
+      "bytes": 218410,
+      "positionZ": 3.5666253566741943,
+      "strokes": [
+        20,
+        19,
+        22,
+        21
+      ]
+    },
+    {
+      "case": "upstream-blackout",
+      "staleBladesLifted": true
+    },
+    {
+      "case": "duplicate-reconnect-race",
+      "accepted": 1,
+      "pausedAllBladesLifted": true
+    },
+    {
+      "case": "two-simultaneous-reconnects",
+      "sameSeats": true
+    },
+    {
+      "case": "real-grace-expiry",
+      "testGraceSeconds": 2,
+      "productionGraceSeconds": 90,
+      "expiredRejected": true,
+      "seatReclaimed": true
+    },
+    {
+      "case": "abusive-message-burst",
+      "clientDisconnected": true,
+      "forgedThrustRejected": true
+    }
+  ],
+  "lifecycle": [
+    {
+      "event": "drop",
+      "seat": 0,
+      "state": 4,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "reconnect",
+      "seat": 0,
+      "state": 2,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "drop",
+      "seat": 0,
+      "state": 4,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "drop",
+      "seat": 1,
+      "state": 4,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "reconnect",
+      "seat": 1,
+      "state": 2,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "reconnect",
+      "seat": 0,
+      "state": 2,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "drop",
+      "seat": 3,
+      "state": 4,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "leave",
+      "seat": 3,
+      "state": 4,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "drop",
+      "seat": 2,
+      "state": 4,
+      "stage": "lobby",
+      "members": 4
+    }
+  ],
+  "violations": []
+}

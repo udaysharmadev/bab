@@ -1,0 +1,2740 @@
+
+PAGE 1
+Phase Zero Preproduction Report — Four
+Players, One Tiny Boat, One Enormous Journey
+Executive summary, assumptions and scope
+This report treats the uploaded master brief as the authoritative product mandate: a real-time 3D
+browser game built around exactly four human paddlers sharing one small wooden boat, with
+locomotion arising from four independently controlled paddles rather than ordinary vehicle
+controls. It also treats the requested phase lifecycle, evidence discipline, permanent documentation,
+continuous-world ambition, multiplayer authority model and “prove the paddling before building the
+world” rule as binding constraints. fileciteturn0file0
+The strongest direction is not “a four-player Paddle Paddle Paddle”. Nor should it become “Fart
+Together , except with oars”. Paddle Paddle Paddle already centres a physics-paddling obstacle journey,
+while Fart Together explicitly supports 2–4 people applying force, direction and timing to the same raft.
+Those similarities make superficial differentiation unusually dangerous. 
+The defensible mechanical identity is:
+Four spatially distributed physical blades interacting with a shared, moving body of
+water.
+That distinction sounds small, but it changes the whole game. A paddle can miss the water , enter too
+shallowly, catch a reverse current, scrape a wall, become a temporary brace, apply force at the bow
+rather than stern, or create yaw because another crew member stroked late. The boat's behaviour
+becomes the understandable consequence of where four people applied force, when they applied it,
+how the water itself was moving, and where the hull was struck. Rapier directly supports
+application of forces and impulses at world points, which is exactly the mechanism needed to translate
+blade forces into both linear acceleration and torque rather than faking steering. 
+The second major differentiator should be the expedition structure. Paddle Paddle Paddle markets
+one giant handcrafted level with configurable checkpoints; Chained Together demonstrates the appeal
+of an arduous shared ascent and separate checkpoint/difficulty modes; RV There Yet? demonstrates the
+social legibility of four players depending on one physical vehicle; PEAK demonstrates that replayable
+conditions can refresh co-op without replacing the core mechanic.  The proposed game therefore
+uses one coherent continent-scale hydrological journey—The Grand Waterworks—rather than
+unrelated obstacle arenas.
+The third differentiator is recovery before failure. The memorable outcome should often be “we
+somehow saved that” rather than “touch obstacle, reload checkpoint”. This is a design hypothesis to
+validate, not a proven recipe for virality. Research on co-operative play supports treating
+communication and coordination as first-class aspects of multiplayer teamwork, while physics-oriented
+co-op games repeatedly build their public positioning around shared mistakes, dependence and
+recovery; however , neither review percentages nor creator attention prove that any single mechanic
+caused commercial success. 
+1
+2
+3
+4
+1
+
+PAGE 2
+The recommended working title is All Hands, No Rudder. It communicates the four-person crew, the
+absence of conventional steering and the comic danger in one phrase. It is not legally cleared. An
+initial exact-title search did not surface a competing game with that complete title, but “ALL HANDS”
+exists in unrelated live marks, including entertainment-related usage, so professional clearance remains
+mandatory before announcement. 
+The recommended technical baseline is TypeScript + Three.js + Rapier 3D + Colyseus + Node.js +
+PostgreSQL, with WebSocket transport at launch, a robust WebGL2 rendering baseline and WebGPU
+enhancements only after parity testing. Three.js can target WebGPU and fall back to WebGL2, while
+PlayCanvas similarly exposes a dual WebGPU/WebGL2 strategy; current browser-engine documentation
+still makes a fallback path the prudent choice. 
+The authoritative simulation should run at a fixed timestep. The first buoyancy implementation should
+use distributed hull samples rather than CFD. Paddle forces should be calculated from blade
+submersion and water-relative velocity, applied at the relevant paddle station. Visual water and
+gameplay water should share a deterministic low-frequency sampler while GPU-only waves, foam,
+reflection and refraction add visual fidelity. Research on real-time buoyancy and rigid-body/water
+interaction shows that sophisticated two-way water simulation exists, but also reinforces why games
+routinely need cheaper real-time approximations rather than a full fluid solver . 
+The highest-risk problem is not rendering. It is the combination of shared-body physics and
+networking. Four clients are simultaneously manipulating one authoritative rigid body. Colyseus now
+provides explicit facilities for fixed-step prediction, reconciliation, interpolation, reconnection and state
+synchronisation, but those facilities do not make a shared Rapier world automatically pleasant under
+100–200 ms latency. That has to be experimentally proven. 
+Accordingly, the project should have one uncompromising production gate:
+Do not author the enormous world until four humans can paddle a tiny test boat around a dull
+test basin and immediately want another run.
+A filesystem-backed Phase Zero documentation pack has been created from this research. It contains
+the requested PRD, research log, phase tracker , decision log, world atlas, physics specification,
+multiplayer architecture, art bible, test matrix, risk register , changelog, name research, implementation
+plan, first-prototype specification and obstacle catalogue. It explicitly records no implementation,
+playtest, benchmark or deployment as complete.
+Download the Phase Zero preproduction pack
+Scope assumptions. The target audience, budget and team size were unspecified, so this report
+assumes a serious small independent studio rather than a solo weekend project or AAA headcount.
+Desktop browsers are the primary launch target; mobile is not a launch constraint. The intended
+flagship experience always uses four humans, although a later practice mode for fewer players is
+compatible with the brief if it never becomes the design centre. Exact commercial price, schedule,
+staffing and server cost cannot honestly be fixed before the Phase One and Phase Two benchmarks.
+The report therefore separates evidence, design recommendation, prototype target and unverified
+hypothesis throughout.
+5
+6
+7
+8
+2
+
+PAGE 3
+Competitive research, originality and recent developments
+The relevant market has become materially more crowded during 2024–2026. Chained Together
+released in June 2024; PEAK and Paddle Paddle Paddle followed in 2025; RV There Yet? released in
+October 2025; and Fart Together is currently listed as “Coming soon” with a playable demo and a
+premise explicitly built around 2–4 players steering one raft together .  This means “friends struggle
+through physics together” is a genre context, not a differentiator .
+Game
+Documented central
+mechanic and player
+structure
+World / failure / replay
+structure
+What matters to this
+project
+Paddle
+Paddle
+Paddle
+Solo controls both paddles;
+co-op gives one paddle to
+each of two players. Steam
+describes physics-based
+paddling, local/online co-op
+and a deliberately frustrating
+obstacle journey. 
+One giant handcrafted
+level, speedrun timer and
+user-toggleable
+checkpoint options. It
+was described by its solo
+developer as an
+experiment built in under
+a month. 
+Closest existing
+paddle-language
+competitor . Do not
+copy lava-parkour
+presentation, 1–2-
+paddle structure or
+rage-first identity.
+Fart
+Together
+2–4 players steer the same
+raft using each player's force,
+direction and timing;
+competitive modes are also
+advertised. 
+Obstacle-course
+structure involving
+passages, turns, moving
+hazards and coordinated
+timing. Full release is still
+listed as forthcoming as
+of 19 Oct 2026. 
+Most dangerous
+originality overlap
+because it already has
+four contributors
+acting on one raft.
+Blade/water contact
+must be mechanically
+deeper than four
+generic thrust vectors.
+Chained
+Together
+1–4 players are physically
+linked; the chain is fully
+simulated and can wrap
+around geometry. 
+Normal, checkpoint-
+enabled Beginner , Lava
+and newer race
+structures; difficulty
+escalates through the
+climb. 
+Shared fate is
+immediately visible.
+Mode-dependent
+checkpoint generosity
+is useful. Avoid simply
+recreating “fall and
+lose height” in water .
+RV There
+Yet?
+Up to four people share one
+RV; a physics winch and
+collaborative vehicle journey
+are central. 
+Continuous road-trip
+framing, proximity chat
+and physical recovery of
+one shared vehicle. 
+Strong reference for a 
+shared object as the
+social protagonist.
+Our locomotion itself
+should be
+collaborative rather
+than dividing players
+into driver/tool roles.
+9
+10
+10
+11
+11
+12
+12
+13 13
+3
+
+PAGE 4
+Game
+Documented central
+mechanic and player
+structure
+World / failure / replay
+structure
+What matters to this
+project
+PEAK
+Friends climb together , help
+one another over obstacles
+and use survival tools; up to
+four friends are supported. 
+Four biomes; map
+rotates every 24 hours;
+badges/cosmetics
+provide additional return
+goals. 
+Strong evidence that
+replayability can come
+from changing
+conditions. Do not
+import its stamina,
+survival inventory or
+roguelike layer .
+Carry The
+Glass
+A two-person physics
+coordination premise built
+around transporting one
+fragile shared object. Its
+Steam presence and
+community support
+discussions also illustrate how
+network/controller problems
+can overwhelm a simple co-
+op concept. 
+High consequence for
+mistakes; intentionally
+simple premise. 
+Simple shared
+objectives amplify
+technical flaws.
+Network reliability
+cannot be postponed
+as “polish”.
+Human:
+Fall Flat
+Physics-oriented co-operative
+navigation with broad
+experimentation and multiple
+possible solutions. 
+Large catalogue of
+environments and
+community-friendly
+physical improvisation.
+Production reporting has
+discussed simplifying
+physical collision
+representations to
+control cost. 
+Emergent play
+benefits from
+generous physical
+possibility, but collision
+complexity must be
+ruthlessly simplified
+underneath detailed
+art.
+Party
+Animals
+Physics-led social multiplayer
+where bodily motion and
+impacts are deliberately
+readable and comic. 
+Match-based rather than
+expedition-based. 
+Useful game-feel
+reference, not a
+structural reference.
+Avoid turning the boat
+game into a generic
+minigame collection.
+Review numbers are useful for establishing that several of these games attracted substantial audiences,
+but not for identifying causal success factors. As of this research pass, Steam shows roughly 1,609
+reviews at 86% positive for Paddle Paddle Paddle, 20,658 English reviews at 90% for Chained Together ,
+32,026 English reviews at 89% for RV There Yet?, and 146,863 English reviews at 95% for PEAK. Those are
+time-sensitive storefront snapshots, not experimental evidence that “physics”, “rage” or any particular
+checkpoint policy caused demand. 
+A particularly useful negative lesson comes from Paddle Paddle Paddle's own post-launch changes: the
+developer identified camera controls as a significant problem for players and changed the default
+camera behaviour , while also revising a confusing pipe puzzle.  That is a direct warning against
+treating the camera as presentation rather than control infrastructure. In this project, a missed gate
+caused by the crew should be funny; a missed gate caused by an unreadable camera will feel defective.
+14 14
+15
+16
+17
+18
+19
+20
+21
+22
+4
+
+PAGE 5
+The competitive space suggests five evidence-backed design principles and several hypotheses that still
+require testing.
+Principle Evidence status Consequence
+Shared physical
+dependency naturally
+creates reasons to
+communicate.
+Supported in broader co-operative
+teamwork research and repeatedly
+embodied in the games above,
+although commercial causality is not
+established. 
+Every player must have
+mechanically consequential
+information/action; no
+“passenger” seats.
+Very small input
+vocabularies can support
+deep physical co-
+operation.
+Observed across multiple physics co-
+op designs; direct-control games
+such as Biped have also deliberately
+used unusual limb-like controls to
+create expressive mishaps. 
+Keep the paddle interaction
+to essentially position,
+immerse, move, release.
+Shared mistakes are
+entertaining only while
+causality remains
+understandable.
+Strong design inference from
+shared-fate titles; not a proven
+universal law.
+Expose blade contact, splash,
+force direction, hull reaction
+and audio feedback. Never
+hide propulsion.
+Recovery creates better
+social stories than
+constant hard reset.
+Design hypothesis requiring playtest
+validation.
+Engineer scrape-outs, reverse
+paddling, bracing, eddies and
+partial capsize recovery
+before adding more death
+zones.
+Replayability need not
+mean progression grind.
+PEAK's changing map and the
+racing/leaderboard structures of
+several competitors show alternate
+replay structures exist. 
+Post-finish replay should use
+route conditions, time trials
+and ghosts rather than boat
+stat upgrades.
+The exact originality line should be explicit.
+Paddle Paddle Paddle asks, essentially, “can one or two players manipulate paddles through an obstacle
+journey?”  Fart Together asks, “can 2–4 players coordinate thrust-like force, direction and timing on
+one raft?” All Hands, No Rudder should ask, “can a four-person crew learn to operate one
+physically coherent boat when every blade, current, collision and mistake changes the same rigid
+body?”
+That requires five non-copyable-feeling systems working together:
+Distributed force points. The bow-port paddler and stern-port paddler are not interchangeable
+because their force vectors act at different lever arms around the hull.
+Water-relative strokes. The same gesture produces a different result in still water , a cross-
+current, an eddy or a backward-moving lock chamber .
+Meaningful misses and braces. A paddle outside the water cannot secretly propel the hull. A
+blade planted against a wall can physically brace or pry, within bounded energy limits.
+Recoverable instability. Players can rescue a bad yaw, scrape along a wall, counter a roll or
+back out of a wedge rather than immediately lose.
+23
+24
+25
+10
+11
+1. 
+2. 
+3. 
+4. 
+5
+
+PAGE 6
+A coherent water-world expedition. The physical medium is not merely a floor texture under
+obstacle props; it is the route, force field, vertical transport system and visual identity of the
+entire game.
+Those are recommendations, not claims that the design is already fun. The Phase Two four-human
+prototype must earn that conclusion.
+Naming study and final creative direction
+Naming research should avoid the increasingly generic “X Together” construction. It is especially poor
+here because Paddle Together already exists as a discoverable paddling project and Fart Together
+already occupies the most obvious four-player same-raft naming territory.  “Sync or Sink” is also
+unusable as a seemingly clever alternative because existing games/projects already use it, including a
+boat-related Roblox experience and a Steam title. 
+The following sixty-six distinct candidates deliberately explore different brand voices rather than
+permuting “boat”, “paddle” and “together”.
+Direction Candidates
+Ridiculous /
+physical comedy
+Boatful of Idiots · This Boat Was a Mistake · Wet Decisions · Very Bad
+Rowing · Oops, All Paddles · Paddlefools · Four Oars, Zero Plans · Crew Crisis
+· Driftwood Disaster · Row, Row, NO! · Everybody Paddled Wrong
+Short / memorableOarbound · Paddlelock · Rudderless · Oarbreakers · Paddlepanic · Wake
+Mates · Paddleheads · Crewfall · Driftcrew · Hullabaloo · Paddleward
+Oar / paddle
+wordplay
+Oars & Errors · Oar Nothing · Stroke of Luck · Four Oar Less · All Oared Up ·
+Oarbitration · Paddle Pact · Paddle Damage · Hull or High Water · Current
+Situation · Current Affairs
+Friendship-
+destroying co-op
+Shared Mistake · Blame Current · Nobody Turn Left · Same Boat Problem ·
+Friendship Afloat · Four Against the Current · Crew Control · Mutual Disaster
+· All Hands, No Rudder · Who Paddled Left? · We Had One Job
+Adventure /
+expedition
+One Tiny Boat · Tiny Boat, Huge World · Last River Home · The Long Paddle ·
+Beyond the Dam · Crooked Current · Great Big River · Rapids to Nowhere ·
+Downriver Forever · The Grand Waterway · Against the Spillway
+Streaming /
+unconventional
+Rapids & Regrets · Rowmageddon · Crewmageddon · Waterwayward · One
+Boat Left · Paddle or Perish · Bad Crew Energy · Boat Problems · Please Stop
+Paddling · Four Idiots Afloat · It Gets Worse Downstream
+Some attractive names are already weakened by discoverability checks. Oar Else! has existing card-
+game/rowing usage; Oarstruck is already used by an ocean-rowing expedition; Waterwayward collides
+with an existing art/soundscape project; and Paddlebound has an existing domain presence unrelated
+to the game.  These are not necessarily trademark conclusions, but they are enough to lower
+branding efficiency.
+The strongest fifteen are evaluated below. Scores are creative pre-screening, not legal opinions.
+5. 
+26
+27
+28
+6
+
+PAGE 7
+Candidate Memorable /
+pronounceable
+Search &
+thumbnail
+potential
+Mechanical
+fit
+Conflict risk from
+current search Verdict
+All Hands,
+No Rudder 9/10 9/10 10/10
+Medium:
+component phrase
+“All Hands” has
+existing marks. 
+Finalist
+Rapids &
+Regrets 9 9 8
+No prominent
+exact game conflict
+surfaced in initial
+search; not legal
+clearance.
+Finalist
+Oars &
+Errors 9 8 9
+No prominent
+exact conflict
+surfaced; pun may
+imply lighter scope.
+Finalist
+Nobody
+Turn Left 9 9 8
+Search did not
+surface a game
+conflict; phrase has
+generic non-game
+uses. 
+Finalist
+One Tiny
+Boat 9 9 10
+“ONE BOAT” exists
+as a registered
+mark in a vehicle-
+related class,
+increasing caution. 
+Finalist,
+legal
+caution
+Four Oars,
+Zero Plans 9 9 9 No major exact
+conflict surfaced Strong
+This Boat
+Was a
+Mistake
+9 10 8 Generic phrase risk
+Strong
+streaming
+title
+Row, Row,
+NO! 9 10 8 Nursery-rhyme
+association
+Strong but
+comic-
+heavy
+The Long
+Paddle 8 7 9 Generic adventure
+phrase Solid
+Crooked
+Current 8 7 8 Broad phrase Solid
+Current
+Situation 8 7 7 Very generic
+phrase Secondary
+29
+30
+31
+7
+
+PAGE 8
+Candidate Memorable /
+pronounceable
+Search &
+thumbnail
+potential
+Mechanical
+fit
+Conflict risk from
+current search Verdict
+Shared
+Mistake 8 8 7
+Does not
+communicate
+water
+Secondary
+Hull or
+High Water 8 8 8
+Common
+expression/pun
+likely crowded
+Secondary
+Oarbound 8 8 9 Requires full
+clearance Secondary
+Very Bad
+Rowing 8 9 7
+Memorable but
+undersells visual
+ambition
+Secondary
+Top five: All Hands, No Rudder; Rapids & Regrets; Oars & Errors; Nobody Turn Left; One Tiny Boat.
+Recommended working winner: All Hands, No Rudder. “All Hands” implies an entire crew, while “No
+Rudder” immediately promises that conventional steering has been removed. It is also tonally flexible:
+the title supports comedy, but the world itself can still feel grand, beautiful and adventurous. The
+drawback is real trademark-search work around the component words; the USPTO explicitly provides
+similarity-based trademark searching because exact text matching is insufficient for clearance. 
+Therefore this should remain a working title, not a public legal assertion.
+The next four finalists serve different positioning options. Rapids & Regrets is the strongest pure
+entertainment brand; Oars & Errors is the cleanest mechanical pun; Nobody Turn Left maximises
+social/creator comedy; One Tiny Boat communicates the actual fantasy most elegantly but deserves
+extra legal scrutiny because of existing “ONE BOAT” usage. 
+Ten launch-line experiments:
+Tagline Positioning use
+Four paddles. Zero steering wheel. Good luck. Store capsule
+One tiny boat. Four enormous opinions. Trailer
+The river is moving. Unfortunately, so are your friends. Social
+Everybody has a paddle. Nobody is in charge. Core identity
+Your friendship now has buoyancy physics. Technical comedy
+Paddle together. Blame individually. Creator clip
+The shortest route is whichever way all four of you accidentally agree
+on. Trailer copy
+The boat is innocent. Meme/merch line
+Every stroke counts. Especially the wrong one. Gameplay
+32
+31
+8
+
+PAGE 9
+Tagline Positioning use
+A continent of water between you and being friends again.Adventure/
+comedy
+The resulting creative direction is storybook expedition realism. The world should have stylised,
+instantly readable forms rather than photorealism, but its wood, stone, ice, metal, vegetation and water
+should feel tactile and physically grounded. The tiny warm-timber boat is always the focal point against
+cooler rivers, reservoirs and monumental civil engineering. Giant infrastructure, changing weather and
+deep atmospheric perspective create scale; saturation and bloom do not.
+The fantasy is not “four idiots in an obstacle game”. It is:
+Four friends become, slowly and painfully, a real crew.
+At the beginning, they overcorrect every bend. Halfway through, they begin calling cadence without
+being prompted. Late in the game, one player sees a dangerous cross-current and the crew instinctively
+changes stroke before anyone finishes explaining it. The reward is not a +20% paddle. The progression
+is the humans learning each other.
+That is the most important creative opportunity in the project.
+Production-grade game design, physics and presentation
+specification
+The primary control problem is balancing physical expression against 30-second comprehension. Five
+models deserve prototype comparison.
+Control modelAccessibilityExpression Physical
+causality Main risk Decision
+Hold/release
+canned stroke Excellent Low Medium
+Becomes a
+rhythm button;
+animation may
+hide fake
+propulsion
+Reject as
+primary
+Direction key
++ stroke key High Medium Medium
+Starts feeling like
+indirect vehicle
+steering
+Accessibility
+fallback
+Full mouse
+dragging of
+paddle handle
+Medium Very high High
+High motor
+complexity and
+camera conflict
+Prototype only
+Analog two-
+axis paddle
+workspace +
+immersion
+High High Very highRequires good
+visual constraintsRecommended
+9
+
+PAGE 10
+Control modelAccessibilityExpression Physical
+causality Main risk Decision
+Fully dynamic
+articulated
+paddle joint
+Low–
+medium
+Extremely
+high
+Extremely
+high
+Networking/
+jitter/solver
+instability
+Research
+branch
+Recommended control language: direct blade workspace. Each player's paddle has a constrained
+ergonomic region. Pointer or analogue-stick movement moves the blade target through that region at
+bounded physical speed. Holding the primary action immerses the blade; moving while immersed
+creates a stroke; release raises/feathers it. Pushing forward while immersed creates a reverse stroke.
+The system maps player intent to paddle pose, never to boat thrust.
+A player therefore learns three verbs: dip, pull, release.
+Mouse users move the pointer relative to a captured local paddle space; the primary mouse button
+plants the blade. Controller users use the right stick for blade position and the trigger for immersion. A
+keyboard fallback uses four direction keys plus a plant key to move through the same constrained
+paddle state. Camera input is separate and cannot apply steering force.
+The launch boat should use two port and two starboard stations, staggered fore and aft. Each
+paddle is attached conceptually to its own player and applies forces at a unique hull-relative point. Four
+equal forward strokes therefore yield approximately straight acceleration; port-only strokes yaw one
+direction; starboard-only strokes the opposite; opposing forward/reverse strokes can pivot; a bow
+stroke and stern stroke of equal magnitude create different rotational responses because their moment
+arms differ .
+Manual leaning should not be part of the first prototype. The body animation can lean naturally with
+stroke forces and boat acceleration, but a second independent balance axis risks obscuring the one-
+control-per-person elegance. A Phase Three experiment may test modest weight transfer only after
+paddling alone is deep enough.
+The authoritative boat is one Rapier dynamic rigid body with explicit mass, inertia and centre-of-mass
+tuning. Rapier supports force and impulse application at points, so distributed buoyancy and paddle
+reactions can naturally generate translational and rotational movement rather than manually setting
+yaw. 
+For buoyancy, start with approximately 16–24 hull samples, with the exact count established by
+benchmark. At each sample :
+where  is the shared authoritative water-height function,  represents the effective hull area assigned
+to that sample, and the force is applied at the sample point. Because forces are distributed spatially,
+pitch and roll restoration emerge from the rigid body rather than from a hidden “stay upright”
+animation.
+The more sophisticated alternative is computing submerged hull volume/centroid more accurately.
+Real-time buoyancy research explores substantially more exact approaches, including methods
+2
+i
+d =i clamp(h(x,z ,t)−i i y, 0, d )i max
+F =b,i ρgkd n 
+i i water
+h k
+i
+10
+
+PAGE 11
+concerned with displaced volumes and centres of buoyancy.  That approach deserves a Phase One
+benchmark, but the sample system should win unless the better model produces a perceptible
+gameplay benefit at acceptable server cost. The game does not need naval-architecture-grade
+hydrostatics merely to claim realism.
+Hull drag must use water-relative velocity. Longitudinal resistance should be lower than sideways
+resistance so the hull “tracks” through water rather than sliding like a hovercraft. Angular water
+damping should tame indefinite oscillations, but a strong hidden upright spring should be avoided
+because it makes waves and collisions dishonest. Large-scale real-time water research illustrates why
+water–rigid-body coupling is computationally non-trivial even when real-time techniques are used; this
+supports an intentionally bounded gameplay model instead of a fluid solver . 
+The paddle model should calculate the velocity of the immersed blade relative to local water:
+A first approximation for blade drag/reaction is:
+with blade orientation influencing effective drag and lift, and with force magnitude and rate bounded
+for numerical stability. The reaction is applied to the boat at the appropriate station/contact point. Exact
+coefficients are tuning parameters to measure, not values to invent in a document.
+This creates essential observable consequences:
+Situation Expected physical result
+Blade is above surface Essentially no water propulsion
+Blade enters shallowly Weak force and small splash
+Deep clean stroke Stronger reaction up to bounded efficiency
+Blade holds still in moving currentCurrent pushes the paddle/boat
+Player reverses stroke Reverse thrust and appropriate yaw
+Paddle hits wall Physical resistance/brace impulse, not water propulsion
+Four players pull in phase Maximum clean acceleration
+One side strokes early Detectable yaw before the other side catches up
+Boat enters eddy The same player gesture has a changed world-relative
+effect
+Boat retains speed after everybody
+stops
+Momentum decays through water drag rather than
+disappearing
+A paddle's solid-environment interaction is a major technical experiment. A full dynamic articulated
+paddle is attractive but increases joint instability and network reconciliation complexity. The
+recommended first implementation uses a constrained/kinematic blade representation, shape or
+33
+34
+v =rel (v +boat ω ×boat r+v )−blade u 
+water
+F =p − ρC A v v 
+2
+1 d sub ∣ rel∣ rel
+11
+
+PAGE 12
+contact casts against world geometry, and a carefully bounded reaction transferred to the boat. A full
+dynamic-joint branch should survive an objective stability test before replacing it.
+The water system should deliberately split authoritative physics water from visual water. The
+authoritative sampler outputs low-frequency height, surface normal and current vector
+deterministically. The renderer can add much richer normals, reflection, refraction, foam, wake and
+micro-waves. Classic real-time water work explicitly demonstrates the effectiveness of combining lower-
+frequency geometric wave motion with high-frequency normal detail rather than attempting to model
+every part of the water volumetrically. 
+Capsizing should be a state, not an instant trigger . A dangerous roll can still be countered by strokes/
+bracing/current. Only sustained inversion/submersion or an unrecoverable fall should trigger failure.
+Grounding should increase hull contact and drag; wedging should offer a reset only after a short
+detector confirms persistent contacts and negligible progress. Small crashes should produce sound,
+wood creak, spray, character reactions and changed momentum—not a red “FAIL” overlay.
+Checkpoint restoration must be deterministic and boring internally even if activation is spectacular
+visually. The server loads a canonical safe boat pose, clears current forces/velocities, places the four
+characters into valid seat states, resolves overlaps, advances several controlled simulation steps if
+necessary, and only then returns player authority. Persisting arbitrary live velocity from the instant of
+checkpoint activation is unnecessary risk.
+Adventure checkpoint spacing should begin with a design target of roughly 5–10 minutes of
+mastered traversal between meaningful saves, becoming denser around especially lethal set pieces.
+That number is a hypothesis for testing. Challenge can space them farther apart. Time Trial should use
+the same course but distinguish valid competitive runs from heavily assisted/resumed runs. Chained
+Together's separation of checkpoint-assisted Beginner from leaderboard-meaningful harder modes
+provides a useful structural precedent without dictating the exact cadence. 
+The camera is a gameplay system. It should use a third-person trailing anchor with velocity-based look-
+ahead, mild route-aware anticipation, obstacle sphere casts and hand-authored tunnel/canyon camera
+volumes. The camera should communicate boat roll without inheriting the hull's horizon rotation 1:1.
+FOV may widen gently with speed, while high-speed waterfalls prioritise look-ahead over cinematic
+shake. Local free-look should auto-recentre. The importance of treating this as a core system is
+strengthened by Paddle Paddle Paddle's documented post-launch camera revision. 
+Animation follows physical state. Hands use IK against the actual paddle handle; shoulder and torso
+poses react to blade resistance; characters lean from the boat's angular/linear acceleration; a missed
+water stroke visibly “air-swings”; collision reactions use actual acceleration/contact magnitude.
+Animation never decides propulsion.
+Sound is similarly informational: blade entry, clean catch, cavitating/sloppy stroke, wood scrape, hard
+impact, hull creak, water rushing faster beside the boat, paddle-on-rock contact and current intensity
+should all help four people infer what happened without examining an HUD.
+The HUD should contain almost nothing during ordinary play: seat colour/name, reconnect information
+when necessary, subtle checkpoint confirmation and optional route/progress information. No steering
+gauges, stamina bars, paddle-power meters or RPG inventory are required.
+35
+12
+22
+12
+
+PAGE 13
+The visual direction should exploit browser-friendly composition rather than brute force. Repeated
+environmental elements should use instancing or batching; Three.js explicitly documents draw-call
+reduction through merged geometry and InstancedMesh.  Assets should use glTF 2.0 with
+Meshopt/Draco where appropriate and KTX2/Basis textures; Three.js's loader supports those
+compression paths, and browser-engine documentation emphasises that apparently small JPEG/PNG
+downloads expand substantially when uncompressed in VRAM. 
+The game's art hierarchy should therefore be: exquisite boat and paddle close-up quality; strong
+characters; highly authored hero landmarks; medium-detail traversable surroundings; aggressively
+instanced/supporting vegetation and infrastructure; distant proxies. The tiny boat should always look
+like the most tangible object in the world.
+World Atlas, route logic and obstacle system
+The world concept is The Grand Waterworks: a natural watershed that generations of civilisation have
+progressively dammed, diverted, lifted, channelled, tunnelled and industrialised. That gives the game a
+coherent reason to move from wild river to flooded city to dam to subterranean turbines to locks to
+pumped highland channels to glacial aqueducts and finally a gigantic cascade to the ocean.
+Vertical ascent is never explained by the boat magically climbing a dry wall. Locks, boat lifts,
+counterweighted troughs, pumped flumes and moving water platforms perform the work. The high-
+altitude sections can become increasingly fantastical, but the world first teaches a consistent “water
+infrastructure can move us uphill” grammar .
+These elevations and durations are fictional design targets, not engineering survey data or promised
+playtime.
+Twenty candidate environments were considered: peaceful headwaters, mangrove channels, logging
+river , quarry gorge, old mill reach, flooded town, urban drainage, storm reservoir , giant dam, turbine
+tunnels, water-treatment plant, lock stair , mechanical boat lift, cave river , pumped incline, geothermal
+works, frozen canyon, glacial catchment, high aqueduct, suspended maintenance waterways and
+surreal sky-cistern/cascade concepts. Fourteen were selected because they can form one causal journey
+rather than a theme-park chain of unrelated biomes.
+Region Identity, geography
+and difficulty
+Primary/new
+challenge
+Signature moment,
+failure and recovery
+Checkpoints
+and target
+time
+Willow
+Headwaters
+Warm morning river ,
+cedar banks, mills in
+distance; gentle
+descent. Difficulty
+1/10.
+Learn dip/pull/
+release,
+straight
+strokes and
+basic turning.
+First four-person
+clean acceleration
+through split cedar
+posts; harmless
+banks make bad
+yaw funny rather
+than fatal.
+Launch/
+tutorial, first
+bend; 12–18
+min target.
+36
+37
+Willow
+Headwaters
++380
+m
+Timber
+Gorge
++240
+m
+Flooded
+Old
+Town
++180
+m
+Storm
+Reservoir
++150
+m
+Dam
+Apron
++20
+m
+Turbine
+Underworks
+-80
+m
+Treatment
+Labyrinth
+-20
+m
+Lock
+Stair
+&amp;
+Boat
+Lift
++280
+m
+Cave
+Siphon
++340
+m
+Geothermal
+Pumpworks
++520
+m
+Glacier
+Spillways
++760
+m
+High
+Aqueduct
++900
+m
+Suspended
+Channels
++860
+m
+Great
+Cascade
+0
+m
+/
+sea
+13
+
+PAGE 14
+Region Identity, geography
+and difficulty
+Primary/new
+challenge
+Signature moment,
+failure and recovery
+Checkpoints
+and target
+time
+Timber Gorge
+Narrowing valley,
+logging remnants,
+faster water . 2/10.
+Floating logs,
+current seams,
+controlled
+slowing.
+Old sawmill log
+chute; crew can
+escape mistakes
+into eddies instead
+of resetting.
+Calm pool
+before chute; 
+15–22 min.
+Flooded Old
+Town
+River overtook
+streets and market
+arcades. 3/10.
+Tight turns,
+moving debris/
+boat traffic,
+overhead
+clearance.
+Paddle through
+clocktower square
+during a surge;
+alleys offer
+alternate recovery
+loops.
+Market basin; 
+18–25 min.
+Storm
+Reservoir
+Huge open scale,
+drowned pylons,
+darkening weather .
+4/10.
+Crosswind,
+waves,
+heading
+discipline.
+Lightning
+illuminates the
+dam across the
+lake; errors send
+crew downwind,
+not automatically
+to death.
+Sheltered
+marina; 18–25
+min.
+Dam Apron
+Monumental
+spillway concrete
+and warning
+infrastructure. 5/10.
+Sluice pulses,
+accelerating
+water , braking
+before drops.
+First enormous
+controlled spillway
+descent. Safety
+basins let crews
+rescue overspeed.
+Before major
+chute and
+lower basin; 
+15–22 min.
+Turbine
+Underworks
+Underground
+“cathedral” of pipes/
+turbines. 5/10.
+Low ceilings,
+machinery
+timing,
+backwash.
+Passing inactive/
+active turbine
+chambers while the
+whole soundscape
+changes. Side
+maintenance bays
+recover bad
+approaches.
+Service dock; 
+18–25 min.
+Treatment
+Labyrinth
+Clarifiers, channels,
+gates, painted
+safety hardware.
+6/10.
+Flow routing
+and gate
+timing rather
+than switches/
+puzzles.
+Giant circular
+clarifier crossing;
+alternate channels
+allow recoverable
+wrong choices.
+Control basin; 
+18–25 min.
+Lock Stair &
+Boat Lift
+Massive vertical civil
+engineering. 6/10.
+Bracing while
+chambers fill,
+precise
+docking,
+vertical
+transport.
+Boat rises
+hundreds of metres
+in stages before a
+panoramic lift
+opens onto
+mountains.
+Each major lift
+stage; 20–28
+min.
+14
+
+PAGE 15
+Region Identity, geography
+and difficulty
+Primary/new
+challenge
+Signature moment,
+failure and recovery
+Checkpoints
+and target
+time
+Cave Siphon
+Natural limestone
+river threaded
+through engineered
+pressure tunnels.
+6/10.
+Darkness,
+acoustic
+navigation,
+eddies.
+Sudden cavern lake
+after a compressed
+tunnel; wall scrapes
+are survivable but
+destabilising.
+Cavern lake; 
+15–22 min.
+Geothermal
+Pumpworks
+Steam, mineral
+pools, colossal
+pumps. 7/10.
+Pulsed
+currents,
+geysers,
+temporary
+reverse flow.
+Pump hall starts
+and lifts water
+toward highlands.
+Cooling pools catch
+many failures.
+Cooling
+reservoir; 18–
+25 min.
+Glacier
+Spillways
+Blue ice, snow
+shadow, meltwater
+channels. 7/10.
+Low-friction
+banks, slush
+drag, drifting
+ice.
+Boat rides beneath
+translucent ice
+bridge. Sheltered
+melt ponds offer
+recovery.
+Melt ponds; 
+18–25 min.
+High
+Aqueduct
+Narrow
+monumental arches
+across deep valleys.
+8/10.
+Crosswinds,
+exposed turns,
+disciplined
+correction.
+Long reveal of
+destination
+through cloud
+break. Catch
+channels exist
+below selected
+hard sections to
+avoid endless
+repetition.
+Tower
+cisterns; 20–
+28 min.
+Suspended
+Maintenance
+Channels
+Counterweighted
+troughs, moving
+segments and vast
+drop beneath. 9/10.
+Transfer
+timing,
+braking, crew
+rotation
+discipline.
+Entire water
+channel rotates
+into alignment
+while crew stays
+afloat. Some
+missed transfers
+drop into lower re-
+entry troughs.
+Maintenance
+docks; 18–25
+min.
+Great
+Cascade
+Every water system
+converges into
+enormous route
+toward sea. 10/10.
+High-speed
+synthesis of
+currents,
+waves, gates,
+turns, drops
+and braking.
+Horizon opens to
+ocean before a
+multi-stage
+waterfall finale.
+Safety basins
+create “we nearly
+lost it” recoveries
+between major
+movements.
+Staged basins;
+20–30 min.
+15
+
+PAGE 16
+The aggregate target is roughly 4–5½ hours of first-pass route time before retries, but this is
+deliberately not a promised completion duration. The only valid answer comes from four-human
+playtests after grayboxing.
+Every region must also pass a production checklist: continuous entrance/exit geography; at least one
+recognisable distant landmark; a unique acoustic layer; one major new hazard and several returning
+hazards; a recovery route; checkpoint validation; streaming manifest; collision complexity review; high/
+medium/low rendering profile; four-client network test; camera-volume pass; and first-time readability
+observation. A region whose terrain merely exists is not complete.
+The obstacle system should be data-driven. Each hazard prefab needs at minimum: telegraph channel;
+affected physics entities; motion/current parameters; safe/recovery volumes; difficulty parameters;
+multiplayer authority type; audiovisual event hooks; LOD/activation distances; deterministic seed
+requirements; and automated regression scenario.
+Below are the required eighty obstacle concepts. “Cost” combines implementation and runtime risk at
+preproduction level; it is not an effort estimate in days.
+# Obstacle What players
+see / skill tested
+Physics, failure and
+recovery
+Scaling /
+combinations Cost
+1 Lateral current
+seam
+Visible foam line
+crossing river;
+heading control
+Sudden sideways
+water velocity yaws/
+drifts boat; crew can
+ferry-angle back
+Wider/faster
+seam; pair with
+narrow gate
+L
+2 Eddy pocket
+Swirling calm
+patch behind
+rock
+Rotation/current
+reverses locally;
+useful as deliberate
+recovery
+Smaller entrance
+at high difficultyM
+3 Whirlpool
+shoulder
+Visible rotating
+outer flow, not
+instant death
+centre
+Angular current
+pulls bow around;
+reverse/brace can
+escape
+Stronger
+gradient,
+obstacles at edge
+M
+4 Standing-wave
+train
+Repeating waves
+downstream
+Pitch/roll plus
+intermittent blade
+submersion
+Taller/irregular
+waves M
+5 Sluice surge Gate alarm then
+pulse
+Temporary
+longitudinal current
+spike
+Shorter
+telegraph, cross-
+current
+afterwards
+M
+6 Gravel bar Water colour/
+shallow ripples
+Hull grounds and
+slows; players pry/
+reverse free
+Narrow deeper
+route L
+7 Reverse-flow lockVisible
+recirculation
+Current temporarily
+pushes backwards
+Combine with
+gate timing M
+16
+
+PAGE 17
+# Obstacle What players
+see / skill tested
+Physics, failure and
+recovery
+Scaling /
+combinations Cost
+8 Waterfall lip Accelerating
+sheet and spray
+Need alignment/
+braking before
+commitment
+Offset safe basinM
+9 Hydraulic jump Turbulent foam
+wall
+Pitch impulse +
+reduced stroke
+consistency
+Chain after chuteH
+10 Crossing wake
+Moving boat
+leaves readable
+wake
+Roll/yaw when
+crossed obliquely
+Multiple wake
+angles M
+11 Waterwheel gapGiant slow wheel
+blades
+Time passage;
+physical blade
+collision
+Faster wheel/
+narrower openingM
+12 Swinging
+counterweight
+Huge pendulum
+above channel
+Impact imparts
+momentum, not
+auto-kill
+Cross-current
+beneath L
+13 Piston sluice
+Gate slams
+vertically after
+warning
+Braking/
+commitment Offset serial gatesM
+14 Crusher lock
+doors
+Opposing lateral
+doors
+Precise timing/
+straightness
+Current pushes
+toward one sideM
+15 Tilting weir plateChannel floor
+slowly tilts
+Boat slides/flow
+redirects
+Sequence with
+recovery pool H
+16 Screw wash
+Archimedes
+screw throws
+rotating current
+Rotational
+disturbance
+Narrow screw
+corridor H
+17 Chain-ferry cableCable rises across
+water
+Low clearance and
+paddle management
+Moving ferry
+adds wake M
+18 Lift-platform dockMoving water-
+filled platform
+Match velocity and
+enter straight
+Shorter boarding
+window H
+19 Conveyor rollersShallow industrial
+rollers under hull
+Translation/rotation
+while grounded Mixed directionsM
+20 Rotating pipe armSweeping pipe
+crosses water
+Read timing, brace
+after glancing hit
+Add surge
+current L
+21 Log boom Floating linked
+logs
+Flexible contact
+deflects hull
+Broken sections/
+openings M
+22 Timber raft
+crossing
+Large drifting
+body
+Predict moving
+collision / wake Faster current M
+17
+
+PAGE 18
+# Obstacle What players
+see / skill tested
+Physics, failure and
+recovery
+Scaling /
+combinations Cost
+23 Barge crossing
+Massive
+telegraphed
+traffic
+Avoid bow wave/
+body Less clearance H
+24 Maintenance-skiff
+wake
+Small craft
+passes
+Prepare for wake,
+not craft itself Two wakes crossM
+25 Barrel swarm Floating buoyant
+props
+Minor unpredictable
+contacts
+Denser but
+preserve readable
+channel
+M
+26 Cargo pendulum
+Crane cargo
+swings over
+channel
+Timing + recovery
+from glancing
+collision
+Current under
+crane M
+27 Crane bucket Bucket dips into
+water
+Displacement-like
+surge approximationVariable timing H
+28 Ferry chain Submerged/
+rising line
+Read warning lights
+and blade clearanceCrosswind M
+29 Flood debris pulse
+Telegraph
+upstream debris
+wave
+Position behind
+cover/through gap
+Larger mixed
+pieces H
+30 Culvert drums
+Cylinders roll
+through shallow
+section
+Contact spins/
+deflects boat Sloping channel M
+31 Canyon crosswindLeaves/spray
+show direction
+Continuous lateral
+aerodynamic force
+Gustier higher
+versions L
+32 Reservoir
+downburst
+Expanding rain/
+spray patch
+Short strong wind +
+waves
+Moving
+downburst zoneH
+33 Lightning
+machinery trigger
+Lightning visibly
+powers gates
+Timing based on
+deterministic
+sequence
+More machinery
+stages M
+34 Fog channel
+Landmarks
+disappear , bells
+remain
+Route reading from
+silhouettes/audio
+Tighter rock
+spacing M
+35 Heavy-rain curtainVisible visibility
+boundary
+Temporary reduced
+sight, stronger
+surface noise
+Combine with
+familiar obstacle
+only
+M
+36 Wind tunnel Infrastructure
+funnels air
+Sustained side/
+headwind
+Direction reverses
+at vents L
+37 Wave squall
+Localised moving
+rough-water
+patch
+Steering + stabilityCross current
+simultaneously H
+18
+
+PAGE 19
+# Obstacle What players
+see / skill tested
+Physics, failure and
+recovery
+Scaling /
+combinations Cost
+38 Slush field Visible icy surface
+Increased hull drag
+and paddle
+resistance
+Narrow clear-
+water path M
+39 Gust shadow
+Structures
+alternately
+shield/expose
+boat
+Anticipate changing
+lateral force
+Shorter
+structures L
+40 Waterspout laneHighly visible
+moving vortex
+Avoidable moving
+wind/current hazard
+Optional late-
+game spectacle H
+41 Root maze Giant roots divide
+channel
+Slow precise blade
+placement
+Current increases
+later M
+42 Telegraph rockfallDust/pebbles
+warn falling rocks
+Dodge without
+random hits
+Multiple timed
+zones M
+43 Collapsing bridge
+span
+Structure creaks
+then drops Commit or brake Debris changes
+route temporarilyH
+44 Low cave ceiling
+Ceiling
+silhouettes/
+scrapes
+Paddle recovery and
+boat-centre
+discipline
+Waves lift boat
+toward ceiling M
+45 Stalactite slalomVertical stone
+teeth Tight turns Current
+accelerates L
+46 Submerged
+boulders
+Surface boils
+reveal hidden
+rocks
+Read water;
+grounding/
+deflection
+Less obvious late-
+game cues M
+47 Mud shoal Brown shallow
+water
+Grounding +
+coordinated reverse/
+pry
+Moving tide/
+current L
+48 Ice floes Large floating
+shapes
+Moving contact
+geometry and route
+prediction
+Floes close gapsH
+49 Reed blind turn Dense reeds
+conceal bend
+Speed restraint/
+look-ahead
+Cross-current on
+exit L
+50 Basalt slot Narrow dark rock
+passage
+Keep straight
+despite wall contacts
+Alternating
+widths L
+51 Boat elevator Water-filled lift
+chamber
+Dock, brace while lift
+moves
+Smaller
+platform / exit
+current
+H
+52 Lock rise
+Filling chamber
+changes water
+level
+Hold position
+through inflow
+Stronger
+asymmetric fill H
+19
+
+PAGE 20
+# Obstacle What players
+see / skill tested
+Physics, failure and
+recovery
+Scaling /
+combinations Cost
+53 Pumped inclined
+flume
+Current carries
+boat uphill
+Maintain alignment
+against fast uphill
+flow
+S-bends H
+54 Counterweighted
+trough
+Entire water
+trough moves
+Stabilise during
+changing frame
+acceleration
+Timed transfer
+afterwards H
+55 Spillway chute Steep fast
+descent
+Line choice and
+braking before entry
+Obstacles on
+chute M
+56 Waterfall shelf
+basins
+Series of short
+drops
+Reorient quickly
+between drops Smaller basins M
+57 Aqueduct gap
+transfer
+Moving trough
+bridges missing
+span
+Time entry/exit Crosswind H
+58 Rotating trough Channel slowly
+rotates in 3D
+Maintain relative
+position
+Exit alignment
+challenge H
+59 Siphon crest
+Pumped/current-
+driven uphill then
+drop
+Trust/steer under
+changing flow Darkness H
+60 Drop-basin
+landing
+Long fall into
+deep catch pool
+Enter straight and
+survive rebound/
+waves
+Smaller safe
+basin H
+61 Four-stroke sprint
+gate
+Gate visibly
+closing ahead
+Everybody produces
+clean acceleration Shorter run-up L
+62 Bow-versus-stern
+turn
+Hairpin geometry
+teaches torque
+location
+Different stations
+use different timingAdd current L
+63 One-side feather
+squeeze
+Narrow wall on
+one side
+Some players must
+deliberately stop
+stroking
+Moving wall L
+64 Reverse-brake
+dock
+Dead-end/
+checkpoint dock
+Coordinated reverse
+without spinning Cross-current L
+65 Spin alignment
+Circular chamber ,
+narrow exit
+behind
+Controlled pivot Timed exit L
+66 Gust brace
+Warning
+windsocks before
+blast
+Opposing-side
+planted blades
+stabilise
+Waves
+underneath M
+20
+
+PAGE 21
+# Obstacle What players
+see / skill tested
+Physics, failure and
+recovery
+Scaling /
+combinations Cost
+67 Wall plant/pry Friendly solid
+post/wall
+Use blade contact
+deliberately to
+rotate
+Smaller target M
+68 Ferry-current
+crossing
+Strong river
+crosses desired
+path
+Asymmetric
+sustained strokes
+Obstacles
+downstream M
+69 Alternating
+cadence gate
+Obstacles leave
+alternating
+stroke windows
+Crew rhythm
+without abstract QTEFaster intervals M
+70 Low-gate drift
+No room for
+active paddles
+under structure
+Build correct
+momentum then
+feather/drift
+Cross-current
+inside L
+71 Buoy-rope snag Clearly visible
+loose rope
+Paddle can
+temporarily catch;
+reverse frees it
+During low-speed
+navigation only M
+72 Flexible fishing
+net
+Soft deforming-
+looking barrier
+Absorbs momentum
+rather than instant
+failure
+Small gaps H
+73 Runaway dock Whole wooden
+dock drifts loose
+Moving collision
+becomes temporary
+raft wall
+Faster river M
+74 Festival inflatables
+Giant soft
+floating
+decorations
+Comedic low-energy
+bouncing Wind moves themM
+75 Swinging bell Paddle/boat may
+ring giant bell
+Contact produces
+readable sound/
+impulse
+Narrower
+clearance L
+76 Tarp “sail” gust
+Loose industrial
+tarp inflates
+nearby
+Temporary wind
+blast with clear
+visual cue
+Repeated gust
+sequence M
+77 Geyser fountain
+Vent visibly
+charges then
+erupts
+Upward/side
+impulse and splash
+Multiple
+alternating ventsH
+78 Seesaw pontoon
+Floating platform
+tips under boat
+weight
+Balance/
+commitment
+Add current on
+exit H
+79 Loose picnic
+furniture
+Flooded objects
+drift into path
+Low-stakes slapstick
+contacts
+Cluster after
+storm M
+21
+
+PAGE 22
+# Obstacle What players
+see / skill tested
+Physics, failure and
+recovery
+Scaling /
+combinations Cost
+80 Rotating rescue
+boom
+Long floating
+arm rotates
+around buoy
+Can push, trap or
+rescue boat
+Faster rotation/
+current M
+A difficulty grammar should prevent “hard” from meaning “more random things”. Each obstacle has
+independent dimensions: approach speed, prediction horizon, spatial clearance, environmental force,
+recovery width and coordination asymmetry. Raise only one or two dimensions when first teaching a
+hazard. Combine familiar hazards only after each component has been learned. Randomness may
+change exact trajectories but must not erase readable telegraphs.
+The strongest obstacle ideas for early development are current seams, eddies, standing waves, shallow
+grounding, waterwheel gaps, logs, crosswinds, low ceilings, submerged boulders, spillway chutes, four-
+stroke gates, reverse-braking docks, spin alignment and wall bracing. They exercise the core paddle/
+boat system without requiring elaborate one-off machinery. Boat elevators, moving troughs, geometric
+hydraulic jumps, dynamic ice and deforming nets should wait until the fundamental simulation is
+proven.
+Technical architecture, technology decision and operational
+model
+The renderer decision should not be made on familiarity alone. Current official documentation shows
+that Three.js can use a WebGPU renderer with a WebGL2 backend fallback; PlayCanvas uses WebGL2 by
+default and can request WebGPU with fallback, while its documentation still labels the WebGPU
+graphics backend Beta.  That makes a dual-path strategy reasonable, but it does not justify making
+novel WebGPU effects critical to launch gameplay.
+Rendering
+option
+Browser
+reach
+Production
+tooling
+Custom
+game
+control
+WebGPU
+path
+Main cost/
+risk Recommendation
+Three.js
+High via
+WebGL2;
+WebGPU
+renderer can
+fall back. 
+Medium Excellent Strong but
+evolving
+Build more
+game-
+specific
+tooling
+ourselves
+Preferred
+PlayCanvas
+High;
+documented
+WebGL2
+baseline and
+WebGPU
+fallback. 
+Excellent
+browser
+editor
+High
+WebGPU
+presently
+labelled
+Beta in
+graphics
+docs. 
+Greater
+engine/
+editor
+convention
+commitment
+Excellent runner-
+up
+6
+38
+39 40
+22
+
+PAGE 23
+Rendering
+option
+Browser
+reach
+Production
+tooling
+Custom
+game
+control
+WebGPU
+path
+Main cost/
+risk Recommendation
+Babylon.js
+Strong
+modern
+web-engine
+option with
+WebGL/
+WebGPU
+capabilities
+High High
+Mature
+enough for
+serious
+evaluation;
+some
+adjacent
+WebGPU
+paths
+remain
+capability-
+dependent. 
+Larger
+engine
+abstraction
+surface than
+needed
+Strong
+alternative
+Raw
+WebGL2/
+WebGPU
+Whatever
+we build Very low Maximum Maximum
+Reinvent
+asset, scene,
+material,
+animation
+and tooling
+systems
+Reject
+Unity/Web
+export path
+Separate
+investigation
+required
+Excellent
+authoring Medium
+Runtime/
+export
+constraints
+differ
+substantially
+Large
+download/
+runtime
+architecture
+and server-
+code
+divergence
+Not preferred for
+this browser-first
+brief
+Recommendation: Three.js, because the game's unusual value lies in simulation/network integration
+and custom world streaming more than editor-driven entity authoring. The price is that the team must
+build disciplined level/obstacle tooling instead of relying on a full editor ecosystem. A Phase One
+PlayCanvas spike should still be run as a falsification test: if its editor/pipeline produces materially faster
+iteration without hurting shared simulation architecture, the decision can change.
+For rigid-body physics, Rapier is the leading candidate. Its JavaScript/WASM API explicitly supports
+forces/impulses at points, and its determinism documentation states that the WASM/JavaScript version
+can be deterministic across platforms when version, initial conditions and insertion order remain
+consistent, while also warning about sources such as platform-dependent JavaScript trigonometric
+functions.  That is unusually helpful for browser/server parity.
+Jolt is a credible high-performance alternative and cannon-es is a lightweight JavaScript alternative, but
+both create different trade-offs: Jolt adds a C++/WASM integration and build surface, while cannon-es is
+intentionally a lightweight JavaScript physics library.  Neither should replace Rapier without a
+benchmark demonstrating a concrete advantage for the actual boat/contact workload.
+For networking, Colyseus is recommended over raw WebSocket plumbing because it already
+supplies authoritative Room abstractions, server-mutated synchronised state, property-level state
+changes, reconnection mechanisms, current prediction/reconciliation guidance and explicit load-test/
+41
+42
+43
+23
+
+PAGE 24
+scaling documentation.  The simulation remains our responsibility; Colyseus reduces the amount of
+surrounding multiplayer infrastructure that must be invented.
+The proposed topology is:
+The server never accepts “apply 4,000 N here” from a client. It receives bounded paddle intent:
+sequence number , client tick, local target blade position/velocity and immersion state. It clamps physical
+reach and maximum blade speed, reconstructs the server-side blade state, samples local water and
+calculates the resulting force. That is both better anti-cheat and a cleaner source of truth.
+The initial simulation target should be 60 fixed physics steps per second, benchmarked directly
+against a 30 Hz server alternative. Colyseus documentation exposes fixed timestep/prediction patterns
+and a default state-patching cadence in this general range, but the actual room tick and replication
+cadence are project decisions, not framework guarantees.  A sensible first experiment is 60 Hz
+authoritative physics with approximately 20 Hz network snapshots/deltas.
+The client prediction problem deserves caution. Ordinary character prediction assumes the local client
+primarily owns its own moving body. Here four clients influence the same body. The recommended
+experiment has two branches:
+Branch Behaviour Advantage Risk
+A: authoritative
+boat +
+interpolation/
+extrapolation
+Own paddle animation reacts
+immediately; boat follows
+server with carefully
+smoothed short extrapolation
+Simple,
+robust, little
+rollback
+complexity
+At high RTT, own stroke
+may feel disconnected
+from hull
+B: predicted
+shared boat
+Every client simulates the
+whole boat using its current
+local input plus latest remote
+input estimates, then
+reconciles authoritative
+snapshots
+Immediate
+hull response
+Shared-input rollback,
+contact state and
+dynamic obstacles can
+create visible
+corrections
+Colyseus's current prediction documentation gives useful mechanics for prediction, reconciliation and
+remote interpolation.  It does not prove Branch B will work acceptably with Rapier contacts, so
+Phase Two should measure both under 50, 100, 150 and 200 ms round-trip latency, added jitter and
+packet loss. The less sophisticated solution should win if humans cannot tell the difference.
+Launch transport should be WebSocket. WebTransport reached a W3C Candidate Recommendation
+Snapshot on 30 July 2026 and offers richer stream/datagram semantics, but it remains newer
+technology; MDN also treats it as a relatively recent browser API.  Transport should be abstracted
+enough to experiment later , but no core mechanic needs WebTransport to succeed.
+44
+sequencedboundedinputsWebSocket
+~20Hzinitialtarget
+Player
+A
+paddle
+input
+Browser
+client
+instant
+local
+paddle
+visual
+Player
+B
+paddle
+input
+Player
+C
+paddle
+input
+Player
+D
+paddle
+input
+Colyseus
+authoritative
+room
+fixed
+timestep
+Deterministic
+water/current
+sampler
+Rapier
+boat
++
+active
+obstacles
+Checkpoint
+state
+PostgreSQL
+Authoritative
+snapshots
+/
+deltas
+Client
+interpolation
+/
+optional
+prediction
+Three.js
+scene
+45
+46
+47
+24
+
+PAGE 25
+World rendering should stream chunks based on route topology and visibility, not arbitrary equal
+squares. The next route branches/chunks are prefetched according to boat position and velocity;
+previous chunks remain resident long enough for reversal and recovery. Distant hero landmarks use
+proxy meshes that are loaded far earlier than local traversal assets. Dynamic obstacle simulation
+activates only around the crew, while static collision and broad route data can remain substantially
+cheaper .
+glTF is the appropriate asset delivery format; Khronos positions it as a runtime 3D asset-delivery
+standard, while Three.js directly supports mesh compression and KTX2/Basis texture extensions. 
+Browser memory management needs explicit disposal because Three.js's glTF documentation warns
+that image bitmaps are not automatically garbage-collected merely because the loader's object
+reference disappears.  This is particularly important in a multi-hour streaming game.
+Proposed client targets—not achieved benchmarks:
+Budget Low Medium
+baseline High Ultra /
+experimental
+Renderer WebGL2 WebGL2
+WebGL2 or
+WebGPU after
+validation
+WebGPU
+preferred after
+capability test
+Intended
+output 720–900p dynamic 1080p / 60 fps
+target
+1440p-oriented
+scaling GPU-dependent
+Water
+basic reflection
+approximation,
+reduced particles
+high-quality
+surface + local
+wakes/foam
+richer
+reflection/
+refraction,
+more foam
+compute/high-end
+effects only if
+proven
+Shadows minimal cascades/
+range
+controlled
+directional
+shadows
+longer
+distance/more
+detail
+highest safe
+budget
+Vegetation aggressive LOD/
+instancing standard LOD richer density highest tested
+density
+Dynamic
+resolution permitted permitted optional optional
+Gameplay
+physics identical identical identical identical
+The graphics quality menu must never alter authoritative current strength, obstacle timing or collision
+geometry.
+The medium baseline performance objective is 60 fps at 1080p on a defined desktop reference
+system, but hardware should be locked only after Phase One profiling. Contemporary co-op titles in
+this competitive set list minimum GPUs ranging from GTX 1050 Ti-class hardware for Fart Together to
+GTX 1060/RX 6600 XT for PEAK, while RV There Yet? lists GTX 970-class minimum hardware. Those are
+useful market references, not browser performance guarantees. 
+Proposed engineering thresholds for the reference build are therefore budgets, not claims:
+48
+49
+50
+25
+
+PAGE 26
+Metric Initial gate
+Render target 60 fps / 16.67 ms at Medium
+Typical GPU frame budget ≤10.5 ms target
+Typical main-thread game/render
+work ≤4 ms target
+Client physics contribution ≤1.5 ms average target
+Server total process occupancy Keep sustainable CPU headroom; measure p95/p99
+Network average Aim below ~40 KB/s/client; verify experimentally
+Streaming No frame-scale blocking decompression/upload spike
+Session soak At least 90 min in Phase Ten, with memory trend
+recorded
+Server economics must be calculated from measured rooms per host. Colyseus Cloud currently
+advertises entry pricing from $15/month, while AWS Lightsail exposes fixed-price virtual-machine
+examples that can be used for sensitivity modelling. Neither tells us how many authoritative Rapier
+rooms this game can actually host. 
+For example, purely as scenario arithmetic, suppose a $42/month VM were used. The infrastructure
+component per active room-hour would be:
+Measured sustainable rooms on that hypothetical
+host
+Hypothetical compute cost / active room-
+hour
+5 ≈ $0.0115
+10 ≈ $0.0058
+20 ≈ $0.0029
+40 ≈ $0.0014
+Those figures are not forecasts; 5/10/20/40 rooms are sensitivity cases. Database, Redis, telemetry,
+bandwidth, backups, orchestration, idle capacity and support are excluded. Colyseus's own load-test
+documentation reinforces that room capacity should be established by load testing, including
+awareness that the load generator itself can become the bottleneck. 
+Persistence should store checkpoint identity rather than unstable simulation state:
+SaveSession
+  saveId
+  ownerUserId
+  worldVersion
+  mode
+51
+room cost= 
+measured concurrent rooms
+42/730
+52
+26
+
+PAGE 27
+  checkpointId
+  checkpointRevision
+  regionId
+  canonicalBoatSpawnPose
+  partyPermissionPolicy
+  activatedAt
+  updatedAt
+Only the authoritative room may advance checkpointRevision. Updates should be transactional or
+use an expected-revision condition to prevent two stale servers from overwriting progress.
+Reconnection restores a full authoritative room snapshot and rebinds the player's seat; Colyseus has
+explicit reconnection support, but the seat retention window and persistence behaviour remain game
+policy. 
+The principal technical risks, in order , are:
+Risk Probability Impact Mitigation before scope growth
+Shared boat feels laggy
+despite instant paddle
+input
+High Critical A/B authoritative smoothing vs
+prediction under impaired networks
+Paddle control is physically
+“correct” but unpleasantHigh Critical Human testing before environment
+production
+Paddle-wall contacts create
+solver explosions / exploitsHigh High
+Bounded contact energy, regression
+scenes, kinematic contact prototype
+first
+Buoyancy oscillates or feels
+artificially damped
+Medium-
+high High Sample placement sweep, anisotropic
+drag, fixed-step traces
+WebGPU feature
+divergence doubles art/
+shader work
+High Medium-
+high
+WebGL2 launch baseline;
+enhancements only behind validated
+capabilities
+Continuous world leaks
+browser memory High High Explicit disposal, KTX2/Meshopt, chunk
+budgets and long soaks
+Camera causes “unfair”
+failures High High Camera volumes and obstacle-
+readability test from first slice
+Competitor comparison
+collapses to “same boat
+game”
+High High
+Preserve blade-water causality, four
+force points, recovery and coherent
+expedition
+Hosting economics remain
+unknowable until late Medium High Server-room load benchmark during
+Phase Five, not launch month
+Working title has legal
+conflict Medium High Professional trademark/domain/
+storefront clearance before brand lock
+53
+27
+
+PAGE 28
+Phased execution system, tracker state and first prototype
+The user's proposed Phase Zero–Twelve structure is fundamentally sound. The important modification
+is that several later disciplines should begin as small feasibility probes earlier , while mass content
+production remains blocked behind the core-fun and vertical-slice gates.
+Phase Research and implementation
+purpose Mandatory exit evidence
+Discovery /
+preproduction
+Competitive originality, controls,
+physics, technology, naming, world
+logic, PRD and risk register
+Research log + decision log +
+prototype hypotheses; legal naming
+work may remain open
+Feasibility
+prototypes
+Renderer , one floating hull, one
+paddle, shared water sampler ,
+camera, basic authoritative room
+Frame/physics/network
+measurements from independent
+spikes
+Four-player core
+gameplay
+Four clients, four physical paddle
+contributions, one shared boat,
+slalom and current
+Human comprehension, force-
+causality traces, multiplayer session
+evidence
+Advanced boat/
+water
+Waves, currents, drag, capsizing,
+grounding, solid-paddle contact
+Automated physics regression
+matrix
+Vertical slice
+One 10–15 minute final-quality
+region, checkpoints, camera, audio/
+VFX
+Four-person playtest + target-
+hardware profile + network run
+No
+ Yes
+No
+ Yes
+No
+ Yes
+Discovery
+&
+preproduction
+Feasibility
+spikes
+Renderer
++
+physics
++
+network
+feasible?
+Revise
+architecture
+Four-player
+paddling
+prototype
+Four
+humans
+find
+the
+shared
+boat
+predictable
+and
+worth
+replaying?
+Change
+paddle/control/boat
+model
+Advanced
+water
+&
+boat
+physics
+Polished
+10–15
+min
+vertical
+slice
+Fun
++
+network
++
+camera
++
+performance
+gate?
+Fix
+core
+/
+reduce
+scope
+Multiplayer
+hardening
+Large-world
+streaming
+Obstacle
+authoring
+tools
+Full
+world
+production
+Premium
+art/audio/game
+feel
+QA
+&
+performance
+Release
+candidate
+Launch
+&
+evidence-led
+iteration
+28
+
+PAGE 29
+Phase Research and implementation
+purpose Mandatory exit evidence
+Multiplayer
+hardening
+Reconnection, input sequencing,
+latency/jitter/loss, save consistency,
+abuse constraints
+Network impairment matrix
+Large-world
+technology
+Streaming, LOD, long sessions,
+persistence and transitions
+Memory/frame-time soak over
+continuous multi-region route
+Obstacle
+framework
+Data-driven reusable hazards,
+parameter grammar , deterministic
+timing, tests
+Designer can create/test
+representative hazards without
+bespoke architecture
+World productionRegion-by-region graybox →
+gameplay → art → optimisation
+Full checklist for every region;
+terrain alone cannot pass
+Premium art/
+audio
+Final boat/character/water/weather/
+lighting/audio/camera consistency
+Art-bible and gameplay-readability
+review
+QA/performanceBrowser/GPU/network/save/physics/
+accessibility/long-session matrix
+Documented results; blockers
+resolved
+Release
+candidate
+Deployment, rollback, production
+persistence, onboarding Full release rehearsal
+Launch/iterationReal failure telemetry, checkpoint
+abandonment, difficulty and bugs
+Continuous evidence-driven
+backlog
+The phase-tracker status after this research pass is deliberately conservative.
+Task Current status Why it is not DONE
+Competitor/originality
+research RESEARCHED Must be refreshed before public positioning
+Browser-stack assessmentRESEARCHED No comparative prototype benchmark yet
+Physics architecture RESEARCHED Equations/spec exist; behaviour has not been
+simulated here
+Multiplayer architectureRESEARCHED No real four-client authoritative boat has run
+Naming RESEARCHING Trademark/domain/storefront legal clearance
+remains
+Rendering feasibility BACKLOG Requires actual build/profile
+Floating hull BACKLOG No implementation exists
+Physical paddle BACKLOG No implementation exists
+Four-player room BACKLOG No server exists
+Four-human core-fun testBACKLOG Requires playable prototype and humans
+29
+
+PAGE 30
+Task Current status Why it is not DONE
+World production BACKLOG /
+gated Explicitly blocked by core fun
+Performance claims NONE Targets only; no benchmark
+Deployment BACKLOG No release infrastructure has been built
+That distinction matters: Phase Zero documentation has been produced, but the project itself has
+not yet demonstrated feasibility.
+The smallest genuine prototype should contain almost nothing that cannot help answer the core
+question.
+Prototype environment: a roughly 150 m × 60 m test basin, flat/low-wave water , one wooden
+placeholder boat, four clearly marked seats/paddles, 8–12 slalom pylons, one narrow gate, one cross-
+current volume and one reset/checkpoint dock. No giant world, cosmetics, progression, elaborate
+characters or advanced weather .
+Prototype networking: one real Colyseus room, four separate browser clients, authoritative Rapier
+boat, fixed simulation tick, input sequencing, authoritative state stream and reconnect test. One client
+process pretending to be four players is insufficient for the gate.
+Prototype input: direct blade workspace only. Every useful boat movement must ultimately derive from
+water/solid interaction with the paddles plus environmental forces. No hidden arrow-key or WASD
+velocity motor .
+Prototype test script:
+Test What it proves
+Player A strokes while B/C/D lift bladesSeat A independently matters
+Repeat for all four No decorative/passenger seat
+Four equal strokes Combined forward propulsion
+Port pair only Predictable yaw
+Starboard pair only Opposite predictable yaw
+One side forward / one reverse Pivot/braking potential
+Intentionally miss water No phantom thrust
+Stroke inside cross-current Water-relative force changes behaviour
+Hit wall with blade Contact is readable and bounded
+Run slalom Coordination is expressive, not merely theoretical
+Pass narrow current gate Real co-operative control challenge
+100 and 200 ms simulated RTT Latency sensitivity
+30
+
+PAGE 31
+Test What it proves
+Jitter and 1/3/5% packet-loss scenariosRobustness/failure behaviour
+Disconnect one seat and reconnectSession continuity
+Reset at dock Stable checkpoint restoration
+Initial acceptance thresholds should be treated as pre-registered design targets rather than
+manipulated after seeing results. A reasonable first gate is that at least 75% of a minimum twelve first-
+time testers demonstrate the basic dip/pull/release cycle within 30 seconds; at least 80% rate “I
+understood why the boat moved that way” at 4/5 or above after tutorial play; a controlled missed-water
+gesture produces no more than a small fraction—target ≤5%—of matched immersed-stroke impulse;
+and no uncontrolled force explosion, tunnelling catastrophe or hard desynchronisation occurs during a
+30-minute four-player test session. These are proposed acceptance criteria, not current results.
+The most revealing qualitative measure should be recorded immediately after every run:
+“When the boat did something bad, could you identify which stroke/current/contact
+caused it?”
+That question differentiates good difficulty from bad controls.
+Other metrics should include time-to-first-clean-stroke, number of accidental versus understood
+failures, correction magnitude under network reconciliation, number of recoveries from apparently bad
+situations, time stuck in wedges, spontaneous verbal coordination, checkpoint repetition, voluntary
+immediate replays and the point at which a player first begins calling a cadence or directing another
+seat.
+The project should not treat “players yelled a lot” as proof of fun.
+The first major decision gate after human testing should have three possible outcomes:
+Proceed if four-person paddling is understandable, expressive and repeatedly enjoyable.
+Iterate if the social idea works but control causality, drag, torque or latency makes the boat unreliable.
+Stop/reconcept if players consistently prefer a hidden steering assist or cannot perceive their
+individual contribution. Building fourteen regions around a weak shared-control mechanic would only
+make the failure more expensive.
+The permanent documentation created for this pass is:
+docs/PRD.md
+docs/RESEARCH_LOG.md
+docs/PHASE_TRACKER.md
+docs/DECISION_LOG.md
+docs/WORLD_ATLAS.md
+docs/PHYSICS_SPEC.md
+docs/MULTIPLAYER_ARCHITECTURE.md
+docs/ART_BIBLE.md
+31
+
+PAGE 32
+docs/TEST_MATRIX.md
+docs/RISK_REGISTER.md
+docs/CHANGELOG.md
+docs/NAME_RESEARCH.md
+docs/IMPLEMENTATION_PLAN.md
+docs/FIRST_PROTOTYPE_SPEC.md
+docs/OBSTACLE_CATALOGUE.md
+Download all Phase Zero documents
+The immediate dependency-ordered next research and implementation queries are therefore:
+Priority Question to answer Evidence required before accepting
+answer
+Critical Does direct blade-workspace control feel
+understandable with one paddle?
+Instrumented playable one-paddle
+test
+Critical How many hull buoyancy samples give stable
+pitch/roll for acceptable server cost?
+Parameter sweep with frame/tick
+timings
+Critical
+Is kinematic paddle contact more stable than
+articulated joints while preserving convincing
+wall bracing?
+Side-by-side collision regression
+Critical
+Does authoritative shared-body smoothing feel
+acceptable at 100–200 ms, or is prediction
+necessary?
+Four-client impaired-network A/B
+test
+Critical Can four humans understand individual force
+contribution without a UI vector overlay?Recorded first-time playtests
+High Three.js or PlayCanvas gives the faster final
+production workflow for this specific world?
+Equivalent water/boat/streaming
+mini-scene benchmark
+High
+What baseline desktop hardware actually
+sustains 1080p/60 with representative water ,
+shadows and environment density?
+GPU/CPU captures on several
+machines/browsers
+High What server room density does the real Rapier
+workload support?
+Colyseus load test after
+representative obstacle physics
+exists
+High How often may checkpoints repeat mastered
+content before frustration dominates?
+Vertical-slice retry/abandonment
+measurements
+High Is All Hands, No Rudder commercially clear
+enough to lock?
+Specialist trademark, store, company
+and domain clearance—not a search-
+engine guess
+The decisive production principle is unchanged from the brief, but research makes it even more
+important:
+32
+
+PAGE 33
+The enormous world is not the game. The spectacular water is not the game. The obstacles are
+not the game. The four people learning to make one little boat obey them is the game.
+Everything else should exist to give that relationship increasingly extraordinary things to survive.
+Save 40% on Paddle Paddle Paddle on Steam
+https://store.steampowered.com/app/3570070/
+rigid_body_forces_and_impulses | Rapier
+https://rapier .rs/docs/user_guides/javascript/rigid_body_forces_and_impulses/
+Fart Together on Steam
+https://store.steampowered.com/app/5117550/Fart_Together/?curator_clanid=46135471
+Trademark search
+https://tmsearch.uspto.gov/
+WebGPURenderer - Three.js Docs
+https://threejs.org/docs/pages/WebGPURenderer .html
+Realistic Buoyancy Model for Real‐Time Applications - Bajo - 2020 - Computer Graphics Forum -
+Wiley Online Library
+https://onlinelibrary.wiley.com/doi/10.1111/cgf.14013
+Colyseus - Multiplayer Game Framework for Node.js – Colyseus
+https://docs.colyseus.io/
+Save 20% on Chained Together on Steam
+https://store.steampowered.com/app/2567870/
+RV There Yet? on Steam
+https://store.steampowered.com/app/3949040/RV%20There%20Yet
+PEAK on Steam
+https://store.steampowered.com/app/3527290/PEAK/?cc=us&l=english
+Steam：Carry The Glass
+https://store.steampowered.com/app/3263320/Carry_The_Glass/?l=japanese
+Human Fall Flat on Steam
+https://store.steampowered.com/app/477160/Human%3A%20Fall%20Flat/?l=english
+Optimizing Human: Fall Flat for mobile devices
+https://www.gamedeveloper .com/design/optimizing-human-fall-flat-for-mobile-devices
+Party Animals on Steam
+https://store.steampowered.com/app/1260320/Party_?l=english
+First Update after Launch · Paddle Paddle Paddle update for 27 July 2025 · SteamDB
+https://steamdb.info/patchnotes/19374515/
+Conversation dynamics in a multiplayer video game with knowledge asymmetry - PMC
+https://pmc.ncbi.nlm.nih.gov/articles/PMC9669907/
+Postmortem: A Rationally Designed Funny Game - The making of 'biped', in hindsight
+https://www.gamedeveloper .com/design/postmortem-a-rationally-designed-funny-game---the-making-of-biped-in-hindsight
+Steam Community :: Paddle Together
+https://steamcommunity.com/app/3845160
+1 3 10 21
+2 42
+4 11 50
+5 32
+6 38
+7 33
+8 44
+9 12
+13
+14 25
+15 16
+17
+18
+19 20
+22
+23
+24
+26
+33
+
+PAGE 34
+Sync or Sink! | Play on Roblox
+https://www.roblox.com/games/139229390432061/Sync-or-Sink
+OAR ELSE! the card game Stranded in shark infeste
+https://www.flatcar6studios.com/s/oarelse_rules.pdf
+ALL HANDS Trademark | Trademarkia
+https://www.trademarkia.com/all-hands-99845647
+2588 No. 43012 GOVERNMENT GAZETTE, 14 FEBRUARY 2020
+https://archive.opengazettes.org.za/archive/ZA/2020/government-gazette-ZA-vol-656-no-43012-dated-2020-02-14-road-
+carrier-permits.pdf
+ONE BOAT Trademark | Trademarkia
+https://www.trademarkia.com/one-boat-87031183
+Rigid Body Interaction for Large‐Scale Real‐Time Water Simulation - Kellomäki - 2014 - International
+Journal of Computer Games Technology - Wiley Online Library
+https://onlinelibrary.wiley.com/doi/abs/10.1155/2014/580154
+Chapter 1. Effective Water Simulation from Physical Models | NVIDIA Developer
+https://developer .nvidia.com/gpugems/gpugems/part-i-natural-effects/chapter-1-effective-water-simulation-physical-models
+Optimize Lots of Objects
+https://threejs.org/manual/pages/optimize-lots-of-objects.html
+GLTFLoader - Three.js Docs
+https://threejs.org/docs/pages/GLTFLoader
+Supported Browsers | PlayCanvas Developer Site
+https://developer .playcanvas.com/user-manual/engine/supported-browsers/
+Graphics | PlayCanvas Developer Site
+https://developer .playcanvas.com/user-manual/graphics/
+WebGPU in WebXR | Babylon.js Documentation
+https://doc.babylonjs.com/features/featuresDeepDive/webXR/webGPUXR/
+GitHub - jrouwe/JoltPhysics: A multi core friendly rigid body physics and collision detection library.
+Written in C++. Suitable for games and VR applications. Used by Horizon Forbidden West and Death
+Stranding 2. · GitHub
+https://github.com/jrouwe/joltphysics
+Client Prediction & Reconciliation – Colyseus
+https://docs.colyseus.io/netcode/client-prediction
+Publications | WebTransport | Working Groups | Discover W3C groups | W3C
+https://www.w3.org/groups/wg/webtransport/publications/
+glTF - Runtime 3D Asset Delivery
+https://www.khronos.org/gltf/
+Pricing - Colyseus Cloud Hosting Plans
+https://colyseus.io/pricing/
+Load Testing – Colyseus
+https://docs.colyseus.io/tools/loadtest
+Reconnection – Colyseus
+https://docs.colyseus.io/room/reconnection
+27
+28
+29
+30
+31
+34
+35
+36
+37 49
+39
+40
+41
+43
+45 46
+47
+48
+51
+52
+53
+34

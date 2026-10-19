@@ -1,0 +1,23 @@
+{
+  "result": "PASS",
+  "origin": "http://localhost:2569",
+  "protocol": 3,
+  "physics": "basin-0.5",
+  "seats": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "checks": [
+    "health",
+    "title",
+    "directory guard",
+    "four WebSocket seats",
+    "four-ready launch",
+    "60Hz clock advances",
+    "drop pauses crew",
+    "reconnect resumes same seat"
+  ],
+  "scope": "Automated private crew; destination browser/human/performance tests remain"
+}

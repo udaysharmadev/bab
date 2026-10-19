@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#153b33" />
+  <title>Bad at Boating</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23183d35'/%3E%3Cpath d='M7 20h26l-7 11H14z' fill='%23efbf6e'/%3E%3Cpath d='M12 9l16 19' stroke='%23e27c46' stroke-width='4'/%3E%3C/svg%3E">
+</head>
+<body>
+  <div id="world" aria-label="River, obstacles and the shared wooden boat"></div>
+  <main id="title-screen" class="title-screen" aria-label="Main menu">
+    <div class="title-content">
+    <h1><small>BAD AT</small><br><span>BOATING</span><i aria-hidden="true"></i></h1>
+    <nav aria-label="Start game">
+      <button id="play-friends" class="primary" aria-label="Play with Friends">Play with Friends</button>
+      <button id="join-title">Join Crew</button>
+      <button id="resume-crew" hidden>Resume Crew</button>
+      <button id="continue-voyage" hidden>Continue Voyage</button>
+    </nav>
+    <p id="menu-message" role="status"></p>
+    </div>
+  </main>
+  <button id="menu-button" aria-label="Open game menu" hidden>☰</button>
+  <section id="lobby" class="lobby" aria-label="Crew lobby" hidden>
+    <h2>All hands aboard.</h2><p id="crew-count">Waiting for your crew · 1 / 4</p>
+    <ol id="crew" aria-label="Crew seats"></ol>
+    <div class="lobby-actions"><button id="invite">Copy Invite</button><button id="ready" class="primary" disabled>Ready to Row</button></div>
+    <p class="control-note">Hold W/↑ forward · S/↓ reverse · A/← D/→ turn<br>Each player controls their own paddle.</p>
+  </section>
+  <div id="loading" class="notice" role="status" hidden>Finding your boat…</div>
+  <div id="crew-waiting" class="notice" role="status" hidden>Connection interrupted. Holding the boat for the crew…</div>
+  <section id="failure" class="result-screen" aria-label="Boat lost" hidden>
+    <h2>All hands.<br>No boat.</h2><p>A collision broke the hull.</p><button id="retry-checkpoint" class="primary">Retry Checkpoint</button><button id="failure-leave" class="quiet">Main Menu</button>
+  </section>
+  <section id="finish-screen" class="result-screen" aria-label="River complete" hidden><h2>Still friends.<br>Still floating.</h2><p>You made it through the river.</p><button id="replay" class="primary">Row Again</button><button id="finish-leave" class="quiet">Main Menu</button></section>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <dialog id="join-dialog" aria-label="Join crew"><form method="dialog"><button class="dialog-close" aria-label="Close join">×</button></form><h2>Join your crew.</h2><form id="join-form"><label for="room-code">Crew invite link or code</label><input id="room-code" autocomplete="off" required placeholder="Paste your invite" /><button class="primary" type="submit">Join Boat</button></form></dialog>
+  <dialog id="settings-dialog" aria-label="Game menu">
+    <form method="dialog"><button class="dialog-close" aria-label="Close game menu">×</button></form>
+    <h2>Bad at Boating</h2><p id="seat-name"></p>
+    <button id="resume" class="primary">Back to the River</button>
+    <div class="menu-actions"><button id="invite-menu">Copy Crew Invite</button><button id="copy-recovery" disabled>Copy Voyage Recovery Code</button><button id="show-controls">Controls</button><button id="reset">Return to Checkpoint</button><button id="fullscreen">Fullscreen</button><button id="leave">Main Menu</button></div>
+    <label class="setting">Sound effects <input id="sound-enabled" type="checkbox" checked /></label>
+    <label class="setting">Sound volume <input id="sound-volume" type="range" min="0" max="1" step="0.05" value="0.55" /></label>
+    <label class="setting">Gentler camera <input id="reduced-motion" type="checkbox" /></label><label class="setting">Lower graphics <input id="low-quality" type="checkbox" /></label>
+  </dialog>
+  <dialog id="controls-dialog" aria-label="Paddle controls"><form method="dialog"><button class="dialog-close" aria-label="Close controls">×</button></form><h2>Hold a key. Keep rowing.</h2><dl><dt>W ↑</dt><dd>Row forwards continuously</dd><dt>S ↓</dt><dd>Row backwards / slow forward drift</dd><dt>A ←</dt><dd>Turn the boat left</dd><dt>D →</dt><dd>Turn the boat right</dd></dl><p>Hold to repeat complete strokes. Combine forward and turn to curve. Release to lift your paddle; the boat keeps its momentum. Each player controls their own paddle, so coordinate with your crew. Red-marked obstacles break the boat on contact.</p><p>Escape opens the game menu.</p></dialog>
+  <script type="module" src="/src/client/main.ts"></script>
+</body>
+</html>

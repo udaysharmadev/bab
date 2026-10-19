@@ -1,0 +1,44 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"><title>Landing water regression</title><style>body{margin:0;overflow:hidden}#world{position:fixed;inset:0}#note{position:fixed;bottom:12px;left:16px;color:#fff3d5;font:11px system-ui;text-shadow:0 1px 3px #123}</style></head><body><div id="world"></div><div id="note">LANDING WATER REGRESSION · controlled animation phases</div><script type="module">
+import * as T from 'three';
+import { RiverScene } from '/src/client/scene.ts';
+import {sampleWater} from '/src/shared/world.ts';
+const scene=new RiverScene(document.getElementById('world'));
+scene.followCamera=()=>{scene.camera.position.set(4.2,3.0,4.5);scene.camera.lookAt(0,.6,0)};
+scene.setLowQuality(new URL(location.href).searchParams.has('low'));
+const target=new T.WebGLRenderTarget(960,720),pixel=new Uint8Array(4),phases=[];
+scene.camera.aspect=960/720;scene.camera.updateProjectionMatrix();
+function samples(exterior=false,time=0){
+ const out=[];
+ for(const x of (exterior?[-1.6,1.6]:[-.4,-.2,0,.2,.4]))for(const z of (exterior?[-.3,0,.3]:[-.4,-.2,0,.2,.4])){
+  const point=scene.boat.localToWorld(new T.Vector3(x,-.012,z));
+  if(exterior)point.y=sampleWater(point.x,point.z,time).height-.015;
+  point.project(scene.camera);
+  const px=Math.max(0,Math.min(959,Math.floor((point.x+1)*480))),py=Math.max(0,Math.min(719,Math.floor((point.y+1)*360)));
+  scene.renderer.readRenderTargetPixels(target,px,py,1,1,pixel);out.push([...pixel.slice(0,3)]);
+ }return out;
+}
+function draw(exterior=false,time=0){scene.renderer.setRenderTarget(target);scene.renderer.render(scene.scene,scene.camera);return samples(exterior,time);}
+function compare(a,b){return Math.max(...a.flatMap((rgb,i)=>rgb.map((n,c)=>Math.abs(n-b[i][c]))));}
+let legacyMax=0;
+for(const time of [0,2,5,8,13,19,27]){
+ scene.render(.05,time);
+ const correctPosition=scene.boat.position.clone(),correctRotation=scene.boat.quaternion.clone();
+ const draft=correctPosition.y-sampleWater(0,0,time).height;
+ // The old title pose and missing hull-volume mask reproduce the reported bug.
+ scene.boat.position.y-=.08;scene.boat.updateMatrixWorld(true);
+ scene.water.update(time,scene.camera,scene.boat.position,scene.boat.quaternion,0,false);draw();const legacy=draw();
+ scene.water.visible=false;const legacyReference=draw();legacyMax=Math.max(legacyMax,compare(legacy,legacyReference));scene.water.visible=true;
+ scene.water.update(time,scene.camera,scene.boat.position,scene.boat.quaternion,0,true);draw();const stressDry=draw();
+ scene.water.visible=false;const stressReference=draw();scene.water.visible=true;
+ const stressDifference=compare(stressDry,stressReference);
+ const exterior=draw(true,time);scene.water.visible=false;const exteriorReference=draw(true,time);scene.water.visible=true;
+ const exteriorDifference=compare(exterior,exteriorReference);
+ scene.boat.position.copy(correctPosition);scene.boat.quaternion.copy(correctRotation);scene.boat.updateMatrixWorld(true);
+ scene.water.update(time,scene.camera,scene.boat.position,scene.boat.quaternion,0,true);draw();const dry=draw();
+ scene.water.visible=false;const reference=draw();scene.water.visible=true;
+ phases.push({time,draft,maxDeckDifference:compare(dry,reference),stressDifference,exteriorDifference});
+ scene.renderer.setRenderTarget(null);
+}
+scene.render(.05,19);scene.renderer.domElement.dataset.regression=JSON.stringify({phases,legacyMax});
+document.body.dataset.done='true';
+</script></body></html>

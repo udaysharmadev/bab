@@ -1,0 +1,144 @@
+{
+  "result": "PASS",
+  "mode": "friends",
+  "seat": 3,
+  "checks": [
+    {
+      "name": "four-ready launch focuses game surface",
+      "pass": true
+    },
+    {
+      "name": "hold w repeats complete strokes",
+      "caught": 3,
+      "otherSeatsUnchanged": true,
+      "pass": true
+    },
+    {
+      "name": "w requested physical direction",
+      "z": 1.6301802396774292,
+      "yaw": -0.4441075616288283,
+      "pass": true
+    },
+    {
+      "name": "hold s repeats complete strokes",
+      "caught": 3,
+      "otherSeatsUnchanged": true,
+      "pass": true
+    },
+    {
+      "name": "s requested physical direction",
+      "z": -0.7509326338768005,
+      "yaw": 0.33132778460500717,
+      "pass": true
+    },
+    {
+      "name": "hold a repeats complete strokes",
+      "caught": 3,
+      "otherSeatsUnchanged": true,
+      "pass": true
+    },
+    {
+      "name": "a requested physical direction",
+      "z": 1.2289204597473145,
+      "yaw": -0.42739017797201434,
+      "pass": true
+    },
+    {
+      "name": "hold d repeats complete strokes",
+      "caught": 3,
+      "otherSeatsUnchanged": true,
+      "pass": true
+    },
+    {
+      "name": "d requested physical direction",
+      "z": -0.6523796319961548,
+      "yaw": 0.361240272537209,
+      "pass": true
+    },
+    {
+      "name": "hold ArrowUp repeats complete strokes",
+      "caught": 3,
+      "otherSeatsUnchanged": true,
+      "pass": true
+    },
+    {
+      "name": "ArrowUp requested physical direction",
+      "z": 1.2720942497253418,
+      "yaw": -0.3734381208955388,
+      "pass": true
+    },
+    {
+      "name": "hold ArrowDown repeats complete strokes",
+      "caught": 3,
+      "otherSeatsUnchanged": true,
+      "pass": true
+    },
+    {
+      "name": "ArrowDown requested physical direction",
+      "z": -0.7894353270530701,
+      "yaw": 0.34331478229077206,
+      "pass": true
+    },
+    {
+      "name": "hold ArrowLeft repeats complete strokes",
+      "caught": 3,
+      "otherSeatsUnchanged": true,
+      "pass": true
+    },
+    {
+      "name": "ArrowLeft requested physical direction",
+      "z": 1.1882050037384033,
+      "yaw": -0.41714234760840097,
+      "pass": true
+    },
+    {
+      "name": "hold ArrowRight repeats complete strokes",
+      "caught": 3,
+      "otherSeatsUnchanged": true,
+      "pass": true
+    },
+    {
+      "name": "ArrowRight requested physical direction",
+      "z": -0.6777947545051575,
+      "yaw": 0.3730622164951166,
+      "pass": true
+    },
+    {
+      "name": "uppercase key-only W repeats strokes",
+      "pass": true
+    },
+    {
+      "name": "releasing W leaves held Up alias rowing",
+      "pass": true
+    },
+    {
+      "name": "opposite forward/reverse keys cancel",
+      "pass": true
+    },
+    {
+      "name": "open dialog blocks rowing",
+      "pass": true
+    },
+    {
+      "name": "resume restores continuous rowing",
+      "caught": 3,
+      "otherSeatsUnchanged": true,
+      "pass": true
+    },
+    {
+      "name": "reload retains seat and repeating arrows",
+      "caught": 3,
+      "otherSeatsUnchanged": true,
+      "pass": true
+    },
+    {
+      "name": "blur lifts blade and cancels held action",
+      "pass": true
+    },
+    {
+      "name": "no new catches after release",
+      "pass": true
+    }
+  ],
+  "errors": []
+}

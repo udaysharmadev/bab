@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"><style>body{margin:0;overflow:hidden}#world{position:fixed;inset:0}</style></head><body><div id="world"></div><script type="module">
+import * as T from 'three';
+import { RiverScene } from '/src/client/scene.ts';
+const scene=new RiverScene(document.getElementById('world'));
+scene.presentation='game';
+// Controlled optical experiment: remove unrelated trees, shadows and genuine
+// reflections so a colored foreground object cannot contribute a reflection.
+for(const child of scene.scene.children)child.visible=child===scene.water;
+scene.scene.fog=null;scene.scene.background=new T.Color('#86968b');scene.renderer.shadowMap.enabled=false;
+scene.water.onBeforeRender=()=>{};
+scene.camera.position.set(0,6,-10);scene.camera.lookAt(0,0,-6);scene.camera.updateMatrixWorld();
+const floor=new T.Mesh(new T.PlaneGeometry(40,80),new T.MeshBasicMaterial({color:'#ff3818'}));floor.rotation.x=-Math.PI/2;floor.position.set(0,-.45,-6);floor.layers.enable(1);scene.scene.add(floor);
+const foreground=new T.Mesh(new T.BoxGeometry(.7,.8,.7),new T.MeshBasicMaterial({color:'#ffec19'}));foreground.position.set(0,.4,-6);foreground.layers.enable(1);foreground.visible=false;scene.scene.add(foreground);
+const target=new T.WebGLRenderTarget(innerWidth,innerHeight),pixel=new Uint8Array(4);
+function read(x,y,z){const p=new T.Vector3(x,y,z).project(scene.camera);scene.renderer.readRenderTargetPixels(target,Math.floor((p.x+1)*target.width/2),Math.floor((p.y+1)*target.height/2),1,1,pixel);return [...pixel.slice(0,3)];}
+function draw(low=false){
+ scene.water.setLowQuality(low);scene.water.update(2,scene.camera,new T.Vector3(100,0,0),new T.Quaternion(),0,false);
+ scene.renderer.setRenderTarget(target);scene.water.capture(scene.renderer,scene.scene,scene.camera);scene.renderer.render(scene.scene,scene.camera);
+ return read(.1,0,-6);
+}
+// Stabilise GPU programs and use identical water/camera time in every pair.
+draw();floor.material.color.set('#ff3818');const shallowRed=draw();floor.material.color.set('#143dff');const shallowBlue=draw();
+floor.material.color.set('#ff3818');floor.position.y=-3;const deepRed=draw();floor.position.y=-.45;
+const lowRed=draw(true);floor.material.color.set('#143dff');const lowBlue=draw(true);
+foreground.visible=true;foreground.material.color.set('#ff19ed');draw();const magentaOutside=[read(-.6,0,-6),read(.6,0,-6)];
+foreground.material.color.set('#16f9f0');draw();const cyanOutside=[read(-.6,0,-6),read(.6,0,-6)];
+const foregroundWater=read(0,.7,-6);
+scene.water.visible=false;scene.renderer.render(scene.scene,scene.camera);const foregroundDry=read(0,.7,-6);scene.water.visible=true;
+const textureCounts=[];
+for(let i=0;i<5;i++){draw(true);draw();textureCounts.push(scene.renderer.info.memory.textures);}
+const before=scene.water.captureFrames;draw(true);const lowSkipsCapture=scene.water.captureFrames===before&&scene.water.captureSize.length()===0;
+draw();const expectedTarget=scene.renderer.getRenderTarget(),expectedLayers=scene.camera.layers.mask;
+scene.renderer.setViewport(3,4,target.width-10,target.height-10);scene.renderer.setScissor(5,6,50,60);scene.renderer.setScissorTest(true);
+const viewport=scene.renderer.getViewport(new T.Vector4()).toArray(),scissor=scene.renderer.getScissor(new T.Vector4()).toArray();
+scene.water.capture(scene.renderer,scene.scene,scene.camera);
+const restored=scene.renderer.getRenderTarget()===expectedTarget&&scene.camera.layers.mask===expectedLayers&&scene.renderer.getScissorTest()&&JSON.stringify(scene.renderer.getViewport(new T.Vector4()).toArray())===JSON.stringify(viewport)&&JSON.stringify(scene.renderer.getScissor(new T.Vector4()).toArray())===JSON.stringify(scissor);
+scene.renderer.setScissorTest(false);scene.renderer.setViewport(0,0,target.width,target.height);
+// Resize allocates only a bounded target at the same projection aspect.
+scene.renderer.setSize(2000,1500);scene.water.capture(scene.renderer,scene.scene,scene.camera);const captureSize=scene.water.captureSize.toArray();
+scene.renderer.setRenderTarget(null);scene.renderer.setSize(innerWidth,innerHeight);scene.water.capture(scene.renderer,scene.scene,scene.camera);scene.renderer.render(scene.scene,scene.camera);
+document.body.dataset.result=JSON.stringify({shallowRed,shallowBlue,deepRed,lowRed,lowBlue,magentaOutside,cyanOutside,foregroundWater,foregroundDry,textureCounts,lowSkipsCapture,restored,captureSize});
+</script></body></html>
