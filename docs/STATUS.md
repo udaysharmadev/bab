@@ -21,7 +21,7 @@ Observed verification:
 | Authority resource samples |21 samples with explicit GC; **8 bodies /817 colliders throughout**; heap33,615,760→35,905,784 bytes (+2.18MiB). Room disposed after all clients left. This bounded observation is not a leak-free guarantee. |
 | Chrome effects/resource fixture | PASS over480 active rendered frames: one ripple geometry,206 GPU geometries at both active/steady samples, bounded24–28 ripples/84 particles; all transient effects drained or cleared in stale-snapshot/pause/reset/lobby/finish/sunk/title cases; `errors: []` |
 | Crew pose screenshots | **4 PASS**, catch/pull/recovery/reverse; reviewed `evidence/crew-*.png`; `errors: []` |
-| Route/title graphics | **21 views +3 title sizes PASS**, `errors: []`; max751 calls /6,035,068 triangles within unchanged fixture budgets |
+| Route/title graphics | **21 views +3 title sizes PASS**, `errors: []`; final max729 calls /6,033,248 triangles within unchanged fixture budgets |
 | Production build | PASS,68 modules,823.93kB JS /228.67kB gzip; existing large-bundle advisory remains |
 
 Evidence: `evidence/soak.json`, `evidence/animation.json`, updated `graphics.json`/screenshots and `network-stress.json`. The full suite retains the existing actual networking, lifecycle, persistence and physics regressions. No new four-browser control run or public hosting run was needed/claimed for these client animation/effect changes. The existing preview on localhost:2569 serves the refreshed static build; no authority restart or crew invalidation was needed. The cPanel ZIP was regenerated.
