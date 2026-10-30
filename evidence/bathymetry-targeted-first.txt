@@ -1,0 +1,36 @@
+✔ Five C2 bend seams preserve straight launch, checkpoints and bounded analytic slopes (10.033208ms)
+✔ Recorded water fields move with the river and rotate horizontal flow without adding speed (1.614083ms)
+✔ Visible bank faces and actual convex prisms meet at shared seams throughout every bend (84.490375ms)
+✔ Authority ray queries find the visible bent bank and its normal without phantom straight walls (96.560208ms)
+✔ Riverbed rows and deep lane remain under the bent navigable corridor (3.955959ms)
+{"case":"buoyancy-sweep","measurements":[{"samples":16,"payloads":[{"massKg":220,"equilibriumY":0.08398424088954926,"expectedY":0.08398461538461535},{"massKg":260,"equilibriumY":0.05379948765039444,"expectedY":0.053800000000000014},{"massKg":360,"equilibriumY":-0.021663248538970947,"expectedY":-0.02166153846153851}],"heels":[{"initialDegrees":10,"finalUpY":0.999983107690598,"maxSpeed":0.13425461423815507},{"initialDegrees":25,"finalUpY":0.9999845117220323,"maxSpeed":0.16507815870848272},{"initialDegrees":45,"finalUpY":0.9999860725498824,"maxSpeed":0.30772051472606327}],"residualSpeed":0.5415378456863005,"measuredTicks":6240,"tickP50ms":0.11387500000000728,"tickP95ms":0.4235830000000078},{"samples":20,"payloads":[{"massKg":220,"equilibriumY":0.08398418873548508,"expectedY":0.08398461538461535},{"massKg":260,"equilibriumY":0.05379938334226608,"expectedY":0.053800000000000014},{"massKg":360,"equilibriumY":-0.02166345715522766,"expectedY":-0.02166153846153851}],"heels":[{"initialDegrees":10,"finalUpY":0.9999830067905835,"maxSpeed":0.13457442507370088},{"initialDegrees":25,"finalUpY":0.9999844214071999,"maxSpeed":0.1650997164125233},{"initialDegrees":45,"finalUpY":0.9999859926550652,"maxSpeed":0.3074258856973869}],"residualSpeed":0.5485730052804034,"measuredTicks":6240,"tickP50ms":0.108791999999994,"tickP95ms":0.15574999999989814},{"samples":24,"payloads":[{"massKg":220,"equilibriumY":0.08398409932851791,"expectedY":0.08398461538461535},{"massKg":260,"equilibriumY":0.05379924923181534,"expectedY":0.053800000000000014},{"massKg":360,"equilibriumY":-0.02166372537612915,"expectedY":-0.02166153846153851}],"heels":[{"initialDegrees":10,"finalUpY":0.9999829142703995,"maxSpeed":0.1348365453651531},{"initialDegrees":25,"finalUpY":0.9999843376333128,"maxSpeed":0.1644973400540239},{"initialDegrees":45,"finalUpY":0.9999859213236945,"maxSpeed":0.3071193477258709}],"residualSpeed":0.5543921194557684,"measuredTicks":6240,"tickP50ms":0.11208299999998417,"tickP95ms":0.15304199999991397}]}
+✔ Height-only mesh sampling and cached rapid rows agree across wave/vortex/rapid seams (9.500542ms)
+✔ Wave vertical velocity matches the analytic surface motion including rapid seams (0.728167ms)
+✔ T021: 16/20/24 buoyancy samples preserve displacement, restore heel and dissipate free motion (2688.37875ms)
+✔ Grounded recovery detects a sideways hull through contact and excludes idle/open-water boats (211.82625ms)
+{"case":"water-mesh-interpolation","maxErrorMetres":0.01491709034923197,"vertices":6369}
+✔ Authored cameras blend continuously, frame reverse travel and keep the eye inside the bank (129.37775ms)
+✔ Submerged bed is finite, continuous between chunks and below the navigable hull lane (15.428083ms)
+✔ All four crew rigs retain arm length and reach the real shaft grips through the complete blade workspace (59.128541ms)
+✔ Rendered water mesh matches the shared physical surface including vortex depression and resets its time (52.333208ms)
+✔ Fast water normals remain unit length on a width-warped sloped surface (0.191541ms)
+✔ Water mesh interpolation stays within four centimetres of physical waves at representative seams (174.911041ms)
+✔ Floor vertices stay within the tapered hull, and the underside is a closed shaped shell (1.243875ms)
+✔ Water window follows the crew through rapids and narrow channels with matching authoritative heights (26.754ms)
+✔ Same-tick checkpoint relocation moves the water window and resamples its channel immediately (12.1145ms)
+✔ Dry hull mask tracks the actual rendered transform and releases immediately for a wreck/reset at the same water tick (5.125958ms)
+✔ Wake direction follows surface-relative reverse/sideways motion and falls back safely at rest (5.8445ms)
+✔ Detailed hazard rock stays within its physical sphere and shore variants retain finite chipped surfaces (14.526667ms)
+✔ Natural vegetation has finite grounded geometry and bounded reusable asset cost (62.682666ms)
+✔ Recovery eddy has bounded curl, a smooth zero rim and no height change or suction (22.492375ms)
+✔ Recovery pocket leaves canonical hull/blade spawn lanes and lethal obstacles clear (0.263541ms)
+✔ An unpowered hull slows and circulates in the recovery bay without wreck, reset or fake propulsion (2390.464834ms)
+✔ All four real paddles can steer out and rejoin downstream with bounded force and no recovery teleport (786.768ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3443.949666

@@ -1,0 +1,1375 @@
+M2-B actual verification output. Failed initial flow/camera cases are retained alongside successful final checks. PASS in performance means measurement success; target misses remain explicit. Browser bend poses are parent-IPC-authored integration, not continuous human traversal.
+
+=== targeted-initial ===
+{"case":"water-mesh-interpolation","maxErrorMetres":0.01491709034923197,"vertices":6369}
+✔ Authored cameras blend continuously, frame reverse travel and keep the eye inside the bank (92.20175ms)
+✔ Submerged bed is finite, continuous between chunks and below the navigable hull lane (4.713625ms)
+✔ All four crew rigs retain arm length and reach the real shaft grips through the complete blade workspace (14.545166ms)
+✔ Rendered water mesh matches the shared physical surface including vortex depression and resets its time (13.620916ms)
+✔ Fast water normals remain unit length on a width-warped sloped surface (0.148583ms)
+✔ Water mesh interpolation stays within four centimetres of physical waves at representative seams (73.322834ms)
+✔ Floor vertices stay within the tapered hull, and the underside is a closed shaped shell (0.987208ms)
+✔ Water window follows the crew through rapids and narrow channels with matching authoritative heights (10.257875ms)
+✔ Same-tick checkpoint relocation moves the water window and resamples its channel immediately (5.350375ms)
+✔ Dry hull mask tracks the actual rendered transform and releases immediately for a wreck/reset at the same water tick (3.005167ms)
+✔ Detailed hazard rock stays within its physical sphere and shore variants retain finite chipped surfaces (7.564292ms)
+✔ Natural vegetation has finite grounded geometry and bounded reusable asset cost (35.388042ms)
+✔ Timber Gorge has contiguous authored beats, recovery bays and a finite final objective (3.624459ms)
+✖ Shared channel and rapids stay continuous, finite and bounded with flat-water fixtures preserved (17.398041ms)
+✔ Every canonical checkpoint remains safe with synchronized timber at eight distinct clock phases (817.535875ms)
+✔ Gorge rock, spike and both moving timber colliders cause genuine one-shot hull failure (123.484333ms)
+✔ Rapids impart bounded flow through immersed drag, while calm controls retain zero propulsion (21.314583ms)
+✔ Authored extension has a connected hull-width corridor at sampled timber phases (200.095625ms)
+✔ Only the final river gate completes the run, and checkpoint retry clears completion (4.524917ms)
+✔ Narrow gorge banks stop the hull and permit paddle bracing without becoming lethal (38.910333ms)
+(node:40095) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Canonical checkpoint persists across database reopen; stale revisions and duplicate rooms cannot overwrite it (3.428834ms)
+✔ Lease takeover invalidates the old writer while heartbeat prevents premature duplicate resume (0.30975ms)
+✔ Reviewed basin-0.5 canonical saves migrate atomically, preserving checkpoint, token and revision (2.635083ms)
+✔ Reviewed basin-0.6 canonical saves migrate atomically, preserving checkpoint, token and revision (2.261ms)
+✔ Reviewed basin-0.7 canonical saves migrate atomically, preserving checkpoint, token and revision (2.081791ms)
+✔ Waterwheel is a real shared-clock kinematic hazard; reset preserves its phase (186.522792ms)
+✔ sawyer-waterwheel: real contact breaks once; marked bypass survives two rotations (271.290667ms)
+✔ devil-waterwheel: real contact breaks once; marked bypass survives two rotations (197.083667ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 27
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2660.416333
+
+✖ failing tests:
+
+test at tests/route.test.ts:1:1307
+✖ Shared channel and rapids stay continuous, finite and bounded with flat-water fixtures preserved (17.398041ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(Math.abs(water.height) <= 0.61 && Math.hypot(water.velocity.x, water.velocity.z) < 2)
+  
+      at TestContext.<anonymous> (/Users/uday/Bad at Boating/tests/route.test.ts:32:7)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+=== targeted ===
+✔ Five C2 bend seams preserve straight launch, checkpoints and bounded analytic slopes (6.588875ms)
+✔ Recorded water fields move with the river and rotate horizontal flow without adding speed (1.060375ms)
+✔ Visible bank faces and actual convex prisms meet at shared seams throughout every bend (29.526333ms)
+✔ Authority ray queries find the visible bent bank and its normal without phantom straight walls (35.182542ms)
+✔ Riverbed rows and deep lane remain under the bent navigable corridor (1.476416ms)
+{"case":"water-mesh-interpolation","maxErrorMetres":0.01491709034923197,"vertices":6369}
+✔ Authored cameras blend continuously, frame reverse travel and keep the eye inside the bank (92.139541ms)
+✔ Submerged bed is finite, continuous between chunks and below the navigable hull lane (4.766625ms)
+✔ All four crew rigs retain arm length and reach the real shaft grips through the complete blade workspace (14.928333ms)
+✔ Rendered water mesh matches the shared physical surface including vortex depression and resets its time (13.568875ms)
+✔ Fast water normals remain unit length on a width-warped sloped surface (0.309917ms)
+✔ Water mesh interpolation stays within four centimetres of physical waves at representative seams (75.730334ms)
+✔ Floor vertices stay within the tapered hull, and the underside is a closed shaped shell (0.982166ms)
+✔ Water window follows the crew through rapids and narrow channels with matching authoritative heights (11.925334ms)
+✔ Same-tick checkpoint relocation moves the water window and resamples its channel immediately (6.026042ms)
+✔ Dry hull mask tracks the actual rendered transform and releases immediately for a wreck/reset at the same water tick (2.9735ms)
+✔ Detailed hazard rock stays within its physical sphere and shore variants retain finite chipped surfaces (7.548209ms)
+✔ Natural vegetation has finite grounded geometry and bounded reusable asset cost (34.882458ms)
+✔ Timber Gorge has contiguous authored beats, recovery bays and a finite final objective (4.317ms)
+✔ Shared channel and rapids stay continuous, finite and bounded with flat-water fixtures preserved (21.721792ms)
+✔ Every canonical checkpoint remains safe with synchronized timber at eight distinct clock phases (870.224458ms)
+✔ Gorge rock, spike and both moving timber colliders cause genuine one-shot hull failure (124.792625ms)
+✔ Rapids impart bounded flow through immersed drag, while calm controls retain zero propulsion (21.319334ms)
+✔ Authored extension has a connected hull-width corridor at sampled timber phases (203.498791ms)
+✔ Only the final river gate completes the run, and checkpoint retry clears completion (4.778084ms)
+✔ Narrow gorge banks stop the hull and permit paddle bracing without becoming lethal (38.574084ms)
+(node:40180) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Canonical checkpoint persists across database reopen; stale revisions and duplicate rooms cannot overwrite it (3.475791ms)
+✔ Lease takeover invalidates the old writer while heartbeat prevents premature duplicate resume (0.317541ms)
+✔ Reviewed basin-0.5 canonical saves migrate atomically, preserving checkpoint, token and revision (2.401708ms)
+✔ Reviewed basin-0.6 canonical saves migrate atomically, preserving checkpoint, token and revision (2.005292ms)
+✔ Reviewed basin-0.7 canonical saves migrate atomically, preserving checkpoint, token and revision (2.06725ms)
+✔ Waterwheel is a real shared-clock kinematic hazard; reset preserves its phase (187.836958ms)
+✔ sawyer-waterwheel: real contact breaks once; marked bypass survives two rotations (272.081583ms)
+✔ devil-waterwheel: real contact breaks once; marked bypass survives two rotations (199.141916ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3319.180708
+
+=== camera ===
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: {"width":480,"height":900,"z":456,"reverse":false,"centre":-3.728312225635752,"bounds":{"left":0.3440996587125885,"right":1.0488358565224578,"top":0.5237802092655769,"bottom":0.8478988443704483},"camera":[-4.773411131692126,9.395825296319824,443.68351017513294],"up":[0,1,0],"volume":"timber-works","stats":{"calls":229,"triangles":139170,"geometries":244,"textures":18,"reflections":false,"refraction":false,"captureCalls":0,"captureTriangles":0,"captureSize":[0,0],"vegetationChunks":6,"vegetationInstances":1368,"foliageLevels":[0,8,16]},"blocked":[]}
+    at file:///Users/uday/Bad%20at%20Boating/tests/camera.mjs:13:4 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.11.0
+
+=== camera-final ===
+{"result":"PASS","cases":132,"errors":[]}
+
+=== tests ===
+
+> bad-at-boating@0.1.0 test
+> node --import tsx --test --test-concurrency=1 tests/*.test.ts tests/*.test.mjs
+
+✔ Audio follows actual one-shot events without replaying old sounds after join, reset, pause or reconnect (0.723833ms)
+✔ Lobby countdown beeps once per beat and never replays on join, pause or repeated snapshots (0.07925ms)
+✔ Five C2 bend seams preserve straight launch, checkpoints and bounded analytic slopes (7.783709ms)
+✔ Recorded water fields move with the river and rotate horizontal flow without adding speed (1.908333ms)
+✔ Visible bank faces and actual convex prisms meet at shared seams throughout every bend (37.258834ms)
+✔ Authority ray queries find the visible bent bank and its normal without phantom straight walls (42.458041ms)
+✔ Riverbed rows and deep lane remain under the bent navigable corridor (2.083333ms)
+✔ Every crew rig holds the real shaft through repeated forward/reverse/turn cycles and orients its wrists along it (31.063667ms)
+✔ Crew blinks are bounded and staggered; deterministic pose restores after a wreck without retained animation state (15.219167ms)
+(node:40627) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Completed authority holds pose and rejects rowing until a shared restart restores play (485.881875ms)
+✔ Whirlpool flow is finite, bounded, smoothly local, and absent in calm fixtures (22.192792ms)
+✔ Physical iron tooth contact breaks the hull once while a neighboring clear route stays intact (166.687875ms)
+✔ An iron tooth touched only by the paddle permits bracing without hull destruction (45.302166ms)
+✔ Tapered spike tips have actual cone clearance rather than an invisible full-width box (13.77275ms)
+✔ Whirlpool acts through water drag, remains stable, and repeats from the same state (1445.28675ms)
+✔ Every checkpoint resets outside spike collision and whirlpool influence (41.227083ms)
+✔ Moving timber collider follows the shared fixed-step clock through a full cycle and a wreck (121.496959ms)
+✔ Moving timber causes one physical hull break while the bank-side bypass remains clear (130.98775ms)
+✔ Checkpoint reset preserves sweeper phase and stays clear at multiple phases (111.74725ms)
+✔ Convex collider follows every structural panel triangle through yaw, pitch and roll (23.99925ms)
+✔ Water exclusion planes agree with Rapier inside/outside queries throughout the hull volume (64.519625ms)
+✔ Visible bow, stern and shoulder contacts break once; empty tapered corners remain clear (377.869709ms)
+✔ A predicted contact stays safe until the same pair actually touches on a later tick (5.732ms)
+{"case":"buoyancy-sweep","measurements":[{"samples":16,"payloads":[{"massKg":220,"equilibriumY":0.08398424088954926,"expectedY":0.08398461538461535},{"massKg":260,"equilibriumY":0.05379948765039444,"expectedY":0.053800000000000014},{"massKg":360,"equilibriumY":-0.021663248538970947,"expectedY":-0.02166153846153851}],"heels":[{"initialDegrees":10,"finalUpY":0.999983107690598,"maxSpeed":0.13425461423815507},{"initialDegrees":25,"finalUpY":0.9999845117220323,"maxSpeed":0.16507815870848272},{"initialDegrees":45,"finalUpY":0.9999860725498824,"maxSpeed":0.30772051472606327}],"residualSpeed":0.5415378456863005,"measuredTicks":6240,"tickP50ms":0.10241599999994833,"tickP95ms":0.13875000000001592},{"samples":20,"payloads":[{"massKg":220,"equilibriumY":0.08398418873548508,"expectedY":0.08398461538461535},{"massKg":260,"equilibriumY":0.05379938334226608,"expectedY":0.053800000000000014},{"massKg":360,"equilibriumY":-0.02166345715522766,"expectedY":-0.02166153846153851}],"heels":[{"initialDegrees":10,"finalUpY":0.9999830067905835,"maxSpeed":0.13457442507370088},{"initialDegrees":25,"finalUpY":0.9999844214071999,"maxSpeed":0.1650997164125233},{"initialDegrees":45,"finalUpY":0.9999859926550652,"maxSpeed":0.3074258856973869}],"residualSpeed":0.5485730052804034,"measuredTicks":6240,"tickP50ms":0.10008300000004056,"tickP95ms":0.12095900000008442},{"samples":24,"payloads":[{"massKg":220,"equilibriumY":0.08398409932851791,"expectedY":0.08398461538461535},{"massKg":260,"equilibriumY":0.05379924923181534,"expectedY":0.053800000000000014},{"massKg":360,"equilibriumY":-0.02166372537612915,"expectedY":-0.02166153846153851}],"heels":[{"initialDegrees":10,"finalUpY":0.9999829142703995,"maxSpeed":0.1348365453651531},{"initialDegrees":25,"finalUpY":0.9999843376333128,"maxSpeed":0.1644973400540239},{"initialDegrees":45,"finalUpY":0.9999859213236945,"maxSpeed":0.3071193477258709}],"residualSpeed":0.5543921194557684,"measuredTicks":6240,"tickP50ms":0.1015829999998914,"tickP95ms":0.11925000000019281}]}
+✔ Height-only mesh sampling and cached rapid rows agree across wave/vortex/rapid seams (5.175583ms)
+✔ Wave vertical velocity matches the analytic surface motion including rapid seams (0.999458ms)
+✔ T021: 16/20/24 buoyancy samples preserve displacement, restore heel and dissipate free motion (2073.605667ms)
+✔ Grounded recovery detects a sideways hull through contact and excludes idle/open-water boats (152.388833ms)
+✔ Held-action messages reject forged axes, stale sequences and seat/force overrides (0.374542ms)
+✔ WASD and arrows normalize including uppercase and key-only events; aliases stay distinct (0.189458ms)
+✔ Held actions repeat dry recovery and wet pulls; aliases agree and reversal mirrors travel (1.603583ms)
+✔ Opposites cancel; aliases do not double speed or cancel each other; diagonal turns rest inner blade (0.436375ms)
+✔ Release, reset, direction change and long scheduling gap restart with a raised blade (0.078375ms)
+✔ Cycle timing is independent of render frame rate and browser key-repeat frequency (0.277ms)
+✔ Keyboard and multiple touch pointers retain independent held actions (0.089667ms)
+✔ Remapped keys preserve arrow aliases, reject duplicates and ignore replaced defaults (0.108667ms)
+✔ Controller input has bounded digital axes, deadzone, independent ownership and neutral rearming (0.202375ms)
+(node:40690) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Crew countdown, strict-majority consent, checkpoint durability and completed departure lifecycle (23719.29825ms)
+✔ HTTP room creation limiter uses transport AuthContext before room allocation; existing-room joins still work (88.607291ms)
+(node:40716) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Room connection was closed unexpectedly (1005): 
+❌ reconnection token invalid or expired. Did you miss .allowReconnection()?
+👉 https://docs.colyseus.io/room#allow-reconnection
+{
+  "result": "PASS",
+  "realWebSockets": true,
+  "humanPlaytest": false,
+  "reconnectBoundary": "Server snapshot received on the replacement socket, after JOIN acknowledgement",
+  "results": [
+    {
+      "delay": 80,
+      "jitter": 35,
+      "loss": 0.1,
+      "scope": "one-way ms; ordered application-message drop, not TCP packet loss",
+      "ticks": 240,
+      "dropped": 54,
+      "forwarded": 416,
+      "bytes": 256113,
+      "positionZ": 3.9954371452331543,
+      "strokes": [
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    {
+      "delay": 180,
+      "jitter": 70,
+      "loss": 0.25,
+      "scope": "one-way ms; ordered application-message drop, not TCP packet loss",
+      "ticks": 240,
+      "dropped": 128,
+      "forwarded": 338,
+      "bytes": 205429,
+      "positionZ": 3.8179047107696533,
+      "strokes": [
+        6,
+        6,
+        6,
+        6
+      ]
+    },
+    {
+      "delay": 300,
+      "jitter": 100,
+      "loss": 0.15,
+      "scope": "one-way ms; ordered application-message drop, not TCP packet loss",
+      "ticks": 241,
+      "dropped": 79,
+      "forwarded": 369,
+      "bytes": 225252,
+      "positionZ": 3.1876490116119385,
+      "strokes": [
+        9,
+        9,
+        9,
+        9
+      ]
+    },
+    {
+      "case": "upstream-blackout",
+      "staleBladesLifted": true
+    },
+    {
+      "case": "duplicate-reconnect-race",
+      "accepted": 1,
+      "pausedAllBladesLifted": true
+    },
+    {
+      "case": "two-simultaneous-reconnects",
+      "sameSeats": true
+    },
+    {
+      "case": "real-grace-expiry",
+      "testGraceSeconds": 2,
+      "productionGraceSeconds": 90,
+      "expiredRejected": true,
+      "seatReclaimed": true
+    },
+    {
+      "case": "abusive-message-burst",
+      "clientDisconnected": true,
+      "forgedThrustRejected": true
+    }
+  ],
+  "lifecycle": [
+    {
+      "event": "drop",
+      "seat": 0,
+      "state": 4,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "reconnect",
+      "seat": 0,
+      "state": 2,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "drop",
+      "seat": 0,
+      "state": 4,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "drop",
+      "seat": 1,
+      "state": 4,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "reconnect",
+      "seat": 1,
+      "state": 2,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "reconnect",
+      "seat": 0,
+      "state": 2,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "drop",
+      "seat": 3,
+      "state": 4,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "leave",
+      "seat": 3,
+      "state": 4,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "drop",
+      "seat": 2,
+      "state": 4,
+      "stage": "lobby",
+      "members": 4
+    }
+  ],
+  "violations": []
+}
+✔ Real WebSocket impairment grid, blackout, reconnect races, expiry and rate abuse preserve authority (22534.105959ms)
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+{"case":"four-client-room","seats":[0,1,2,3],"pausedTick":256,"resumedTick":260,"forgeryRejected":true,"reconnectSeatPreserved":true}
+✔ NET: four distinct seats, launch barrier, authority, forged inputs, drop/pause/reconnect and host independence (7919.814333ms)
+{"case":"idle-120s","y":0.053800009191036224,"speed":0.1437090039253235,"tickP95ms":0.13775000000001114}
+{"case":"air-vs-water","airZ":-5.064097058360417e-11,"wetZ":0.8718743324279785,"seatYaw":[0.333575040102005,-0.33357465267181396,0.3213750720024109,-0.3213749825954437]}
+✔ Input contract rejects NaN, stale/future sequence, teleport, spoofed seat and extra thrust (3.972292ms)
+✔ Y-up transforms preserve lengths and +Z forward turns to +X at 90° yaw (0.309917ms)
+✔ PHY-01/12: two simulated minutes at rest retain equilibrium and zero horizontal thrust (791.543ms)
+✔ PHY-02/03/04/06: immersed stroke moves hull, air has no thrust, four balanced strokes advance without yaw (180.098125ms)
+✔ PHY-05/07: reverse relative velocity reverses force; immersion and current affect drag; force capped (1.35725ms)
+✔ Blade reaction rotates with hull heading rather than fixed world axes (61.25725ms)
+✔ PROTO: bow/stern lateral sweep creates opposite yaw, same-side straight pulls need not (55.085042ms)
+✔ NET stale input and disconnect release blade; target teleport remains speed bounded (30.511834ms)
+✔ PHY-08: swept blade can brace against bank with bounded contact force and no wall climb (25.019625ms)
+✔ PHY-10 partial: sampled buoyancy settles a 25-degree heel in waves without orientation lock (129.505542ms)
+✔ PHY-11: 100 checkpoint resets clear momentum and return to a collision-free canonical pose (14.923083ms)
+✔ PHY-23: a sustained capsize returns every crew member to the canonical checkpoint without masking a crash (34.60025ms)
+✔ PHY-23: live rowing pinned at a bank recovers, while a stationary crew never auto-resets (75.346708ms)
+✔ Repeated recorded inputs are reproducible in this runtime (57.788667ms)
+✔ Checkpoint capture belongs to the simulation and advances its revision only once per dock (16.192625ms)
+✔ Lethal obstacle contact breaks once, disables every paddle, sinks, and restores the checkpoint cleanly (22.102209ms)
+✔ Nearby obstacles and ordinary river-bank contact do not cause a false break (16.965542ms)
+✔ A blade-only rock brace does not destroy a clear hull (28.215792ms)
+✔ Hull CCD still triggers lethal contact at a fast approach (4.653459ms)
+{"case":"water-mesh-interpolation","maxErrorMetres":0.01491709034923197,"vertices":6369}
+✔ Authored cameras blend continuously, frame reverse travel and keep the eye inside the bank (91.979333ms)
+✔ Submerged bed is finite, continuous between chunks and below the navigable hull lane (4.799375ms)
+✔ All four crew rigs retain arm length and reach the real shaft grips through the complete blade workspace (14.772125ms)
+✔ Rendered water mesh matches the shared physical surface including vortex depression and resets its time (13.509875ms)
+✔ Fast water normals remain unit length on a width-warped sloped surface (0.129834ms)
+✔ Water mesh interpolation stays within four centimetres of physical waves at representative seams (73.96125ms)
+✔ Floor vertices stay within the tapered hull, and the underside is a closed shaped shell (1.373667ms)
+✔ Water window follows the crew through rapids and narrow channels with matching authoritative heights (11.963958ms)
+✔ Same-tick checkpoint relocation moves the water window and resamples its channel immediately (5.986125ms)
+✔ Dry hull mask tracks the actual rendered transform and releases immediately for a wreck/reset at the same water tick (3.066875ms)
+✔ Detailed hazard rock stays within its physical sphere and shore variants retain finite chipped surfaces (6.887625ms)
+✔ Natural vegetation has finite grounded geometry and bounded reusable asset cost (35.713375ms)
+✔ Timber Gorge has contiguous authored beats, recovery bays and a finite final objective (3.723542ms)
+✔ Shared channel and rapids stay continuous, finite and bounded with flat-water fixtures preserved (21.201167ms)
+✔ Every canonical checkpoint remains safe with synchronized timber at eight distinct clock phases (821.364458ms)
+✔ Gorge rock, spike and both moving timber colliders cause genuine one-shot hull failure (124.812208ms)
+✔ Rapids impart bounded flow through immersed drag, while calm controls retain zero propulsion (21.121292ms)
+✔ Authored extension has a connected hull-width corridor at sampled timber phases (203.846209ms)
+✔ Only the final river gate completes the run, and checkpoint retry clears completion (4.846875ms)
+✔ Narrow gorge banks stop the hull and permit paddle bracing without becoming lethal (39.753667ms)
+{"case":"hold-to-row","forward":{"key":"KeyW","seats":[0,1,2,3],"z":6.982997894287109,"surge":6.987732405585957,"yaw":-1.3655133087567013e-9,"screenHeading":-0.013092406883287685,"strokes":[4,4,4,4],"maxForce":210.67072679280167},"reverse":{"key":"KeyS","seats":[0,1,2,3],"z":-6.982998371124268,"surge":-6.9877327036421635,"yaw":4.914944694307046e-9,"screenHeading":-0.016089189641798875,"strokes":[4,4,4,4],"maxForce":210.67072679279647}}
+{"case":"seat-rowing","seat":0,"forward":1.271359028593025,"reverse":-1.2712734601984632,"left":0.4316669853373241,"right":-0.4288914779798993}
+{"case":"seat-rowing","seat":1,"forward":1.2713590288191432,"reverse":-1.2712734604476834,"left":0.42889147545465683,"right":-0.43166692275279567}
+{"case":"seat-rowing","seat":2,"forward":1.2712734601969837,"reverse":-1.2713590285884324,"left":0.4288915935293819,"right":-0.43166686215915134}
+{"case":"seat-rowing","seat":3,"forward":1.271273460424093,"reverse":-1.271359028833073,"left":0.43166692035538295,"right":-0.42889143062905827}
+✔ Holding W alone repeatedly drives the actual hull forward; S alone drives it backwards (196.049ms)
+✔ Every seat produces forward/reverse surge and turns left/right in the actual gameplay camera (599.680708ms)
+✔ A coordinated crew turns both ways with bounded force and no forward/reverse key choreography (146.651417ms)
+{"case":"process-crash-durable-resume","checkpoint":4,"z":260,"stage":"lobby","duplicateResumeRejected":true}
+✔ A real server crash restores the durable canonical checkpoint into a new four-ready room (1541.122084ms)
+(node:40741) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Canonical checkpoint persists across database reopen; stale revisions and duplicate rooms cannot overwrite it (3.418917ms)
+✔ Lease takeover invalidates the old writer while heartbeat prevents premature duplicate resume (0.314958ms)
+✔ Reviewed basin-0.5 canonical saves migrate atomically, preserving checkpoint, token and revision (2.302667ms)
+✔ Reviewed basin-0.6 canonical saves migrate atomically, preserving checkpoint, token and revision (1.891917ms)
+✔ Reviewed basin-0.7 canonical saves migrate atomically, preserving checkpoint, token and revision (1.925667ms)
+(node:40742) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Slow output disconnects safely, retains the seat and resumes without old rowing (3566.224042ms)
+✔ Catch-up counts the complete stall, caps work at five steps and freezes on the first finish step (12.562625ms)
+✔ A socket withholding JOIN acknowledgement cannot accumulate periodic snapshot messages (261.173167ms)
+✔ Production tracker rejects fabricated completion, missing evidence and dependency cycles (7.342958ms)
+✔ Delivery phases cannot skip prerequisites or turn local verification into production acceptance (1.171125ms)
+✔ Waterwheel is a real shared-clock kinematic hazard; reset preserves its phase (185.983334ms)
+✔ sawyer-waterwheel: real contact breaks once; marked bypass survives two rotations (269.340333ms)
+✔ devil-waterwheel: real contact breaks once; marked bypass survives two rotations (196.387209ms)
+ℹ tests 96
+ℹ suites 0
+ℹ pass 96
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 77015.365792
+
+=== build ===
+
+> bad-at-boating@0.1.0 build
+> tsc --noEmit && vite build && node scripts/build-server.mjs
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 70 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   7.02 kB │ gzip:   2.55 kB
+dist/assets/index-QafvikyD.css    7.92 kB │ gzip:   2.60 kB
+dist/assets/index-DveVqEqY.js   832.51 kB │ gzip: 231.74 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 679ms
+Production authority bundled.
+
+=== water ===
+{
+  "result": {
+    "shallowRed": [
+      164,
+      18,
+      9
+    ],
+    "shallowBlue": [
+      6,
+      19,
+      213
+    ],
+    "deepRed": [
+      24,
+      29,
+      18
+    ],
+    "lowRed": [
+      11,
+      47,
+      38
+    ],
+    "lowBlue": [
+      11,
+      47,
+      38
+    ],
+    "magentaOutside": [
+      [
+        2,
+        15,
+        209
+      ],
+      [
+        2,
+        15,
+        209
+      ]
+    ],
+    "cyanOutside": [
+      [
+        2,
+        15,
+        209
+      ],
+      [
+        2,
+        15,
+        209
+      ]
+    ],
+    "foregroundWater": [
+      2,
+      242,
+      222
+    ],
+    "foregroundDry": [
+      2,
+      242,
+      222
+    ],
+    "textureCounts": [
+      5,
+      5,
+      5,
+      5,
+      5
+    ],
+    "lowSkipsCapture": true,
+    "restored": true,
+    "captureSize": [
+      1280,
+      960
+    ]
+  },
+  "errors": []
+}
+Water depth/refraction: PASS
+
+=== landing ===
+{"low":false,"phases":[{"time":0,"draft":0.08,"maxDeckDifference":0,"stressDifference":0,"exteriorDifference":38},{"time":2,"draft":0.08,"maxDeckDifference":0,"stressDifference":0,"exteriorDifference":40},{"time":5,"draft":0.08,"maxDeckDifference":0,"stressDifference":0,"exteriorDifference":33},{"time":8,"draft":0.08,"maxDeckDifference":0,"stressDifference":0,"exteriorDifference":26},{"time":13,"draft":0.08,"maxDeckDifference":0,"stressDifference":0,"exteriorDifference":31},{"time":19,"draft":0.08,"maxDeckDifference":0,"stressDifference":0,"exteriorDifference":33},{"time":27,"draft":0.08,"maxDeckDifference":0,"stressDifference":0,"exteriorDifference":25}],"legacyMax":131}
+{"low":true,"phases":[{"time":0,"draft":0.08,"maxDeckDifference":0,"stressDifference":0,"exteriorDifference":39},{"time":2,"draft":0.08,"maxDeckDifference":0,"stressDifference":0,"exteriorDifference":39},{"time":5,"draft":0.08,"maxDeckDifference":0,"stressDifference":0,"exteriorDifference":39},{"time":8,"draft":0.08,"maxDeckDifference":0,"stressDifference":0,"exteriorDifference":33},{"time":13,"draft":0.08,"maxDeckDifference":0,"stressDifference":0,"exteriorDifference":32},{"time":19,"draft":0.08,"maxDeckDifference":0,"stressDifference":0,"exteriorDifference":30},{"time":27,"draft":0.08,"maxDeckDifference":0,"stressDifference":0,"exteriorDifference":34}],"legacyMax":129}
+
+=== live-browser ===
+
+> bad-at-boating@0.1.0 test:bends
+> node tests/bends-browser.mjs
+
+{"result":"PASS","clients":4,"authoredBendPoses":5,"heldRowing":"PASS","errors":[]}
+
+=== graphics ===
+
+> bad-at-boating@0.1.0 test:graphics
+> node tests/graphics.mjs
+
+{"natureHigh":{"calls":386,"triangles":1977748,"geometries":196,"textures":11,"reflections":true,"refraction":true,"captureCalls":8,"captureTriangles":1152,"captureSize":[936,624],"vegetationChunks":5,"vegetationInstances":5384,"foliageLevels":[2,6,12]},"natureLow":{"calls":99,"triangles":575174,"geometries":64,"textures":6,"reflections":false,"refraction":false,"captureCalls":0,"captureTriangles":0,"captureSize":[0,0],"vegetationChunks":5,"vegetationInstances":5384,"foliageLevels":[0,8,12]}}
+{
+  "result": "PASS",
+  "results": [
+    {
+      "view": "crew",
+      "stats": {
+        "calls": 528,
+        "triangles": 1328774,
+        "geometries": 174,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 2,
+        "captureTriangles": 288,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      }
+    },
+    {
+      "view": "underside",
+      "stats": {
+        "calls": 532,
+        "triangles": 1328886,
+        "geometries": 174,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 2,
+        "captureTriangles": 288,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      }
+    },
+    {
+      "view": "spikes",
+      "stats": {
+        "calls": 706,
+        "triangles": 2033790,
+        "geometries": 222,
+        "textures": 14,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 6,
+        "captureTriangles": 864,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          12,
+          8
+        ]
+      }
+    },
+    {
+      "view": "log",
+      "stats": {
+        "calls": 723,
+        "triangles": 1888100,
+        "geometries": 233,
+        "textures": 16,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 5612,
+        "foliageLevels": [
+          0,
+          8,
+          16
+        ]
+      }
+    },
+    {
+      "view": "vortex",
+      "stats": {
+        "calls": 701,
+        "triangles": 1858468,
+        "geometries": 222,
+        "textures": 16,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 4400,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      }
+    },
+    {
+      "view": "vortex&low",
+      "stats": {
+        "calls": 256,
+        "triangles": 617214,
+        "geometries": 214,
+        "textures": 11,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 4400,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      }
+    },
+    {
+      "view": "wreck",
+      "stats": {
+        "calls": 705,
+        "triangles": 1609550,
+        "geometries": 225,
+        "textures": 14,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      }
+    },
+    {
+      "view": "gorge",
+      "stats": {
+        "calls": 719,
+        "triangles": 1544290,
+        "geometries": 234,
+        "textures": 15,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 3542,
+        "foliageLevels": [
+          1,
+          7,
+          16
+        ]
+      }
+    },
+    {
+      "view": "rapids",
+      "stats": {
+        "calls": 693,
+        "triangles": 695982,
+        "geometries": 245,
+        "textures": 16,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          4,
+          4,
+          16
+        ]
+      }
+    },
+    {
+      "view": "timber",
+      "stats": {
+        "calls": 652,
+        "triangles": 487270,
+        "geometries": 229,
+        "textures": 14,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 6,
+        "captureTriangles": 864,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 1140,
+        "foliageLevels": [
+          2,
+          6,
+          12
+        ]
+      }
+    },
+    {
+      "view": "narrows",
+      "stats": {
+        "calls": 643,
+        "triangles": 681482,
+        "geometries": 216,
+        "textures": 14,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          5,
+          3,
+          16
+        ]
+      }
+    },
+    {
+      "view": "finish",
+      "stats": {
+        "calls": 485,
+        "triangles": 372566,
+        "geometries": 172,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 3,
+        "vegetationInstances": 684,
+        "foliageLevels": [
+          2,
+          6,
+          4
+        ]
+      }
+    },
+    {
+      "view": "millstone",
+      "stats": {
+        "calls": 630,
+        "triangles": 595658,
+        "geometries": 214,
+        "textures": 14,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          2,
+          10,
+          12
+        ]
+      }
+    },
+    {
+      "view": "boulders",
+      "stats": {
+        "calls": 631,
+        "triangles": 545626,
+        "geometries": 222,
+        "textures": 15,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 6,
+        "captureTriangles": 864,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 1140,
+        "foliageLevels": [
+          3,
+          8,
+          9
+        ]
+      }
+    },
+    {
+      "view": "wheel2",
+      "stats": {
+        "calls": 676,
+        "triangles": 572826,
+        "geometries": 228,
+        "textures": 14,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          2,
+          6,
+          16
+        ]
+      }
+    },
+    {
+      "view": "haven",
+      "stats": {
+        "calls": 634,
+        "triangles": 484762,
+        "geometries": 216,
+        "textures": 13,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          1,
+          7,
+          16
+        ]
+      }
+    },
+    {
+      "view": "waterwheel",
+      "stats": {
+        "calls": 339,
+        "triangles": 603784,
+        "geometries": 221,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 6,
+        "captureTriangles": 864,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          4,
+          6,
+          14
+        ]
+      }
+    },
+    {
+      "view": "shore",
+      "stats": {
+        "calls": 386,
+        "triangles": 1977748,
+        "geometries": 196,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          2,
+          6,
+          12
+        ]
+      }
+    },
+    {
+      "view": "trees",
+      "stats": {
+        "calls": 401,
+        "triangles": 2252580,
+        "geometries": 223,
+        "textures": 12,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          4,
+          4,
+          12
+        ]
+      }
+    },
+    {
+      "view": "grass",
+      "stats": {
+        "calls": 362,
+        "triangles": 2234532,
+        "geometries": 210,
+        "textures": 12,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          4,
+          4,
+          12
+        ]
+      }
+    },
+    {
+      "view": "shore&low",
+      "stats": {
+        "calls": 99,
+        "triangles": 575174,
+        "geometries": 64,
+        "textures": 6,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      }
+    }
+  ],
+  "errors": []
+}
+
+=== performance ===
+
+> bad-at-boating@0.1.0 test:performance
+> node tests/performance.mjs
+
+{"view":"crew","quality":"High","cpuP95":4,"frameP95":16.799999999999727,"gpuP95":13.548958,"targetComparison":{"cpu":"MEETS","gpu":"MISSES","frameInterval":"MISSES"}}
+{"view":"crew","quality":"Low","cpuP95":3.399999998509884,"frameP95":16.700000000000273,"gpuP95":12.250249,"targetComparison":{"cpu":"MEETS","gpu":"MISSES","frameInterval":"MISSES"}}
+{"view":"trees","quality":"High","cpuP95":3.7999999970197678,"frameP95":16.700000000000273,"gpuP95":14.913499,"targetComparison":{"cpu":"MEETS","gpu":"MISSES","frameInterval":"MISSES"}}
+{"view":"trees","quality":"Low","cpuP95":2,"frameP95":16.700000000000273,"gpuP95":14.318791,"targetComparison":{"cpu":"MEETS","gpu":"MISSES","frameInterval":"MISSES"}}
+{"view":"rapids","quality":"High","cpuP95":4.899999998509884,"frameP95":16.700000000000273,"gpuP95":14.702833,"targetComparison":{"cpu":"MISSES","gpu":"MISSES","frameInterval":"MISSES"}}
+{"view":"rapids","quality":"Low","cpuP95":3,"frameP95":16.799999999999955,"gpuP95":11.141125,"targetComparison":{"cpu":"MEETS","gpu":"MISSES","frameInterval":"MISSES"}}
+PASS: 6 measured High/Low cases; inspect targetComparison for budget misses.
+
+=== browser ===
+
+> bad-at-boating@0.1.0 test:browser
+> node tests/browser.mjs
+
+Four clients ready. Verifying own-seat input.
+Shared sink confirmed; checking refresh during failure.
+Refresh retained the wreck; sending checkpoint retry.
+Conditions after retry: [ 'afloat', 'afloat', 'afloat', 'afloat' ]
+Browser: Failed to load resource: the server responded with a status of 522 (unknown)
+Browser: Failed to load resource: the server responded with a status of 522 (unknown)
+{
+  "date": "2026-10-20T15:33:13.725Z",
+  "base": "http://localhost:2571",
+  "automated": true,
+  "humanPlaytest": false,
+  "checks": [
+    "Main menu appears before a room is created; only Play with Friends and Join Crew are shown; extra title text/buttons are absent",
+    "Private crew is frozen safely at the dock; join form and invite links allocate four distinct seats",
+    "Four ready clients launch; ordinary gameplay shows only the small menu button",
+    "Mouse has no paddle effect; holding Up alone repeats at least two server-confirmed strokes on the local seat",
+    "Refresh rejoins the same crew and seat",
+    "Boat and paddles remain framed in landscape and portrait, with no permanent HUD panels",
+    "Actual rock contact produces one shared break/sink event; refresh retains the wreck and one retry restores the crew checkpoint",
+    "Full/expired invites return an actionable title-menu error and never create an unrelated crew"
+  ],
+  "firstObservedFailure": "breaking",
+  "seats": [
+    "0",
+    "1",
+    "2",
+    "3"
+  ],
+  "layouts": [
+    {
+      "width": 907,
+      "height": 510,
+      "bounds": {
+        "left": 0.39126116748470013,
+        "right": 0.6470362423690716,
+        "top": 0.42190627254623597,
+        "bottom": 0.7771670473738113
+      }
+    },
+    {
+      "width": 700,
+      "height": 982,
+      "bounds": {
+        "left": 0.31448878808789194,
+        "right": 0.7600737795218787,
+        "top": 0.44116039055427686,
+        "bottom": 0.7025225424933883
+      }
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "bounds": {
+        "left": 0.32492103657352256,
+        "right": 0.7486335258545471,
+        "top": 0.45454869632070727,
+        "bottom": 0.6498954182889092
+      }
+    }
+  ],
+  "browser": "155.0.8059.82",
+  "errors": [],
+  "result": "PASS"
+}
+
+=== accessibility ===
+
+> bad-at-boating@0.1.0 test:accessibility
+> node tests/accessibility.mjs
+
+{
+  "result": "PASS",
+  "base": "http://localhost:2571",
+  "protocol": 5,
+  "physics": "basin-0.8",
+  "automated": true,
+  "humanPlaytest": false,
+  "controller": "Browser Gamepad API fixture; physical controller acceptance pending",
+  "checks": [
+    "Unique remapped keys and graphics/camera preferences persist across reload",
+    "Remapped I rows the real assigned paddle; replaced W remains inactive",
+    "Arrow controls remain available after remapping",
+    "Standard controller API drives real paddle and requires neutral after menu release (simulated hardware)",
+    "Low: native WebGL loss releases input, restores rendering/water and allows subsequent rowing",
+    "High: native WebGL loss releases input, restores rendering/water and allows subsequent rowing",
+    "Restoring WASD takes effect immediately without a new crew"
+  ],
+  "errors": []
+}
+
+=== deployment ===
+
+> bad-at-boating@0.1.0 check:deployment
+> node scripts/check-deployment.mjs http://localhost:2571
+
+{
+  "result": "PASS",
+  "origin": "http://localhost:2571",
+  "protocol": 5,
+  "physics": "basin-0.8",
+  "seats": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "checks": [
+    "health",
+    "title",
+    "directory guard",
+    "four WebSocket seats",
+    "four-ready launch",
+    "60Hz clock advances",
+    "drop pauses crew",
+    "reconnect resumes same seat"
+  ],
+  "scope": "Automated private crew; destination browser/human/performance tests remain"
+}
+
+=== load ===
+
+> bad-at-boating@0.1.0 test:load
+> node --expose-gc --import tsx tests/load.ts
+
+(node:41468) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+Load 10/120s · 4 rooms /16 clients
+Load 20/120s · 4 rooms /16 clients
+Load 30/120s · 4 rooms /16 clients
+Load 40/120s · 4 rooms /16 clients
+Load 51/120s · 4 rooms /16 clients
+Load 61/120s · 4 rooms /16 clients
+Load 71/120s · 4 rooms /16 clients
+Load 81/120s · 4 rooms /16 clients
+Load 91/120s · 4 rooms /16 clients
+Load 101/120s · 4 rooms /16 clients
+Load 111/120s · 4 rooms /16 clients
+{
+  "result": "PASS",
+  "date": "2026-10-20T15:37:43.066Z",
+  "runtime": "v24.11.0",
+  "protocol": 5,
+  "physics": "basin-0.8",
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "osRelease": "27.0.0",
+    "cpu": "Apple M4",
+    "logicalCpus": 10,
+    "totalMemoryBytes": 17179869184
+  },
+  "requestedSeconds": 120,
+  "actualSeconds": 120.063,
+  "roomCount": 4,
+  "clientCount": 16,
+  "realWebSockets": true,
+  "humanPlaytest": false,
+  "scope": "Local co-hosted authority+SDK clients, synthetic workload; not Internet, browser GPU, maximum capacity or hosting certification. Wire bytes count WS application payloads, excluding WS/TCP framing; per-client average includes setup/reconnect traffic.",
+  "cpuUserMs": 27620.541,
+  "cpuSystemMs": 1869.545,
+  "eventLoop": {
+    "utilization": 0.21896411762608076,
+    "delayP50ms": 10.485759,
+    "delayP95ms": 11.747327,
+    "delayMaxMs": 20.807679
+  },
+  "forcedGc": true,
+  "rooms": [
+    {
+      "packets": 9953,
+      "maxSnapshotGapMs": 78,
+      "resets": 8,
+      "reconnects": 1,
+      "droppedSteps": 0,
+      "tick": 7191,
+      "wirePayloadBytes": {
+        "outBytes": 9112354,
+        "inBytes": 146627,
+        "outMessages": 9972
+      },
+      "averageOutboundBytesPerClientSecond": 18964.260429940947
+    },
+    {
+      "packets": 9954,
+      "maxSnapshotGapMs": 87,
+      "resets": 8,
+      "reconnects": 1,
+      "droppedSteps": 0,
+      "tick": 7190,
+      "wirePayloadBytes": {
+        "outBytes": 9112890,
+        "inBytes": 146751,
+        "outMessages": 9973
+      },
+      "averageOutboundBytesPerClientSecond": 18965.376510665235
+    },
+    {
+      "packets": 9953,
+      "maxSnapshotGapMs": 95,
+      "resets": 8,
+      "reconnects": 1,
+      "droppedSteps": 0,
+      "tick": 7189,
+      "wirePayloadBytes": {
+        "outBytes": 9112146,
+        "inBytes": 146627,
+        "outMessages": 9972
+      },
+      "averageOutboundBytesPerClientSecond": 18963.82732398824
+    },
+    {
+      "packets": 9950,
+      "maxSnapshotGapMs": 79,
+      "resets": 8,
+      "reconnects": 1,
+      "droppedSteps": 0,
+      "tick": 7189,
+      "wirePayloadBytes": {
+        "outBytes": 9108794,
+        "inBytes": 146627,
+        "outMessages": 9968
+      },
+      "averageOutboundBytesPerClientSecond": 18956.847654981135
+    }
+  ],
+  "violations": [],
+  "roomsDisposed": true
+}
+
+=== tracker ===
+{
+  "result": "PASS",
+  "browser": "155.0.8059.82",
+  "records": 139,
+  "checks": [
+    "Five execution phases match the source states",
+    "All deliverables and content cards visible",
+    "Obstacle search finds the correct record",
+    "Phase filter matches source ledger",
+    "Empty acceptance filter is honest and visible",
+    "Text search and reset remain usable"
+  ],
+  "errors": []
+}
+
+=== static ===
+
+> bad-at-boating@0.1.0 check
+> tsc --noEmit
+
+
+> bad-at-boating@0.1.0 tracker:check
+> node scripts/tracker.mjs --check
+
+PASS: 49 deliverables + 90 content tasks, 2/100 accepted scope points; dependency/evidence/report checks passed.
+✔ Production tracker rejects fabricated completion, missing evidence and dependency cycles (6.652834ms)
+✔ Delivery phases cannot skip prerequisites or turn local verification into production acceptance (1.159542ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 39.517583
+
+Artifact verification PASS: source manifest, final runtime/client and ZIP digests verified; smoke expects basin-0.8; private saves, node_modules and test IPC fixtures excluded. No public deployment.

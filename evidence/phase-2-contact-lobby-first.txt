@@ -1,0 +1,15 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Maximum-length names overlap: {"viewport":{"width":1440,"height":960},"labels":[{"left":221.578125,"right":260.984375,"top":64.75,"bottom":87.75},{"left":85.546875,"right":195.546875,"top":41.484375,"bottom":90.484375},{"left":198.375,"right":308.375,"top":115.28125,"bottom":164.28125},{"left":91.890625,"right":201.890625,"top":144.203125,"bottom":167.203125}]}
+    at file:///Users/uday/Bad%20at%20Boating/tests/lobby.mjs:81:45 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.11.0

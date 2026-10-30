@@ -1,0 +1,34 @@
+
+> bad-at-boating@0.1.0 tracker
+> node scripts/tracker.mjs
+
+PASS: 49 deliverables + 90 content tasks, 2/100 accepted scope points; dependency/evidence/report checks passed.
+
+> bad-at-boating@0.1.0 tracker:check
+> node scripts/tracker.mjs --check
+
+PASS: 49 deliverables + 90 content tasks, 2/100 accepted scope points; dependency/evidence/report checks passed.
+✔ Production tracker rejects fabricated completion, missing evidence and dependency cycles (8.161875ms)
+✔ Delivery phases cannot skip prerequisites or turn local verification into production acceptance (0.764083ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 40.836458
+{
+  "result": "PASS",
+  "browser": "155.0.8059.82",
+  "records": 139,
+  "checks": [
+    "Five execution phases match the source states",
+    "All deliverables and content cards visible",
+    "Obstacle search finds the correct record",
+    "Phase filter matches source ledger",
+    "Empty acceptance filter is honest and visible",
+    "Text search and reset remain usable"
+  ],
+  "errors": []
+}

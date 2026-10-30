@@ -1,4 +1,4 @@
-import { channelHalfWidth } from '../shared/world';
+import { channelCenter, bankEdge } from '../shared/world';
 
 // Fixed horizon/FOV. These are sight-line volumes, never input or hull forces.
 export const CAMERA_VOLUMES = [
@@ -27,6 +27,6 @@ export function riverCamera(x: number, z: number, velocityZ: number, aspect: num
   ahead = (gentle ? Math.min(ahead, 3.4) : ahead + Math.min(1.2, Math.abs(velocityZ) * .4)) * (1 - reverse) - 3.0 * reverse;
   const scale = Math.max(1, .95 / Math.max(.2, aspect));
   const cameraZ = z - back * scale;
-  const limit = Math.max(1, channelHalfWidth(cameraZ) - 1.6);
-  return { x: Math.max(-limit, Math.min(limit, x + .9 * scale)), y: height * scale, z: cameraZ, ahead, volume };
+  const cameraX=channelCenter(cameraZ)+(x-channelCenter(z))+.9*scale;
+  return { x: Math.max(bankEdge(cameraZ,-1)+1.6,Math.min(bankEdge(cameraZ,1)-1.6,cameraX)), y: height * scale, z: cameraZ, ahead, volume };
 }

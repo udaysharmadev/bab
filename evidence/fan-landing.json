@@ -1,0 +1,447 @@
+{
+  "result": "PASS",
+  "browser": "155.0.8059.82",
+  "checks": [
+    "10 desktop, phone, tablet and short-landscape layouts: brand/actions fit, actual initial raft silhouette fits its stage, no menu overlap or page overflow",
+    "Actual title pixels change with animated water, raft and fanning crew",
+    "Keyboard Enter opens focused name confirmation; practice also asks for name; joining clears title framing; leaving restores title; remembered name still needs confirmation",
+    "Reduced-motion preference freezes decorative title animation"
+  ],
+  "views": [
+    {
+      "width": 1440,
+      "height": 900,
+      "brand": {
+        "x": 112.15625,
+        "y": 270.109375,
+        "width": 430,
+        "height": 179.890625,
+        "top": 270.109375,
+        "right": 542.15625,
+        "bottom": 450,
+        "left": 112.15625
+      },
+      "stage": {
+        "x": 597.921875,
+        "y": 50,
+        "width": 755.6875,
+        "height": 800,
+        "top": 50,
+        "right": 1353.609375,
+        "bottom": 850,
+        "left": 597.921875
+      },
+      "actions": {
+        "x": 172.15625,
+        "y": 482,
+        "width": 310,
+        "height": 114,
+        "top": 482,
+        "right": 482.15625,
+        "bottom": 596,
+        "left": 172.15625
+      },
+      "fit": {
+        "left": 658.3684161489323,
+        "right": 1293.1628338510677,
+        "top": 265.48470966436435,
+        "bottom": 634.5152903356357
+      },
+      "scrollWidth": 1440,
+      "scrollHeight": 900,
+      "image": "evidence/fan-landing-1440x900.png"
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "brand": {
+        "x": 311,
+        "y": 360.109375,
+        "width": 430,
+        "height": 179.890625,
+        "top": 360.109375,
+        "right": 741,
+        "bottom": 540,
+        "left": 311
+      },
+      "stage": {
+        "x": 822,
+        "y": 50,
+        "width": 838,
+        "height": 980,
+        "top": 50,
+        "right": 1660,
+        "bottom": 1030,
+        "left": 822
+      },
+      "actions": {
+        "x": 371,
+        "y": 572,
+        "width": 310,
+        "height": 114,
+        "top": 572,
+        "right": 681,
+        "bottom": 686,
+        "left": 371
+      },
+      "fit": {
+        "left": 889.0345118399086,
+        "right": 1592.9654881600914,
+        "top": 334.1920077840666,
+        "bottom": 745.8079922159335
+      },
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "image": "evidence/fan-landing-1920x1080.png"
+    },
+    {
+      "width": 1280,
+      "height": 900,
+      "brand": {
+        "x": 425,
+        "y": 28,
+        "width": 430,
+        "height": 179.890625,
+        "top": 28,
+        "right": 855,
+        "bottom": 207.890625,
+        "left": 425
+      },
+      "stage": {
+        "x": 24,
+        "y": 219.890625,
+        "width": 1232,
+        "height": 526.109375,
+        "top": 219.890625,
+        "right": 1256,
+        "bottom": 746,
+        "left": 24
+      },
+      "actions": {
+        "x": 485,
+        "y": 758,
+        "width": 310,
+        "height": 114,
+        "top": 758,
+        "right": 795,
+        "bottom": 872,
+        "left": 485
+      },
+      "fit": {
+        "left": 261.44856708555363,
+        "right": 1018.5514329144463,
+        "top": 261.9508629532299,
+        "bottom": 703.9397620467702
+      },
+      "scrollWidth": 1280,
+      "scrollHeight": 900,
+      "image": "evidence/fan-landing-1280x900.png"
+    },
+    {
+      "width": 703,
+      "height": 857,
+      "brand": {
+        "x": 136.5,
+        "y": 28,
+        "width": 430,
+        "height": 179.890625,
+        "top": 28,
+        "right": 566.5,
+        "bottom": 207.890625,
+        "left": 136.5
+      },
+      "stage": {
+        "x": 24,
+        "y": 219.890625,
+        "width": 655,
+        "height": 483.109375,
+        "top": 219.890625,
+        "right": 679,
+        "bottom": 703,
+        "left": 24
+      },
+      "actions": {
+        "x": 196.5,
+        "y": 715,
+        "width": 310,
+        "height": 114,
+        "top": 715,
+        "right": 506.5,
+        "bottom": 829,
+        "left": 196.5
+      },
+      "fit": {
+        "left": 76.39701677367978,
+        "right": 626.6029832263202,
+        "top": 269.08047365494497,
+        "bottom": 653.810151345055
+      },
+      "scrollWidth": 703,
+      "scrollHeight": 857,
+      "image": "evidence/fan-landing-703x857.png"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "brand": {
+        "x": 40,
+        "y": 28,
+        "width": 310,
+        "height": 133.671875,
+        "top": 28,
+        "right": 350,
+        "bottom": 161.671875,
+        "left": 40
+      },
+      "stage": {
+        "x": 18,
+        "y": 171.671875,
+        "width": 354,
+        "height": 536.328125,
+        "top": 171.671875,
+        "right": 372,
+        "bottom": 708,
+        "left": 18
+      },
+      "actions": {
+        "x": 55,
+        "y": 718,
+        "width": 280,
+        "height": 104,
+        "top": 718,
+        "right": 335,
+        "bottom": 822,
+        "left": 55
+      },
+      "fit": {
+        "left": 46.32091150130324,
+        "right": 343.6790884986968,
+        "top": 352.85297768384675,
+        "bottom": 526.8188973161532
+      },
+      "scrollWidth": 390,
+      "scrollHeight": 844,
+      "image": "evidence/fan-landing-390x844.png"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "brand": {
+        "x": 32.203125,
+        "y": 28,
+        "width": 255.59375,
+        "height": 115.21875,
+        "top": 28,
+        "right": 287.796875,
+        "bottom": 143.21875,
+        "left": 32.203125
+      },
+      "stage": {
+        "x": 18,
+        "y": 153.21875,
+        "width": 284,
+        "height": 278.78125,
+        "top": 153.21875,
+        "right": 302,
+        "bottom": 432,
+        "left": 18
+      },
+      "actions": {
+        "x": 20,
+        "y": 442,
+        "width": 280,
+        "height": 104,
+        "top": 442,
+        "right": 300,
+        "bottom": 546,
+        "left": 20
+      },
+      "fit": {
+        "left": 40.720420684411586,
+        "right": 279.2795793155884,
+        "top": 222.95110386685172,
+        "bottom": 362.26764613314833
+      },
+      "scrollWidth": 320,
+      "scrollHeight": 568,
+      "image": "evidence/fan-landing-320x568.png"
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "brand": {
+        "x": 169,
+        "y": 28,
+        "width": 430,
+        "height": 179.890625,
+        "top": 28,
+        "right": 599,
+        "bottom": 207.890625,
+        "left": 169
+      },
+      "stage": {
+        "x": 24,
+        "y": 219.890625,
+        "width": 720,
+        "height": 650.109375,
+        "top": 219.890625,
+        "right": 744,
+        "bottom": 870,
+        "left": 24
+      },
+      "actions": {
+        "x": 229,
+        "y": 882,
+        "width": 310,
+        "height": 114,
+        "top": 882,
+        "right": 539,
+        "bottom": 996,
+        "left": 229
+      },
+      "fit": {
+        "left": 81.599020579203,
+        "right": 686.4009794207971,
+        "top": 368.96547706209304,
+        "bottom": 720.925147937907
+      },
+      "scrollWidth": 768,
+      "scrollHeight": 1024,
+      "image": "evidence/fan-landing-768x1024.png"
+    },
+    {
+      "width": 907,
+      "height": 510,
+      "brand": {
+        "x": 39.375,
+        "y": 118.046875,
+        "width": 330,
+        "height": 136.953125,
+        "top": 118.046875,
+        "right": 369.375,
+        "bottom": 255,
+        "left": 39.375
+      },
+      "stage": {
+        "x": 404.765625,
+        "y": 20,
+        "width": 478.234375,
+        "height": 470,
+        "top": 20,
+        "right": 883,
+        "bottom": 490,
+        "left": 404.765625
+      },
+      "actions": {
+        "x": 79.375,
+        "y": 277,
+        "width": 250,
+        "height": 96,
+        "top": 277,
+        "right": 329.375,
+        "bottom": 373,
+        "left": 79.375
+      },
+      "fit": {
+        "left": 443.01648804923224,
+        "right": 844.7491369507678,
+        "top": 138.67362431168388,
+        "bottom": 371.3263756883161
+      },
+      "scrollWidth": 907,
+      "scrollHeight": 510,
+      "image": "evidence/fan-landing-907x510.png"
+    },
+    {
+      "width": 667,
+      "height": 375,
+      "brand": {
+        "x": 24,
+        "y": 74.296875,
+        "width": 259.96875,
+        "height": 113.203125,
+        "top": 74.296875,
+        "right": 283.96875,
+        "bottom": 187.5,
+        "left": 24
+      },
+      "stage": {
+        "x": 303.96875,
+        "y": 20,
+        "width": 339.03125,
+        "height": 335,
+        "top": 20,
+        "right": 643,
+        "bottom": 355,
+        "left": 303.96875
+      },
+      "actions": {
+        "x": 28.984375,
+        "y": 209.5,
+        "width": 250,
+        "height": 96,
+        "top": 209.5,
+        "right": 278.984375,
+        "bottom": 305.5,
+        "left": 28.984375
+      },
+      "fit": {
+        "left": 331.087126747954,
+        "right": 615.881623252046,
+        "top": 106.32417022647543,
+        "bottom": 268.6758297735246
+      },
+      "scrollWidth": 667,
+      "scrollHeight": 375,
+      "image": "evidence/fan-landing-667x375.png"
+    },
+    {
+      "width": 568,
+      "height": 320,
+      "brand": {
+        "x": 24,
+        "y": 60.90625,
+        "width": 218.390625,
+        "height": 99.09375,
+        "top": 60.90625,
+        "right": 242.390625,
+        "bottom": 160,
+        "left": 24
+      },
+      "stage": {
+        "x": 262.390625,
+        "y": 20,
+        "width": 281.609375,
+        "height": 280,
+        "top": 20,
+        "right": 544,
+        "bottom": 300,
+        "left": 262.390625
+      },
+      "actions": {
+        "x": 24,
+        "y": 182,
+        "width": 218.390625,
+        "height": 96,
+        "top": 182,
+        "right": 242.390625,
+        "bottom": 278,
+        "left": 24
+      },
+      "fit": {
+        "left": 284.91567737501464,
+        "right": 521.4749476249854,
+        "top": 63.9945597154352,
+        "bottom": 256.00544028456477
+      },
+      "scrollWidth": 568,
+      "scrollHeight": 320,
+      "image": "evidence/fan-landing-568x320.png"
+    }
+  ],
+  "metrics": {
+    "calls": 122,
+    "triangles": 33912
+  },
+  "errors": []
+}

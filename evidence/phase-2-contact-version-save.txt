@@ -1,0 +1,20 @@
+(node:16749) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Server-selected mover phase reaches every peer; clients cannot choose it; old clients are rejected (581.139459ms)
+(node:16750) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Canonical checkpoint persists across database reopen; stale revisions and duplicate rooms cannot overwrite it (41.382417ms)
+✔ Lease takeover invalidates the old writer while heartbeat prevents premature duplicate resume (3.697167ms)
+✔ Reviewed basin-0.5 canonical saves migrate atomically, preserving checkpoint, token and revision (53.685792ms)
+✔ Reviewed basin-0.6 canonical saves migrate atomically, preserving checkpoint, token and revision (53.565208ms)
+✔ Reviewed basin-0.7 canonical saves migrate atomically, preserving checkpoint, token and revision (46.082709ms)
+✔ Reviewed basin-0.8 canonical saves migrate atomically, preserving checkpoint, token and revision (52.446666ms)
+✔ Reviewed basin-0.9 canonical saves migrate atomically, preserving checkpoint, token and revision (35.462125ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5476.82175

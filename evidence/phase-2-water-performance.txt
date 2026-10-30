@@ -1,0 +1,13 @@
+
+> bad-at-boating@0.1.0 test:performance
+> node tests/performance.mjs
+
+{"view":"crew","quality":"High","cpuP95":4.199999995529652,"frameP95":16.799999999999727,"gpuP95":9.408749,"targetComparison":{"cpu":"MISSES","gpu":"MEETS","frameInterval":"MISSES"}}
+{"view":"crew","quality":"Low","cpuP95":2.100000001490116,"frameP95":16.700000000000273,"gpuP95":3.700125,"targetComparison":{"cpu":"MEETS","gpu":"MEETS","frameInterval":"MISSES"}}
+{"view":"trees","quality":"High","cpuP95":3,"frameP95":16.799999999999727,"gpuP95":10.434583,"targetComparison":{"cpu":"MEETS","gpu":"MEETS","frameInterval":"MISSES"}}
+{"view":"trees","quality":"Low","cpuP95":1.7000000029802322,"frameP95":16.700000000000273,"gpuP95":6.243124,"targetComparison":{"cpu":"MEETS","gpu":"MEETS","frameInterval":"MISSES"}}
+{"view":"rapids","quality":"High","cpuP95":5.5,"frameP95":16.700000000000273,"gpuP95":8.842333,"targetComparison":{"cpu":"MISSES","gpu":"MEETS","frameInterval":"MISSES"}}
+{"view":"rapids","quality":"Low","cpuP95":3.100000001490116,"frameP95":16.700000000000273,"gpuP95":4.417374,"targetComparison":{"cpu":"MEETS","gpu":"MEETS","frameInterval":"MISSES"}}
+{"view":"rescue","quality":"High","cpuP95":5.0999999940395355,"frameP95":16.700000000000273,"gpuP95":8.069499,"targetComparison":{"cpu":"MISSES","gpu":"MEETS","frameInterval":"MISSES"}}
+{"view":"rescue","quality":"Low","cpuP95":2.899999998509884,"frameP95":16.700000000000273,"gpuP95":2.360416,"targetComparison":{"cpu":"MEETS","gpu":"MEETS","frameInterval":"MISSES"}}
+PASS: 8 measured High/Low cases; inspect targetComparison for budget misses.

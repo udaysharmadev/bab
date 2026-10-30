@@ -12,11 +12,18 @@ export class VoyageConflict extends Error {}
 export type Voyage = { id: string; checkpoint: number; revision: number; finished: boolean; savedAt: number };
 export const validSaveToken = (value: unknown): value is string => typeof value === 'string' && /^[A-Za-z0-9_-]{43}$/.test(value);
 const digest = (token: string) => createHash('sha256').update(token).digest('hex');
+// These saves contain canonical checkpoint indices only, never old hull state.
+// Bends and the rescue pocket stay outside the canonical spawn lane: every
+// checkpoint keeps its identity/position/yaw and zero rescue-current force.
+// Add compatibility only after confirming the same world/checkpoint layout.
+const previousPhysics: Record<string, readonly string[]> = { 'basin-0.13': ['basin-0.5','basin-0.6','basin-0.7','basin-0.8','basin-0.9','basin-0.10','basin-0.11','basin-0.12'] };
 function checkpointValid(value: unknown): value is number { return Number.isInteger(value) && Number(value) >= 0 && Number(value) < CHECKPOINTS.length; }
-function record(row: Record<string, unknown>): Voyage {
+function record(row: Record<string, unknown>, allowPreviousPhysics = false): Voyage {
   if (typeof row.id !== 'string' || !checkpointValid(row.checkpoint) || !Number.isSafeInteger(row.revision)
     || !Number.isSafeInteger(row.saved_at) || ![0, 1].includes(Number(row.finished))) throw new Error('Saved voyage is damaged. Start a new voyage; existing save was retained.');
-  if (row.world !== WORLD_VERSION || row.physics !== PHYSICS_VERSION) throw new Error('Saved voyage belongs to a different game version. Existing save was retained.');
+  const compatiblePhysics = row.physics === PHYSICS_VERSION || (allowPreviousPhysics && typeof row.physics === 'string'
+    && previousPhysics[PHYSICS_VERSION]?.includes(row.physics));
+  if (row.world !== WORLD_VERSION || !compatiblePhysics) throw new Error('Saved voyage belongs to a different game version. Existing save was retained.');
   return { id: row.id, checkpoint: Number(row.checkpoint), revision: Number(row.revision), finished: row.finished === 1, savedAt: Number(row.saved_at) };
 }
 function processAlive(pid: number) {
@@ -49,7 +56,7 @@ export class VoyageStore {
         this.db.prepare('INSERT INTO voyages VALUES (?,?,?,?,0,0,0,?,NULL,NULL,0)').run(id, digest(token), WORLD_VERSION, PHYSICS_VERSION, now);
         row = this.db.prepare('SELECT * FROM voyages WHERE id=?').get(id)!;
       }
-      const voyage = record(row);
+      const voyage = record(row, true);
       // A finished run must not be reopened as an unfinished checkpoint by
       // reset(). The title already offers a fresh voyage after completion.
       if (voyage.finished) throw new Error('This voyage is finished. Start a new voyage from Play with Friends.');
@@ -57,7 +64,8 @@ export class VoyageStore {
       const oldBootSamePid = pid === process.pid && !previousOwner.startsWith(`${boot}:`);
       if (previousOwner && previousOwner !== owner && Number(row.lease_until) > now && !oldBootSamePid && processAlive(pid))
         throw new VoyageConflict('This voyage is already active in another crew. Join that crew or wait for it to close.');
-      this.db.prepare('UPDATE voyages SET lease_owner=?,lease_pid=?,lease_until=? WHERE id=?').run(owner, process.pid, now + leaseMs, voyage.id);
+      this.db.prepare('UPDATE voyages SET physics=?,lease_owner=?,lease_pid=?,lease_until=? WHERE id=?')
+        .run(PHYSICS_VERSION, owner, process.pid, now + leaseMs, voyage.id);
       this.db.exec('COMMIT'); return { voyage, token };
     } catch (error) { this.db.exec('ROLLBACK'); throw error; }
   }

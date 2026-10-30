@@ -3,7 +3,9 @@ import assert from 'node:assert/strict';
 import {mkdtempSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
+import {DatabaseSync} from 'node:sqlite';
 import {VoyageStore,VoyageConflict,validSaveToken} from '../src/server/voyages';
+import {PHYSICS_VERSION} from '../src/shared/protocol';
 
 test('Canonical checkpoint persists across database reopen; stale revisions and duplicate rooms cannot overwrite it',()=>{
  const dir=mkdtempSync(join(tmpdir(),'boat-save-'));const path=join(dir,'voyages.sqlite');
@@ -35,4 +37,37 @@ test('Lease takeover invalidates the old writer while heartbeat prevents prematu
   assert.throws(()=>db.heartbeat(a.voyage.id,'a'),VoyageConflict);
   assert.equal(db.save(b.voyage.id,'b',0,2,false).checkpoint,2);
  }finally{db.close();}
+});
+
+for(const previous of ['basin-0.5','basin-0.6','basin-0.7','basin-0.8','basin-0.9','basin-0.10','basin-0.11','basin-0.12']) test(`Reviewed ${previous} canonical saves migrate atomically, preserving checkpoint, token and revision`,()=>{
+ assert.equal(PHYSICS_VERSION,'basin-0.13','Review this migration test before another physics-version change');
+ const dir=mkdtempSync(join(tmpdir(),'boat-migration-')),path=join(dir,'voyages.sqlite');
+ const store=new VoyageStore(path),inspect=new DatabaseSync(path);
+ try{
+  const original=store.claim('old-crew');
+  const saved=store.save(original.voyage.id,'old-crew',0,7,false);
+  inspect.prepare('UPDATE voyages SET physics=? WHERE id=?').run(previous,saved.id);
+  const before=()=>inspect.prepare('SELECT * FROM voyages WHERE id=?').get(saved.id)!;
+  const active=before();
+  assert.throws(()=>store.claim('new-crew',original.token),VoyageConflict);
+  assert.deepEqual(before(),active,'Rejected active-crew claim cannot migrate or modify the record');
+  store.release(saved.id,'old-crew');
+  const resumed=store.claim('new-crew',original.token);
+  assert.deepEqual(resumed.voyage,saved);
+  assert.equal(resumed.token,original.token);
+  assert.equal(before().physics,PHYSICS_VERSION);
+  assert.equal(store.save(saved.id,'new-crew',saved.revision,8,false).checkpoint,8);
+  store.release(saved.id,'new-crew');
+  for(const [field,value] of [['physics','basin-0.4'],['physics','future-version'],['world','unknown-world']] as const){
+   inspect.prepare('UPDATE voyages SET physics=?,world=? WHERE id=?').run(PHYSICS_VERSION,'waterworks-1',saved.id);
+   inspect.prepare(`UPDATE voyages SET ${field}=? WHERE id=?`).run(value,saved.id);
+   const incompatible=before();
+   assert.throws(()=>store.claim('incompatible',original.token),/different game version/);
+   assert.deepEqual(before(),incompatible,'Rejected version must retain every saved field');
+  }
+  inspect.prepare('UPDATE voyages SET physics=?,world=?,finished=1 WHERE id=?').run(previous,'waterworks-1',saved.id);
+  const finished=before();
+  assert.throws(()=>store.claim('finished',original.token),/voyage is finished/);
+  assert.deepEqual(before(),finished,'A finished prior-version save cannot be migrated into a new run');
+ }finally{inspect.close();store.close();rmSync(dir,{recursive:true,force:true});}
 });

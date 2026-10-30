@@ -1,0 +1,15 @@
+{
+  "result": "PASS",
+  "seconds": 270,
+  "distanceMetres": 321.30145263671875,
+  "averageMetresPerSecond": 1.1900053801359953,
+  "routeMetres": 1400,
+  "flatWaterExtrapolatedSeconds": 1176.465269291477,
+  "strokes": [
+    159,
+    159,
+    159,
+    159
+  ],
+  "scope": "Actual four-paddle flat-water diagnostic with obstacle/bank colliders removed. Not a full-route traversal, fastest-run lower bound or human completion certification. Rapids, steering, pauses and retries alter route duration."
+}

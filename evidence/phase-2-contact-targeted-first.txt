@@ -1,0 +1,29 @@
+✔ Persistent shaft-only contacts are nonlethal and dissipative across every seat, heading and heel (488.064167ms)
+✔ Holding a dipped shaft still produces no free force; release and inactive paddles stop bracing (14.200417ms)
+✔ Shaft queries exclude own hull, sensors and separated solids (4.711292ms)
+✖ Moving-solid relative velocity and saturated impacts remain bounded for every seat (16.094875ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 742.777083
+
+✖ failing tests:
+
+test at tests/contact.test.ts:1:4449
+✖ Moving-solid relative velocity and saturated impacts remain bounded for every seat (16.094875ms)
+  AssertionError [ERR_ASSERTION]: seat 0, 0/-1: 90.46155416157127 vs 120
+      at TestContext.<anonymous> (/Users/uday/Bad at Boating/tests/contact.test.ts:81:7)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

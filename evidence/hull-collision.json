@@ -1,0 +1,25 @@
+{
+  "result": "PASS",
+  "physics": "basin-0.13",
+  "date": "2026-10-22T16:53:55.620Z",
+  "scope": "Structural panels, water half-spaces and real authority contact; thin gunwale trim is cosmetic. Human fairness remains open.",
+  "measurements": [
+    {
+      "case": "transformed-panel-surface",
+      "checks": 352,
+      "maxSurfaceErrorMetres": 7.180116262741429e-7
+    },
+    {
+      "case": "water-mask-volume-agreement",
+      "checks": 48076
+    },
+    {
+      "case": "real-contact-and-near-miss-matrix",
+      "checks": 28
+    },
+    {
+      "case": "prediction-to-real-contact",
+      "checks": 1
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "result": "PASS",
+  "date": "2026-10-20T11:00:18.660Z",
+  "samples": 210,
+  "comparison": "Exact deep equality of full height/velocity/zone outputs captured before the height-only refactor",
+  "physics": "basin-0.6",
+  "physicsVersionUnchanged": true,
+  "baselineArtifact": "evidence/water-field-before-height-sampling.json",
+  "baselineSha256": "da8ab2afdbda78a6617719583865e74fb86782420091b7a351e8e61ea7435b8f",
+  "currentSha256": "da8ab2afdbda78a6617719583865e74fb86782420091b7a351e8e61ea7435b8f"
+}

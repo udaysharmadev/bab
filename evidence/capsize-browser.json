@@ -1,0 +1,67 @@
+{
+  "result": "PASS",
+  "checks": [
+    "Actual capsized hull exposes a readable390px rescue prompt with saved reverse binding,required crew and fallback countdown",
+    "Two held keyboard seats remain below majority;releasing keys clears effort",
+    "Native touch cancellation releases effort immediately without a stuck helper",
+    "Real delayed-script reload freezes rescue time and reconnects the fourth seat without stale helpers",
+    "Remapped reverse,arrow alias and held mobile button provide3/4 effort;all rendered peers observe physical righting with unchanged reset/checkpoint and no wreck"
+  ],
+  "errors": [],
+  "states": [
+    {
+      "reset": 3,
+      "recovery": 0,
+      "righted": 1,
+      "position": {
+        "x": 0.026710571721196175,
+        "y": -0.04369756951928139,
+        "z": 264.0669250488281
+      },
+      "capsize": null,
+      "tick": 182,
+      "condition": "afloat"
+    },
+    {
+      "reset": 3,
+      "recovery": 0,
+      "righted": 1,
+      "position": {
+        "x": 0.026710571721196175,
+        "y": -0.04369756951928139,
+        "z": 264.0669250488281
+      },
+      "capsize": null,
+      "tick": 182,
+      "condition": "afloat"
+    },
+    {
+      "reset": 3,
+      "recovery": 0,
+      "righted": 1,
+      "position": {
+        "x": 0.026710571721196175,
+        "y": -0.04369756951928139,
+        "z": 264.0669250488281
+      },
+      "capsize": null,
+      "tick": 182,
+      "condition": "afloat"
+    },
+    {
+      "reset": 3,
+      "recovery": 0,
+      "righted": 1,
+      "position": {
+        "x": 0.026710571721196175,
+        "y": -0.04369756951928139,
+        "z": 264.0669250488281
+      },
+      "capsize": null,
+      "tick": 182,
+      "condition": "afloat"
+    }
+  ],
+  "humanPlaytest": false,
+  "scope": "Four native Chrome clients,one390px layout,actual keys/touch hold/cancel/reload;initial hull pose set once via QA-only IPC. No swimmer/art/device/Internet acceptance."
+}

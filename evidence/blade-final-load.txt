@@ -1,0 +1,142 @@
+
+> bad-at-boating@0.1.0 test:load
+> node --expose-gc --import tsx tests/load.ts
+
+(node:19498) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'snapshot'.
+@colyseus/sdk: onMessage() not registered for type 'seat'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+Load 10/60s · 4 rooms /16 clients
+Load 20/60s · 4 rooms /16 clients
+Load 30/60s · 4 rooms /16 clients
+Load 40/60s · 4 rooms /16 clients
+Load 51/60s · 4 rooms /16 clients
+{
+  "result": "PASS",
+  "date": "2026-10-21T12:59:11.630Z",
+  "runtime": "v24.11.0",
+  "protocol": 6,
+  "physics": "basin-0.11",
+  "shaftContactRadius": 0.022,
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "osRelease": "27.0.0",
+    "cpu": "Apple M4",
+    "logicalCpus": 10,
+    "totalMemoryBytes": 17179869184
+  },
+  "requestedSeconds": 60,
+  "actualSeconds": 60.124,
+  "roomCount": 4,
+  "clientCount": 16,
+  "realWebSockets": true,
+  "humanPlaytest": false,
+  "scope": "Local co-hosted authority+SDK clients, synthetic workload; not Internet, browser GPU, maximum capacity or hosting certification. Wire bytes count WS application payloads, excluding WS/TCP framing; per-client average includes setup/reconnect traffic.",
+  "cpuUserMs": 9323.594,
+  "cpuSystemMs": 653.976,
+  "eventLoop": {
+    "utilization": 0.1350483216974375,
+    "delayP50ms": 10.543103,
+    "delayP95ms": 11.599871,
+    "delayMaxMs": 15.908863
+  },
+  "forcedGc": true,
+  "rooms": [
+    {
+      "packets": 5114,
+      "maxSnapshotGapMs": 82,
+      "resets": 4,
+      "reconnects": 1,
+      "droppedSteps": 0,
+      "tick": 3595,
+      "wirePayloadBytes": {
+        "outBytes": 5085320,
+        "inBytes": 72639,
+        "outMessages": 5140
+      },
+      "averageOutboundBytesPerClientSecond": 21119.752511476283
+    },
+    {
+      "packets": 5113,
+      "maxSnapshotGapMs": 96,
+      "resets": 4,
+      "reconnects": 1,
+      "droppedSteps": 0,
+      "tick": 3594,
+      "wirePayloadBytes": {
+        "outBytes": 5080700,
+        "inBytes": 72639,
+        "outMessages": 5136
+      },
+      "averageOutboundBytesPerClientSecond": 21100.542212760294
+    },
+    {
+      "packets": 5111,
+      "maxSnapshotGapMs": 77,
+      "resets": 4,
+      "reconnects": 0,
+      "droppedSteps": 0,
+      "tick": 3612,
+      "wirePayloadBytes": {
+        "outBytes": 5079196,
+        "inBytes": 73004,
+        "outMessages": 5130
+      },
+      "averageOutboundBytesPerClientSecond": 21094.28847049431
+    },
+    {
+      "packets": 5111,
+      "maxSnapshotGapMs": 84,
+      "resets": 4,
+      "reconnects": 0,
+      "droppedSteps": 0,
+      "tick": 3610,
+      "wirePayloadBytes": {
+        "outBytes": 5079708,
+        "inBytes": 73004,
+        "outMessages": 5130
+      },
+      "averageOutboundBytesPerClientSecond": 21096.41740403167
+    }
+  ],
+  "violations": [],
+  "roomsDisposed": true
+}

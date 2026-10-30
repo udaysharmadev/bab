@@ -1,0 +1,15 @@
+{
+  "result": "PASS",
+  "browser": "155.0.8059.82",
+  "coastMetres": 0.6600135556255835,
+  "lateDriftMetres": 0,
+  "strokes": [
+    0,
+    0,
+    1,
+    0
+  ],
+  "samples": 65,
+  "errors": [],
+  "scope": "Actual browser Space press and keyup through the production room; no teleport or direct velocity change"
+}

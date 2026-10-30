@@ -1,0 +1,8 @@
+{
+  "result": "PASS",
+  "physics": "basin-0.13",
+  "triangleChecks": 3600,
+  "maxHeightError": 3.0534476236354635e-7,
+  "maxPhysicsError": 0.000007679462404652782,
+  "scope": "Independent Three rays and actual authority Rapier triangles; exact geometry/normal chunk seams."
+}

@@ -1,0 +1,356 @@
+
+> bad-at-boating@0.1.0 test
+> node --import tsx --test --test-concurrency=1 tests/*.test.ts tests/*.test.mjs
+
+✔ Audio follows actual one-shot events without replaying old sounds after join, reset, pause or reconnect (0.551959ms)
+✔ Lobby countdown beeps once per beat and never replays on join, pause or repeated snapshots (0.065292ms)
+✔ Water wash follows relative flow and continuous rapids, with bounded seat-specific immersion (8.251083ms)
+✔ Geological bank chunks share positions, texture coordinates, colour and shading at every seam (89.92175ms)
+✔ Vegetation ground queries agree with independent ray hits on actual bank triangles (25.60225ms)
+✔ Small procedural rock texture is deterministic, filtered and seamless at the wrap (118.466542ms)
+✔ Exact bed triangles agree between authority rays, rendered surfaces and interpolation over the entire route (81.973166ms)
+✔ Canonical checkpoints retain deep hull/blade lanes and depth drag is continuous, bounded and dissipative (0.621084ms)
+✔ Water depth attributes follow exact bed heights through both quality modes and same-tick relocations (31.507208ms)
+✔ A settled sandbar hull stays nonlethal and idle; four real reverse paddles can push off into deep water without recovery (688.60375ms)
+✔ Passive bed-paddle friction dissipates motion without lift; resting and released paddles supply no force (24.392584ms)
+✔ Five C2 bend seams preserve straight launch, checkpoints and bounded analytic slopes (7.665042ms)
+✔ Recorded water fields move with the river and rotate horizontal flow without adding speed (1.191542ms)
+✔ Visible bank faces and actual convex prisms meet at shared seams throughout every bend (50.037416ms)
+✔ Authority ray queries find the visible bent bank and its normal without phantom straight walls (40.586541ms)
+✔ Riverbed rows and deep lane remain under the bent navigable corridor (1.119708ms)
+✔ Blade pose matches renderer for zero-length, vertical and near-antiparallel directions (4.745959ms)
+✔ Shared rounded blade preserves original render geometry and both convex cores stay inside its faces (6.561792ms)
+✔ Rounded volume catches edge-only contacts and sweeps, while shoulder gaps, sensors and own hull remain clear (28.621959ms)
+✔ Blade-only bracing is bounded, passive and nonlethal across seats, headings and heels (578.904167ms)
+✔ Blade-only moving-frame response, saturation, resting contact and release stay bounded (176.187166ms)
+✔ Rounded paddle retains its attachment envelope and rejects the old rectangular corners (4.146167ms)
+✔ Hull fibres align along each plank and share coordinates across its actual triangulation (0.386084ms)
+✔ Rope coil is compact, finite and can rest directly on the floor (1.488209ms)
+(node:27458) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Real crew righting requires fresh majority input and survives reconnect with no stale effort or teleport (7590.291333ms)
+✔ Cooperative righting uses bounded real torque across headings and both roll/pitch directions without teleport (885.60075ms)
+✔ Minority,wrong action,stale input and release cannot power righting; no-input timeout returns the saved checkpoint (106.529042ms)
+✔ Practice rescue needs one active seat; release/reset/wreck clear rescue and damage retains priority (27.525417ms)
+✔ Persistent shaft-only contacts are nonlethal and dissipative across every seat, heading and heel (540.881791ms)
+✔ Holding a dipped shaft still produces no free force; release and inactive paddles stop bracing (13.977167ms)
+✔ Shaft queries exclude own hull, sensors and separated solids (4.917584ms)
+✔ Moving-solid relative velocity and saturated impacts remain bounded for every seat (154.037167ms)
+✔ Every crew rig holds the real shaft through repeated forward/reverse/turn cycles and orients its wrists along it (29.142833ms)
+✔ Crew blinks are bounded and staggered; deterministic pose restores after a wreck without retained animation state (15.781209ms)
+(node:27485) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Server-selected mover phase reaches every peer; clients cannot choose it; old clients are rejected (84.138333ms)
+{"result":"PASS","seconds":270,"distanceMetres":321.30145263671875,"averageMetresPerSecond":1.1900053801359953,"routeMetres":1400,"flatWaterExtrapolatedSeconds":1176.465269291477,"strokes":[159,159,159,159],"scope":"Actual four-paddle flat-water diagnostic with obstacle/bank colliders removed. Not a full-route traversal, fastest-run lower bound or human completion certification. Rapids, steering, pauses and retries alter route duration."}
+✔ Danger crowns stay inside physical rock volumes and use bounded shared variants (8.143833ms)
+✔ Crew mover phases match physical poses and retain safe checkpoints through retries (264.626291ms)
+✔ 270-second continuous four-paddle pacing diagnostic records actual propulsion (979.07ms)
+(node:27489) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"case":"fan-network","checks":["Version/name/legacy save rejection","Four-ready cancellation and actual countdown","Neutral rearm, seat forgery, stale input and cadence ownership","Actual socket pause/reconnect retains name/seat; all stale thrust cleared","Distinct majority reset votes","Frozen finish and explicit re-ready replay"]}
+✔ Fan authority: name/version, four-ready cancellation, owned bounded input, real pause/reconnect, reset voting and frozen finish (6257.204916ms)
+{"case":"fan-opposite-thrust","cases":[{"seat":0,"yaw":0,"speed":0.8722057649605929},{"seat":1,"yaw":0,"speed":0.8722058070581438},{"seat":2,"yaw":0,"speed":0.8722053014326194},{"seat":3,"yaw":0,"speed":0.8722061442804423},{"seat":0,"yaw":1.5707963267948966,"speed":0.8722057227605773},{"seat":1,"yaw":1.5707963267948966,"speed":0.8722059335119794},{"seat":2,"yaw":1.5707963267948966,"speed":0.8722060178279},{"seat":3,"yaw":1.5707963267948966,"speed":0.8722055121728283},{"seat":0,"yaw":3.141592653589793,"speed":0.8722061442804423},{"seat":1,"yaw":3.141592653589793,"speed":0.8722053014326194},{"seat":2,"yaw":3.141592653589793,"speed":0.8722058070581438},{"seat":3,"yaw":3.141592653589793,"speed":0.8722057649605929},{"seat":0,"yaw":-1.5707963267948966,"speed":0.8722054700234105},{"seat":1,"yaw":-1.5707963267948966,"speed":0.8722060178279},{"seat":2,"yaw":-1.5707963267948966,"speed":0.8722059756583685},{"seat":3,"yaw":-1.5707963267948966,"speed":0.8722057649070498}]}
+{"case":"fan-offset-torque","values":[{"seat":0,"direction":-1,"yaw":0.1693904548883438},{"seat":0,"direction":1,"yaw":-0.16951221227645874},{"seat":1,"direction":-1,"yaw":0.1694219559431076},{"seat":1,"direction":1,"yaw":-0.1694607436656952},{"seat":2,"direction":-1,"yaw":0.16939949989318848},{"seat":2,"direction":1,"yaw":-0.16948486864566803},{"seat":3,"direction":-1,"yaw":0.1694379299879074},{"seat":3,"direction":1,"yaw":-0.16946260631084442}]}
+{"case":"fan-buoyancy-60s","maxSpeed":2.661493196064168e-8,"maxYaw":1.4905807971954346,"y":-0.10313277691602707}
+{"case":"fan-course-pilot","seconds":83.55,"maxSpeed":2.608499032868891,"checkpoint":1,"strokes":[72,73,112,111],"scope":"Synthetic input reachability/pacing, not human fun or complete-game duration"}
+✔ Fan input rejects forged seats, nonfinite values, stale/oversized sequences and extra force; touch/keyboard aliases stay independent (4.050416ms)
+✔ Each fan pushes opposite its air at four headings, without a hidden centred yaw command (93.54925ms)
+✔ Opposite fans and four equal radial fans cancel; scooting alone adds no horizontal propulsion (15.592125ms)
+✔ Small player offsets reverse actual torque at every station and stay bounded (26.887166ms)
+✔ Fan cadence is simulation-owned; release/staleness/pause cannot replay held power (9.799708ms)
+✔ Sampled buoyancy stays finite, rights a heel and bounds repeated simultaneous thrust (56.983084ms)
+✔ Real spike contacts including a fast approach fail once, ordinary rocks/banks bump, retry is clear, and finish freezes (20.938959ms)
+✔ A four-seat input pilot traverses the complete feel course without teleports or resets (166.812583ms)
+✔ Predicted spike near misses remain safe until real touch; the actual moving sweeper can strike the raft (5.272083ms)
+(node:27496) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Completed authority holds pose and rejects rowing until a shared restart restores play (494.4275ms)
+(node:27499) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Foam obstacle cache initializes at rest and refreshes after movement (13.078375ms)
+✔ Lost voyage lease publishes unavailable/blocked and never retries stale persistence (42.886542ms)
+✔ Whirlpool flow is finite, bounded, smoothly local, and absent in calm fixtures (10.988208ms)
+✔ Physical iron tooth contact breaks the hull once while a neighboring clear route stays intact (105.65975ms)
+✔ An iron tooth touched only by the paddle permits bracing without hull destruction (43.400334ms)
+✔ Tapered spike tips have actual cone clearance rather than an invisible full-width box (12.54025ms)
+✔ Whirlpool acts through water drag, remains stable, and repeats from the same state (1650.967083ms)
+✔ Every checkpoint resets outside spike collision and whirlpool influence (41.677542ms)
+✔ Moving timber collider follows the shared fixed-step clock through a full cycle and a wreck (117.401708ms)
+✔ Moving timber causes one physical hull break while the bank-side bypass remains clear (119.937792ms)
+✔ Checkpoint reset preserves sweeper phase and stays clear at multiple phases (109.563458ms)
+✔ Convex collider follows every structural panel triangle through yaw, pitch and roll (24.053125ms)
+✔ Water exclusion planes agree with Rapier inside/outside queries throughout the hull volume (60.972792ms)
+✔ Visible bow, stern and shoulder contacts break once; empty tapered corners remain clear (409.755083ms)
+✔ A predicted contact stays safe until the same pair actually touches on a later tick (6.308542ms)
+{"case":"buoyancy-sweep","measurements":[{"samples":16,"payloads":[{"massKg":220,"equilibriumY":0.08398424088954926,"expectedY":0.08398461538461535},{"massKg":260,"equilibriumY":0.05379948765039444,"expectedY":0.053800000000000014},{"massKg":360,"equilibriumY":-0.021663248538970947,"expectedY":-0.02166153846153851}],"heels":[{"initialDegrees":10,"finalUpY":0.999983107690598,"maxSpeed":0.13425461423815507},{"initialDegrees":25,"finalUpY":0.9999845117220323,"maxSpeed":0.16507815870848272},{"initialDegrees":45,"finalUpY":0.9999860725498824,"maxSpeed":0.30772051472606327}],"residualSpeed":0.5415378456863005,"measuredTicks":6240,"tickP50ms":0.1069999999999709,"tickP95ms":0.14345800000000963},{"samples":20,"payloads":[{"massKg":220,"equilibriumY":0.08398418873548508,"expectedY":0.08398461538461535},{"massKg":260,"equilibriumY":0.05379938334226608,"expectedY":0.053800000000000014},{"massKg":360,"equilibriumY":-0.02166345715522766,"expectedY":-0.02166153846153851}],"heels":[{"initialDegrees":10,"finalUpY":0.9999830067905835,"maxSpeed":0.13457442507370088},{"initialDegrees":25,"finalUpY":0.9999844214071999,"maxSpeed":0.1650997164125233},{"initialDegrees":45,"finalUpY":0.9999859926550652,"maxSpeed":0.3074258856973869}],"residualSpeed":0.5485730052804034,"measuredTicks":6240,"tickP50ms":0.10445800000002237,"tickP95ms":0.12295800000003965},{"samples":24,"payloads":[{"massKg":220,"equilibriumY":0.08398409932851791,"expectedY":0.08398461538461535},{"massKg":260,"equilibriumY":0.05379924923181534,"expectedY":0.053800000000000014},{"massKg":360,"equilibriumY":-0.02166372537612915,"expectedY":-0.02166153846153851}],"heels":[{"initialDegrees":10,"finalUpY":0.9999829142703995,"maxSpeed":0.1348365453651531},{"initialDegrees":25,"finalUpY":0.9999843376333128,"maxSpeed":0.1644973400540239},{"initialDegrees":45,"finalUpY":0.9999859213236945,"maxSpeed":0.3071193477258709}],"residualSpeed":0.5543921194557684,"measuredTicks":6240,"tickP50ms":0.10695799999984956,"tickP95ms":0.12254099999972823}]}
+✔ Height-only mesh sampling and cached rapid rows agree across wave/vortex/rapid seams (5.050416ms)
+✔ Wave vertical velocity matches the analytic surface motion including rapid seams (0.430167ms)
+✔ T021: 16/20/24 buoyancy samples preserve displacement, restore heel and dissipate free motion (2190.269333ms)
+✔ Grounded recovery detects a sideways hull through contact and excludes idle/open-water boats (181.177417ms)
+✔ Held-action messages reject forged axes, stale sequences and seat/force overrides (0.432417ms)
+✔ WASD and arrows normalize including uppercase and key-only events; aliases stay distinct (0.196708ms)
+✔ Held actions repeat dry recovery and wet pulls; aliases agree and reversal mirrors travel (1.55025ms)
+✔ Opposites cancel; aliases do not double speed or cancel each other; diagonal turns rest inner blade (0.402125ms)
+✔ Release, reset, direction change and long scheduling gap restart with a raised blade (0.068291ms)
+✔ Cycle timing is independent of render frame rate and browser key-repeat frequency (0.25425ms)
+✔ Keyboard and multiple touch pointers retain independent held actions (0.079875ms)
+✔ Remapped keys preserve arrow aliases, reject duplicates and ignore replaced defaults (0.092041ms)
+✔ Controller input has bounded digital axes, deadzone, independent ownership and neutral rearming (0.198167ms)
+(node:27509) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Crew countdown, strict-majority consent, checkpoint durability and completed departure lifecycle (23687.677166ms)
+✔ HTTP room creation limiter uses transport AuthContext before room allocation; existing-room joins still work (85.658667ms)
+(node:27517) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Display names normalize spacing/Unicode, bound length and reject markup/control payloads (1.169792ms)
+✔ Real room names belong to seats, survive reconnect and allow readiness before all four arrive (3247.232542ms)
+(node:27551) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Room connection was closed unexpectedly (1005): 
+❌ reconnection token invalid or expired. Did you miss .allowReconnection()?
+👉 https://docs.colyseus.io/room#allow-reconnection
+{
+  "result": "PASS",
+  "realWebSockets": true,
+  "humanPlaytest": false,
+  "reconnectBoundary": "Server snapshot received on the replacement socket, after JOIN acknowledgement",
+  "results": [
+    {
+      "delay": 80,
+      "jitter": 35,
+      "loss": 0.1,
+      "scope": "one-way ms; ordered application-message drop, not TCP packet loss",
+      "ticks": 241,
+      "dropped": 56,
+      "forwarded": 417,
+      "bytes": 286417,
+      "positionZ": 3.9932966232299805,
+      "strokes": [
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    {
+      "delay": 180,
+      "jitter": 70,
+      "loss": 0.25,
+      "scope": "one-way ms; ordered application-message drop, not TCP packet loss",
+      "ticks": 241,
+      "dropped": 129,
+      "forwarded": 339,
+      "bytes": 228421,
+      "positionZ": 3.8029110431671143,
+      "strokes": [
+        6,
+        6,
+        6,
+        6
+      ]
+    },
+    {
+      "delay": 300,
+      "jitter": 100,
+      "loss": 0.15,
+      "scope": "one-way ms; ordered application-message drop, not TCP packet loss",
+      "ticks": 240,
+      "dropped": 78,
+      "forwarded": 370,
+      "bytes": 256603,
+      "positionZ": 3.2230772972106934,
+      "strokes": [
+        10,
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "case": "upstream-blackout",
+      "staleBladesLifted": true
+    },
+    {
+      "case": "duplicate-reconnect-race",
+      "accepted": 1,
+      "pausedAllBladesLifted": true
+    },
+    {
+      "case": "two-simultaneous-reconnects",
+      "sameSeats": true
+    },
+    {
+      "case": "real-grace-expiry",
+      "testGraceSeconds": 2,
+      "productionGraceSeconds": 90,
+      "expiredRejected": true,
+      "seatReclaimed": true
+    },
+    {
+      "case": "abusive-message-burst",
+      "clientDisconnected": true,
+      "forgedThrustRejected": true
+    }
+  ],
+  "lifecycle": [
+    {
+      "event": "drop",
+      "seat": 0,
+      "state": 4,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "reconnect",
+      "seat": 0,
+      "state": 2,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "drop",
+      "seat": 1,
+      "state": 4,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "drop",
+      "seat": 0,
+      "state": 4,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "reconnect",
+      "seat": 1,
+      "state": 2,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "reconnect",
+      "seat": 0,
+      "state": 2,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "drop",
+      "seat": 3,
+      "state": 4,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "leave",
+      "seat": 3,
+      "state": 4,
+      "stage": "playing",
+      "members": 4
+    },
+    {
+      "event": "drop",
+      "seat": 2,
+      "state": 4,
+      "stage": "lobby",
+      "members": 4
+    }
+  ],
+  "violations": []
+}
+✔ Real WebSocket impairment grid, blackout, reconnect races, expiry and rate abuse preserve authority (22570.748708ms)
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+@colyseus/sdk: onMessage() not registered for type 'voyage'.
+{"case":"four-client-room","seats":[0,1,2,3],"pausedTick":255,"resumedTick":258,"forgeryRejected":true,"reconnectSeatPreserved":true}
+✔ NET: four distinct seats, launch barrier, authority, forged inputs, drop/pause/reconnect and host independence (7913.304708ms)
+{"case":"idle-120s","y":0.053800009191036224,"speed":0.1437090039253235,"tickP95ms":0.1392080000000533}
+{"case":"air-vs-water","airZ":-5.064097058360417e-11,"wetZ":0.8718743324279785,"seatYaw":[0.333575040102005,-0.33357465267181396,0.3213750720024109,-0.3213749825954437]}
+✔ Input contract rejects NaN, stale/future sequence, teleport, spoofed seat and extra thrust (3.982542ms)
+✔ Y-up transforms preserve lengths and +Z forward turns to +X at 90° yaw (0.280625ms)
+✔ PHY-01/12: two simulated minutes at rest retain equilibrium and zero horizontal thrust (824.504167ms)
+✔ PHY-02/03/04/06: immersed stroke moves hull, air has no thrust, four balanced strokes advance without yaw (211.826208ms)
+✔ PHY-05/07: reverse relative velocity reverses force; immersion and current affect drag; force capped (0.98975ms)
+✔ Blade reaction rotates with hull heading rather than fixed world axes (76.095125ms)
+✔ PROTO: bow/stern lateral sweep creates opposite yaw, same-side straight pulls need not (62.811625ms)
+✔ NET stale input and disconnect release blade; target teleport remains speed bounded (35.4775ms)
+✔ PHY-08: swept blade can brace against bank with bounded contact force and no wall climb (31.983375ms)
+✔ PHY-10 partial: sampled buoyancy settles a 25-degree heel in waves without orientation lock (138.30325ms)
+✔ PHY-11: 100 checkpoint resets clear momentum and return to a collision-free canonical pose (17.30875ms)
+✔ PHY-23: a sustained capsize returns every crew member to the canonical checkpoint without masking a crash (103.201583ms)
+✔ PHY-23: live rowing pinned at a bank recovers, while a stationary crew never auto-resets (85.884ms)
+✔ Repeated recorded inputs are reproducible in this runtime (69.047458ms)
+✔ Checkpoint capture belongs to the simulation and advances its revision only once per dock (18.235541ms)
+✔ Lethal obstacle contact breaks once, disables every paddle, sinks, and restores the checkpoint cleanly (25.747917ms)
+✔ Nearby obstacles and ordinary river-bank contact do not cause a false break (18.849792ms)
+✔ A blade-only rock brace does not destroy a clear hull (33.111667ms)
+✔ Hull CCD still triggers lethal contact at a fast approach (5.957167ms)
+{"case":"water-mesh-interpolation","maxErrorMetres":0.01491709034923197,"vertices":6369}
+✔ Authored cameras blend continuously, frame reverse travel and keep the eye inside the bank (92.226917ms)
+✔ Submerged bed is finite, continuous between chunks and below the navigable hull lane (3.867791ms)
+✔ All four crew rigs retain arm length and reach the real shaft grips through the complete blade workspace (14.943583ms)
+✔ Rendered water mesh matches the shared physical surface including vortex depression and resets its time (14.439958ms)
+✔ Fast water normals remain unit length on a width-warped sloped surface (0.1645ms)
+✔ Water mesh interpolation stays within four centimetres of physical waves at representative seams (80.796167ms)
+✔ Floor vertices stay within the tapered hull, and the underside is a closed shaped shell (1.094625ms)
+✔ Water window follows the crew through rapids and narrow channels with matching authoritative heights (25.103167ms)
+✔ Same-tick checkpoint relocation moves the water window and resamples its channel immediately (11.741583ms)
+✔ Dry hull mask tracks the actual rendered transform and releases immediately for a wreck/reset at the same water tick (3.648333ms)
+✔ Wake direction follows surface-relative reverse/sideways motion and falls back safely at rest (15.118541ms)
+✔ Detailed hazard rock stays within its physical sphere and shore variants retain finite chipped surfaces (14.38925ms)
+✔ Natural vegetation has finite grounded geometry and bounded reusable asset cost (43.722208ms)
+✔ Dock rehearsal shows wet pulls and dry returns for every seat, with bounded travel at30/60Hz (1.653708ms)
+✔ Dock rehearsal reverse mirrors forward and a turn moves only the expected side (0.64325ms)
+✔ Dock rehearsal releases, clears on seat/time discontinuity and rejects invalid samples (0.100375ms)
+✔ Recovery eddy has bounded curl, a smooth zero rim and no height change or suction (12.719667ms)
+✔ Recovery pocket leaves canonical hull/blade spawn lanes and lethal obstacles clear (0.187166ms)
+✔ An unpowered hull slows and circulates in the recovery bay without wreck, reset or fake propulsion (1937.057625ms)
+✔ All four real paddles can steer out and rejoin downstream with bounded force and no recovery teleport (722.690417ms)
+✔ Timber Gorge has contiguous authored beats, recovery bays and a finite final objective (3.87675ms)
+✔ Shared channel and rapids stay continuous, finite and bounded with flat-water fixtures preserved (21.396584ms)
+✔ Every canonical checkpoint remains safe with synchronized timber at eight distinct clock phases (871.052417ms)
+✔ Gorge rock, spike and both moving timber colliders cause genuine one-shot hull failure (142.043834ms)
+✔ Rapids impart bounded flow through immersed drag, while calm controls retain zero propulsion (25.517708ms)
+✔ Authored extension has a connected hull-width corridor at sampled timber phases (203.728666ms)
+✔ Only the final river gate completes the run, and checkpoint retry clears completion (6.2395ms)
+✔ Narrow gorge banks stop the hull and permit paddle bracing without becoming lethal (51.753542ms)
+{"case":"hold-to-row","forward":{"key":"KeyW","seats":[0,1,2,3],"z":6.982997894287109,"surge":6.987732405585957,"yaw":-1.3655133087567013e-9,"screenHeading":-0.013092406883287685,"strokes":[4,4,4,4],"maxForce":210.67072679280167},"reverse":{"key":"KeyS","seats":[0,1,2,3],"z":-6.982998371124268,"surge":-6.9877327036421635,"yaw":4.914944694307046e-9,"screenHeading":-0.016089189641798875,"strokes":[4,4,4,4],"maxForce":210.67072679279647}}
+{"case":"seat-rowing","seat":0,"forward":1.271359028593025,"reverse":-1.2712734601984632,"left":0.4316669853373241,"right":-0.4288914779798993}
+{"case":"seat-rowing","seat":1,"forward":1.2713590288191432,"reverse":-1.2712734604476834,"left":0.42889147545465683,"right":-0.43166692275279567}
+{"case":"seat-rowing","seat":2,"forward":1.2712734601969837,"reverse":-1.2713590285884324,"left":0.4288915935293819,"right":-0.43166686215915134}
+{"case":"seat-rowing","seat":3,"forward":1.271273460424093,"reverse":-1.271359028833073,"left":0.43166692035538295,"right":-0.42889143062905827}
+✔ Holding W alone repeatedly drives the actual hull forward; S alone drives it backwards (242.558541ms)
+✔ Every seat produces forward/reverse surge and turns left/right in the actual gameplay camera (691.510708ms)
+✔ A coordinated crew turns both ways with bounded force and no forward/reverse key choreography (185.420542ms)
+{"case":"process-crash-durable-resume","checkpoint":4,"z":260,"stage":"lobby","duplicateResumeRejected":true}
+✔ A real server crash restores the durable canonical checkpoint into a new four-ready room (1546.797375ms)
+(node:27580) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Canonical checkpoint persists across database reopen; stale revisions and duplicate rooms cannot overwrite it (3.254875ms)
+✔ Lease takeover invalidates the old writer while heartbeat prevents premature duplicate resume (0.316666ms)
+✔ Reviewed basin-0.5 canonical saves migrate atomically, preserving checkpoint, token and revision (2.357583ms)
+✔ Reviewed basin-0.6 canonical saves migrate atomically, preserving checkpoint, token and revision (2.0115ms)
+✔ Reviewed basin-0.7 canonical saves migrate atomically, preserving checkpoint, token and revision (1.984917ms)
+✔ Reviewed basin-0.8 canonical saves migrate atomically, preserving checkpoint, token and revision (2.323083ms)
+✔ Reviewed basin-0.9 canonical saves migrate atomically, preserving checkpoint, token and revision (2.158917ms)
+✔ Reviewed basin-0.10 canonical saves migrate atomically, preserving checkpoint, token and revision (1.982708ms)
+✔ Reviewed basin-0.11 canonical saves migrate atomically, preserving checkpoint, token and revision (1.985708ms)
+✔ Reviewed basin-0.12 canonical saves migrate atomically, preserving checkpoint, token and revision (2.049208ms)
+(node:27581) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Slow output disconnects safely, retains the seat and resumes without old rowing (3543.683792ms)
+✔ Catch-up counts the complete stall, caps work at five steps and freezes on the first finish step (15.696958ms)
+✔ A socket withholding JOIN acknowledgement cannot accumulate periodic snapshot messages (263.687083ms)
+✔ Production tracker rejects fabricated completion, missing evidence and dependency cycles (11.115917ms)
+✔ Delivery phases cannot skip prerequisites or turn local verification into production acceptance (1.091834ms)
+✔ Waterwheel is a real shared-clock kinematic hazard; reset preserves its phase (193.950834ms)
+✔ sawyer-waterwheel: real contact breaks once; marked bypass survives two rotations (293.438917ms)
+✔ devil-waterwheel: real contact breaks once; marked bypass survives two rotations (217.059625ms)
+ℹ tests 152
+ℹ suites 0
+ℹ pass 152
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 109210.056167

@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "browser": "155.0.8059.82",
+  "checks": [
+    "10 desktop, phone, tablet and short-landscape layouts: brand/actions fit, actual initial raft silhouette fits its stage, no menu overlap or page overflow",
+    "Actual title pixels change with animated water, raft and fanning crew",
+    "Keyboard Enter opens focused name confirmation; practice also asks for name; joining clears title framing; leaving restores title; remembered name still needs confirmation",
+    "Reduced-motion preference freezes decorative title animation"
+  ],
+  "views": 10,
+  "metrics": {
+    "calls": 122,
+    "triangles": 33912
+  },
+  "errors": []
+}

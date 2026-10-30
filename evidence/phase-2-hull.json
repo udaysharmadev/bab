@@ -1,0 +1,204 @@
+{
+  "phase": "M2",
+  "check": "M2-A",
+  "title": "Structural hull collision and visible shape agreement",
+  "engineeringState": "VERIFIED",
+  "phaseEngineeringState": "ACTIVE",
+  "productionGate": "OPEN",
+  "date": "2026-10-20T11:35:07.322670+00:00",
+  "protocol": 5,
+  "physics": "basin-0.7",
+  "world": "waterworks-1",
+  "scope": "First engineering check within the premium playable slice. Structural hull agreement and real contact verified locally; thin trim is cosmetic. Bends, rescue, art/audio and genuine human/device acceptance remain open. No production scope points awarded.",
+  "implementation": [
+    "Shared22-vertex convex hull, outward panel diagonals and24 water-mask half-spaces",
+    "CCD retained; loaded260kg mass/centre/inertia, buoyancy/rowing model, world/checkpoints and mover clocks preserved",
+    "Lethal contact requires manifold gap<=1mm on every tick, including pairs that began as predicted contacts",
+    "Transactional migration from reviewed0.5/0.6 canonical saves; active/finished/incompatible saves retained on rejection"
+  ],
+  "verification": {
+    "tests": {
+      "command": "npm test",
+      "passed": 90,
+      "failed": 0,
+      "seconds": 75.357435333
+    },
+    "strictCheck": "PASS",
+    "productionBuild": "PASS",
+    "structuralHull": [
+      {
+        "case": "transformed-panel-surface",
+        "checks": 352,
+        "maxSurfaceErrorMetres": 7.180116262741429e-07
+      },
+      {
+        "case": "water-mask-volume-agreement",
+        "checks": 48076
+      },
+      {
+        "case": "real-contact-and-near-miss-matrix",
+        "checks": 28
+      },
+      {
+        "case": "prediction-to-real-contact",
+        "checks": 1
+      }
+    ],
+    "browserFlowGroups": 8,
+    "inputAndGraphicsRecoveryGroups": 7,
+    "physicalController": "NOT TESTED; browser API simulated",
+    "graphicsViews": 21,
+    "titleViewports": 3,
+    "maxCalls": 723,
+    "maxTriangles": 2235244,
+    "shaderAndBrowserErrors": [],
+    "waterOptics": "PASS",
+    "dryHullHighLow": "PASS; zero deck difference over7 wave phases per quality",
+    "localDeploymentSmoke": "PASS;8 checks; isolated in-memory authority"
+  },
+  "load": {
+    "seconds": 120.128,
+    "rooms": 4,
+    "clients": 16,
+    "resets": 32,
+    "reconnects": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "eventLoop": {
+      "utilization": 0.20501763331362727,
+      "delayP50ms": 10.526719,
+      "delayP95ms": 11.780095,
+      "delayMaxMs": 22.724607
+    },
+    "averageOutboundBytesPerClientSecond": [
+      18970.031965903036,
+      18956.9126265317,
+      18957.453716036227,
+      18962.423415023975
+    ],
+    "violations": [],
+    "roomsDisposed": true,
+    "scope": "Local co-hosted authority+SDK clients, synthetic workload; not Internet, browser GPU, maximum capacity or hosting certification. Wire bytes count WS application payloads, excluding WS/TCP framing; per-client average includes setup/reconnect traffic."
+  },
+  "performance": {
+    "cases": [
+      {
+        "view": "crew",
+        "quality": "High",
+        "cpuP95Ms": 3.7999999970197678,
+        "waterUpdateP95Ms": 0.5,
+        "gpuP95Ms": 14.43275,
+        "frameIntervalP95Ms": 16.799999999999727,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "crew",
+        "quality": "Low",
+        "cpuP95Ms": 3.1999999955296516,
+        "waterUpdateP95Ms": 0.8000000044703484,
+        "gpuP95Ms": 8.744083,
+        "frameIntervalP95Ms": 16.700000000000045,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "High",
+        "cpuP95Ms": 3.899999998509884,
+        "waterUpdateP95Ms": 0.8000000044703484,
+        "gpuP95Ms": 14.327833,
+        "frameIntervalP95Ms": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "Low",
+        "cpuP95Ms": 3.600000001490116,
+        "waterUpdateP95Ms": 1,
+        "gpuP95Ms": 10.884374,
+        "frameIntervalP95Ms": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "High",
+        "cpuP95Ms": 4.899999998509884,
+        "waterUpdateP95Ms": 0.5,
+        "gpuP95Ms": 12.669083,
+        "frameIntervalP95Ms": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "Low",
+        "cpuP95Ms": 4.299999997019768,
+        "waterUpdateP95Ms": 0.8000000044703484,
+        "gpuP95Ms": 5.880208,
+        "frameIntervalP95Ms": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      }
+    ],
+    "framesPerCase": 90,
+    "advancingClock": true,
+    "host": {
+      "platform": "darwin",
+      "arch": "arm64",
+      "osRelease": "27.0.0",
+      "cpu": "Apple M4",
+      "logicalCpus": 10,
+      "totalMemoryBytes": 17179869184
+    },
+    "browser": "155.0.8059.82",
+    "budgetAcceptance": "OPEN; measured target misses remain visible. Local headless capture is not a consumer-device matrix."
+  },
+  "corrections": [
+    "Initial full-suite attempt was blocked by sandbox localhost permissions and stopped; rerun with local sockets enabled.",
+    "A new separated-side case reproduced premature wrecks from predicted contact; manifold-per-tick fix passes the failing case and later-touch regression.",
+    "Old cone test expected contact with a discarded rectangular corner. New pose retains named-cone hit/clear checks plus full-width-cylinder negative control; first candidate also touched a neighbour and was corrected.",
+    "Graphics fixture defaulted to absent port2570; complete run passed with GAME_URL pointing to isolated final build on2571."
+  ],
+  "evidence": [
+    "evidence/hull-collision.json",
+    "evidence/load-phase-2-hull.json",
+    "evidence/performance-phase-2-hull.json",
+    "evidence/graphics.json",
+    "evidence/landing.json",
+    "evidence/water-depth.json",
+    "evidence/browser.json",
+    "evidence/accessibility.json",
+    "evidence/phase-2-checks.txt",
+    "evidence/build-phase-2-hull.json"
+  ],
+  "remaining": [
+    "Coherent authored bends across terrain/colliders/water/current/hazards/checkpoints/camera",
+    "Staged rescue and onboarding",
+    "Near-field boat/crew/water presentation and audio",
+    "Full-route human/newcomer and named-device acceptance"
+  ]
+}

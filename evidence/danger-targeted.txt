@@ -1,0 +1,12 @@
+{"result":"PASS","seconds":270,"distanceMetres":323.6929931640625,"averageMetresPerSecond":1.198862937644676,"routeMetres":1400,"flatWaterExtrapolatedSeconds":1167.7731924472403,"strokes":[159,159,159,159],"scope":"Actual four-paddle flat-water diagnostic with obstacle/bank colliders removed. Not a full-route traversal, fastest-run lower bound or human completion certification. Rapids, steering, pauses and retries alter route duration."}
+✔ Danger crowns stay inside physical rock volumes and use bounded shared variants (8.69925ms)
+✔ Crew mover phases match physical poses and retain safe checkpoints through retries (255.703084ms)
+✔ 270-second continuous four-paddle pacing diagnostic records actual propulsion (372.918666ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 865.73475

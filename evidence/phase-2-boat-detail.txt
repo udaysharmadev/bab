@@ -1,0 +1,11 @@
+✔ Rounded paddle retains its attachment envelope and rejects the old rectangular corners (4.083084ms)
+✔ Hull fibres align along each plank and share coordinates across its actual triangulation (0.402125ms)
+✔ Rope coil is compact, finite and can rest directly on the floor (1.81475ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 132.014

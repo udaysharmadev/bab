@@ -1,0 +1,7 @@
+{
+  "result": "PASS",
+  "physics": "basin-0.13",
+  "coreVertexChecks": 42,
+  "renderPositionsAndNormals": "identical to original",
+  "convexParts": 2
+}

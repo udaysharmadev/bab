@@ -1,0 +1,18 @@
+5:20:28 PM [vite] (client) page reload releases/bad-at-boating-cpanel/dist/index.html
+{"natureHigh":{"calls":373,"triangles":1976716,"geometries":190,"textures":12,"reflections":true,"refraction":true,"captureCalls":4,"captureTriangles":576,"captureSize":[936,624],"vegetationChunks":5,"vegetationInstances":5384,"foliageLevels":[2,6,12]},"natureLow":{"calls":93,"triangles":574190,"geometries":58,"textures":7,"reflections":false,"refraction":false,"captureCalls":0,"captureTriangles":0,"captureSize":[0,0],"vegetationChunks":5,"vegetationInstances":5384,"foliageLevels":[0,8,12]}}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:2570/
+Call log:
+[2m  - navigating to "http://localhost:2570/", waiting until "load"[22m
+
+    at /Users/uday/Bad at Boating/tests/graphics.mjs:67:16 {
+  log: [
+    '  - navigating to "http://localhost:2570/", waiting until "load"'
+  ],
+  name: 'Error'
+}
+
+Node.js v24.11.0

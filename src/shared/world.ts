@@ -1,11 +1,15 @@
 import { clamp, type Vec3 } from './protocol';
+import { channelCenter, channelSlope, riverX } from './river';
+import {sampleRescueCurrent} from './rescue';
+export {RESCUE_EDDY,sampleRescueCurrent} from './rescue';
+export { RIVER_BENDS, channelCenter, channelSlope, riverX } from './river';
 
 // Append checkpoints only: saved voyages store indices into this array.
 export const CHECKPOINTS = [0, 48, 100, 156, 260, 380, 500, 630, 760, 1100] as const;
 export const FINISH_Z = 1400;
-export const WATERWHEEL = {id:'sawyer-waterwheel',x:5,y:2.3,z:465,radius:3,halfWidth:1.5,period:18,blades:8} as const;
+export const WATERWHEEL = {id:'sawyer-waterwheel',x:riverX(5,465),y:2.3,z:465,radius:3,halfWidth:1.5,period:18,blades:8} as const;
 // M-D: Second waterwheel in Devil's Staircase.
-export const WATERWHEEL2 = {id:'devil-waterwheel',x:-5,y:2.3,z:1040,radius:3.2,halfWidth:1.5,period:14,blades:8} as const;
+export const WATERWHEEL2 = {id:'devil-waterwheel',x:riverX(-5,1040),y:2.3,z:1040,radius:3.2,halfWidth:1.5,period:14,blades:8} as const;
 export function sampleWaterwheel(time:number) {
   const angle=time*Math.PI*2/WATERWHEEL.period;
   return {x:Math.sin(angle/2),y:0,z:0,w:Math.cos(angle/2)};
@@ -26,7 +30,7 @@ export const ROUTE_SECTIONS: readonly RouteSection[] = [
   { id: 'split-stone', name: 'Split Stone Slalom', start: 176, end: 244, kind: 'slalom', hint: 'Pass the rocks on alternating sides.' },
   { id: 'fern-dock', name: 'Fern Dock', start: 244, end: 278, kind: 'calm', hint: 'Regroup at the green pennants.' },
   { id: 'whitewater', name: 'Whitewater Steps', start: 278, end: 364, kind: 'rapids', hint: 'The current accelerates. Set your line early.' },
-  { id: 'stillwater', name: 'Stillwater Pool', start: 364, end: 398, kind: 'calm', hint: 'A quiet pool before the timber works.' },
+  { id: 'stillwater', name: 'Stillwater Pool', start: 364, end: 398, kind: 'calm', hint: 'Green bank: recovery eddy. Regroup, then turn toward the main channel.' },
   { id: 'timber-works', name: 'Timber Works', start: 398, end: 482, kind: 'timber', hint: 'Watch the floating trunks. Wait for an opening.' },
   { id: 'sawyer-dock', name: 'Sawyer Dock', start: 482, end: 520, kind: 'calm', hint: 'Make room for the next tight passage.' },
   { id: 'iron-narrows', name: 'Iron Narrows', start: 520, end: 612, kind: 'narrows', hint: 'Teeth on the banks. Keep the hull clear.' },
@@ -70,6 +74,20 @@ export function channelHalfWidth(z: number): number {
   return WIDTHS[WIDTHS.length - 1]![1];
 }
 
+// Continuous polygonal banks: the rendered face and Rapier prism use exactly
+// these five-metre chords, rather than independent conservative box steps.
+export function bankEdge(z:number,side:number):number {
+  const start=Math.floor(z/5)*5,t=(z-start)/5;
+  const a=channelCenter(start)+side*channelHalfWidth(start),b=channelCenter(start+5)+side*channelHalfWidth(start+5);
+  return a+(b-a)*t;
+}
+
+export function bankVertices(start:number,side:number):Float32Array {
+  const points:number[]=[];
+  for(const z of [start,start+5])for(const y of [-3,3])for(const outward of [0,3])points.push(bankEdge(z,side)+side*outward,y,z);
+  return new Float32Array(points);
+}
+
 export const ROCKS = [
   { id: 'split-rock', x: 0, z: 27, radius: 1.15 },
   { id: 'gorge-rock', x: -3, z: 73, radius: 1.3 },
@@ -101,7 +119,7 @@ export const ROCKS = [
   { id: 'finale-center', x: -2.0, z: 1250, radius: 1.0 },
   { id: 'finale-fork', x: 3.5, z: 1300, radius: 1.2 },
   { id: 'finale-last', x: -1.8, z: 1350, radius: 1.1 },
-];
+].map(point=>({...point,x:riverX(point.x,point.z)}));
 // Upright iron teeth: render and collision share a submerged base at -0.35m.
 export const SPIKES = [
   { id: 'iron-tooth-1', x: -6, z: 55, radius: 0.42, height: 1.6 },
@@ -132,7 +150,7 @@ export const SPIKES = [
   { id: 'finale-tooth-2', x: -3.9, z: 1181.2, radius: 0.40, height: 1.45 },
   { id: 'finale-tooth-3', x: 4.5, z: 1310, radius: 0.45, height: 1.8 },
   { id: 'finale-tooth-4', x: 5.3, z: 1311.4, radius: 0.40, height: 1.5 },
-];
+].map(point=>({...point,x:riverX(point.x,point.z)}));
 export const WHIRLPOOL = { x: -5, z: 112, radius: 5, depth: 0.55, swirl: 6, inward: 2 } as const;
 export type Sweeper = {
   id: string; z: number; halfLength: number; radius: number;
@@ -154,7 +172,7 @@ export const SWEEPERS: readonly Sweeper[] = [
 // Shared authoritative clock: clients display this pose; only the server collider
 // can cause contact. Capsule halfLength is the half-distance between its endcaps.
 export function sampleSweeper(time: number, sweeper: Sweeper = SWEEPER): Vec3 {
-  return { x: sweeper.amplitude * Math.sin(time * Math.PI * 2 / sweeper.period), y: sweeper.baseY, z: sweeper.z };
+  return { x: riverX(sweeper.amplitude * Math.sin(time * Math.PI * 2 / sweeper.period),sweeper.z), y: sweeper.baseY, z: sweeper.z };
 }
 
 export const PYLONS = [
@@ -175,7 +193,7 @@ export const PYLONS = [
   { x: -4.0, z: 1155 }, { x: 4.0, z: 1155 },
   { x: -3.6, z: 1240 }, { x: 3.6, z: 1240 },
   { x: -4.2, z: 1340 }, { x: 4.2, z: 1340 },
-];
+].map(point=>({...point,x:riverX(point.x,point.z)}));
 export const RAPIDS = [
   { start: 278, end: 358, strength: 1.3 },
   { start: 538, end: 602, strength: 0.6 },
@@ -186,10 +204,29 @@ export const RAPIDS = [
   { start: 1300, end: 1390, strength: 1.6 },
 ] as const;
 
+export function rapidStrength(z: number): number {
+  let strength = 0;
+  for (const zone of RAPIDS) strength += zone.strength * smooth(zone.start, zone.start + 10, z) * (1 - smooth(zone.end - 10, zone.end, z));
+  return strength;
+}
+
+// Rendering only needs height. A mesh row can reuse its rapid strength rather
+// than allocating full flow vectors and recomputing every field at each vertex.
+export function sampleWaterHeight(x: number, z: number, time: number, rapids = rapidStrength(z), centre = channelCenter(z)): number {
+  x-=centre;
+  const a = x * 0.32 + z * 0.18 + time * 1.3;
+  const b = z * 0.52 - time * 1.7;
+  const dx = (x - WHIRLPOOL.x) / WHIRLPOOL.radius, dz = (z - WHIRLPOOL.z) / WHIRLPOOL.radius;
+  const envelope = Math.max(0, 1 - dx * dx - dz * dz) ** 2;
+  return 0.035 * Math.sin(a) + 0.018 * Math.sin(b) - WHIRLPOOL.depth * envelope
+    + rapids * (0.055 * Math.sin(z * 1.1 - time * 3.2 + x * 0.45) + 0.025 * Math.sin(x * 1.8 + z * 0.7 + time * 2.6));
+}
+
 // Same sampler drives authoritative forces and client geometry. Same-runtime
 // repeatability only: cross-platform sine determinism is a later experiment.
 export function sampleWater(x: number, z: number, time: number, calm = false) {
   if (calm) return { height: 0, velocity: { x: 0, y: 0, z: 0 }, zone: 'headwaters' };
+  const worldX=x,centre=channelCenter(z);x-=centre;
   const a = x * 0.32 + z * 0.18 + time * 1.3;
   const b = z * 0.52 - time * 1.7;
   const seam = smooth(40, 48, z) * (1 - smooth(70, 78, z));
@@ -197,19 +234,27 @@ export function sampleWater(x: number, z: number, time: number, calm = false) {
   const dz = (z - WHIRLPOOL.z) / WHIRLPOOL.radius;
   // Compact C1 envelope: no singular core, discontinuous rim or whole-river pull.
   const envelope = Math.max(0, 1 - dx * dx - dz * dz) ** 2;
-  let rapids = 0;
-  for (const zone of RAPIDS) rapids += zone.strength * smooth(zone.start, zone.start + 10, z) * (1 - smooth(zone.end - 10, zone.end, z));
+  const rapids = rapidStrength(z);
+  const rescue=sampleRescueCurrent(x,z);
+  const forward=0.12 + 0.16 * seam + (dx * WHIRLPOOL.swirl - dz * WHIRLPOOL.inward) * envelope
+    + rapids * (0.9 + 0.1 * Math.sin(x * 0.6 + z * 0.035)) + rescue.z;
+  const across=0.65 * seam + (-dz * WHIRLPOOL.swirl - dx * WHIRLPOOL.inward) * envelope
+    + rapids * 0.32 * Math.sin(z * 0.045 + time * 0.2) + rescue.x;
+  // Rotate into the unit tangent/normal frame: bending the map must not add
+  // kinetic energy by stretching the former longitudinal speed.
+  const slope=channelSlope(z),inverse=1/Math.hypot(1,slope);
   return {
-    height: 0.035 * Math.sin(a) + 0.018 * Math.sin(b) - WHIRLPOOL.depth * envelope
-      + rapids * (0.055 * Math.sin(z * 1.1 - time * 3.2 + x * 0.45) + 0.025 * Math.sin(x * 1.8 + z * 0.7 + time * 2.6)),
+    height: sampleWaterHeight(worldX, z, time, rapids,centre),
     velocity: {
-      x: 0.65 * seam + (-dz * WHIRLPOOL.swirl - dx * WHIRLPOOL.inward) * envelope
-        + rapids * 0.32 * Math.sin(z * 0.045 + time * 0.2),
-      y: 0,
-      z: 0.12 + 0.16 * seam + (dx * WHIRLPOOL.swirl - dz * WHIRLPOOL.inward) * envelope
-        + rapids * (0.9 + 0.1 * Math.sin(x * 0.6 + z * 0.035)),
+      x: (across+slope*forward)*inverse,
+      // Analytic rise/fall speed of the sampled wave surface at this station.
+      // This is a gameplay height field, not an incompressible fluid solver.
+      y: 0.035 * 1.3 * Math.cos(a) - 0.018 * 1.7 * Math.cos(b)
+        + rapids * (-0.055 * 3.2 * Math.cos(z * 1.1 - time * 3.2 + x * 0.45)
+          + 0.025 * 2.6 * Math.cos(x * 1.8 + z * 0.7 + time * 2.6)),
+      z: (forward-slope*across)*inverse,
     },
-    zone: envelope > 0.01 ? 'whirlpool' : seam > 0.1 ? 'cross-current' : rapids > 0.01 ? 'rapids' : z > 138 ? 'gorge' : 'headwaters',
+    zone: rescue.weight > 0.01 ? 'rescue-eddy' : envelope > 0.01 ? 'whirlpool' : seam > 0.1 ? 'cross-current' : rapids > 0.01 ? 'rapids' : z > 138 ? 'gorge' : 'headwaters',
   };
 }
 

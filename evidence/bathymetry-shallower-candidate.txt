@@ -1,0 +1,39 @@
+✔ Exact bed triangles agree between authority rays, rendered surfaces and interpolation over the entire route (133.496875ms)
+✔ Canonical checkpoints retain deep hull/blade lanes and depth drag is continuous, bounded and dissipative (2.084625ms)
+✔ Water depth attributes follow exact bed heights through both quality modes and same-tick relocations (61.573208ms)
+✖ A settled sandbar hull stays nonlethal and idle; four real reverse paddles can push off into deep water without recovery (535.261625ms)
+✔ Passive bed-paddle friction dissipates motion without lift; resting and released paddles supply no force (27.052042ms)
+✔ Blade pose matches renderer for zero-length, vertical and near-antiparallel directions (6.444291ms)
+✔ Shared rounded blade preserves original render geometry and both convex cores stay inside its faces (7.040625ms)
+✔ Rounded volume catches edge-only contacts and sweeps, while shoulder gaps, sensors and own hull remain clear (33.72275ms)
+✔ Blade-only bracing is bounded, passive and nonlethal across seats, headings and heels (814.109167ms)
+✔ Blade-only moving-frame response, saturation, resting contact and release stay bounded (187.515875ms)
+✔ Persistent shaft-only contacts are nonlethal and dissipative across every seat, heading and heel (870.299916ms)
+✔ Holding a dipped shaft still produces no free force; release and inactive paddles stop bracing (16.436833ms)
+✔ Shaft queries exclude own hull, sensors and separated solids (6.041ms)
+✔ Moving-solid relative velocity and saturated impacts remain bounded for every seat (179.313166ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 13
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1272.847458
+
+✖ failing tests:
+
+test at tests/bathymetry.test.ts:1:4265
+✖ A settled sandbar hull stays nonlethal and idle; four real reverse paddles can push off into deep water without recovery (535.261625ms)
+  AssertionError [ERR_ASSERTION]: Actual bed contact must support the grounded hull
+      at TestContext.<anonymous> (/Users/uday/Bad at Boating/tests/bathymetry.test.ts:70:14)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

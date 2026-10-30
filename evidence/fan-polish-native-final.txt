@@ -1,0 +1,138 @@
+{
+  "result": "PASS",
+  "browser": "155.0.8059.82",
+  "checks": [
+    "Actual owned Space stroke → visible push/recovery/glide, A/D offset powered stroke → released settled rest completes all practice steps",
+    "Menu hides control/lesson overlays; checkpoint retry resets the lesson without mistaking prior flap counts for new input",
+    "Touch-enabled desktop, phone and short landscape: lesson below HUD; feedback does not cover the projected raft or HUD"
+  ],
+  "layouts": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "hud": {
+        "x": 490,
+        "y": 18,
+        "width": 300,
+        "height": 55,
+        "top": 18,
+        "right": 790,
+        "bottom": 73,
+        "left": 490
+      },
+      "lesson": {
+        "x": 480,
+        "y": 80,
+        "width": 320,
+        "height": 60,
+        "top": 80,
+        "right": 800,
+        "bottom": 140,
+        "left": 480
+      },
+      "controls": {
+        "x": 485,
+        "y": 818,
+        "width": 310,
+        "height": 62,
+        "top": 818,
+        "right": 795,
+        "bottom": 880,
+        "left": 485
+      },
+      "raft": {
+        "left": 0.37893584516525103,
+        "right": 0.6233294653856679,
+        "top": 0.5356906160166176,
+        "bottom": 0.8686860109343804
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hud": {
+        "x": 55,
+        "y": 12,
+        "width": 280,
+        "height": 55,
+        "top": 12,
+        "right": 335,
+        "bottom": 67,
+        "left": 55
+      },
+      "lesson": {
+        "x": 35,
+        "y": 80,
+        "width": 320,
+        "height": 60,
+        "top": 80,
+        "right": 355,
+        "bottom": 140,
+        "left": 35
+      },
+      "controls": {
+        "x": 52.5,
+        "y": 670,
+        "width": 285,
+        "height": 58,
+        "top": 670,
+        "right": 337.5,
+        "bottom": 728,
+        "left": 52.5
+      },
+      "raft": {
+        "left": 0.20507617853676813,
+        "right": 0.7963949144331168,
+        "top": 0.4995269813922642,
+        "bottom": 0.760007423396328
+      }
+    },
+    {
+      "viewport": {
+        "width": 907,
+        "height": 510
+      },
+      "hud": {
+        "x": 16,
+        "y": 18,
+        "width": 270,
+        "height": 55,
+        "top": 18,
+        "right": 286,
+        "bottom": 73,
+        "left": 16
+      },
+      "lesson": {
+        "x": 16,
+        "y": 84,
+        "width": 250,
+        "height": 48,
+        "top": 84,
+        "right": 266,
+        "bottom": 132,
+        "left": 16
+      },
+      "controls": {
+        "x": 701,
+        "y": 12,
+        "width": 190,
+        "height": 58,
+        "top": 12,
+        "right": 891,
+        "bottom": 70,
+        "left": 701
+      },
+      "raft": {
+        "left": 0.4081368722172221,
+        "right": 0.5918453209463925,
+        "top": 0.5263588751949011,
+        "bottom": 0.8382717953623015
+      }
+    }
+  ],
+  "errors": []
+}

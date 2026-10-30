@@ -1,0 +1,10 @@
+
+> bad-at-boating@0.1.0 tracker
+> node scripts/tracker.mjs
+
+PASS: 49 deliverables + 90 content tasks, 2/100 accepted scope points; dependency/evidence/report checks passed.
+
+> bad-at-boating@0.1.0 tracker:check
+> node scripts/tracker.mjs --check
+
+PASS: 49 deliverables + 90 content tasks, 2/100 accepted scope points; dependency/evidence/report checks passed.

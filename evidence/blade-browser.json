@@ -1,0 +1,21 @@
+{
+  "result": "PASS",
+  "results": [
+    {
+      "quality": "High",
+      "poses": 144,
+      "vertexChecks": 6048,
+      "maxError": 3.554447978966673e-16,
+      "maxNaiveTwistError": 0.9999999999999999
+    },
+    {
+      "quality": "Low",
+      "poses": 144,
+      "vertexChecks": 6048,
+      "maxError": 3.554447978966673e-16,
+      "maxNaiveTwistError": 0.9999999999999999
+    }
+  ],
+  "errors": [],
+  "scope": "Native mesh/core pose agreement, High/Low; independent Three matrix transforms vs authority quaternion math. Human fairness and arbitrary rotational CCD remain open."
+}

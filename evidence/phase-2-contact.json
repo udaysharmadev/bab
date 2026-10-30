@@ -1,0 +1,155 @@
+{
+  "title": "Persistent shaft bracing and production reconnect grace",
+  "date": "2026-10-21",
+  "state": "VERIFIED_SCOPED",
+  "protocol": 6,
+  "physics": "basin-0.10",
+  "world": "waterworks-1",
+  "verification": {
+    "fullSuite": "PASS:final125 tests,0 failures,112.592s after conservative-radius/cached-anchor refinement",
+    "contactMatrix": "PASS:48 passive seat/heading/heel +32 moving-frame/impact cases",
+    "nativeShaft": "PASS:8 High/Low envelopes;45,696 sampled face planes and\u22650.524mm analytic clearance inside actual seven-sided shaft",
+    "versionMigration": "PASS:8 version/save tests, including explicit0.9-client rejection and0.5\u20130.9 temporary-store migration",
+    "nativeRegression": "PASS:four-player flow,71 controls,7 context/input groups,4 reconnect groups, rescue/bends/lobby/onboarding and180 camera cases; current per-fixture scope recorded",
+    "productionGrace": "PASS: actual45s absence and90.011s expiry; no shortened timer",
+    "roomLoad": "PASS:final0.022m radius,4 rooms/16 clients,60.153s,0 recorded violations,all rooms disposed",
+    "package": "PASS:runtime ZIP bytes independently matched; private data excluded",
+    "tracker": "PASS:49 deliverables+90 content tasks,2/100 accepted scope points; M2 remains3/5"
+  },
+  "corrections": [
+    "First moving-solid test assumed an axis-aligned normal for a diagonal shaft capsule; actual normals reduce horizontal reaction. Replaced that assumption with equal-relative-speed frame invariance, zero/separating force, saturation and impulse bounds; original failed output preserved.",
+    "Native long-name lobby regression found stale390px anchors after a1440px resize. Reproject synchronously after crew DOM changes and the existing scene resize listener; original overlap assertions then pass in all five layouts. First failure log retained.",
+    "Visible shafts are seven-sided, so a2.5cm circular capsule can extend beyond polygon faces. Final radius2.2cm lies below the minimum apothem; native face sampling and analytic clearance supplement the final125-test rerun. Initial candidate load retained separately."
+  ],
+  "limits": [
+    "Full rounded-blade rigid contact and worst-case contact/energy coverage remain open",
+    "Shallow bathymetry/manual capsize rescue and full-route human pacing remain open",
+    "Real Internet/TCP loss/physical network switching and named-device/long-browser acceptance remain open",
+    "M2 stays3/5 engineering checks; accepted production2/100 and0/14 regions",
+    "Local preview uses in-memory QA data; no public deploy or private save mutation"
+  ],
+  "evidence": [
+    "evidence/paddle-contact.json",
+    "evidence/paddle-contact-moving.json",
+    "evidence/paddle-contact-browser.json",
+    "evidence/phase-2-contact-tests.txt",
+    "evidence/phase-2-contact-version-save.txt",
+    "evidence/phase-2-contact-fixtures.json",
+    "evidence/grace.json",
+    "evidence/phase-2-contact-grace.txt",
+    "evidence/phase-2-contact-lobby.txt",
+    "evidence/phase-2-contact-final-tests.txt",
+    "evidence/phase-2-contact-final-shafts.txt",
+    "evidence/phase-2-contact-final-lobby.txt",
+    "evidence/phase-2-contact-final-deployment.txt",
+    "evidence/phase-2-contact-save-browser.txt",
+    "evidence/load-phase-2-contact.json",
+    "evidence/phase-2-contact-final-load.txt",
+    "evidence/phase-2-contact-package.json",
+    "evidence/phase-2-contact-release-check.txt"
+  ],
+  "productionGrace": {
+    "result": "PASS",
+    "physics": "basin-0.10",
+    "productionGraceSeconds": 90,
+    "clock": "actual wall time; no shortened grace or fake timers",
+    "checks": [
+      {
+        "case": "real45SecondAbsence",
+        "milliseconds": 46851,
+        "sameSeatNameCheckpointPhase": true,
+        "frozenClock": true,
+        "noStaleStroke": true
+      },
+      {
+        "case": "real90SecondExpiry",
+        "expiryMs": 90011,
+        "expiredTokenRejected": true,
+        "seatReclaimed": true,
+        "checkpointPreserved": true,
+        "fourReadyRelaunch": true
+      }
+    ],
+    "scope": "Local real WebSocket disconnect/reconnect/expiry. Real Internet/TCP loss, physical network changes and long browser soak remain open."
+  },
+  "shaftGeometry": {
+    "radiusMetres": 0.022,
+    "minimumAnalyticClearanceMetres": 0.0005242216975604799,
+    "faceComparisons": 45696,
+    "renderedEnvelopeCases": 8
+  },
+  "roomLoad": {
+    "physics": "basin-0.10",
+    "shaftContactRadius": 0.022,
+    "actualSeconds": 60.153,
+    "roomCount": 4,
+    "clientCount": 16,
+    "rooms": [
+      {
+        "packets": 5121,
+        "maxSnapshotGapMs": 92,
+        "resets": 4,
+        "reconnects": 1,
+        "droppedSteps": 0,
+        "tick": 3597,
+        "wirePayloadBytes": {
+          "outBytes": 5089860,
+          "inBytes": 72639,
+          "outMessages": 5144
+        },
+        "averageOutboundBytesPerClientSecond": 21128.439146842218
+      },
+      {
+        "packets": 5114,
+        "maxSnapshotGapMs": 91,
+        "resets": 4,
+        "reconnects": 1,
+        "droppedSteps": 0,
+        "tick": 3595,
+        "wirePayloadBytes": {
+          "outBytes": 5085312,
+          "inBytes": 72515,
+          "outMessages": 5140
+        },
+        "averageOutboundBytesPerClientSecond": 21109.537346433262
+      },
+      {
+        "packets": 5104,
+        "maxSnapshotGapMs": 90,
+        "resets": 4,
+        "reconnects": 0,
+        "droppedSteps": 0,
+        "tick": 3612,
+        "wirePayloadBytes": {
+          "outBytes": 5080952,
+          "inBytes": 73004,
+          "outMessages": 5130
+        },
+        "averageOutboundBytesPerClientSecond": 21091.416886938307
+      },
+      {
+        "packets": 5108,
+        "maxSnapshotGapMs": 90,
+        "resets": 4,
+        "reconnects": 0,
+        "droppedSteps": 0,
+        "tick": 3612,
+        "wirePayloadBytes": {
+          "outBytes": 5080740,
+          "inBytes": 73004,
+          "outMessages": 5130
+        },
+        "averageOutboundBytesPerClientSecond": 21090.53580037571
+      }
+    ],
+    "violations": [],
+    "roomsDisposed": true,
+    "scope": "Local co-hosted authority+SDK clients, synthetic workload; not Internet, browser GPU, maximum capacity or hosting certification. Wire bytes count WS application payloads, excluding WS/TCP framing; per-client average includes setup/reconnect traffic.",
+    "evidence": "evidence/load-phase-2-contact.json"
+  },
+  "executionNotes": [
+    "Production90-second grace measured before the conservative radius refinement; transport/grace logic unchanged. Final open-water controls remained unchanged; final native shaft/label/deployment and125-test suite rerun after refinement.",
+    "D7 renderer timing/25-view art evidence is retained without a new frame-rate or full-route human claim.",
+    "Initial0.10 load candidate preserved separately; final load explicitly records0.022m radius."
+  ]
+}

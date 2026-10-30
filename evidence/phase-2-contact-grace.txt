@@ -1,0 +1,10 @@
+
+> bad-at-boating@0.1.0 test:grace
+> node --import tsx tests/grace.ts
+
+(node:16697) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS:45-second absence resumes same seat without stale input
+❌ reconnection token invalid or expired. Did you miss .allowReconnection()?
+👉 https://docs.colyseus.io/room#allow-reconnection
+PASS:90-second expiry rejects old token and relaunches replacement crew

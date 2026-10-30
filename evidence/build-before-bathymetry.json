@@ -1,0 +1,355 @@
+{
+  "game": "Bad at Boating",
+  "generatedUTC": "2026-10-21T13:01:36.206056+00:00",
+  "baseCommit": "1dee20db314dda485c734932df48e9780bb53d03",
+  "workingTreeChanges": true,
+  "protocol": 6,
+  "physics": "basin-0.11",
+  "world": "waterworks-1",
+  "scope": "Rounded conservative blade-core contact and native translational sweeps, matching hull/paddle twist and degenerate poses. Actual bounded reaction/nonlethal behavior verified; M2 remains3/5,production gates open.",
+  "sourceSha256": "6caa56b62d2a615434580a169fb58efa3f17fa561ec54952450581e53e951ef6",
+  "sourceHashScope": "Sorted relative path + NUL + bytes + NUL for src/tests/scripts/docs/.github and listed root metadata; excludes generated build/evidence/reference/private data.",
+  "fileCount": 128,
+  "sourceHashFiles": [
+    ".github/workflows/verify.yml",
+    "Dockerfile",
+    "README.md",
+    "app.cjs",
+    "app.js",
+    "docs/ANALYSIS.md",
+    "docs/CPANEL_SETUP.md",
+    "docs/DECISIONS.md",
+    "docs/GRAPHICS_AUDIT.md",
+    "docs/MULTIPLAYER_AUDIT.md",
+    "docs/PHASE_EXECUTION.md",
+    "docs/PHYSICS_AUDIT.md",
+    "docs/PLAYTEST_KIT.md",
+    "docs/PRD_PROGRESS.md",
+    "docs/PRODUCTION_PLAN.md",
+    "docs/PRODUCTION_TRACKER.html",
+    "docs/PRODUCTION_TRACKER.json",
+    "docs/PRODUCTION_TRACKER.md",
+    "docs/PROJECT_AUDIT.md",
+    "docs/RESEARCH_GAMEPLAY.md",
+    "docs/RESEARCH_VISUALS.md",
+    "docs/ROUTE.md",
+    "docs/STATUS.md",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "scripts/build-server.mjs",
+    "scripts/check-deployment.mjs",
+    "scripts/dev.mjs",
+    "scripts/package-cpanel.mjs",
+    "scripts/tracker.mjs",
+    "src/client/audio.ts",
+    "src/client/boat-detail.ts",
+    "src/client/camera.ts",
+    "src/client/crew.ts",
+    "src/client/danger.ts",
+    "src/client/hull.ts",
+    "src/client/input.ts",
+    "src/client/main.ts",
+    "src/client/nature.ts",
+    "src/client/rehearsal.ts",
+    "src/client/riverbed.ts",
+    "src/client/scene.ts",
+    "src/client/style.css",
+    "src/client/water.ts",
+    "src/package.json",
+    "src/server/BoatRoom.ts",
+    "src/server/index.ts",
+    "src/server/voyages.ts",
+    "src/shared/hull.ts",
+    "src/shared/names.ts",
+    "src/shared/paddle-blade.ts",
+    "src/shared/paddle-contact.ts",
+    "src/shared/protocol.ts",
+    "src/shared/rescue.ts",
+    "src/shared/river.ts",
+    "src/shared/rowing.ts",
+    "src/shared/simulation.ts",
+    "src/shared/world.ts",
+    "tests/accessibility.mjs",
+    "tests/animation.html",
+    "tests/animation.mjs",
+    "tests/audio.html",
+    "tests/audio.mjs",
+    "tests/audio.test.ts",
+    "tests/banks.test.ts",
+    "tests/bends-browser.mjs",
+    "tests/bends.test.ts",
+    "tests/blade.mjs",
+    "tests/blade.test.ts",
+    "tests/boat-detail.test.ts",
+    "tests/browser.mjs",
+    "tests/camera.html",
+    "tests/camera.mjs",
+    "tests/contact.test.ts",
+    "tests/controls.mjs",
+    "tests/crew.test.ts",
+    "tests/danger-browser.mjs",
+    "tests/danger-network.test.ts",
+    "tests/danger.test.ts",
+    "tests/finish.test.ts",
+    "tests/foliage.mjs",
+    "tests/grace.ts",
+    "tests/graphics.html",
+    "tests/graphics.mjs",
+    "tests/handoff.test.ts",
+    "tests/hazards.test.ts",
+    "tests/hull.test.ts",
+    "tests/hydrodynamics.test.ts",
+    "tests/input.test.ts",
+    "tests/landing.html",
+    "tests/landing.mjs",
+    "tests/lifecycle.test.ts",
+    "tests/load.ts",
+    "tests/lobby.mjs",
+    "tests/names.test.ts",
+    "tests/network-stress.test.ts",
+    "tests/network.test.ts",
+    "tests/onboarding.mjs",
+    "tests/package.json",
+    "tests/paddle-contact.mjs",
+    "tests/performance.mjs",
+    "tests/physics.test.ts",
+    "tests/presentation.test.ts",
+    "tests/reconnect.mjs",
+    "tests/rehearsal.test.ts",
+    "tests/rescue-browser.mjs",
+    "tests/rescue.test.ts",
+    "tests/route.test.ts",
+    "tests/rowing.test.ts",
+    "tests/save-browser.mjs",
+    "tests/save-restart.test.ts",
+    "tests/saves.test.ts",
+    "tests/server-reliability.test.ts",
+    "tests/soak.ts",
+    "tests/support/bends-server.ts",
+    "tests/support/name.mjs",
+    "tests/support/rescue-server.ts",
+    "tests/support/save-server.ts",
+    "tests/touch.mjs",
+    "tests/tracker-browser.mjs",
+    "tests/tracker.test.mjs",
+    "tests/water-depth.html",
+    "tests/water-depth.mjs",
+    "tests/water-effects.mjs",
+    "tests/waterwheel.test.ts",
+    "tsconfig.json",
+    "vite.config.ts"
+  ],
+  "build": "PASS",
+  "typecheck": "PASS",
+  "buildLog": "evidence/blade-final-build.txt",
+  "automatedTests": {
+    "command": "npm test",
+    "passed": 131,
+    "failed": 0,
+    "seconds": 89.46703562500001,
+    "log": "evidence/blade-final-tests.txt"
+  },
+  "fixtures": {
+    "browser": {
+      "result": "PASS",
+      "checks": 8,
+      "evidence": "evidence/browser.json",
+      "log": "evidence/blade-game-flow.txt",
+      "executionScope": "Built0.11/native normal-workspace checks before final degenerate-pose guard; normal inputs unchanged. Final pose matrices,full regression and built deployment rerun afterward."
+    },
+    "controls-after": {
+      "result": "PASS",
+      "checks": 71,
+      "evidence": "evidence/controls-after.json",
+      "log": "evidence/blade-controls.txt",
+      "executionScope": "Built0.11/native normal-workspace checks before final degenerate-pose guard; normal inputs unchanged. Final pose matrices,full regression and built deployment rerun afterward."
+    },
+    "accessibility": {
+      "result": "PASS",
+      "checks": 7,
+      "evidence": "evidence/accessibility.json",
+      "log": "evidence/blade-accessibility.txt",
+      "executionScope": "Built0.11/native normal-workspace checks before final degenerate-pose guard; normal inputs unchanged. Final pose matrices,full regression and built deployment rerun afterward."
+    },
+    "reconnect": {
+      "result": "PASS",
+      "checks": 4,
+      "evidence": "evidence/reconnect.json",
+      "log": "evidence/blade-reconnect.txt",
+      "executionScope": "Built0.11/native normal-workspace checks before final degenerate-pose guard; normal inputs unchanged. Final pose matrices,full regression and built deployment rerun afterward."
+    },
+    "save-browser": {
+      "result": "PASS",
+      "checks": 6,
+      "evidence": "evidence/save-browser.json",
+      "log": "evidence/blade-save-browser.txt",
+      "executionScope": "Built0.11/native normal-workspace checks before final degenerate-pose guard; normal inputs unchanged. Final pose matrices,full regression and built deployment rerun afterward."
+    },
+    "rescue-browser": {
+      "result": "PASS",
+      "checks": 4,
+      "evidence": "evidence/rescue-browser.json",
+      "log": "evidence/blade-rescue.txt",
+      "executionScope": "Built0.11/native normal-workspace checks before final degenerate-pose guard; normal inputs unchanged. Final pose matrices,full regression and built deployment rerun afterward."
+    },
+    "bends-browser": {
+      "result": "PASS",
+      "checks": 5,
+      "evidence": "evidence/bends-browser.json",
+      "log": "evidence/blade-bends.txt",
+      "executionScope": "Built0.11/native normal-workspace checks before final degenerate-pose guard; normal inputs unchanged. Final pose matrices,full regression and built deployment rerun afterward."
+    },
+    "lobby": {
+      "result": "PASS",
+      "checks": 8,
+      "evidence": "evidence/lobby.json",
+      "log": "evidence/blade-lobby.txt",
+      "executionScope": "Built0.11/native normal-workspace checks before final degenerate-pose guard; normal inputs unchanged. Final pose matrices,full regression and built deployment rerun afterward."
+    },
+    "onboarding": {
+      "result": "PASS",
+      "checks": 7,
+      "evidence": "evidence/onboarding.json",
+      "log": "evidence/blade-onboarding.txt",
+      "executionScope": "Built0.11/native normal-workspace checks before final degenerate-pose guard; normal inputs unchanged. Final pose matrices,full regression and built deployment rerun afterward."
+    },
+    "paddle-contact-browser": {
+      "result": "PASS",
+      "checks": 2,
+      "evidence": "evidence/paddle-contact-browser.json",
+      "log": "evidence/blade-shaft.txt",
+      "executionScope": "Built0.11/native normal-workspace checks before final degenerate-pose guard; normal inputs unchanged. Final pose matrices,full regression and built deployment rerun afterward."
+    },
+    "tracker-browser": {
+      "result": "PASS",
+      "checks": 6,
+      "evidence": "evidence/tracker-browser.json",
+      "log": "evidence/blade-tracker-browser.txt",
+      "executionScope": "Built0.11/native normal-workspace checks before final degenerate-pose guard; normal inputs unchanged. Final pose matrices,full regression and built deployment rerun afterward."
+    },
+    "blade-geometry": {
+      "result": "PASS",
+      "evidence": "evidence/blade-geometry.json",
+      "executionScope": "Final0.11 source; real query/geometry cases and native pose comparisons. Exact coverage in phase-2-blade.json."
+    },
+    "blade-contact": {
+      "result": "PASS",
+      "evidence": "evidence/blade-contact.json",
+      "executionScope": "Final0.11 source; real query/geometry cases and native pose comparisons. Exact coverage in phase-2-blade.json."
+    },
+    "blade-moving": {
+      "result": "PASS",
+      "evidence": "evidence/blade-moving.json",
+      "executionScope": "Final0.11 source; real query/geometry cases and native pose comparisons. Exact coverage in phase-2-blade.json."
+    },
+    "blade-browser": {
+      "result": "PASS",
+      "evidence": "evidence/blade-browser.json",
+      "executionScope": "Final0.11 source; real query/geometry cases and native pose comparisons. Exact coverage in phase-2-blade.json."
+    },
+    "load": {
+      "result": "PASS",
+      "evidence": "evidence/load-phase-2-blade.json",
+      "log": "evidence/blade-final-load.txt",
+      "executionScope": "Final source,isolated4-room/16-client local workload after all browser/CPU checks; not Internet/device/hosting capacity."
+    }
+  },
+  "tracker": {
+    "deliverables": 49,
+    "obstacleConcepts": 80,
+    "signatureEncounters": 10,
+    "regionCards": 14,
+    "acceptedScopePoints": 2,
+    "productionReadyRegions": 0,
+    "deliveryPhases": 5,
+    "engineeringVerified": [
+      "M1"
+    ],
+    "engineeringActive": "M2",
+    "engineeringChecksVerified": {
+      "M1": 4,
+      "M2": 3
+    },
+    "remainingEngineeringChecks": [
+      "M2-D presentation",
+      "M2-E human/device acceptance"
+    ],
+    "partialEngineeringChecks": {
+      "M2-D": "D1\u2013D7 scoped art/flow evidence retained. Rounded-blade contact phase verified; complete premium art/performance and human/device gates stay open."
+    }
+  },
+  "blade": {
+    "convexParts": 2,
+    "coreVertexChecks": 42,
+    "nativePoses": 288,
+    "nativeVertexChecks": 12096,
+    "poseEdgeComparisons": 20,
+    "visiblePositionsAndNormals": "byte-identical to previous rounded blade",
+    "forceCapNewtons": 260,
+    "translationalSweepOnly": true,
+    "clientJsBytes": 859033,
+    "clientJsDeltaBytes": 480,
+    "evidence": "evidence/phase-2-blade.json"
+  },
+  "roomLoad": {
+    "actualSeconds": 60.124,
+    "roomCount": 4,
+    "clientCount": 16,
+    "violations": [],
+    "roomsDisposed": true
+  },
+  "artifacts": {
+    "dist/assets/index-gB-lys6K.js": {
+      "bytes": 859033,
+      "sha256": "eb2b4f995a3f1c0a6a7dfb705f5bc1575d797cb1b09071f5378251ed72984d5d"
+    },
+    "dist/assets/index-i97Ox2ZC.css": {
+      "bytes": 9408,
+      "sha256": "0d370b6cca6581b51e3f1c10746a8a28735423204c5a9630474d4e80c5c5b864"
+    },
+    "dist/index.html": {
+      "bytes": 8034,
+      "sha256": "33c341bdd617dc164aa43df9c9411847fae91def39f53f930a72465b68fe0ae5"
+    },
+    "build/server.mjs": {
+      "bytes": 65736,
+      "sha256": "1792e53d8786b308f2d3e55aed594d32e117d047165d354db10bf2d6281027e4"
+    },
+    "releases/Bad-at-Boating-cPanel.zip": {
+      "bytes": 291309,
+      "sha256": "6e830cfa1e794974d9732b8c8a5d04a49af54723e6f84f1b8de2a13cb16e89f5"
+    }
+  },
+  "preview": "http://localhost:2571",
+  "previewDatabase": "Isolated in-memory QA saves; no private durable database modified.",
+  "cpanel": {
+    "packaged": true,
+    "verification": "evidence/blade-package.json",
+    "cleanDependencyInstall": "NOT RERUN; dependencies unchanged",
+    "publicDeployment": "NOT RUN"
+  },
+  "deploymentSmoke": {
+    "result": "PASS",
+    "url": "http://localhost:2571",
+    "physics": "basin-0.11",
+    "protocol": 6,
+    "log": "evidence/blade-final-deployment.txt",
+    "scope": "Final local built authority, isolated in-memory saves only."
+  },
+  "historicalEvidence": {
+    "priorPhysicsBuild": "evidence/build-before-blade.json",
+    "productionGrace": "evidence/grace.json \u2014 actual90-second grace under0.10; transport logic unchanged,not rerun.",
+    "renderingAndTiming": "evidence/phase-2-foliage.json \u2014 D7 route/performance captures retained; no new frame-rate or named-device claim.",
+    "executionNotes": "evidence/phase-2-blade.json"
+  },
+  "performanceBudgetAccepted": false,
+  "humanPlaytest": false,
+  "physicalControllerTest": false,
+  "namedDevicePerformance": false,
+  "longInternetBrowserSoak": false,
+  "remoteCI": "NOT RUN",
+  "containerExecution": "NOT RUN",
+  "phaseEvidence": "evidence/phase-2-blade.json",
+  "finalStaticChecks": "PASS:128-file source fingerprint,5 artifact hashes,independent ZIP/runtime byte match,tracker integrity/freshness and git diff --check."
+}

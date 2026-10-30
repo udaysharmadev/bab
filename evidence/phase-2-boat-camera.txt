@@ -1,0 +1,1 @@
+{"result":"PASS","cases":180,"bounds":[{"width":1440,"height":960,"rays":768,"hits":600,"baseline":{"meshes":4649,"triangles":2713272},"bounded":{"meshes":1836,"triangles":1724444},"vertices":214909},{"width":480,"height":900,"rays":768,"hits":600,"baseline":{"meshes":4746,"triangles":2812712},"bounded":{"meshes":1824,"triangles":1723868},"vertices":214909}],"errors":[]}

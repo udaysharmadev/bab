@@ -1,0 +1,261 @@
+{
+  "phase": "M2",
+  "check": "M2-D",
+  "subcheck": "M2-D5",
+  "title": "Exact camera broad-phase bounds",
+  "engineeringState": "VERIFIED",
+  "parentCheckState": "PENDING",
+  "productionGate": "OPEN",
+  "localDate": "2026-10-21",
+  "protocol": 5,
+  "physics": "basin-0.9",
+  "world": "waterworks-1",
+  "implemented": [
+    "Static camera occluder local boxes computed once after final authored merging/transforms; existing Three.js exact triangle intersection remains authoritative",
+    "All static final vertices enclosed; bounded/unbounded same-ray hit identities/distances/positions/face indices match",
+    "No render-quality reduction, cadence throttling, proxy geometry or dependency"
+  ],
+  "camera": {
+    "result": "PASS",
+    "cases": 180,
+    "comparison": [
+      {
+        "width": 1440,
+        "height": 960,
+        "rays": 768,
+        "hits": 600,
+        "baseline": {
+          "meshes": 4649,
+          "triangles": 2713272
+        },
+        "bounded": {
+          "meshes": 1836,
+          "triangles": 1724444
+        },
+        "vertices": 214909
+      },
+      {
+        "width": 480,
+        "height": 900,
+        "rays": 768,
+        "hits": 600,
+        "baseline": {
+          "meshes": 4746,
+          "triangles": 2812712
+        },
+        "bounded": {
+          "meshes": 1824,
+          "triangles": 1723868
+        },
+        "vertices": 214909
+      }
+    ],
+    "evidence": "evidence/camera.json",
+    "log": "evidence/phase-2-camera-camera.txt",
+    "totalRays": 1536,
+    "totalHits": 1200,
+    "triangleChecks": {
+      "baseline": 5525984,
+      "bounded": 3448312
+    }
+  },
+  "performance": {
+    "result": "PASS",
+    "framesPerCase": 180,
+    "cases": [
+      {
+        "view": "crew",
+        "quality": "High",
+        "cpuP95": 4.100000001490116,
+        "gpuP95": 10.566833,
+        "cameraP95": 0,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "crew",
+        "quality": "Low",
+        "cpuP95": 1.8999999985098839,
+        "gpuP95": 5.10675,
+        "cameraP95": 0.10000000149011612,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "High",
+        "cpuP95": 2.5,
+        "gpuP95": 11.48425,
+        "cameraP95": 0,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "Low",
+        "cpuP95": 1.7000000029802322,
+        "gpuP95": 7.924749,
+        "cameraP95": 0.10000000149011612,
+        "frameP95": 16.799999999999727,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "High",
+        "cpuP95": 5.300000004470348,
+        "gpuP95": 9.730874,
+        "cameraP95": 0.7999999970197678,
+        "frameP95": 16.799999999999727,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "Low",
+        "cpuP95": 3.0999999940395355,
+        "gpuP95": 5.476666,
+        "cameraP95": 0.8000000044703484,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rescue",
+        "quality": "High",
+        "cpuP95": 5,
+        "gpuP95": 9.79875,
+        "cameraP95": 0.5,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rescue",
+        "quality": "Low",
+        "cpuP95": 2.5999999940395355,
+        "gpuP95": 4.020333,
+        "cameraP95": 0.5999999940395355,
+        "frameP95": 16.799999999999727,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      }
+    ],
+    "baseline": "evidence/performance-phase-2-water.json",
+    "baselineCameraP95": [
+      {
+        "view": "crew",
+        "quality": "High",
+        "cameraP95": 0.09999999403953552
+      },
+      {
+        "view": "crew",
+        "quality": "Low",
+        "cameraP95": 0.10000000149011612
+      },
+      {
+        "view": "trees",
+        "quality": "High",
+        "cameraP95": 0.09999999403953552
+      },
+      {
+        "view": "trees",
+        "quality": "Low",
+        "cameraP95": 0.10000000149011612
+      },
+      {
+        "view": "rapids",
+        "quality": "High",
+        "cameraP95": 0.9000000059604645
+      },
+      {
+        "view": "rapids",
+        "quality": "Low",
+        "cameraP95": 1
+      },
+      {
+        "view": "rescue",
+        "quality": "High",
+        "cameraP95": 1
+      },
+      {
+        "view": "rescue",
+        "quality": "Low",
+        "cameraP95": 1.1000000014901161
+      }
+    ],
+    "log": "evidence/phase-2-camera-performance.txt",
+    "scope": "Isolated180-frame advancing20Hz authored scene captures on this host. Historical timing comparison is not controlled causality or a consumer-device claim; nested percentiles are not additive. Exact same-ray triangle-work comparison is deterministic. All strict frame intervals, High crew/rapids/rescue CPU and High crew/trees GPU targets still miss."
+  },
+  "verification": {
+    "camera": "PASS",
+    "strictBuild": "PASS",
+    "fullRegression": "PASS:111 tests,0 failures",
+    "builtGame": "PASS:8 normal four-browser groups",
+    "nativeGraphicsRecovery": "PASS:7 groups",
+    "routeRender": "PASS:25 views/3 titles",
+    "tracker": "PASS:2 integrity tests/6 browser groups/fresh generation",
+    "release": "PASS:archive dist/server bytes independently match current build; private data excluded",
+    "localDeployment": "PASS:8 local in-memory checks"
+  },
+  "corrections": [
+    "First parity fixture used only clear chase rays, so its positive-hit coverage assertion correctly failed. Added independent left/right wall rays rather than relaxing the assertion; final1536 rays include1200 actual intersections.",
+    "Local preview was already running; an unnecessary second start failed EADDRINUSE and was stopped. Existing isolated process62347 remained healthy."
+  ],
+  "limits": [
+    "M2-D remains PENDING and M2 remains3/5 checks; accepted scope2/100 and0/14 regions",
+    "Human camera/readability, complete near-field art, regional production scope and named-device/Internet/release gates remain open",
+    "No authority/physics/save/protocol change, private save edit or public deployment"
+  ],
+  "automatedTests": {
+    "command": "npm test",
+    "passed": 111,
+    "failed": 0,
+    "seconds": 86.843737833,
+    "log": "evidence/phase-2-camera-tests.txt"
+  },
+  "retainedScope": {
+    "opticsDryDeckAudioLoad": "Not rerun in this camera-only batch; original scope is retained in evidence/build-phase-2-water.json. No new human/device/Internet/long-soak claim."
+  },
+  "commandLogs": [
+    "evidence/phase-2-camera-accessibility.txt",
+    "evidence/phase-2-camera-build.txt",
+    "evidence/phase-2-camera-camera.txt",
+    "evidence/phase-2-camera-deployment.txt",
+    "evidence/phase-2-camera-game-flow.txt",
+    "evidence/phase-2-camera-graphics.txt",
+    "evidence/phase-2-camera-package.txt",
+    "evidence/phase-2-camera-performance.txt",
+    "evidence/phase-2-camera-tests.txt",
+    "evidence/phase-2-camera-tracker.txt"
+  ],
+  "phaseEngineeringState": "ACTIVE",
+  "releaseEvidence": "evidence/phase-2-camera-package.json"
+}

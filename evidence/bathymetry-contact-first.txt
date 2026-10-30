@@ -1,0 +1,59 @@
+✔ Exact bed triangles agree between authority rays, rendered surfaces and interpolation over the entire route (178.837542ms)
+✖ Canonical checkpoints retain deep hull/blade lanes and depth drag is continuous, bounded and dissipative (6.636708ms)
+✔ Water depth attributes follow exact bed heights through both quality modes and same-tick relocations (48.013458ms)
+✖ A settled sandbar hull stays nonlethal and idle; four real reverse paddles can push off the bed without recovery (606.724959ms)
+✔ Blade pose matches renderer for zero-length, vertical and near-antiparallel directions (5.601334ms)
+✔ Shared rounded blade preserves original render geometry and both convex cores stay inside its faces (7.567ms)
+✔ Rounded volume catches edge-only contacts and sweeps, while shoulder gaps, sensors and own hull remain clear (53.140375ms)
+✔ Blade-only bracing is bounded, passive and nonlethal across seats, headings and heels (874.195584ms)
+✔ Blade-only moving-frame response, saturation, resting contact and release stay bounded (187.973208ms)
+✔ Persistent shaft-only contacts are nonlethal and dissipative across every seat, heading and heel (982.692042ms)
+✔ Holding a dipped shaft still produces no free force; release and inactive paddles stop bracing (16.531042ms)
+✔ Shaft queries exclude own hull, sensors and separated solids (5.477ms)
+✔ Moving-solid relative velocity and saturated impacts remain bounded for every seat (179.612666ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 11
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1390.068959
+
+✖ failing tests:
+
+test at tests/bathymetry.test.ts:1:2497
+✖ Canonical checkpoints retain deep hull/blade lanes and depth drag is continuous, bounded and dissipative (6.636708ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(bedHeight(channelCenter(z)+offset,z+longitudinal)<=-1.79)
+  
+      at TestContext.<anonymous> (/Users/uday/Bad at Boating/tests/bathymetry.test.ts:40:3)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/bathymetry.test.ts:1:4138
+✖ A settled sandbar hull stays nonlethal and idle; four real reverse paddles can push off the bed without recovery (606.724959ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/Users/uday/Bad at Boating/tests/bathymetry.test.ts:76:70)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

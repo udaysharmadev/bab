@@ -1,0 +1,2810 @@
+{
+  "title": "Bad at Boating complete production",
+  "updated": "2026-10-22",
+  "directionChange": {
+    "title": "Current direction: toy raft + giant funny hand fans",
+    "summary": "R1 is locally playable: round toy raft, giant hand fans, small A/D player slide, Space fan strokes, four-ready crew and a 156 m obstacle course. P1 delivers a richer harbour landing with protected menu text, expressive toy crew, quieter water/wakes, owned fan feedback and a hands-on solo lesson. The menu is checked across 10 layouts. Four dividers keep player corridors clear. Physics0.2 removes passive current and gives measured coast-to-rest after release; four-client and camera checks pass. R1 human/art/timing gates and the complete 4–4.5 minute R2 course remain open. The ledger and M1–M5 checks below are historical paddle-prototype evidence; their PASS counts do not transfer to the fan game.",
+    "document": "docs/GAME_POLISH_PHASES.md",
+    "phases": [
+      { "id": "R0", "title": "Design and controls", "status": "CONTROLS CONFIRMED", "remaining": "Owner toy-art/feel review remains open." },
+      { "id": "R1", "title": "Playable fan raft slice", "status": "LOCAL IMPLEMENTATION + QA", "remaining": "P1 graphics/teaching pass implemented and locally checked: harbour landing revised after owner feedback, expressive crew, owned feedback, retry-safe lesson and round statistics. Human art/feel and device timings remain open." },
+      { "id": "R2", "title": "Complete first course", "status": "NOT STARTED", "remaining": "Measured 4–4.5 minute route, more obstacle families, curated safe variants and checkpoints." },
+      { "id": "R3", "title": "Multiplayer and polish", "status": "NOT STARTED", "remaining": "Durable fan-world saves, final sound/animation, controls/accessibility and Internet/device/long-session gates." },
+      { "id": "R4", "title": "Additional levels and release", "status": "NOT STARTED", "remaining": "Accepted level breadth, full-course human review, packaging and release acceptance." }
+    ]
+  },
+  "baselinePoints": 2,
+  "targetPoints": 100,
+  "items": [
+    {
+      "id": "F01",
+      "phase": "00 Discovery",
+      "owner": "Design",
+      "title": "Requirements, current audit and acceptance contract",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [],
+      "acceptance": "Owner reviews latest controls, lethal contacts, four-human loop, scope and release criteria.",
+      "evidence": [
+        "docs/FAN_RAFT_REBOOT.md",
+        "docs/GAME_POLISH_PHASES.md",
+        "evidence/fan-polish.json",
+        "evidence/fan-personality.json",
+        "docs/FAN_RAFT_IMPLEMENTATION.md",
+        "docs/FAN_LANDING.md",
+        "docs/FAN_COASTING.md",
+        "evidence/fan-coast-browser.json",
+        "evidence/fan-coast-release.json",
+        "evidence/fan-landing.json",
+        "evidence/fan-r1.json",
+        "docs/PRODUCTION_PLAN.md",
+        "docs/ANALYSIS.md",
+        "docs/PROJECT_AUDIT.md"
+      ],
+      "remaining": "Fan raft R1 is locally implemented and checked. Owner toy-art/feel review, four-human participation, named-device timings and complete-course acceptance remain open. Earlier requirements/tests are legacy evidence.",
+      "source": "PRD §0–4, §22; latest user instructions",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "F02",
+      "phase": "01 Feasibility",
+      "owner": "Engineering",
+      "title": "Reproducible builds, regression checks and CI",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F01"
+      ],
+      "acceptance": "Strict check, clean install, tests and production bundle pass in executed CI with saved run metadata.",
+      "evidence": [
+        "package.json",
+        ".github/workflows/verify.yml",
+        "evidence/handoff-review.json"
+      ],
+      "remaining": "External handoff integration: foam initialization and save-conflict regressions repaired; native camera/optics pass. Full audit sign-off, HUD/name/port follow-up, refreshed release provenance and remote CI remain.",
+      "source": "T002; PRD §13, §17",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "F03",
+      "phase": "01 Feasibility",
+      "owner": "QA",
+      "title": "Reference device and performance instrumentation",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "Named low/medium/high devices record p50/p95 CPU/GPU/frame, memory, payload and network bytes.",
+      "evidence": [
+        "tests/performance.mjs",
+        "evidence/performance.json",
+        "evidence/phase-1.json",
+        "evidence/phase-2-bends.json",
+        "evidence/phase-2-rescue.json",
+        "evidence/phase-2-camera.json",
+        "evidence/phase-2-boat.json",
+        "evidence/phase-2-foliage.json"
+      ],
+      "remaining": "M2-D7 retained-Standard local 8-case capture meets sampled CPU/GPU targets; strict frame intervals still miss. Material alternatives rejected after High regressions. Named-device/browser matrix, longer stability and performance acceptance remain open.",
+      "source": "PRD §3.1, §11.5",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "P01",
+      "phase": "03 Hydrology and physics",
+      "owner": "Physics",
+      "title": "Normalized sampled hull buoyancy",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "16/20/24 samples, multiple payloads, 10/25/45 degree heels, stable wave response and recorded tick cost.",
+      "evidence": [
+        "tests/hydrodynamics.test.ts",
+        "evidence/physics-sweep.json"
+      ],
+      "remaining": "All sample/payload/heel regressions pass locally; independent trace review and four-human handling remain.",
+      "source": "T004/T021",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "P02",
+      "phase": "03 Hydrology and physics",
+      "owner": "Physics",
+      "title": "Shared moving-water field",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "Height/current/wave velocity continuous at every seam and identical in physics/render geometry.",
+      "evidence": [
+        "src/shared/world.ts",
+        "tests/hydrodynamics.test.ts",
+        "tests/route.test.ts",
+        "evidence/phase-1.json",
+        "evidence/phase-2-bends.json",
+        "tests/bends.test.ts",
+        "evidence/river-bends.json"
+      ],
+      "remaining": "Translated water heights and energy-preserving tangent flow verified against210 independent field samples under0.8. Cross-browser/human water-readability and production review remain.",
+      "source": "T005/T026",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "P03",
+      "phase": "03 Hydrology and physics",
+      "owner": "Physics",
+      "title": "Four independent bounded blade forces",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "Air swing <=5% matched wet impulse; bounded contact energy, correct visible control direction, four seats contribute.",
+      "evidence": [
+        "tests/physics.test.ts",
+        "tests/rowing.test.ts",
+        "evidence/phase-2-contact.json",
+        "tests/contact.test.ts",
+        "evidence/paddle-contact.json",
+        "evidence/paddle-contact-moving.json",
+        "tests/blade.test.ts",
+        "evidence/blade-contact.json",
+        "evidence/blade-moving.json",
+        "evidence/phase-2-blade.json",
+        "evidence/phase-2-bathymetry.json"
+      ],
+      "remaining": "Rounded blade/shaft contacts retain260N bounded reaction. Actual bed contact now supplies passive tangential resistance so reverse strokes can push off shallows; no lift/free force at rest. Full multi-contact/rotational CCD and human agency review remain.",
+      "source": "T006–T008/T022",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "P04",
+      "phase": "03 Hydrology and physics",
+      "owner": "Physics",
+      "title": "Capsize, grounded and unstable recovery",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "Sustained inversion/contact gets shared recovery; waiting/coasting never false-resets; clear fail/recover behavior.",
+      "evidence": [
+        "tests/hydrodynamics.test.ts",
+        "tests/physics.test.ts",
+        "tests/rescue.test.ts",
+        "evidence/rescue.json",
+        "evidence/rescue-browser.json",
+        "evidence/phase-2-bathymetry.json",
+        "tests/bathymetry.test.ts",
+        "tests/bathymetry-browser.mjs",
+        "evidence/bathymetry-handling.json",
+        "evidence/bathymetry-browser.json",
+        "tests/capsize.test.ts",
+        "tests/capsize-network.test.ts",
+        "tests/capsize-browser.mjs",
+        "evidence/capsize-physics.json",
+        "evidence/capsize-network.json",
+        "evidence/capsize-browser.json",
+        "evidence/phase-2-capsize.json"
+      ],
+      "remaining": "Shared bed/ground escape and cooperative capsize righting implemented. Sustained inversion exposes a15-second simulation rescue window;strict majority reverse-hold powers capped real torque,success preserves the hull/checkpoint,timeout keeps fallback.24 roll/pitch/heading cases and real sockets pass;full swimmer animation,human readability/fairness and route validation remain.",
+      "source": "T023; PRD §6.4",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "P05",
+      "phase": "03 Hydrology and physics",
+      "owner": "Physics",
+      "title": "Collision and visual hull agreement",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "Tapered visible hull, blades, banks and lethal hazard boundaries agree across speed/rotation/phase near misses.",
+      "evidence": [
+        "tests/hazards.test.ts",
+        "tests/waterwheel.test.ts",
+        "tests/hull.test.ts",
+        "evidence/hull-collision.json",
+        "evidence/phase-2-hull.json",
+        "evidence/phase-2-bends.json",
+        "evidence/danger-update.json",
+        "evidence/phase-2-contact.json",
+        "tests/blade.test.ts",
+        "tests/blade.mjs",
+        "evidence/blade-geometry.json",
+        "evidence/blade-browser.json",
+        "evidence/phase-2-blade.json",
+        "evidence/phase-2-bathymetry.json",
+        "evidence/bathymetry-geometry.json"
+      ],
+      "remaining": "Shared hull/banks/blade cores retained;3600 bed triangle rays compare independent rendering,exact interpolation and actual authority colliders with<0.008mm physics-ray error and identical chunk seams. Broader hazard boundaries,rotational CCD and human fairness/art acceptance remain.",
+      "source": "PRD §6, §10",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "P06",
+      "phase": "07 Obstacle factory",
+      "owner": "Physics",
+      "title": "Hydrology and mechanical encounter toolkit",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "Authored currents, slopes, gates, locks/lifts and moving platforms preserve bounded forces and safe checkpoints.",
+      "evidence": [
+        "src/shared/world.ts",
+        "evidence/danger-update.json",
+        "evidence/phase-2-bathymetry.json"
+      ],
+      "remaining": "Per-crew moving timber/wheel phases and one nonlethal shallow-water encounter are implemented. Full locks/lifts/drops/wind and regional variable-depth authoring remain.",
+      "source": "PRD §6.5, §10",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "G01",
+      "phase": "02 Four-player prototype",
+      "owner": "Gameplay",
+      "title": "Four-person room, readiness and session flow",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "All join/invite/full/expired/ready/countdown/leave/replay paths work in four independent clients.",
+      "evidence": [
+        "tests/lifecycle.test.ts",
+        "tests/network.test.ts",
+        "tests/names.test.ts",
+        "evidence/lobby.json"
+      ],
+      "remaining": "Direct invite/name entry, own You/other player names and early-ready avatar ticks implemented. Independent four-human joining acceptance remains.",
+      "source": "T011/T013",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "G02",
+      "phase": "02 Four-player prototype",
+      "owner": "Gameplay",
+      "title": "Risk-free onboarding and waiting dock",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "New crew can learn controls safely while waiting, with tethered recovery and clear paddle ownership.",
+      "evidence": [
+        "src/client/rehearsal.ts",
+        "tests/rehearsal.test.ts",
+        "tests/onboarding.mjs",
+        "evidence/onboarding.json",
+        "evidence/phase-2-onboarding.json",
+        "evidence/lobby.json",
+        "evidence/phase-2-foliage.json",
+        "evidence/phase-2-capsize.json"
+      ],
+      "remaining": "Direct joining,name confirmation,dock rehearsal and recovery cues retained. Temporary cooperative righting prompt uses saved reverse keys/arrows or native touch hold. Genuine newcomer comprehension,physical devices and rescue animation remain.",
+      "source": "PRD §4.2/§7.5",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "G03",
+      "phase": "02 Four-player prototype",
+      "owner": "Gameplay",
+      "title": "Keyboard, touch, controller and remapping",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "Saved unique key bindings, arrows, standard controller, touch and neutral rearm pass actual input/focus/menu tests.",
+      "evidence": [
+        "src/client/input.ts",
+        "tests/input.test.ts",
+        "evidence/accessibility.json"
+      ],
+      "remaining": "Saved remapping and controller API pass browser fixtures; physical controller and human accessibility review remain.",
+      "source": "T009; PRD §8.4",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "G04",
+      "phase": "02 Four-player prototype",
+      "owner": "Gameplay",
+      "title": "Shared failure, checkpoint votes and completion",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "One wreck for actual hull contact; synchronized sink/retry; majority reset, safe checkpoint and frozen finish/replay.",
+      "evidence": [
+        "tests/hazards.test.ts",
+        "tests/finish.test.ts",
+        "tests/lifecycle.test.ts",
+        "evidence/danger-update.json"
+      ],
+      "remaining": "Full-route crew traversal with real failure and recovery.",
+      "source": "T017/T024",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "G05",
+      "phase": "02 Four-player prototype",
+      "owner": "Gameplay",
+      "title": "Cooperative pacing and route comprehension",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "At least12 newcomers; original clarity/agency/replay thresholds; timestamped fairness and fatigue incidents.",
+      "evidence": [
+        "docs/PLAYTEST_KIT.md",
+        "evidence/danger-update.json"
+      ],
+      "remaining": "1400m route retained;270s real four-paddle flat-water diagnostic travels323.7m. Full-route timing and12-newcomer readability/fairness/fatigue study NOT RUN.",
+      "source": "T019/T020/T030",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "G06",
+      "phase": "02 Four-player prototype",
+      "owner": "Gameplay",
+      "title": "Camera, responsive UI and recovery feedback",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "Boat/paddles/hazards readable in landscape/portrait, reverse/roll/narrows; focus, blur and context-loss safe.",
+      "evidence": [
+        "tests/camera.mjs",
+        "tests/landing.mjs",
+        "evidence/camera.json",
+        "evidence/accessibility.json",
+        "evidence/phase-2-camera.json",
+        "evidence/danger-update.json",
+        "evidence/phase-2-foliage.json",
+        "evidence/phase-2-contact.json"
+      ],
+      "remaining": "Synchronous crew/resize projection fixes stale long-name anchor overlap in all five native layouts; current High/Low shaft-envelope and controls/context checks pass. Genuine danger recognition and blind-camera/human fairness audit remain.",
+      "source": "T010/T027",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "N01",
+      "phase": "05 Multiplayer hardening",
+      "owner": "Networking",
+      "title": "Authority, validation and bounded transport",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "G01",
+        "P03"
+      ],
+      "acceptance": "Forged/stale/flooded messages rejected; slow and unacknowledged sockets have bounded output and seat-safe reconnect.",
+      "evidence": [
+        "tests/network.test.ts",
+        "tests/server-reliability.test.ts",
+        "evidence/phase-2-contact.json",
+        "evidence/phase-2-capsize.json"
+      ],
+      "remaining": "Current0.13 four-room/16-client60.007s workload passes ACK/finite-force/isolation/pause/reconnect/reset/disposal checks with zero recorded violations and dropped simulation steps. Public-host capacity,abuse review and real Internet acceptance remain.",
+      "source": "T012/T014",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "N02",
+      "phase": "05 Multiplayer hardening",
+      "owner": "Networking",
+      "title": "Reconnect and network impairment",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "G01",
+        "P03"
+      ],
+      "acceptance": "All seats recover with no stale input after jitter, blackout, refresh, grace expiry and actual network changes.",
+      "evidence": [
+        "tests/network-stress.test.ts",
+        "tests/reconnect.mjs",
+        "evidence/phase-2-contact.json",
+        "tests/grace.ts",
+        "evidence/grace.json"
+      ],
+      "remaining": "Actual45-second reconnect and90.011-second production-grace expiry pass locally: frozen tick, same seat/name/phase, no stale stroke, expired-token rejection and replacement four-ready launch. Real Internet/TCP loss, physical network changes, smoothing A/B and long browser soak remain.",
+      "source": "T015/T016/T028",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "N03",
+      "phase": "05 Multiplayer hardening",
+      "owner": "Networking",
+      "title": "Durable checkpoints and version migration",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "G01",
+        "P03"
+      ],
+      "acceptance": "Crash/reopen restore; atomic revisions/leases; prior physics migration preserves checkpoint/token and refuses active/incompatible save.",
+      "evidence": [
+        "tests/saves.test.ts",
+        "tests/save-restart.test.ts"
+      ],
+      "remaining": "Prior-physics canonical save migration passes; deployed backup/restore rehearsal remains.",
+      "source": "PRD §7.6",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "N04",
+      "phase": "05 Multiplayer hardening",
+      "owner": "Networking",
+      "title": "Measured multiplayer capacity and observability",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "G01",
+        "P03"
+      ],
+      "acceptance": "Record rooms/host, event-loop p95, heap/WASM, bandwidth and overload behavior with enforceable operational limits.",
+      "evidence": [
+        "tests/server-reliability.test.ts",
+        "tests/soak.ts",
+        "evidence/load.json",
+        "evidence/phase-1.json",
+        "evidence/phase-2-hull.json",
+        "evidence/phase-2-bends.json"
+      ],
+      "remaining": "Latest0.8 local run: 120.063s,4 rooms/16 clients,32 resets and reconnects in all rooms; stable body/collider counts, no invariant violations, all disposed. Long churn, real Internet, production-host saturation and acceptance remain.",
+      "source": "PRD §7.7/§16",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "N05",
+      "phase": "05 Multiplayer hardening",
+      "owner": "Networking",
+      "title": "Long real-time multiplayer endurance",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "G01",
+        "P03"
+      ],
+      "acceptance": "30-minute four-rendered-client Internet run without invariant violations; recorded actual runtime and errors.",
+      "evidence": [
+        "tests/soak.ts"
+      ],
+      "remaining": "Current previous300-second SDK run cannot close this gate.",
+      "source": "PRD §3.1/§17.3",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "V01",
+      "phase": "09 Premium presentation",
+      "owner": "Rendering",
+      "title": "Production boat and crew assets",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "Reviewed closeup materials, sockets, skinning, row/wreck/celebrate animation; identical crew strength.",
+      "evidence": [
+        "src/client/hull.ts",
+        "src/client/crew.ts",
+        "tests/crew.test.ts",
+        "src/client/boat-detail.ts",
+        "tests/boat-detail.test.ts",
+        "evidence/phase-2-boat.json"
+      ],
+      "remaining": "M2-D6 hull/gunwale wood direction, subtle existing-texture finish, shared rounded paddles and floor-seated rope implemented. Full production boat/crew assets, animation/compression pipeline and human art review remain.",
+      "source": "T025; PRD §11.2",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "V02",
+      "phase": "09 Premium presentation",
+      "owner": "Rendering",
+      "title": "Premium physically readable water",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "Shared surface with flow normals, depth/reflection/foam/wakes/spray; High/Low visual truth and frame budgets.",
+      "evidence": [
+        "src/client/water.ts",
+        "tests/water-depth.mjs",
+        "tests/water-effects.mjs",
+        "evidence/water-effects.json",
+        "evidence/phase-2-water.json"
+      ],
+      "remaining": "M2-D4 water batch verified. Latest M2-D6 timings retain High/Low CPU/GPU/frame misses; named-device, human water-truth and premium art acceptance remain.",
+      "source": "T026; PRD §11.3",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "V03",
+      "phase": "09 Premium presentation",
+      "owner": "Rendering",
+      "title": "Bounded vegetation and quality tiers",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "Deterministic loading/backtracking; bounded GPU buffers and spatial LOD reduce complete-frame cost while preserving visibility.",
+      "evidence": [
+        "src/client/scene.ts",
+        "src/client/nature.ts",
+        "evidence/graphics.json",
+        "evidence/phase-2-bends.json",
+        "tests/banks.test.ts",
+        "evidence/banks.json",
+        "evidence/phase-2-banks.json",
+        "evidence/phase-2-foliage.json"
+      ],
+      "remaining": "Bounded/grounded vegetation remains implemented. Both simpler-material experiments were rejected after High-mode timing regressions; production Standard retained. Full regional assets, named-device performance, memory plateau and human transition/art acceptance remain.",
+      "source": "T029; PRD §11.6",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "V04",
+      "phase": "09 Premium presentation",
+      "owner": "Rendering",
+      "title": "Lighting, regional art and weather",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "Each region has authored atmosphere/material language, landmarks and readable warnings at every quality tier.",
+      "evidence": [
+        "src/client/scene.ts",
+        "tests/banks.test.ts",
+        "evidence/banks.json",
+        "evidence/phase-2-banks.json"
+      ],
+      "remaining": "M2-D3 continuous ridge, periodic rock texture, wet/sediment/moss bands and attached rescue paint verified as a scoped batch. Premium regional assets, lighting/weather and human art/readability acceptance remain.",
+      "source": "PRD §11.1/§11.4",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "V05",
+      "phase": "06 Continuous route tech",
+      "owner": "Rendering",
+      "title": "Continuous world streaming",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "Region transitions load/prefetch/unload without physics stalls; memory plateaus over90-minute traversal/backtracking.",
+      "evidence": [
+        "src/client/scene.ts"
+      ],
+      "remaining": "Vegetation is partial only; full asset/audio/world lifecycle and long-run memory proof.",
+      "source": "T029; PRD §11.6",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "A01",
+      "phase": "09 Premium presentation",
+      "owner": "Audio",
+      "title": "Water, paddle, contact and environment sound",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "G04"
+      ],
+      "acceptance": "Spatial catch/current/wood/stone ambience, lifecycle silence and saved volume; human mix/readability review.",
+      "evidence": [
+        "src/client/audio.ts",
+        "tests/audio.test.ts",
+        "tests/audio.mjs",
+        "evidence/audio.json",
+        "evidence/phase-2-audio.json"
+      ],
+      "remaining": "M2-D2 procedural current-relative stereo water/brace mix and lifecycle/voice bounds verified. Regional recordings, contact surface palette, music integration, physical-device performance and human listening/mix acceptance remain.",
+      "source": "PRD §12",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "A02",
+      "phase": "09 Premium presentation",
+      "owner": "Audio",
+      "title": "Music and adaptive journey mix",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "A01"
+      ],
+      "acceptance": "Licensed score, regional stems, ducking, accessible controls and memory/streaming acceptance.",
+      "evidence": [],
+      "remaining": "Author/source licensed score and validate complete journey mix.",
+      "source": "PRD §12",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "R01",
+      "phase": "04 Vertical slice",
+      "owner": "World design",
+      "title": "Willow Headwaters",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "G05",
+        "P06",
+        "V03",
+        "V01",
+        "V02",
+        "A01"
+      ],
+      "acceptance": "Continuous entry; teach/remix/climax/relief; authored hydrology and landmark; safe checkpoint and fail-forward path; four-client traversal; human pacing/fairness; camera; Low/High parity; unload memory; sound and timing.",
+      "evidence": [
+        "src/shared/world.ts",
+        "docs/ROUTE.md"
+      ],
+      "remaining": "Current prototype content is partial; full authored winding route, rescue/pacing/art and region exit evidence.",
+      "source": "PRD §9.3 R01; §17.4",
+      "updated": "2026-10-20",
+      "designCard": "Composition: Warm cedar-lined small river, distant mill, gentle current. Skill focus: Catch/release; coordinated straight line and first counter-strokes. Hero moment: Split cedar posts and natural S-bend. Fail-forward route: No fatal falls; sandy recovery banks; launch dock. Audiovisual signature: Birds, small water wash, oar close-ups. First-time design objective: First clean stroke, two-player side yaw and group cadence. Mastered-time proposal: 12–18 minutes, to be re-estimated after player data."
+    },
+    {
+      "id": "R02",
+      "phase": "04 Vertical slice",
+      "owner": "World design",
+      "title": "Timber Gorge",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "R01",
+        "V05"
+      ],
+      "acceptance": "Continuous entry; teach/remix/climax/relief; authored hydrology and landmark; safe checkpoint and fail-forward path; four-client traversal; human pacing/fairness; camera; Low/High parity; unload memory; sound and timing.",
+      "evidence": [
+        "src/shared/world.ts",
+        "docs/ROUTE.md",
+        "evidence/phase-2-bends.json",
+        "evidence/bends-browser.json",
+        "evidence/bend-whitewater.png",
+        "evidence/rescue.json",
+        "evidence/rescue-browser.json"
+      ],
+      "remaining": "Five authored bends, local waiting-dock rehearsal and physical Stillwater recovery/rejoin are implemented. Pacing/art/audio and genuine continuous human traversal/region exit evidence remain.",
+      "source": "PRD §9.3 R02; §17.4",
+      "updated": "2026-10-20",
+      "designCard": "Composition: Rafted logs, timber chutes, narrow basalt bends. Skill focus: Current read, collision angles and wall brace. Hero moment: Rolling-log boom opens a precision channel. Fail-forward route: Side alcoves and backwater eddies. Audiovisual signature: Taut chain clangs, wood knocks, gorge echoes. First-time design objective: First credible near-loss-and-save sequence. Mastered-time proposal: 15–22 minutes, to be re-estimated after player data."
+    },
+    {
+      "id": "R03",
+      "phase": "08 Regional production",
+      "owner": "World design",
+      "title": "Flooded Old Town",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "R02",
+        "V05"
+      ],
+      "acceptance": "Continuous entry; teach/remix/climax/relief; authored hydrology and landmark; safe checkpoint and fail-forward path; four-client traversal; human pacing/fairness; camera; Low/High parity; unload memory; sound and timing.",
+      "evidence": [],
+      "remaining": "Build complete region from its original authoring card after slice and streaming gates.",
+      "source": "PRD §9.3 R03; §17.4",
+      "updated": "2026-10-20",
+      "designCard": "Composition: Submerged streets, brick arches, roofs and bell tower. Skill focus: Corner braking, low clearance, momentum conservation. Hero moment: Boat squeezes under a half-submerged market arch. Fail-forward route: Shop-floor side channels and town-square pools. Audiovisual signature: Distant bells, rain drainage, creaking signage. First-time design objective: Readable choice between short risky and long safe lines. Mastered-time proposal: 18–25 minutes, to be re-estimated after player data."
+    },
+    {
+      "id": "R04",
+      "phase": "08 Regional production",
+      "owner": "World design",
+      "title": "Storm Reservoir",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "R03",
+        "V05"
+      ],
+      "acceptance": "Continuous entry; teach/remix/climax/relief; authored hydrology and landmark; safe checkpoint and fail-forward path; four-client traversal; human pacing/fairness; camera; Low/High parity; unload memory; sound and timing.",
+      "evidence": [],
+      "remaining": "Build complete region from its original authoring card after slice and streaming gates.",
+      "source": "PRD §9.3 R04; §17.4",
+      "updated": "2026-10-20",
+      "designCard": "Composition: Vast open water, rain wall, partly inundated cranes. Skill focus: Waves, crosswind and keeping heading without landmarks. Hero moment: Stormfront surges through floating debris and sluice gates. Fail-forward route: Protected coves and quay docks. Audiovisual signature: Deep thunder, wind, rain on hull. First-time design objective: Introduces environmental forces larger than any paddle. Mastered-time proposal: 17–25 minutes, to be re-estimated after player data."
+    },
+    {
+      "id": "R05",
+      "phase": "08 Regional production",
+      "owner": "World design",
+      "title": "Dam Apron",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "R04",
+        "V05"
+      ],
+      "acceptance": "Continuous entry; teach/remix/climax/relief; authored hydrology and landmark; safe checkpoint and fail-forward path; four-client traversal; human pacing/fairness; camera; Low/High parity; unload memory; sound and timing.",
+      "evidence": [],
+      "remaining": "Build complete region from its original authoring card after slice and streaming gates.",
+      "source": "PRD §9.3 R05; §17.4",
+      "updated": "2026-10-20",
+      "designCard": "Composition: Scale reveal from lake rim to monumental spillway apron. Skill focus: Heavy current, timed gate approach, safe commitment. Hero moment: Enormous spillway lip into staged plunge pool. Fail-forward route: Pre-drop catchment, rescue channels at bottom. Audiovisual signature: Alarm horn, gate piston, waterfall low end. First-time design objective: First large authored set-piece with fair preview. Mastered-time proposal: 18–26 minutes, to be re-estimated after player data."
+    },
+    {
+      "id": "R06",
+      "phase": "08 Regional production",
+      "owner": "World design",
+      "title": "Turbine Underworks",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "R05",
+        "V05"
+      ],
+      "acceptance": "Continuous entry; teach/remix/climax/relief; authored hydrology and landmark; safe checkpoint and fail-forward path; four-client traversal; human pacing/fairness; camera; Low/High parity; unload memory; sound and timing.",
+      "evidence": [],
+      "remaining": "Build complete region from its original authoring card after slice and streaming gates.",
+      "source": "PRD §9.3 R06; §17.4",
+      "updated": "2026-10-20",
+      "designCard": "Composition: Giant industrial galleries and canal conduits. Skill focus: Read current direction, keep blades from moving machinery. Hero moment: Turbine bypass around rotating shaft frames. Fail-forward route: Maintenance loop and counterflow pockets. Audiovisual signature: Metal resonance, pressure pulses, fan hum. First-time design objective: Water physically drives machinery around crew. Mastered-time proposal: 18–25 minutes, to be re-estimated after player data."
+    },
+    {
+      "id": "R07",
+      "phase": "08 Regional production",
+      "owner": "World design",
+      "title": "Treatment Labyrinth",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "R06",
+        "V05"
+      ],
+      "acceptance": "Continuous entry; teach/remix/climax/relief; authored hydrology and landmark; safe checkpoint and fail-forward path; four-client traversal; human pacing/fairness; camera; Low/High parity; unload memory; sound and timing.",
+      "evidence": [],
+      "remaining": "Build complete region from its original authoring card after slice and streaming gates.",
+      "source": "PRD §9.3 R07; §17.4",
+      "updated": "2026-10-20",
+      "designCard": "Composition: Colourful tanks, settling pools, sluices and filter bridges. Skill focus: Precise pivots and multi-gate timing. Hero moment: Gravity-switch canal loops around water treatment towers. Fail-forward route: Recycling flow keeps missed route recoverable. Audiovisual signature: Pump tick, air bubbles, echoing corridors. First-time design objective: Master rotate-in-place and forward/back coordination. Mastered-time proposal: 16–24 minutes, to be re-estimated after player data."
+    },
+    {
+      "id": "R08",
+      "phase": "08 Regional production",
+      "owner": "World design",
+      "title": "Lock Stair and Boat Lift",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "R07",
+        "V05"
+      ],
+      "acceptance": "Continuous entry; teach/remix/climax/relief; authored hydrology and landmark; safe checkpoint and fail-forward path; four-client traversal; human pacing/fairness; camera; Low/High parity; unload memory; sound and timing.",
+      "evidence": [],
+      "remaining": "Build complete region from its original authoring card after slice and streaming gates.",
+      "source": "PRD §9.3 R08; §17.4",
+      "updated": "2026-10-20",
+      "designCard": "Composition: Massive multilevel lock staircase and counterweighted ship lift. Skill focus: Deliberate stopping, stateful chambers and timing. Hero moment: Boat rises with an immense counterweight into open sky. Fail-forward route: Protected side docks before each lift. Audiovisual signature: Chains, ratchets, descending gates, rising water. First-time design objective: Clearly explains altitude gain using coherent machinery. Mastered-time proposal: 20–28 minutes, to be re-estimated after player data."
+    },
+    {
+      "id": "R09",
+      "phase": "08 Regional production",
+      "owner": "World design",
+      "title": "Cave Siphon",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "R08",
+        "V05"
+      ],
+      "acceptance": "Continuous entry; teach/remix/climax/relief; authored hydrology and landmark; safe checkpoint and fail-forward path; four-client traversal; human pacing/fairness; camera; Low/High parity; unload memory; sound and timing.",
+      "evidence": [],
+      "remaining": "Build complete region from its original authoring card after slice and streaming gates.",
+      "source": "PRD §9.3 R09; §17.4",
+      "updated": "2026-10-20",
+      "designCard": "Composition: Wet caverns, glowworms and siphon crown. Skill focus: Visibility, silhouette steering, pressure pulses. Hero moment: Siphon lifts boat over illuminated underground crest. Fail-forward route: Calm side chamber and cave ledges. Audiovisual signature: Reverb, dripping, pressure rumble. First-time design objective: Cameras remain readable in tight and dark spaces. Mastered-time proposal: 17–25 minutes, to be re-estimated after player data."
+    },
+    {
+      "id": "R10",
+      "phase": "08 Regional production",
+      "owner": "World design",
+      "title": "Geothermal Pumpworks",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "R09",
+        "V05"
+      ],
+      "acceptance": "Continuous entry; teach/remix/climax/relief; authored hydrology and landmark; safe checkpoint and fail-forward path; four-client traversal; human pacing/fairness; camera; Low/High parity; unload memory; sound and timing.",
+      "evidence": [],
+      "remaining": "Build complete region from its original authoring card after slice and streaming gates.",
+      "source": "PRD §9.3 R10; §17.4",
+      "updated": "2026-10-20",
+      "designCard": "Composition: Steaming volcanic cliffs and enormous pumping screws. Skill focus: Thermal upwelling, piston rhythm and moving water frames. Hero moment: Pumped aqueduct turns uphill around red basalt. Fail-forward route: Cooling pools, safety troughs and ramp return. Audiovisual signature: Steam hisses, deep percussive machinery. First-time design objective: Physical explanation for otherwise impossible climb. Mastered-time proposal: 19–28 minutes, to be re-estimated after player data."
+    },
+    {
+      "id": "R11",
+      "phase": "08 Regional production",
+      "owner": "World design",
+      "title": "Glacier Spillways",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "R10",
+        "V05"
+      ],
+      "acceptance": "Continuous entry; teach/remix/climax/relief; authored hydrology and landmark; safe checkpoint and fail-forward path; four-client traversal; human pacing/fairness; camera; Low/High parity; unload memory; sound and timing.",
+      "evidence": [],
+      "remaining": "Build complete region from its original authoring card after slice and streaming gates.",
+      "source": "PRD §9.3 R11; §17.4",
+      "updated": "2026-10-20",
+      "designCard": "Composition: Cold cyan water, ice floes, snow walls. Skill focus: Reduced visibility, ice wakes, sudden current seams. Hero moment: Thread breakaway floes between blue ice gates. Fail-forward route: Stable inlets and ice-free emergency channel. Audiovisual signature: Ice creaks, dry wind, muffled water. First-time design objective: New collisions without changing paddle verbs. Mastered-time proposal: 20–28 minutes, to be re-estimated after player data."
+    },
+    {
+      "id": "R12",
+      "phase": "08 Regional production",
+      "owner": "World design",
+      "title": "High Aqueduct",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "R11",
+        "V05"
+      ],
+      "acceptance": "Continuous entry; teach/remix/climax/relief; authored hydrology and landmark; safe checkpoint and fail-forward path; four-client traversal; human pacing/fairness; camera; Low/High parity; unload memory; sound and timing.",
+      "evidence": [],
+      "remaining": "Build complete region from its original authoring card after slice and streaming gates.",
+      "source": "PRD §9.3 R12; §17.4",
+      "updated": "2026-10-20",
+      "designCard": "Composition: Slim high bridge arches across misty canyon. Skill focus: Long horizon steering, wind correction, loss-prevention. Hero moment: Spectacular crossing with cascades far below. Fail-forward route: Catch channels beneath selected exposed turns. Audiovisual signature: Wind through pillars, open echo, bells. First-time design objective: Majesty with clear guardrails; no camera-induced falls. Mastered-time proposal: 20–28 minutes, to be re-estimated after player data."
+    },
+    {
+      "id": "R13",
+      "phase": "08 Regional production",
+      "owner": "World design",
+      "title": "Suspended Maintenance Channels",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "R12",
+        "V05"
+      ],
+      "acceptance": "Continuous entry; teach/remix/climax/relief; authored hydrology and landmark; safe checkpoint and fail-forward path; four-client traversal; human pacing/fairness; camera; Low/High parity; unload memory; sound and timing.",
+      "evidence": [],
+      "remaining": "Build complete region from its original authoring card after slice and streaming gates.",
+      "source": "PRD §9.3 R13; §17.4",
+      "updated": "2026-10-20",
+      "designCard": "Composition: Counterweighted rotating troughs at extreme altitude. Skill focus: Braking, phase synchronization and platform anticipation. Hero moment: Entire water channel physically rotates to join the next. Fail-forward route: Lower re-entry troughs and maintenance docks. Audiovisual signature: Gear creaks, cable strains, metallic rhythm. First-time design objective: Most demanding multi-crew timing problem. Mastered-time proposal: 18–25 minutes, to be re-estimated after player data."
+    },
+    {
+      "id": "R14",
+      "phase": "08 Regional production",
+      "owner": "World design",
+      "title": "Great Cascade",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "R13",
+        "V05"
+      ],
+      "acceptance": "Continuous entry; teach/remix/climax/relief; authored hydrology and landmark; safe checkpoint and fail-forward path; four-client traversal; human pacing/fairness; camera; Low/High parity; unload memory; sound and timing.",
+      "evidence": [],
+      "remaining": "Build complete region from its original authoring card after slice and streaming gates.",
+      "source": "PRD §9.3 R14; §17.4",
+      "updated": "2026-10-20",
+      "designCard": "Composition: Blue horizon, all water systems converge toward sea. Skill focus: Synthesis of current, waves, narrow gate, controlled drops. Hero moment: Multi-stage finale from sky channel to sunrise ocean basin. Fail-forward route: Several visible intermediary rescue basins. Audiovisual signature: Orchestral water swell, giant spray, triumphant quiet. First-time design objective: Feels earned through learnt mechanics, not surprise rules. Mastered-time proposal: 20–30 minutes, to be re-estimated after player data."
+    },
+    {
+      "id": "Q01",
+      "phase": "10 Optimization and QA",
+      "owner": "QA",
+      "title": "Automated regression and reproducible evidence",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F02"
+      ],
+      "acceptance": "Compiler, physics, network, persistence, real-browser flow and shader checks pass with build/run metadata.",
+      "evidence": [
+        "tests/physics.test.ts",
+        "tests/browser.mjs",
+        "tests/graphics.mjs",
+        "evidence/browser.json",
+        "evidence/accessibility.json",
+        "evidence/graphics.json",
+        "evidence/tracker-browser.json",
+        "evidence/phase-1.json"
+      ],
+      "remaining": "Local compiler/build,81 regressions and browser fixtures pass; remote CI and independent release review remain.",
+      "source": "PRD §17/§22",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "Q02",
+      "phase": "10 Optimization and QA",
+      "owner": "QA",
+      "title": "Human learning, fairness and accessibility gate",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "G03",
+        "G05",
+        "G06"
+      ],
+      "acceptance": "12 newcomers and four-human complete-slice evidence reviewed; controller/remap/readability/fatigue issues resolved.",
+      "evidence": [
+        "docs/PLAYTEST_KIT.md"
+      ],
+      "remaining": "Actual participants and physical device/controller sessions.",
+      "source": "PRD §17/§22",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "Q03",
+      "phase": "10 Optimization and QA",
+      "owner": "QA",
+      "title": "Browser/hardware/frame/memory acceptance",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "F03",
+        "V05"
+      ],
+      "acceptance": "Named Chrome/Firefox/Safari/Edge devices meet Medium/Low budgets;90-minute browser/JS/GPU/WASM soak, resize/context-loss.",
+      "evidence": [],
+      "remaining": "Device matrix,90-minute sessions, memory/frame traces and fixes.",
+      "source": "PRD §17/§22",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "Q04",
+      "phase": "10 Optimization and QA",
+      "owner": "QA",
+      "title": "Complete journey and regression triage",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "R14",
+        "N05",
+        "Q01",
+        "Q02",
+        "Q03"
+      ],
+      "acceptance": "Complete real four-human journey on release build; no open P0/P1; known P2/P3 documented and reviewed.",
+      "evidence": [],
+      "remaining": "Full journey evidence and independent issue triage.",
+      "source": "PRD §17/§22",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "L01",
+      "phase": "11 Release candidate",
+      "owner": "Operations",
+      "title": "Hosting, backup and rollback rehearsal",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "N03",
+        "N04"
+      ],
+      "acceptance": "TLS/WSS/proxy/process configuration, private persistent saves, restart/restore/rollback and monitoring proven.",
+      "evidence": [
+        "docs/CPANEL_SETUP.md",
+        "scripts/check-deployment.mjs"
+      ],
+      "remaining": "Owner-hosted rehearsal and measured capacity.",
+      "source": "PRD §14–16/§22–23",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "L02",
+      "phase": "11 Release candidate",
+      "owner": "Operations",
+      "title": "Security, privacy, assets and platform review",
+      "status": "IN_TEST",
+      "points": 2,
+      "dependsOn": [
+        "F01",
+        "N01"
+      ],
+      "acceptance": "Credentials, boundaries, headers, dependencies, licensed assets, privacy/brand and chosen portal integration reviewed.",
+      "evidence": [
+        "src/server/index.ts"
+      ],
+      "remaining": "Executed review; portal/brand/asset decisions and release policy.",
+      "source": "PRD §14–16/§22–23",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "L03",
+      "phase": "11 Release candidate",
+      "owner": "Operations",
+      "title": "Accepted release candidate",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "Q04",
+        "L01",
+        "L02",
+        "A02"
+      ],
+      "acceptance": "Named reviewer signs launch checklist; reproducible artifacts, marketing, support and incident handling ready.",
+      "evidence": [],
+      "remaining": "All preceding release dependencies and explicit review.",
+      "source": "PRD §14–16/§22–23",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "L04",
+      "phase": "12 Launch and iteration",
+      "owner": "Operations",
+      "title": "Launch and observed iteration",
+      "status": "BACKLOG",
+      "points": 2,
+      "dependsOn": [
+        "L03"
+      ],
+      "acceptance": "Authorized release, monitored real sessions, actionable incident handling and7/30-day cohort review.",
+      "evidence": [],
+      "remaining": "Release and observe genuine usage; no synthetic cohort claims.",
+      "source": "PRD §14–16/§22–23",
+      "updated": "2026-10-20"
+    }
+  ],
+  "catalogue": [
+    {
+      "id": "OB-001",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Current seam (Hydrology)",
+      "status": "IN_TEST",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Side-current abruptly changes lateral flow. Telegraph: Foam boundary. Planned recovery: Ferry-angle correction. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [
+        "src/shared/world.ts",
+        "tests/physics.test.ts"
+      ],
+      "remaining": "Existing related prototype is partial; validate exact authored encounter, recovery and art/audio.",
+      "source": "PRD §10.3 OB-001; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-002",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Eddy pocket (Hydrology)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Local rotational flow yaw/hold. Telegraph: Circular surface drift. Planned recovery: Paddle out via downstream shear. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-002; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-003",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Whirlpool shoulder (Hydrology)",
+      "status": "IN_TEST",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Vortex gradient spins bow. Telegraph: Spiralling scum. Planned recovery: Reverse and brace at outer lane. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [
+        "src/shared/world.ts",
+        "tests/hazards.test.ts"
+      ],
+      "remaining": "Existing related prototype is partial; validate exact authored encounter, recovery and art/audio.",
+      "source": "PRD §10.3 OB-003; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-004",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Standing-wave train (Hydrology)",
+      "status": "IN_TEST",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Repeated pitch/roll alters immersion. Telegraph: Visible wave peaks. Planned recovery: Reduce speed, stabilize. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [
+        "src/shared/world.ts",
+        "tests/hydrodynamics.test.ts"
+      ],
+      "remaining": "Existing related prototype is partial; validate exact authored encounter, recovery and art/audio.",
+      "source": "PRD §10.3 OB-004; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-005",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Sluice surge (Hydrology)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Telegraphed current impulse. Telegraph: Bell and gate flash. Planned recovery: Hold pocket or counterstroke. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-005; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-006",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Gravel bar (Hydrology)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Hull shallows and grounds. Telegraph: Ripples/color change. Planned recovery: Reverse/pry to channel. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-006; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-007",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Reverse-flow lock (Hydrology)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Short flow reversal in narrow lock. Telegraph: Bubbles sweep upstream. Planned recovery: Stage at side slack water. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-007; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-008",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Waterfall lip (Hydrology)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: High-speed commit point. Telegraph: Spray curtain and sound. Planned recovery: Breakaway safe basin. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-008; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-009",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Hydraulic jump (Hydrology)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Roll wave with intermittent blade contact. Telegraph: Foam wall. Planned recovery: Enter angled and re-stabilize. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-009; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-010",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Crossing wake (Hydrology)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Moving wake tilts hull. Telegraph: V-shaped visible crest. Planned recovery: Cross head-on or correct roll. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-010; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-011",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Waterwheel gap (Machinery)",
+      "status": "IN_TEST",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Spoke timing plus paddle collision. Telegraph: Creaking wheel blades. Planned recovery: Wait in eddy/pull backward. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [
+        "tests/waterwheel.test.ts"
+      ],
+      "remaining": "Existing related prototype is partial; validate exact authored encounter, recovery and art/audio.",
+      "source": "PRD §10.3 OB-011; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-012",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Swinging counterweight (Machinery)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Pendulum impacts sideways. Telegraph: Large shadow and horn. Planned recovery: Backstroke into safe pocket. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-012; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-013",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Piston sluice (Machinery)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Timed vertical gate. Telegraph: Red warning lights/air hiss. Planned recovery: Stop short and re-align. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-013; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-014",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Crusher lock (Machinery)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Opposing walls shrink lane. Telegraph: Ratcheting moving sides. Planned recovery: Reverse before closure. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-014; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-015",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Tilting weir plate (Machinery)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Surface ramps and tilts. Telegraph: Visible hinge actuator. Planned recovery: Control entry angle. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-015; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-016",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Screw wash (Machinery)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Rotating screw induces spiralling flow. Telegraph: Broad rotating foam. Planned recovery: Cross behind vane. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-016; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-017",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Chain-ferry cable (Machinery)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Tensioned moving rope blocks blade/hull. Telegraph: Bell, taut cable. Planned recovery: Duck in slack-water gap. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-017; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-018",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Lift-platform dock (Machinery)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Align boat on moving buoyant platform. Telegraph: Rail lights and dock arrows. Planned recovery: Hold in staging basin. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-018; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-019",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Conveyor rollers (Machinery)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Directional contact friction when shallow. Telegraph: Alternating roller bands. Planned recovery: Reverse roll out. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-019; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-020",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Rotating pipe arm (Machinery)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Low rotating boom scrapes paddle. Telegraph: Orange caution stripe. Planned recovery: Dip/shallow stroke. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-020; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-021",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Log boom (Debris)",
+      "status": "IN_TEST",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Floating logs rotate and transfer impact. Telegraph: Log chain noises. Planned recovery: Push away / choose side channel. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [
+        "tests/hazards.test.ts"
+      ],
+      "remaining": "Existing related prototype is partial; validate exact authored encounter, recovery and art/audio.",
+      "source": "PRD §10.3 OB-021; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-022",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Sawn-log flume (Debris)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Timed release of long floating timber. Telegraph: Wood mill horn. Planned recovery: Wait in still bay. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-022; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-023",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Barge crossing (Debris)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Heavy moving vessel blocks route. Telegraph: Hull horn and wake. Planned recovery: Cross behind or reverse. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-023; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-024",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Patrol-boat wake (Debris)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Overlapping wakes destabilize hull. Telegraph: Visible wave trails. Planned recovery: Orient nose into crest. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-024; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-025",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Barrel swarm (Debris)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Light objects redirect paddle/workspace. Telegraph: Floating metal drums. Planned recovery: Clear with blade/bracing. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-025; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-026",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Cargo pendulum (Debris)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Hanging crate swings near surface. Telegraph: Crane shadow. Planned recovery: Wait/duck bow under gap. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-026; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-027",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Crane bucket (Debris)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Large timed lowering collider. Telegraph: Cable creak and lamp. Planned recovery: Reverse into refuge. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-027; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-028",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Ferry chain (Debris)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Diagonal submerged chain catches hull. Telegraph: Chain buoys. Planned recovery: Angle and lift paddle. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-028; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-029",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Flood debris pulse (Debris)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Current launches clustered obstacles. Telegraph: Loud upstream collapse. Planned recovery: Use sheltered inlet. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-029; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-030",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Culvert drums (Debris)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Rolling cylindrical obstacles in culvert. Telegraph: Rolling clatter. Planned recovery: Work around or wait. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-030; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-031",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Canyon crosswind (Weather)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Wind pushes above-water hull. Telegraph: Flags and falling leaves. Planned recovery: Use transverse counterstrokes. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-031; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-032",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Bridge wind rotor (Weather)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Wind changes sign under bridge. Telegraph: Swinging pennants. Planned recovery: Use slipstream timing. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-032; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-033",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Thunderfront gust (Weather)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Short deterministic gust burst. Telegraph: Cloud wall and thunder lead. Planned recovery: Brace/wait sheltered. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-033; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-034",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Fog channel (Weather)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Sight lines shortened. Telegraph: Bell spacing and glow markers. Planned recovery: Slow speed & follow sound. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-034; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-035",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Heavy-rain curtain (Weather)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Visibility and wave texture change. Telegraph: Dark rain front. Planned recovery: Choose familiar safe route. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-035; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-036",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Wind tunnel (Weather)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Narrow funnel accelerates wind. Telegraph: Loud intake and banners. Planned recovery: High-angle ferry control. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-036; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-037",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Wave squall (Weather)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Disordered surface affecting submersion. Telegraph: Rising surface wave patterns. Planned recovery: Reduce speed, staged recovery. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-037; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-038",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Slush field (Weather)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: High-drag cold water/ice slurry. Telegraph: Pale surface and drag sound. Planned recovery: Find open clean path. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-038; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-039",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Gust shadow (Weather)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Sudden loss of wind behind cover. Telegraph: Flag drop / calm pocket. Planned recovery: Avoid over-correcting. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-039; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-040",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Waterspout lane (Weather)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Moving vertical spray/flow impulse. Telegraph: Visible funnel and path. Planned recovery: Dodge or enter protected pocket. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-040; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-041",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Root maze (Terrain)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Submerged roots grab shaft/hull. Telegraph: Clear roots and ripples. Planned recovery: Reverse and lever out. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-041; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-042",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Telegraph rockfall (Terrain)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Rocks fall after shake cue. Telegraph: Pebbles and upper ledge crack. Planned recovery: Stay under side shelter. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-042; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-043",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Canyon collapse (Terrain)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Temporary channel reconfiguration. Telegraph: Cracking bridge silhouette. Planned recovery: Take marked diversion. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-043; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-044",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Low cave ceiling (Terrain)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Top clearance restricts paddle arc. Telegraph: Roof silhouettes. Planned recovery: Feather blade and coast. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-044; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-045",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Stalactite slalom (Terrain)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Narrow alternating stalactites. Telegraph: Visible rock spires. Planned recovery: Pivot between safe columns. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-045; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-046",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Hidden shoal glow (Terrain)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Light/ripples reveal shallow hazard. Telegraph: Surface color variation. Planned recovery: Slide toward deep water. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-046; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-047",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Mud shoal (Terrain)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: High suction/ground friction. Telegraph: Silky brown shallow water. Planned recovery: Rock boat/reverse stroke. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-047; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-048",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Ice floes (Terrain)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Dynamic floes collide and close openings. Telegraph: Creasing ice and cracking. Planned recovery: Follow channel wake. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-048; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-049",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Reed blind turn (Terrain)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Vegetation hides downstream bend. Telegraph: Bending reed direction. Planned recovery: Slow and inspect angle. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-049; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-050",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Basalt slot (Terrain)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Tight, highly frictional walls. Telegraph: Black vertical rock lines. Planned recovery: Bow-stern pivot maneuver. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-050; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-051",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Boat elevator (Vertical)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Hull rides moving water-filled lift. Telegraph: Platform chains and water seal. Planned recovery: Stop at landing slots. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-051; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-052",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Lock rise (Vertical)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Rising chamber water changes surface height. Telegraph: Level marks and lamps. Planned recovery: Wait/brace before exit. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-052; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-053",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Pumped S-flume (Vertical)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Upward moving flow with hard S-bends. Telegraph: Visible rushing pumped current. Planned recovery: Angle and hold stable line. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-053; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-054",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Rotating water ring (Vertical)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Trough rotates with transformed gravity frame. Telegraph: Large support gears. Planned recovery: Ride until exit aligns. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-054; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-055",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Spillway chute (Vertical)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: High-speed drop and landing roll. Telegraph: White-sheet water and spray. Planned recovery: Land in broad catch basin. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-055; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-056",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Tiered cascade basins (Vertical)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Multiple drops with interstitial braking. Telegraph: Successive lip glimpses. Planned recovery: Rest basins between tiers. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-056; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-057",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Counterweight bridge (Vertical)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Moving bridge grants narrow timed crossing. Telegraph: Hanging weights and ticks. Planned recovery: Retreat to pond. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-057; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-058",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Rotating trough (Vertical)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Water channel rotates toward next exit. Telegraph: Alarm and turning channel. Planned recovery: Enter lower trough on miss. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-058; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-059",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Siphon crest (Vertical)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Flow carries boat uphill over a crest. Telegraph: Rising water marks. Planned recovery: Catch basin after crest. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-059; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-060",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Drop rebound cushion (Vertical)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Strong upward current softens high landing. Telegraph: Bubbling foam bed. Planned recovery: Re-center in turbulent basin. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-060; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-061",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Brake line (Precision)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Approach marker requires gradual deceleration. Telegraph: Striped dock markers. Planned recovery: Reverse after overshoot. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-061; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-062",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Torque tutorial gate (Precision)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Offset blade station used for yaw control. Telegraph: Differential painted gates. Planned recovery: Wide retry pocket. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-062; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-063",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Dead-stop berth (Precision)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Boat must nearly stop in marked bay. Telegraph: Glowing bollards. Planned recovery: Back away for reset. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-063; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-064",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Offset pilings (Precision)",
+      "status": "IN_TEST",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Staggered posts demand accurate turns. Telegraph: High contrast wooden poles. Planned recovery: Back out along entry. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [
+        "tests/route.test.ts"
+      ],
+      "remaining": "Existing related prototype is partial; validate exact authored encounter, recovery and art/audio.",
+      "source": "PRD §10.3 OB-064; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-065",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Spin alignment (Precision)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Rotate nose to tiny moving exit. Telegraph: Rotating target ring. Planned recovery: Expand gap in practice mode. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-065; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-066",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Gust brace (Precision)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Counterwind while planted near wall. Telegraph: Windsock and brace marks. Planned recovery: Slip toward safe lee. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-066; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-067",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Wall plant / pry (Precision)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Use paddle to leverage away from corner. Telegraph: Wall scuff marks. Planned recovery: Recover from wedge. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-067; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-068",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Counter-current weave (Precision)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Alternate eddy and fast stream entries. Telegraph: Two-tone foam streaks. Planned recovery: Eddy pause option. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-068; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-069",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Alternating micro-gates (Precision)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Cadence through serial small gate windows. Telegraph: Sequential lantern pulses. Planned recovery: Emergency widening side lane. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-069; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-070",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Low-gate drift (Precision)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Coast under beam with raised paddles. Telegraph: Height warning chain. Planned recovery: Stop before gate. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-070; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-071",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Buoy-rope snag (Comedy)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Rope briefly catches shaft tip. Telegraph: Buoy twang and tension. Planned recovery: Reverse to release tension. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-071; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-072",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Folding pontoon (Comedy)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Floating floor rearranges route under load. Telegraph: Creasing hinge sound. Planned recovery: Fall into broad re-entry pool. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-072; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-073",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Runaway dock (Comedy)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Dock floats off after crew touches it. Telegraph: Rope snaps visibly. Planned recovery: Ride it or steer around. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-073; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-074",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Festival inflatables (Comedy)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Soft buoyant obstacles bounce boat. Telegraph: Bright character silhouettes. Planned recovery: Squish and push aside. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-074; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-075",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Swinging bell (Comedy)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Giant bell makes loud physics-readable impact. Telegraph: Shadow/swing arc. Planned recovery: Regain line after bump. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-075; relative uncertainty L; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-076",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Tarp sail gust (Comedy)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Cloth catches wind and briefly pulls hull. Telegraph: Tarp billow and snap. Planned recovery: Roll clear / counterstroke. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-076; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-077",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Geyser fountain (Comedy)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Upward jet lifts bow on predictable timer. Telegraph: Pressure rumble and nozzle. Planned recovery: Steer into catch pool. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-077; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-078",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Seesaw pontoon (Comedy)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Floating pivot tips under boat load. Telegraph: Visible pivot and tilt. Planned recovery: Back/forward weight balance. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-078; relative uncertainty H; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-079",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Duck parade (Comedy)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Moving harmless waterfowl convoy obstructs ideal line. Telegraph: Synchronized quacks. Planned recovery: Wait or take lower-risk detour. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-079; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "OB-080",
+      "kind": "catalogue",
+      "phase": "07 Obstacle factory",
+      "owner": "World / Physics",
+      "points": 0,
+      "title": "Giant maintenance arm (Comedy)",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "P06"
+      ],
+      "acceptance": "Physics: Slow rotating paddle-like beam changes channel. Telegraph: Huge painted arc. Planned recovery: Reverse to time new opening. Require authoritative schedule, safe line, input/near-miss/reset/reconnect fixture and human fairness review.",
+      "evidence": [],
+      "remaining": "Candidate concept awaiting authoring, implementation and acceptance; not playable content.",
+      "source": "PRD §10.3 OB-080; relative uncertainty M; latest lethal-contact rules override old recovery policy where marked.",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "SP-01",
+      "kind": "catalogue",
+      "phase": "08 Regional production",
+      "owner": "World / Art / QA",
+      "points": 0,
+      "title": "The First Turn",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "R01"
+      ],
+      "acceptance": "four players steer through paired cedar stakes; camera shows each stroke's effect. Require silhouette screenshot, five-second readable sequence, genuine comprehension observation, explicit recovery and authored camera.",
+      "evidence": [],
+      "remaining": "Signature encounter unbuilt; define concrete stop-loss and fairness criteria before implementation.",
+      "source": "PRD §10.5 signature set pieces",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "SP-02",
+      "kind": "catalogue",
+      "phase": "08 Regional production",
+      "owner": "World / Art / QA",
+      "points": 0,
+      "title": "Timber Avalanche",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "R02"
+      ],
+      "acceptance": "logs drift into a narrowing gorge; bracing reverses a bad wedge. Require silhouette screenshot, five-second readable sequence, genuine comprehension observation, explicit recovery and authored camera.",
+      "evidence": [],
+      "remaining": "Signature encounter unbuilt; define concrete stop-loss and fairness criteria before implementation.",
+      "source": "PRD §10.5 signature set pieces",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "SP-03",
+      "kind": "catalogue",
+      "phase": "08 Regional production",
+      "owner": "World / Art / QA",
+      "points": 0,
+      "title": "Market Street Flood",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "R03"
+      ],
+      "acceptance": "route choices across a half-submerged urban square; the shortcut requires port/stern correction. Require silhouette screenshot, five-second readable sequence, genuine comprehension observation, explicit recovery and authored camera.",
+      "evidence": [],
+      "remaining": "Signature encounter unbuilt; define concrete stop-loss and fairness criteria before implementation.",
+      "source": "PRD §10.5 signature set pieces",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "SP-04",
+      "kind": "catalogue",
+      "phase": "08 Regional production",
+      "owner": "World / Art / QA",
+      "points": 0,
+      "title": "Storm Gate",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "R04"
+      ],
+      "acceptance": "crew holds position as reservoir sluice dumps current, then bursts through an opening. Require silhouette screenshot, five-second readable sequence, genuine comprehension observation, explicit recovery and authored camera.",
+      "evidence": [],
+      "remaining": "Signature encounter unbuilt; define concrete stop-loss and fairness criteria before implementation.",
+      "source": "PRD §10.5 signature set pieces",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "SP-05",
+      "kind": "catalogue",
+      "phase": "08 Regional production",
+      "owner": "World / Art / QA",
+      "points": 0,
+      "title": "The First Great Drop",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "R05"
+      ],
+      "acceptance": "a dam spillway whose landing is shown long before entry; speed, bracing and recoverable basin. Require silhouette screenshot, five-second readable sequence, genuine comprehension observation, explicit recovery and authored camera.",
+      "evidence": [],
+      "remaining": "Signature encounter unbuilt; define concrete stop-loss and fairness criteria before implementation.",
+      "source": "PRD §10.5 signature set pieces",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "SP-06",
+      "kind": "catalogue",
+      "phase": "08 Regional production",
+      "owner": "World / Art / QA",
+      "points": 0,
+      "title": "Turbine Bypass",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "R06"
+      ],
+      "acceptance": "high-speed eddy rotation through colossal rotating infrastructure, all four paddles use unique lever arms. Require silhouette screenshot, five-second readable sequence, genuine comprehension observation, explicit recovery and authored camera.",
+      "evidence": [],
+      "remaining": "Signature encounter unbuilt; define concrete stop-loss and fairness criteria before implementation.",
+      "source": "PRD §10.5 signature set pieces",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "SP-07",
+      "kind": "catalogue",
+      "phase": "08 Regional production",
+      "owner": "World / Art / QA",
+      "points": 0,
+      "title": "The Ascension",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "R08"
+      ],
+      "acceptance": "enclosed boat lift rises into open daylight; physically coherent changed water height and control during docking. Require silhouette screenshot, five-second readable sequence, genuine comprehension observation, explicit recovery and authored camera.",
+      "evidence": [],
+      "remaining": "Signature encounter unbuilt; define concrete stop-loss and fairness criteria before implementation.",
+      "source": "PRD §10.5 signature set pieces",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "SP-08",
+      "kind": "catalogue",
+      "phase": "08 Regional production",
+      "owner": "World / Art / QA",
+      "points": 0,
+      "title": "Glacier Shatter",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "R11"
+      ],
+      "acceptance": "breaking ice reveals one wider lower escape channel; missed high route becomes a story rather than unavoidable hard reset. Require silhouette screenshot, five-second readable sequence, genuine comprehension observation, explicit recovery and authored camera.",
+      "evidence": [],
+      "remaining": "Signature encounter unbuilt; define concrete stop-loss and fairness criteria before implementation.",
+      "source": "PRD §10.5 signature set pieces",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "SP-09",
+      "kind": "catalogue",
+      "phase": "08 Regional production",
+      "owner": "World / Art / QA",
+      "points": 0,
+      "title": "Sky Trough Turn",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "R13"
+      ],
+      "acceptance": "water-carrying rotating canal aligns like a bridge; steady braking wins more than twitchy strokes. Require silhouette screenshot, five-second readable sequence, genuine comprehension observation, explicit recovery and authored camera.",
+      "evidence": [],
+      "remaining": "Signature encounter unbuilt; define concrete stop-loss and fairness criteria before implementation.",
+      "source": "PRD §10.5 signature set pieces",
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "SP-10",
+      "kind": "catalogue",
+      "phase": "08 Regional production",
+      "owner": "World / Art / QA",
+      "points": 0,
+      "title": "The Great Cascade",
+      "status": "BACKLOG",
+      "dependsOn": [
+        "R14"
+      ],
+      "acceptance": "combines every learned force archetype in four staged, reset-friendly movements and culminates in a quiet ocean landing. Require silhouette screenshot, five-second readable sequence, genuine comprehension observation, explicit recovery and authored camera.",
+      "evidence": [],
+      "remaining": "Signature encounter unbuilt; define concrete stop-loss and fairness criteria before implementation.",
+      "source": "PRD §10.5 signature set pieces",
+      "updated": "2026-10-20"
+    }
+  ],
+  "deliveryPhases": [
+    {
+      "id": "M1",
+      "title": "Reliable, measurable foundation",
+      "engineeringState": "VERIFIED",
+      "productionGate": "OPEN",
+      "acceptance": "Existing physics/input/session/save regressions plus repeatable frame and several-room measurements; human/device acceptance stays open.",
+      "remaining": "Foundation engineering is verified. Human/device/Internet production acceptance and recorded CPU/GPU budget gaps remain open.",
+      "checks": [
+        {
+          "id": "M1-A",
+          "title": "Physics, input, save and multiplayer baseline",
+          "status": "PASS",
+          "evidence": [
+            "evidence/phase-1.json"
+          ]
+        },
+        {
+          "id": "M1-B",
+          "title": "Several-room load, isolation, reconnect and disposal",
+          "status": "PASS",
+          "evidence": [
+            "evidence/load-phase-1.json",
+            "evidence/phase-2-contact.json"
+          ]
+        },
+        {
+          "id": "M1-C",
+          "title": "High/Low frame, CPU, optional GPU and memory captures",
+          "status": "PASS",
+          "evidence": [
+            "evidence/performance-phase-1.json",
+            "evidence/water-field-parity.json"
+          ]
+        },
+        {
+          "id": "M1-D",
+          "title": "Phase board and reproducible verification report",
+          "status": "PASS",
+          "evidence": [
+            "evidence/phase-1.json",
+            "evidence/tracker-browser.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M2",
+      "title": "Premium playable slice",
+      "engineeringState": "ACTIVE",
+      "productionGate": "OPEN",
+      "acceptance": "Headwaters/Timber Gorge: bends, rescue, collider/readability agreement, near-field art/audio and genuine four-human/newcomer evidence.",
+      "remaining": "3/5 engineering checks verified. D1–D6 scoped presentation batches, danger readability and D7 entry-flow/performance evaluation are recorded. Full premium presentation, performance and genuine human/device acceptance remain open.",
+      "checks": [
+        {
+          "id": "M2-A",
+          "title": "Structural hull collision and visible shape agreement",
+          "status": "PASS",
+          "evidence": [
+            "tests/hull.test.ts",
+            "evidence/hull-collision.json",
+            "evidence/phase-2-hull.json",
+            "evidence/phase-2-contact.json",
+            "evidence/phase-2-blade.json"
+          ]
+        },
+        {
+          "id": "M2-B",
+          "title": "Authored bends, route staging and camera",
+          "status": "PASS",
+          "evidence": [
+            "tests/bends.test.ts",
+            "evidence/river-bends.json",
+            "evidence/bends-browser.json",
+            "evidence/camera.json",
+            "evidence/phase-2-bends.json"
+          ]
+        },
+        {
+          "id": "M2-C",
+          "title": "Recovery encounter and onboarding",
+          "status": "PASS",
+          "evidence": [
+            "tests/onboarding.mjs",
+            "evidence/onboarding.json",
+            "evidence/phase-2-onboarding.json",
+            "tests/rescue.test.ts",
+            "evidence/rescue.json",
+            "evidence/rescue-browser.json",
+            "evidence/phase-2-rescue.json"
+          ]
+        },
+        {
+          "id": "M2-D",
+          "title": "Boat/crew/water/audio presentation",
+          "status": "PENDING",
+          "evidence": [
+            "tests/names.test.ts",
+            "tests/lobby.mjs",
+            "evidence/lobby.json",
+            "evidence/phase-2-lobby.json",
+            "tests/audio.mjs",
+            "evidence/audio.json",
+            "evidence/phase-2-audio.json",
+            "tests/banks.test.ts",
+            "evidence/banks.json",
+            "evidence/phase-2-banks.json",
+            "tests/water-effects.mjs",
+            "evidence/water-effects.json",
+            "evidence/phase-2-water.json",
+            "evidence/phase-2-camera.json",
+            "evidence/phase-2-boat.json",
+            "evidence/danger-update.json",
+            "evidence/phase-2-foliage.json"
+          ]
+        },
+        {
+          "id": "M2-E",
+          "title": "Full-route, human and device acceptance evidence",
+          "status": "PENDING",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "M3",
+      "title": "Connected world and region batches",
+      "engineeringState": "NOT_STARTED",
+      "productionGate": "OPEN",
+      "acceptance": "Complete streaming/disposal and obstacle authoring pipeline, followed by coherent region batches and14 individual exit gates.",
+      "remaining": "Build the continuous-world pipeline and remaining authored regions.",
+      "checks": [
+        {
+          "id": "M3-A",
+          "title": "Full world/audio streaming and memory plateau",
+          "status": "PENDING",
+          "evidence": []
+        },
+        {
+          "id": "M3-B",
+          "title": "Validated obstacle authoring pipeline",
+          "status": "PENDING",
+          "evidence": []
+        },
+        {
+          "id": "M3-C",
+          "title": "All14 region implementation/acceptance records",
+          "status": "PENDING",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "M4",
+      "title": "Release hardening",
+      "engineeringState": "NOT_STARTED",
+      "productionGate": "OPEN",
+      "acceptance": "Named-browser/device, real Internet, long browser soak, host capacity, persistence/rollback, security/accessibility and no open P0/P1.",
+      "remaining": "Run and resolve the release matrix against the completed journey.",
+      "checks": [
+        {
+          "id": "M4-A",
+          "title": "Browser/device and90-minute stability matrix",
+          "status": "PENDING",
+          "evidence": []
+        },
+        {
+          "id": "M4-B",
+          "title": "Internet/host capacity and recovery",
+          "status": "PENDING",
+          "evidence": []
+        },
+        {
+          "id": "M4-C",
+          "title": "Backup/restore/rollback and release triage",
+          "status": "PENDING",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "M5",
+      "title": "Release and observed iteration",
+      "engineeringState": "NOT_STARTED",
+      "productionGate": "OPEN",
+      "acceptance": "Explicit release review, authorized deployment, live incident response and genuine7/30-day usage review.",
+      "remaining": "Release only after preceding gates and record real outcomes.",
+      "checks": [
+        {
+          "id": "M5-A",
+          "title": "Reviewed release and deployment rehearsal",
+          "status": "PENDING",
+          "evidence": []
+        },
+        {
+          "id": "M5-B",
+          "title": "Authorized release and live observation",
+          "status": "PENDING",
+          "evidence": []
+        }
+      ]
+    }
+  ]
+}

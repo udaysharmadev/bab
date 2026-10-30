@@ -1,0 +1,22 @@
+{"case":"water-mesh-interpolation","maxErrorMetres":0.01491709034923197,"vertices":6369}
+✔ Authored cameras blend continuously, frame reverse travel and keep the eye inside the bank (96.2625ms)
+✔ Submerged bed is finite, continuous between chunks and below the navigable hull lane (5.194334ms)
+✔ All four crew rigs retain arm length and reach the real shaft grips through the complete blade workspace (16.526375ms)
+✔ Rendered water mesh matches the shared physical surface including vortex depression and resets its time (14.543208ms)
+✔ Fast water normals remain unit length on a width-warped sloped surface (0.165083ms)
+✔ Water mesh interpolation stays within four centimetres of physical waves at representative seams (82.74325ms)
+✔ Floor vertices stay within the tapered hull, and the underside is a closed shaped shell (1.138625ms)
+✔ Water window follows the crew through rapids and narrow channels with matching authoritative heights (11.253291ms)
+✔ Same-tick checkpoint relocation moves the water window and resamples its channel immediately (5.381292ms)
+✔ Dry hull mask tracks the actual rendered transform and releases immediately for a wreck/reset at the same water tick (4.143583ms)
+✔ Wake direction follows surface-relative reverse/sideways motion and falls back safely at rest (2.907125ms)
+✔ Detailed hazard rock stays within its physical sphere and shore variants retain finite chipped surfaces (7.374375ms)
+✔ Natural vegetation has finite grounded geometry and bounded reusable asset cost (40.768333ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 451.110458

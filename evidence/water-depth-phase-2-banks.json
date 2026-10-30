@@ -1,0 +1,81 @@
+{
+  "result": "PASS",
+  "fixture": true,
+  "humanPlaytest": false,
+  "browser": "155.0.8059.82",
+  "optics": {
+    "shallowRed": [
+      164,
+      18,
+      9
+    ],
+    "shallowBlue": [
+      6,
+      19,
+      213
+    ],
+    "deepRed": [
+      24,
+      29,
+      18
+    ],
+    "lowRed": [
+      11,
+      47,
+      38
+    ],
+    "lowBlue": [
+      11,
+      47,
+      38
+    ],
+    "magentaOutside": [
+      [
+        2,
+        15,
+        209
+      ],
+      [
+        2,
+        15,
+        209
+      ]
+    ],
+    "cyanOutside": [
+      [
+        2,
+        15,
+        209
+      ],
+      [
+        2,
+        15,
+        209
+      ]
+    ],
+    "foregroundWater": [
+      2,
+      242,
+      222
+    ],
+    "foregroundDry": [
+      2,
+      242,
+      222
+    ],
+    "textureCounts": [
+      5,
+      5,
+      5,
+      5,
+      5
+    ],
+    "lowSkipsCapture": true,
+    "restored": true,
+    "captureSize": [
+      1280,
+      960
+    ]
+  },
+  "errors": []
+}

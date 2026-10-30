@@ -1,0 +1,136 @@
+{
+  "title": "Rounded paddle-blade volume contact",
+  "date": "2026-10-21",
+  "state": "VERIFIED_SCOPED",
+  "protocol": 6,
+  "physics": "basin-0.11",
+  "world": "waterworks-1",
+  "verification": {
+    "geometry": "PASS: original render positions/normals identical;42 physical core vertices inside actual bevelled mesh",
+    "contact": "PASS:48 blade-only passive cases and32 moving-frame/rest/release cases; bounded260N horizontal nonlethal response",
+    "nativePose": "PASS:288 High/Low poses and12,096 vertex transforms; maximum error3.555e-16m",
+    "browserFlow": "PASS:8 normal built-game groups; errors empty",
+    "fullSuite": "PASS:final131 tests,0 failures,89.467s after pose-fallback correction",
+    "poseEdgeCases": "PASS:20 zero-length/vertical/near-antiparallel comparisons against independent Three quaternion construction",
+    "nativeRegression": "PASS:71 controls,7 context/input,4 reconnect,6 previous-save,4 rescue,5 bends,8 lobby,7 onboarding,8 shaft-envelope and6 tracker groups; exact pre/final pose scope in executionNotes",
+    "deployment": "PASS:final built authority health/version/static routes,4-seat Ready launch,drop pause and same-seat reconnect",
+    "roomLoad": "PASS:final4 rooms/16 clients,60.124s,0 recorded violations,0 dropped simulation steps,all rooms disposed",
+    "package": "PASS:independent ZIP byte comparison for4 built runtime files plus4 entrypoint/docs/check files; private data excluded",
+    "tracker": "PASS:49 deliverables+90 content tasks; accepted scope2/100,M2 remains3/5,0/14 production regions"
+  },
+  "corrections": [
+    "First blade fixture put the test ball inside the flat core, where the nearest separating normal need not oppose the assumed horizontal motion. Final fixture contacts its outer lateral edge and compares energy against an independent unpowered control; first failure retained.",
+    "Final review added20 zero-length, vertical and near-antiparallel pose comparisons against Three. The old fallback used a different antiparallel axis; explicit degenerate handling now matches the renderer. A failed zero-length copy exposed prototype-backed quaternion properties; final return copies x/y/z/w explicitly. Native288 normal-workspace poses and real contact regressions pass after correction; initial failed outputs are retained."
+  ],
+  "limits": [
+    "Core prisms are conservative inside the visible bevel; cosmetic bevel rim is not a contact surface.",
+    "Native casts cover translation at the current60Hz blade orientation; arbitrary rotational CCD/articulated paddles and worst-case simultaneous contacts remain open.",
+    "Shallow bathymetry/manual capsize rescue, full-route human pacing, premium art, real Internet and physical device/long-browser acceptance remain open.",
+    "M2 remains3/5 engineering checks, accepted production scope2/100 and0/14 regions; no complete-game or zero-glitch claim."
+  ],
+  "evidence": [
+    "evidence/blade-geometry.json",
+    "evidence/blade-contact.json",
+    "evidence/blade-moving.json",
+    "evidence/blade-browser.json",
+    "evidence/blade-targeted-first.txt",
+    "evidence/blade-targeted-final.txt",
+    "evidence/blade-tests.txt",
+    "evidence/blade-final-tests.txt",
+    "evidence/blade-game-flow.txt",
+    "evidence/blade-pose-edge-first.txt",
+    "evidence/blade-pose-edge-final.txt",
+    "evidence/blade-before-pose-edge-tests.txt",
+    "evidence/blade-final-native.txt",
+    "evidence/load-blade-before-pose-edge.json",
+    "evidence/blade-controls.txt",
+    "evidence/blade-accessibility.txt",
+    "evidence/blade-reconnect.txt",
+    "evidence/blade-save-browser.txt",
+    "evidence/blade-rescue.txt",
+    "evidence/blade-bends.txt",
+    "evidence/blade-lobby.txt",
+    "evidence/blade-onboarding.txt",
+    "evidence/blade-shaft.txt",
+    "evidence/blade-tracker-browser.txt",
+    "evidence/blade-final-build.txt",
+    "evidence/blade-final-deployment.txt",
+    "evidence/blade-final-load.txt",
+    "evidence/load-phase-2-blade.json",
+    "evidence/blade-package.json",
+    "evidence/blade-tracker-check.txt"
+  ],
+  "executionNotes": [
+    "Normal built-game/control/accessibility/reconnect/save/rescue/bends/lobby/onboarding/shaft/tracker fixtures ran on0.11 before the last degenerate-pose refinement. Final native blade matrices, strict build/typecheck, full regression and deployment/load are checked afterward.",
+    "Actual90-second grace and complete route rendering/performance are retained historical evidence; transport, shaders and visible mesh vertices/normals are unchanged. No new long-soak/device/FPS claim."
+  ],
+  "roomLoad": {
+    "physics": "basin-0.11",
+    "shaftContactRadius": 0.022,
+    "actualSeconds": 60.124,
+    "roomCount": 4,
+    "clientCount": 16,
+    "rooms": [
+      {
+        "packets": 5114,
+        "maxSnapshotGapMs": 82,
+        "resets": 4,
+        "reconnects": 1,
+        "droppedSteps": 0,
+        "tick": 3595,
+        "wirePayloadBytes": {
+          "outBytes": 5085320,
+          "inBytes": 72639,
+          "outMessages": 5140
+        },
+        "averageOutboundBytesPerClientSecond": 21119.752511476283
+      },
+      {
+        "packets": 5113,
+        "maxSnapshotGapMs": 96,
+        "resets": 4,
+        "reconnects": 1,
+        "droppedSteps": 0,
+        "tick": 3594,
+        "wirePayloadBytes": {
+          "outBytes": 5080700,
+          "inBytes": 72639,
+          "outMessages": 5136
+        },
+        "averageOutboundBytesPerClientSecond": 21100.542212760294
+      },
+      {
+        "packets": 5111,
+        "maxSnapshotGapMs": 77,
+        "resets": 4,
+        "reconnects": 0,
+        "droppedSteps": 0,
+        "tick": 3612,
+        "wirePayloadBytes": {
+          "outBytes": 5079196,
+          "inBytes": 73004,
+          "outMessages": 5130
+        },
+        "averageOutboundBytesPerClientSecond": 21094.28847049431
+      },
+      {
+        "packets": 5111,
+        "maxSnapshotGapMs": 84,
+        "resets": 4,
+        "reconnects": 0,
+        "droppedSteps": 0,
+        "tick": 3610,
+        "wirePayloadBytes": {
+          "outBytes": 5079708,
+          "inBytes": 73004,
+          "outMessages": 5130
+        },
+        "averageOutboundBytesPerClientSecond": 21096.41740403167
+      }
+    ],
+    "violations": [],
+    "roomsDisposed": true,
+    "scope": "Local co-hosted authority+SDK clients, synthetic workload; not Internet, browser GPU, maximum capacity or hosting certification. Wire bytes count WS application payloads, excluding WS/TCP framing; per-client average includes setup/reconnect traffic.",
+    "evidence": "evidence/load-phase-2-blade.json"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "result": "PASS",
+  "browser": "155.0.8059.82",
+  "checks": [
+    "Actual owned Space stroke → visible push/recovery/glide, A/D offset powered stroke → released settled rest completes all practice steps",
+    "Menu hides control/lesson overlays; checkpoint retry resets the lesson without mistaking prior flap counts for new input",
+    "Phone lesson sits below the HUD; the compact control card stays below the projected raft"
+  ],
+  "layout": {
+    "hud": {
+      "x": 55,
+      "y": 12,
+      "width": 280,
+      "height": 55,
+      "top": 12,
+      "right": 335,
+      "bottom": 67,
+      "left": 55
+    },
+    "lesson": {
+      "x": 35,
+      "y": 80,
+      "width": 320,
+      "height": 60,
+      "top": 80,
+      "right": 355,
+      "bottom": 140,
+      "left": 35
+    },
+    "controls": {
+      "x": 52.5,
+      "y": 670,
+      "width": 285,
+      "height": 58,
+      "top": 670,
+      "right": 337.5,
+      "bottom": 728,
+      "left": 52.5
+    },
+    "raft": {
+      "left": 0.2052157610867671,
+      "right": 0.7999688908647932,
+      "top": 0.5098422934797745,
+      "bottom": 0.772704532872055
+    }
+  },
+  "errors": []
+}

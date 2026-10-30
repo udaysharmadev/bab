@@ -12,10 +12,15 @@ scene.camera.position.set(0,6,-10);scene.camera.lookAt(0,0,-6);scene.camera.upda
 const floor=new T.Mesh(new T.PlaneGeometry(40,80),new T.MeshBasicMaterial({color:'#ff3818'}));floor.rotation.x=-Math.PI/2;floor.position.set(0,-.45,-6);floor.layers.enable(1);scene.scene.add(floor);
 const foreground=new T.Mesh(new T.BoxGeometry(.7,.8,.7),new T.MeshBasicMaterial({color:'#ffec19'}));foreground.position.set(0,.4,-6);foreground.layers.enable(1);foreground.visible=false;scene.scene.add(foreground);
 const target=new T.WebGLRenderTarget(innerWidth,innerHeight),pixel=new Uint8Array(4);
+const capturePasses=[];
 function read(x,y,z){const p=new T.Vector3(x,y,z).project(scene.camera);scene.renderer.readRenderTargetPixels(target,Math.floor((p.x+1)*target.width/2),Math.floor((p.y+1)*target.height/2),1,1,pixel);return [...pixel.slice(0,3)];}
 function draw(low=false){
  scene.water.setLowQuality(low);scene.water.update(2,scene.camera,new T.Vector3(100,0,0),new T.Quaternion(),0,false);
- scene.renderer.setRenderTarget(target);scene.water.capture(scene.renderer,scene.scene,scene.camera);scene.renderer.render(scene.scene,scene.camera);
+ scene.renderer.setRenderTarget(target);
+ const render=scene.renderer.render;let calls=0;
+ scene.renderer.render=function(...args){calls++;return render.apply(this,args);};
+ try{scene.water.capture(scene.renderer,scene.scene,scene.camera);}finally{scene.renderer.render=render;}
+ capturePasses.push({low,calls});scene.renderer.render(scene.scene,scene.camera);
  return read(.1,0,-6);
 }
 // Stabilise GPU programs and use identical water/camera time in every pair.
@@ -34,9 +39,16 @@ scene.renderer.setViewport(3,4,target.width-10,target.height-10);scene.renderer.
 const viewport=scene.renderer.getViewport(new T.Vector4()).toArray(),scissor=scene.renderer.getScissor(new T.Vector4()).toArray();
 scene.water.capture(scene.renderer,scene.scene,scene.camera);
 const restored=scene.renderer.getRenderTarget()===expectedTarget&&scene.camera.layers.mask===expectedLayers&&scene.renderer.getScissorTest()&&JSON.stringify(scene.renderer.getViewport(new T.Vector4()).toArray())===JSON.stringify(viewport)&&JSON.stringify(scene.renderer.getScissor(new T.Vector4()).toArray())===JSON.stringify(scissor);
+const flags=()=>JSON.stringify({layers:scene.camera.layers.mask,visible:scene.water.visible,shadows:scene.renderer.shadowMap.enabled,auto:scene.renderer.shadowMap.autoUpdate,xr:scene.renderer.xr.enabled,viewport:scene.renderer.getViewport(new T.Vector4()).toArray(),scissor:scene.renderer.getScissor(new T.Vector4()).toArray(),scissorTest:scene.renderer.getScissorTest(),clear:scene.renderer.getClearColor(new T.Color()).toArray(),alpha:scene.renderer.getClearAlpha()});
+const beforeFailure=flags(),render=scene.renderer.render;let caught=false;
+scene.renderer.render=()=>{throw new Error('injected capture failure');};
+try{scene.water.capture(scene.renderer,scene.scene,scene.camera);}catch(error){caught=error.message==='injected capture failure';}finally{scene.renderer.render=render;}
+const exceptionRestored=caught&&flags()===beforeFailure&&scene.renderer.getRenderTarget()===expectedTarget;
 scene.renderer.setScissorTest(false);scene.renderer.setViewport(0,0,target.width,target.height);
 // Resize allocates only a bounded target at the same projection aspect.
 scene.renderer.setSize(2000,1500);scene.water.capture(scene.renderer,scene.scene,scene.camera);const captureSize=scene.water.captureSize.toArray();
+const depth=scene.water.material.uniforms.sceneDepth.value,nativeDepth=depth.isDepthTexture&&depth.format===T.DepthFormat&&depth.type===T.UnsignedIntType;
+const depthSize=[depth.image.width,depth.image.height];
 scene.renderer.setRenderTarget(null);scene.renderer.setSize(innerWidth,innerHeight);scene.water.capture(scene.renderer,scene.scene,scene.camera);scene.renderer.render(scene.scene,scene.camera);
-document.body.dataset.result=JSON.stringify({shallowRed,shallowBlue,deepRed,lowRed,lowBlue,magentaOutside,cyanOutside,foregroundWater,foregroundDry,textureCounts,lowSkipsCapture,restored,captureSize});
+document.body.dataset.result=JSON.stringify({shallowRed,shallowBlue,deepRed,lowRed,lowBlue,magentaOutside,cyanOutside,foregroundWater,foregroundDry,textureCounts,lowSkipsCapture,restored,exceptionRestored,captureSize,capturePasses,nativeDepth,depthSize});
 </script></body></html>

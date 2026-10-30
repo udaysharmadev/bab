@@ -1,0 +1,105 @@
+{
+  "result": "PASS",
+  "results": [
+    {
+      "quality": "High",
+      "shafts": [
+        {
+          "seat": 0,
+          "contactRadius": 0.022,
+          "minFaceClearance": 0.0008057744687799857,
+          "analyticClearance": 0.0005242216975604799,
+          "faceChecks": 5712,
+          "handleError": 4.002966042486721e-16,
+          "tipError": 4.742874840267547e-16,
+          "minRadius": 0.025,
+          "maxRadius": 0.03
+        },
+        {
+          "seat": 1,
+          "contactRadius": 0.022,
+          "minFaceClearance": 0.0008057744687799857,
+          "analyticClearance": 0.0005242216975604799,
+          "faceChecks": 5712,
+          "handleError": 2.482534153247273e-16,
+          "tipError": 0,
+          "minRadius": 0.025,
+          "maxRadius": 0.03
+        },
+        {
+          "seat": 2,
+          "contactRadius": 0.022,
+          "minFaceClearance": 0.0008057744687799857,
+          "analyticClearance": 0.0005242216975604799,
+          "faceChecks": 5712,
+          "handleError": 2.482534153247273e-16,
+          "tipError": 0,
+          "minRadius": 0.025,
+          "maxRadius": 0.03
+        },
+        {
+          "seat": 3,
+          "contactRadius": 0.022,
+          "minFaceClearance": 0.0008057744687799857,
+          "analyticClearance": 0.0005242216975604799,
+          "faceChecks": 5712,
+          "handleError": 2.482534153247273e-16,
+          "tipError": 0,
+          "minRadius": 0.025,
+          "maxRadius": 0.03
+        }
+      ]
+    },
+    {
+      "quality": "Low",
+      "shafts": [
+        {
+          "seat": 0,
+          "contactRadius": 0.022,
+          "minFaceClearance": 0.0008057744687799857,
+          "analyticClearance": 0.0005242216975604799,
+          "faceChecks": 5712,
+          "handleError": 4.002966042486721e-16,
+          "tipError": 4.742874840267547e-16,
+          "minRadius": 0.025,
+          "maxRadius": 0.03
+        },
+        {
+          "seat": 1,
+          "contactRadius": 0.022,
+          "minFaceClearance": 0.0008057744687799857,
+          "analyticClearance": 0.0005242216975604799,
+          "faceChecks": 5712,
+          "handleError": 2.482534153247273e-16,
+          "tipError": 0,
+          "minRadius": 0.025,
+          "maxRadius": 0.03
+        },
+        {
+          "seat": 2,
+          "contactRadius": 0.022,
+          "minFaceClearance": 0.0008057744687799857,
+          "analyticClearance": 0.0005242216975604799,
+          "faceChecks": 5712,
+          "handleError": 2.482534153247273e-16,
+          "tipError": 0,
+          "minRadius": 0.025,
+          "maxRadius": 0.03
+        },
+        {
+          "seat": 3,
+          "contactRadius": 0.022,
+          "minFaceClearance": 0.0008057744687799857,
+          "analyticClearance": 0.0005242216975604799,
+          "faceChecks": 5712,
+          "handleError": 2.482534153247273e-16,
+          "tipError": 0,
+          "minRadius": 0.025,
+          "maxRadius": 0.03
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "scope": "Native High/Low shaft endpoints and conservative capsule radius agreement. Authority force/energy tested independently; no human handling acceptance."
+}

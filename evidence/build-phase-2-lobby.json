@@ -1,0 +1,362 @@
+{
+  "game": "Bad at Boating",
+  "generatedUTC": "2026-10-20T17:10:19.917452+00:00",
+  "baseCommit": "1dee20db314dda485c734932df48e9780bb53d03",
+  "workingTreeChanges": true,
+  "protocol": 5,
+  "physics": "basin-0.9",
+  "world": "waterworks-1",
+  "scope": "M1 verified; M2 has3/5 engineering checks verified. M2-D1 simple named/animated invite lobby is verified as a partial presentation batch; full M2-D and human/device/release acceptance remain open.",
+  "sourceSha256": "7354e999c29487526c84f948f5f58f430819b9090b763c6f879988c49302706f",
+  "sourceHashScope": "Sorted relative path + NUL + bytes + NUL for src/tests/scripts/docs/.github and listed root metadata; excludes generated build/evidence/reference/private data.",
+  "fileCount": 109,
+  "build": "PASS",
+  "typecheck": "PASS",
+  "automatedTests": {
+    "command": "npm test",
+    "passed": 106,
+    "failed": 0,
+    "seconds": 84.000730583,
+    "scope": "Full unit/authority regressions; final responsive-label/name-handshake amendments covered by final four-browser lobby and blackout/reconnect fixtures."
+  },
+  "fixtures": {
+    "browser": {
+      "result": "PASS",
+      "evidence": "evidence/browser.json",
+      "executionScope": "RERUN M2-D1; scope/commands and open acceptance are in phase-2-lobby.json.",
+      "checks": 8
+    },
+    "controls-after": {
+      "result": "PASS",
+      "checks": 71,
+      "errors": [],
+      "evidence": "evidence/controls-after.json",
+      "executionScope": "Retained prior milestone evidence; not rerun in M2-D1. See build-phase-2-rescue.json for earlier scope."
+    },
+    "accessibility": {
+      "result": "PASS",
+      "evidence": "evidence/accessibility.json",
+      "executionScope": "RERUN M2-D1; scope/commands and open acceptance are in phase-2-lobby.json.",
+      "checks": 7
+    },
+    "touch": {
+      "result": "PASS",
+      "evidence": "evidence/touch.json",
+      "executionScope": "RERUN M2-D1; scope/commands and open acceptance are in phase-2-lobby.json.",
+      "checks": 5
+    },
+    "reconnect": {
+      "result": "PASS",
+      "evidence": "evidence/reconnect.json",
+      "executionScope": "RERUN M2-D1; scope/commands and open acceptance are in phase-2-lobby.json.",
+      "checks": 4
+    },
+    "camera": {
+      "result": "PASS",
+      "evidence": "evidence/camera.json",
+      "executionScope": "RERUN M2-D1; scope/commands and open acceptance are in phase-2-lobby.json.",
+      "checks": 180
+    },
+    "graphics": {
+      "result": "PASS",
+      "evidence": "evidence/graphics.json",
+      "executionScope": "RERUN M2-D1; scope/commands and open acceptance are in phase-2-lobby.json.",
+      "checks": 23
+    },
+    "water-depth": {
+      "result": "PASS",
+      "evidence": "evidence/water-depth.json",
+      "executionScope": "Retained prior milestone evidence; not rerun in M2-D1. See build-phase-2-rescue.json for earlier scope."
+    },
+    "tracker-browser": {
+      "result": "PASS",
+      "evidence": "evidence/tracker-browser.json",
+      "executionScope": "RERUN M2-D1; scope/commands and open acceptance are in phase-2-lobby.json.",
+      "checks": 6
+    },
+    "landing": {
+      "result": "PASS",
+      "evidence": "evidence/landing.json",
+      "executionScope": "RERUN M2-D1; scope/commands and open acceptance are in phase-2-lobby.json.",
+      "checks": 2
+    },
+    "hull-collision": {
+      "result": "PASS",
+      "evidence": "evidence/hull-collision.json",
+      "executionScope": "RERUN M2-D1; scope/commands and open acceptance are in phase-2-lobby.json.",
+      "checks": 4
+    },
+    "performance": {
+      "result": "PASS",
+      "evidence": "evidence/performance.json",
+      "executionScope": "Retained prior milestone evidence; not rerun in M2-D1. See build-phase-2-rescue.json for earlier scope.",
+      "checks": 8
+    },
+    "load": {
+      "result": "PASS",
+      "evidence": "evidence/load.json",
+      "executionScope": "RERUN M2-D1; scope/commands and open acceptance are in phase-2-lobby.json."
+    },
+    "bends-browser": {
+      "result": "PASS",
+      "checks": 5,
+      "clients": 4,
+      "evidence": "evidence/bends-browser.json",
+      "executionScope": "Retained prior milestone evidence; not rerun in M2-D1. See build-phase-2-rescue.json for earlier scope."
+    },
+    "river-bends": {
+      "result": "PASS",
+      "evidence": "evidence/river-bends.json",
+      "executionScope": "RERUN M2-D1; scope/commands and open acceptance are in phase-2-lobby.json.",
+      "checks": 5
+    },
+    "onboarding": {
+      "result": "PASS",
+      "evidence": "evidence/onboarding.json",
+      "executionScope": "RERUN M2-D1; scope/commands and open acceptance are in phase-2-lobby.json.",
+      "checks": 7
+    },
+    "rescue": {
+      "result": "PASS",
+      "evidence": "evidence/rescue.json",
+      "executionScope": "RERUN M2-D1; scope/commands and open acceptance are in phase-2-lobby.json.",
+      "checks": 4
+    },
+    "rescue-browser": {
+      "result": "PASS",
+      "evidence": "evidence/rescue-browser.json",
+      "executionScope": "RERUN M2-D1; scope/commands and open acceptance are in phase-2-lobby.json.",
+      "checks": 4
+    },
+    "lobby": {
+      "result": "PASS",
+      "evidence": "evidence/lobby.json",
+      "executionScope": "RERUN M2-D1; scope/commands and open acceptance are in phase-2-lobby.json.",
+      "checks": 7
+    }
+  },
+  "graphics": {
+    "views": 23,
+    "titleViewports": 3,
+    "maxCalls": 727,
+    "maxTriangles": 2252580,
+    "priorRecordedMaxTriangles": 6033248,
+    "residencyCycles": 3,
+    "maxVegetationChunks": 6,
+    "startRevisitGeometryTextureCounts": [
+      [
+        175,
+        11
+      ],
+      [
+        175,
+        11
+      ],
+      [
+        175,
+        11
+      ]
+    ],
+    "scope": "Complete pass counts and bounded local GPU residency; not FPS or90-minute leak certification.",
+    "executionScope": "M2-D1 final23 route views/3 title sizes and repeat residency; no new GPU/FPS acceptance. Separate lobby movement/layout checks are in lobby.json."
+  },
+  "tracker": {
+    "deliverables": 49,
+    "obstacleConcepts": 80,
+    "signatureEncounters": 10,
+    "regionCards": 14,
+    "acceptedScopePoints": 2,
+    "productionReadyRegions": 0,
+    "deliveryPhases": 5,
+    "engineeringVerified": [
+      "M1"
+    ],
+    "engineeringActive": "M2",
+    "engineeringChecksVerified": {
+      "M1": 4,
+      "M2": 3
+    },
+    "remainingEngineeringChecks": [
+      "M2-D presentation",
+      "M2-E human/device acceptance"
+    ],
+    "partialEngineeringChecks": {
+      "M2-D": "M2-D1 simple animated/named invite lobby verified; premium boat/crew/water/audio remains."
+    }
+  },
+  "artifacts": {
+    "dist/index.html": {
+      "bytes": 7544,
+      "sha256": "77d490887ccadee54ceaaa0bb3cbb74977864da0c86df00399339a46fe3db063"
+    },
+    "build/server.mjs": {
+      "bytes": 59859,
+      "sha256": "1f4b0989764e41d572d563e1d32f5bd72185a7a4d7a929a7a9b743bb4d970758"
+    },
+    "releases/Bad-at-Boating-cPanel.zip": {
+      "bytes": 282930,
+      "sha256": "b3e56139007d686a148543ede033b4e63b8a6f8d5f886281369deb91ffe640ca"
+    },
+    "dist/assets/index-FQ1In_a6.css": {
+      "bytes": 8814,
+      "sha256": "e13834a5145e3476fd69b5e07e730c984069fb819d24e8d9634563913bffa14e"
+    },
+    "dist/assets/index-IkD6Kd2Y.js": {
+      "bytes": 839725,
+      "sha256": "92a400b52e86c1bffcf2ff19d0ac8a86bc99d7780dd5c4819bee26713d4e718e"
+    }
+  },
+  "preview": "http://localhost:2571",
+  "previewDatabase": "Isolated in-memory QA database; no private durable database replaced.",
+  "cpanel": {
+    "packaged": true,
+    "cleanDependencyInstall": "NOT RERUN; runtime dependencies unchanged",
+    "publicDeployment": "NOT RUN for this release"
+  },
+  "humanPlaytest": false,
+  "physicalControllerTest": false,
+  "namedDevicePerformance": false,
+  "longInternetBrowserSoak": false,
+  "remoteCI": "NOT RUN; workflow updated",
+  "containerExecution": "NOT RUN",
+  "actualCommandOutput": "evidence/phase-2-lobby-tests.txt",
+  "finalStaticChecks": "PASS: TypeScript, source/report freshness, two tracker integrity tests and git diff --check",
+  "phaseEvidence": "evidence/phase-2-lobby.json",
+  "deploymentSmoke": {
+    "result": "PASS",
+    "url": "http://localhost:2571",
+    "evidence": "evidence/phase-2-lobby-deployment.txt",
+    "scope": "Local isolated in-memory authority only",
+    "physics": "basin-0.9"
+  },
+  "sourceHashFiles": [
+    ".github/workflows/verify.yml",
+    "Dockerfile",
+    "README.md",
+    "app.cjs",
+    "app.js",
+    "docs/ANALYSIS.md",
+    "docs/CPANEL_SETUP.md",
+    "docs/DECISIONS.md",
+    "docs/GRAPHICS_AUDIT.md",
+    "docs/MULTIPLAYER_AUDIT.md",
+    "docs/PHASE_EXECUTION.md",
+    "docs/PHYSICS_AUDIT.md",
+    "docs/PLAYTEST_KIT.md",
+    "docs/PRD_PROGRESS.md",
+    "docs/PRODUCTION_PLAN.md",
+    "docs/PRODUCTION_TRACKER.html",
+    "docs/PRODUCTION_TRACKER.json",
+    "docs/PRODUCTION_TRACKER.md",
+    "docs/PROJECT_AUDIT.md",
+    "docs/RESEARCH_GAMEPLAY.md",
+    "docs/RESEARCH_VISUALS.md",
+    "docs/ROUTE.md",
+    "docs/STATUS.md",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "scripts/build-server.mjs",
+    "scripts/check-deployment.mjs",
+    "scripts/dev.mjs",
+    "scripts/package-cpanel.mjs",
+    "scripts/tracker.mjs",
+    "src/client/audio.ts",
+    "src/client/camera.ts",
+    "src/client/crew.ts",
+    "src/client/hull.ts",
+    "src/client/input.ts",
+    "src/client/main.ts",
+    "src/client/nature.ts",
+    "src/client/rehearsal.ts",
+    "src/client/riverbed.ts",
+    "src/client/scene.ts",
+    "src/client/style.css",
+    "src/client/water.ts",
+    "src/package.json",
+    "src/server/BoatRoom.ts",
+    "src/server/index.ts",
+    "src/server/voyages.ts",
+    "src/shared/hull.ts",
+    "src/shared/names.ts",
+    "src/shared/protocol.ts",
+    "src/shared/rescue.ts",
+    "src/shared/river.ts",
+    "src/shared/rowing.ts",
+    "src/shared/simulation.ts",
+    "src/shared/world.ts",
+    "tests/accessibility.mjs",
+    "tests/animation.html",
+    "tests/animation.mjs",
+    "tests/audio.html",
+    "tests/audio.test.ts",
+    "tests/bends-browser.mjs",
+    "tests/bends.test.ts",
+    "tests/browser.mjs",
+    "tests/camera.html",
+    "tests/camera.mjs",
+    "tests/controls.mjs",
+    "tests/crew.test.ts",
+    "tests/finish.test.ts",
+    "tests/graphics.html",
+    "tests/graphics.mjs",
+    "tests/hazards.test.ts",
+    "tests/hull.test.ts",
+    "tests/hydrodynamics.test.ts",
+    "tests/input.test.ts",
+    "tests/landing.html",
+    "tests/landing.mjs",
+    "tests/lifecycle.test.ts",
+    "tests/load.ts",
+    "tests/lobby.mjs",
+    "tests/names.test.ts",
+    "tests/network-stress.test.ts",
+    "tests/network.test.ts",
+    "tests/onboarding.mjs",
+    "tests/package.json",
+    "tests/performance.mjs",
+    "tests/physics.test.ts",
+    "tests/presentation.test.ts",
+    "tests/reconnect.mjs",
+    "tests/rehearsal.test.ts",
+    "tests/rescue-browser.mjs",
+    "tests/rescue.test.ts",
+    "tests/route.test.ts",
+    "tests/rowing.test.ts",
+    "tests/save-browser.mjs",
+    "tests/save-restart.test.ts",
+    "tests/saves.test.ts",
+    "tests/server-reliability.test.ts",
+    "tests/soak.ts",
+    "tests/support/bends-server.ts",
+    "tests/support/rescue-server.ts",
+    "tests/support/save-server.ts",
+    "tests/touch.mjs",
+    "tests/tracker-browser.mjs",
+    "tests/tracker.test.mjs",
+    "tests/water-depth.html",
+    "tests/water-depth.mjs",
+    "tests/waterwheel.test.ts",
+    "tsconfig.json",
+    "vite.config.ts"
+  ],
+  "priorMilestoneBuild": "evidence/build-phase-2-rescue.json",
+  "performanceBudgetAccepted": false,
+  "fixtureCommandOutputs": [
+    "evidence/phase-2-lobby-accessibility.txt",
+    "evidence/phase-2-lobby-browser.txt",
+    "evidence/phase-2-lobby-build.txt",
+    "evidence/phase-2-lobby-camera.txt",
+    "evidence/phase-2-lobby-deployment.txt",
+    "evidence/phase-2-lobby-graphics.txt",
+    "evidence/phase-2-lobby-landing.txt",
+    "evidence/phase-2-lobby-load.txt",
+    "evidence/phase-2-lobby-lobby.txt",
+    "evidence/phase-2-lobby-onboarding.txt",
+    "evidence/phase-2-lobby-reconnect.txt",
+    "evidence/phase-2-lobby-rescue-browser.txt",
+    "evidence/phase-2-lobby-tests.txt",
+    "evidence/phase-2-lobby-touch.txt",
+    "evidence/phase-2-lobby-tracker.txt"
+  ]
+}

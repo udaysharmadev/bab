@@ -1,0 +1,424 @@
+{
+  "result": "PASS",
+  "generatedUTC": "2026-10-21T16:10:01.243Z",
+  "protocol": 7,
+  "physics": "basin-0.13",
+  "browser": "155.0.8059.82",
+  "checks": [
+    "Remembered names require explicit confirmation for both new hosts and invite joins; Ready stays disabled and Escape cannot skip confirmation",
+    "Fresh invite URLs allocate seats directly, then collect valid names; markup/21-codepoint names are rejected, a 20-codepoint non-BMP name is accepted, and every client sees You on their own avatar",
+    "Server names appear above crewmates and per-seat Ready ticks replicate; Ready works before all four seats fill and can be cancelled",
+    "Real water geometry and displayed hull heave/heel advance while authority tick/pose/blades/strokes stay unchanged",
+    "Five desktop/portrait/short layouts keep avatar names/ticks visible without overlapping one another or the compact invite panel",
+    "All20-character handles can be changed through the menu and stay separated in all five layouts; labels preserve full accessible text/title",
+    "Reload keeps the same seat without asking again and restores the remembered name after the actual reconnect handshake",
+    "Only all four Ready launch the boat; projected names and lobby controls leave the quiet playing view"
+  ],
+  "layouts": [
+    {
+      "width": 1440,
+      "height": 960,
+      "panel": {
+        "left": 16,
+        "right": 356,
+        "top": 769.609375,
+        "bottom": 935
+      },
+      "labels": [
+        {
+          "left": 1083.296875,
+          "right": 1122.703125,
+          "top": 290.1875,
+          "bottom": 313.1875
+        },
+        {
+          "left": 933.2734375,
+          "right": 984.2265625,
+          "top": 263.671875,
+          "bottom": 316.671875
+        },
+        {
+          "left": 1075.671875,
+          "right": 1185.671875,
+          "top": 385.40625,
+          "bottom": 436.40625
+        },
+        {
+          "left": 942.984375,
+          "right": 995.078125,
+          "top": 418.15625,
+          "bottom": 441.15625
+        }
+      ],
+      "bounds": {
+        "left": 0.5301975793436962,
+        "right": 0.9454565665766943,
+        "top": 0.30143014186651257,
+        "bottom": 0.782555755281121
+      }
+    },
+    {
+      "width": 907,
+      "height": 510,
+      "panel": {
+        "left": 16,
+        "right": 356,
+        "top": 340.609375,
+        "bottom": 498
+      },
+      "labels": [
+        {
+          "left": 681.328125,
+          "right": 720.734375,
+          "top": 131.828125,
+          "bottom": 154.828125
+        },
+        {
+          "left": 572.6484375,
+          "right": 623.6015625,
+          "top": 103.984375,
+          "bottom": 156.984375
+        },
+        {
+          "left": 675.6875,
+          "right": 755.6875,
+          "top": 180.71875,
+          "bottom": 231.71875
+        },
+        {
+          "left": 577.484375,
+          "right": 629.578125,
+          "top": 211.25,
+          "bottom": 234.25
+        }
+      ],
+      "bounds": {
+        "left": 0.559351420165349,
+        "right": 0.9098332950839828,
+        "top": 0.2997201724524192,
+        "bottom": 0.7833073205913877
+      }
+    },
+    {
+      "width": 640,
+      "height": 400,
+      "panel": {
+        "left": 16,
+        "right": 284.796875,
+        "top": 230.609375,
+        "bottom": 388
+      },
+      "labels": [
+        {
+          "left": 484.609375,
+          "right": 524.015625,
+          "top": 93.40625,
+          "bottom": 116.40625
+        },
+        {
+          "left": 386.0546875,
+          "right": 437.0078125,
+          "top": 65.203125,
+          "bottom": 118.203125
+        },
+        {
+          "left": 475.765625,
+          "right": 555.765625,
+          "top": 130.875,
+          "bottom": 181.875
+        },
+        {
+          "left": 389.6875,
+          "right": 441.78125,
+          "top": 160.890625,
+          "bottom": 183.890625
+        }
+      ],
+      "bounds": {
+        "left": 0.5411171917981588,
+        "right": 0.9306359005309646,
+        "top": 0.2992399511168115,
+        "bottom": 0.7843513396904743
+      }
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "panel": {
+        "left": 80,
+        "right": 400,
+        "top": 709.609375,
+        "bottom": 875
+      },
+      "labels": [
+        {
+          "left": 271.359375,
+          "right": 310.765625,
+          "top": 191.84375,
+          "bottom": 214.84375
+        },
+        {
+          "left": 154.4609375,
+          "right": 205.4140625,
+          "top": 164.828125,
+          "bottom": 217.828125
+        },
+        {
+          "left": 265.828125,
+          "right": 345.828125,
+          "top": 253.59375,
+          "bottom": 304.59375
+        },
+        {
+          "left": 161.921875,
+          "right": 214.015625,
+          "top": 284.65625,
+          "bottom": 307.65625
+        }
+      ],
+      "bounds": {
+        "left": 0.18737012721339863,
+        "right": 0.874540834114391,
+        "top": 0.22340514467982708,
+        "bottom": 0.5424843223774228
+      }
+    },
+    {
+      "width": 390,
+      "height": 700,
+      "panel": {
+        "left": 35,
+        "right": 355,
+        "top": 509.609375,
+        "bottom": 675
+      },
+      "labels": [
+        {
+          "left": 221.890625,
+          "right": 261.296875,
+          "top": 64.703125,
+          "bottom": 87.703125
+        },
+        {
+          "left": 115.3203125,
+          "right": 166.2734375,
+          "top": 37.109375,
+          "bottom": 90.109375
+        },
+        {
+          "left": 213.71875,
+          "right": 293.71875,
+          "top": 113.671875,
+          "bottom": 164.671875
+        },
+        {
+          "left": 121.125,
+          "right": 173.21875,
+          "top": 144.25,
+          "bottom": 167.25
+        }
+      ],
+      "bounds": {
+        "left": 0.1832744305109601,
+        "right": 0.8776992574057909,
+        "top": 0.11598021120346053,
+        "bottom": 0.45031182682526544
+      }
+    }
+  ],
+  "longNameLayouts": [
+    {
+      "width": 1440,
+      "height": 960,
+      "labels": [
+        {
+          "left": 1081.15625,
+          "right": 1120.5625,
+          "top": 291.28125,
+          "bottom": 314.28125
+        },
+        {
+          "left": 901.640625,
+          "right": 1011.640625,
+          "top": 269.4375,
+          "bottom": 318.4375
+        },
+        {
+          "left": 1073.15625,
+          "right": 1183.15625,
+          "top": 387.03125,
+          "bottom": 436.03125
+        },
+        {
+          "left": 911.453125,
+          "right": 1021.453125,
+          "top": 418.921875,
+          "bottom": 441.921875
+        }
+      ]
+    },
+    {
+      "width": 907,
+      "height": 510,
+      "labels": [
+        {
+          "left": 680.4375,
+          "right": 719.84375,
+          "top": 132.75,
+          "bottom": 155.75
+        },
+        {
+          "left": 557.28125,
+          "right": 637.28125,
+          "top": 108.9375,
+          "bottom": 157.9375
+        },
+        {
+          "left": 674.625,
+          "right": 754.625,
+          "top": 182.578125,
+          "bottom": 231.578125
+        },
+        {
+          "left": 562.484375,
+          "right": 642.484375,
+          "top": 211.84375,
+          "bottom": 234.84375
+        }
+      ]
+    },
+    {
+      "width": 640,
+      "height": 400,
+      "labels": [
+        {
+          "left": 484.046875,
+          "right": 523.453125,
+          "top": 94,
+          "bottom": 117
+        },
+        {
+          "left": 371,
+          "right": 451,
+          "top": 69.703125,
+          "bottom": 118.703125
+        },
+        {
+          "left": 475.109375,
+          "right": 555.109375,
+          "top": 132.59375,
+          "bottom": 181.59375
+        },
+        {
+          "left": 375.078125,
+          "right": 455.078125,
+          "top": 161.234375,
+          "bottom": 184.234375
+        }
+      ]
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "labels": [
+        {
+          "left": 270.671875,
+          "right": 310.078125,
+          "top": 192.484375,
+          "bottom": 215.484375
+        },
+        {
+          "left": 139.28125,
+          "right": 219.28125,
+          "top": 169.328125,
+          "bottom": 218.328125
+        },
+        {
+          "left": 265.046875,
+          "right": 345.046875,
+          "top": 255.09375,
+          "bottom": 304.09375
+        },
+        {
+          "left": 147.234375,
+          "right": 227.234375,
+          "top": 285.09375,
+          "bottom": 308.09375
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 700,
+      "labels": [
+        {
+          "left": 221.46875,
+          "right": 260.875,
+          "top": 65.03125,
+          "bottom": 88.03125
+        },
+        {
+          "left": 100.40625,
+          "right": 180.40625,
+          "top": 41.34375,
+          "bottom": 90.34375
+        },
+        {
+          "left": 213.25,
+          "right": 293.25,
+          "top": 115.25,
+          "bottom": 164.25
+        },
+        {
+          "left": 106.75,
+          "right": 186.75,
+          "top": 144.578125,
+          "bottom": 167.578125
+        }
+      ]
+    }
+  ],
+  "motion": {
+    "before": {
+      "time": 3.4933000000007453,
+      "position": [
+        0,
+        0.05156287726503024,
+        0
+      ],
+      "rotation": [
+        0.001530114452250734,
+        -0.000010534173531903592,
+        0.006884394528795641,
+        0.9999751315661636
+      ],
+      "waterVersion": 39
+    },
+    "after": {
+      "time": 4.55789999999851,
+      "position": [
+        0,
+        0.04000503305988282,
+        0
+      ],
+      "rotation": [
+        -0.0021760551031538584,
+        0.000003486121016211354,
+        0.001602031255446915,
+        0.9999963491272813
+      ],
+      "waterVersion": 52
+    }
+  },
+  "authority": {
+    "tick": "0",
+    "position": "{\"x\":0,\"y\":0.07999999821186066,\"z\":0}",
+    "rotation": "{\"x\":0,\"y\":0,\"z\":0,\"w\":1}",
+    "blades": "[{\"x\":-1.45,\"y\":0.62,\"z\":0.95,\"immersion\":0,\"force\":0,\"state\":\"AIR\"},{\"x\":1.45,\"y\":0.62,\"z\":0.95,\"immersion\":0,\"force\":0,\"state\":\"AIR\"},{\"x\":-1.45,\"y\":0.62,\"z\":-0.95,\"immersion\":0,\"force\":0,\"state\":\"AIR\"},{\"x\":1.45,\"y\":0.62,\"z\":-0.95,\"immersion\":0,\"force\":0,\"state\":\"AIR\"}]",
+    "ack": "[0,0,0,0]",
+    "strokes": "0",
+    "resetId": "1"
+  },
+  "errors": [],
+  "scope": "Automated local four-browser name/invite/ready/layout and visual-motion checks. Physical lobby gameplay remains anchored; no human/device/production acceptance."
+}

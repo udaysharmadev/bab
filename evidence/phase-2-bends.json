@@ -1,0 +1,296 @@
+{
+  "phase": "M2",
+  "check": "M2-B",
+  "title": "Authored bends, route staging and camera",
+  "engineeringState": "VERIFIED",
+  "phaseEngineeringState": "ACTIVE",
+  "productionGate": "OPEN",
+  "date": "2026-10-20T15:40:10.177310+00:00",
+  "protocol": 5,
+  "physics": "basin-0.8",
+  "world": "waterworks-1",
+  "scope": "Five authored Timber Gorge bends with coordinated geometry, authority, field, camera and four-client pose integration. Human traversal, rescue, presentation and consumer-device acceptance remain open; no production scope points awarded.",
+  "bends": [
+    {
+      "id": "split-stone",
+      "start": 176,
+      "end": 244,
+      "offset": 6
+    },
+    {
+      "id": "whitewater",
+      "start": 278,
+      "end": 364,
+      "offset": 8
+    },
+    {
+      "id": "timber-works",
+      "start": 398,
+      "end": 482,
+      "offset": -8
+    },
+    {
+      "id": "iron-narrows",
+      "start": 520,
+      "end": 612,
+      "offset": 8
+    },
+    {
+      "id": "last-descent",
+      "start": 650,
+      "end": 742,
+      "offset": -9
+    }
+  ],
+  "implementation": [
+    "Station-based smooth offsets; launch, checkpoint IDs/poses and finish unchanged",
+    "Hazards and timed movers use world coordinates; loaded hull properties and mover clocks preserved",
+    "Continuous convex bank prisms and matching visible faces, bed, water, bank foam, vegetation, props and camera",
+    "Water flow rotates into unit tangent/normal frame without increasing speed; wave heights share physical truth",
+    "Portrait lateral aim bias adapts continuously after real gantry-clearance clipping reproduction",
+    "Reviewed0.5/0.6/0.7 canonical checkpoint saves migrate transactionally; private saves untouched"
+  ],
+  "verification": {
+    "tests": {
+      "command": "npm test",
+      "passed": 96,
+      "failed": 0,
+      "seconds": 77.015365792
+    },
+    "strictCheck": "PASS",
+    "productionBuild": "PASS",
+    "geometryAndField": [
+      {
+        "case": "curve-and-checkpoint-contract",
+        "checks": 4243,
+        "maxError": 1.380184466714951e-09
+      },
+      {
+        "case": "independent-recorded-field-parity",
+        "checks": 210,
+        "maxError": 2.220446049250313e-16
+      },
+      {
+        "case": "visible-bank-to-collider",
+        "checks": 6688,
+        "maxError": 8.171735933050727e-05
+      },
+      {
+        "case": "real-world-bank-rays",
+        "checks": 30,
+        "maxError": 1.1198597309913794e-05
+      },
+      {
+        "case": "bed-and-lane-alignment",
+        "checks": 143
+      }
+    ],
+    "checkpointClockPhases": {
+      "checkpoints": 10,
+      "phases": 8,
+      "result": "PASS"
+    },
+    "connectedCorridor": {
+      "result": "PASS",
+      "scope": "Sampled5 mover phases with full rotated0.96x2.25m hull half-extents. Not turning/reaction-time or human traversal acceptance."
+    },
+    "camera": {
+      "cases": 132,
+      "errors": [],
+      "result": "PASS"
+    },
+    "liveBentRoute": {
+      "clients": 4,
+      "authoredBendPoses": 5,
+      "heldRowing": "PASS; at least2 acknowledged strokes after the final bend relocation",
+      "scope": "Four real rendered clients at5 IPC-authored authority poses, plus real held input. Not a continuous human traversal or device/FPS acceptance.",
+      "errors": []
+    },
+    "browserFlowGroups": 8,
+    "inputAndNativeGraphicsRecoveryGroups": 7,
+    "graphicsViews": 21,
+    "titleViewports": 3,
+    "maxCalls": 723,
+    "maxTriangles": 2252580,
+    "revisitGeometryTextureCounts": [
+      [
+        174,
+        11
+      ],
+      [
+        174,
+        11
+      ],
+      [
+        174,
+        11
+      ]
+    ],
+    "waterOptics": "PASS",
+    "dryDeck": "PASS; zero interior differences at7 phases in both High/Low",
+    "localDeploymentSmoke": "PASS;8 checks at isolated localhost2571",
+    "shaderAndBrowserErrors": [],
+    "trackerUi": {
+      "result": "PASS",
+      "checks": 6
+    },
+    "waterMesh": {
+      "vertices": 6369,
+      "maxObservedInterpolationErrorMetres": 0.01491709034923197,
+      "thresholdMetres": 0.04
+    }
+  },
+  "load": {
+    "seconds": 120.063,
+    "rooms": 4,
+    "clients": 16,
+    "resets": 32,
+    "reconnects": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "observedBodyColliderCounts": [
+      [
+        8,
+        817
+      ]
+    ],
+    "eventLoop": {
+      "utilization": 0.21896411762608076,
+      "delayP50ms": 10.485759,
+      "delayP95ms": 11.747327,
+      "delayMaxMs": 20.807679
+    },
+    "averageOutboundBytesPerClientSecond": [
+      18964.260429940947,
+      18965.376510665235,
+      18963.82732398824,
+      18956.847654981135
+    ],
+    "violations": [],
+    "roomsDisposed": true,
+    "scope": "Local co-hosted authority+SDK clients, synthetic workload; not Internet, browser GPU, maximum capacity or hosting certification. Wire bytes count WS application payloads, excluding WS/TCP framing; per-client average includes setup/reconnect traffic. This repeatable workload exercises launch-area rowing/resets; bent-route pose rendering is a separate fixture."
+  },
+  "performance": {
+    "host": {
+      "platform": "darwin",
+      "arch": "arm64",
+      "osRelease": "27.0.0",
+      "cpu": "Apple M4",
+      "logicalCpus": 10,
+      "totalMemoryBytes": 17179869184
+    },
+    "browser": "155.0.8059.82",
+    "framesPerCase": 90,
+    "advancingClock": true,
+    "cases": [
+      {
+        "view": "crew",
+        "quality": "High",
+        "cpuP95Ms": 4,
+        "waterUpdateP95Ms": 0.6000000014901161,
+        "gpuP95Ms": 13.548958,
+        "frameIntervalP95Ms": 16.799999999999727,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "crew",
+        "quality": "Low",
+        "cpuP95Ms": 3.399999998509884,
+        "waterUpdateP95Ms": 1,
+        "gpuP95Ms": 12.250249,
+        "frameIntervalP95Ms": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "High",
+        "cpuP95Ms": 3.7999999970197678,
+        "waterUpdateP95Ms": 0.7000000029802322,
+        "gpuP95Ms": 14.913499,
+        "frameIntervalP95Ms": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "Low",
+        "cpuP95Ms": 2,
+        "waterUpdateP95Ms": 0.6000000014901161,
+        "gpuP95Ms": 14.318791,
+        "frameIntervalP95Ms": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "High",
+        "cpuP95Ms": 4.899999998509884,
+        "waterUpdateP95Ms": 0.5,
+        "gpuP95Ms": 14.702833,
+        "frameIntervalP95Ms": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "Low",
+        "cpuP95Ms": 3,
+        "waterUpdateP95Ms": 0.7000000029802322,
+        "gpuP95Ms": 11.141125,
+        "frameIntervalP95Ms": 16.799999999999955,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      }
+    ],
+    "budgetAcceptance": "OPEN; current GPU targets and High-rapids CPU target missed. Local headless capture is not a consumer hardware/browser matrix or universal60FPS certification."
+  },
+  "corrections": [
+    "Initial velocity shearing failed the original2m/s bound; unit tangent/normal rotation preserves horizontal speed and passes unchanged bound.",
+    "Initial132-pose camera fixture failed portrait456m gantry framing; reduced lateral aim bias on narrow screens, retaining bounds, then all132 pass.",
+    "New QA support used ES2023 findLastIndex under ES2022 typing; replaced with existing sorted-checkpoint filter, strict build passes."
+  ],
+  "evidence": [
+    "evidence/river-bends.json",
+    "evidence/bends-browser.json",
+    "evidence/bend-whitewater.png",
+    "evidence/camera.json",
+    "evidence/load.json",
+    "evidence/performance.json",
+    "evidence/graphics.json",
+    "evidence/landing.json",
+    "evidence/water-depth.json",
+    "evidence/browser.json",
+    "evidence/accessibility.json",
+    "evidence/phase-2-bends-checks.txt",
+    "evidence/build.json"
+  ],
+  "remaining": [
+    "M2-C staged rescue and onboarding",
+    "M2-D near-field boat/crew/water/audio and cliff/material polish",
+    "M2-E genuine human/newcomer traversal and named-device acceptance",
+    "Later full streaming/regions and release hardening"
+  ]
+}

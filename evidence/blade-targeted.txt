@@ -1,0 +1,18 @@
+✔ Shared rounded blade preserves original render geometry and both convex cores stay inside its faces (16.155334ms)
+✔ Rounded volume catches edge-only contacts and sweeps, while shoulder gaps, sensors and own hull remain clear (46.07525ms)
+✔ Blade-only bracing is bounded, passive and nonlethal across seats, headings and heels (512.535958ms)
+✔ Rounded paddle retains its attachment envelope and rejects the old rectangular corners (6.663875ms)
+✔ Hull fibres align along each plank and share coordinates across its actual triangulation (0.554875ms)
+✔ Rope coil is compact, finite and can rest directly on the floor (1.627333ms)
+✔ Persistent shaft-only contacts are nonlethal and dissipative across every seat, heading and heel (578.91675ms)
+✔ Holding a dipped shaft still produces no free force; release and inactive paddles stop bracing (14.790917ms)
+✔ Shaft queries exclude own hull, sensors and separated solids (5.817625ms)
+✔ Moving-solid relative velocity and saturated impacts remain bounded for every seat (137.933125ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 963.870541

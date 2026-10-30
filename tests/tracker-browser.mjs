@@ -1,0 +1,34 @@
+import {chromium} from 'playwright';
+import assert from 'node:assert/strict';
+import {readFile,writeFile} from 'node:fs/promises';
+const tracker=JSON.parse(await readFile(new URL('../docs/PRODUCTION_TRACKER.json',import.meta.url),'utf8'));
+const browser=await chromium.launch({channel:process.env.BROWSER_CHANNEL??'chrome',headless:true});
+try {
+  const page=await browser.newPage({viewport:{width:1280,height:1000}}),errors=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  await page.goto(new URL('../docs/PRODUCTION_TRACKER.html',import.meta.url).href);
+  assert(await page.locator('#direction-change').isVisible());
+  assert.match(await page.locator('#direction-change').textContent(),/R1 is locally playable/);
+  assert.equal(await page.locator('#direction-change a').getAttribute('href'),'../docs/FAN_RAFT_REBOOT.md');
+  assert.equal(await page.locator('h1').textContent(),'Legacy prototype ledger.');
+  assert.equal(await page.locator('.reboot-phase').count(),5);
+  assert.match(await page.locator('.reboot-phase').nth(1).textContent(),/LOCAL IMPLEMENTATION/);
+  assert.equal(await page.locator('.delivery-phase').count(),5);
+  for(const [index,phase] of tracker.deliveryPhases.entries())assert.equal(await page.locator('.delivery-phase').nth(index).getAttribute('data-engineering'),phase.engineeringState);
+  assert.equal(await page.locator('article:visible').count(),139);
+  await page.locator('#search').fill('Whirlpool shoulder');
+  assert.equal(await page.locator('article:visible').count(),1);
+  assert.match(await page.locator('article:visible').textContent(),/OB-003/);
+  await page.locator('#search').fill(''); await page.locator('#phase').selectOption('08 Regional production');
+  assert.equal(await page.locator('article:visible').count(),[...tracker.items,...tracker.catalogue].filter(item=>item.phase==='08 Regional production').length);
+  await page.locator('#status').selectOption('ACCEPTED'); assert(await page.locator('#empty').isVisible());
+  await page.locator('#status').selectOption(''); await page.locator('#phase').selectOption('');
+  await page.locator('#search').fill('water'); assert((await page.locator('article:visible').count())>10);
+  await page.locator('#search').fill('');
+  await page.locator('#search').blur();
+  await page.evaluate(()=>window.scrollTo(0,0));
+  await page.screenshot({path:'evidence/production-tracker.png'});
+  assert.deepEqual(errors,[]);
+  const result={result:'PASS',browser:browser.version(),records:139,checks:['Current redesign notice and document link visible; earlier ledger explicitly historical','Five execution phases match the source states','All deliverables and content cards visible','Obstacle search finds the correct record','Phase filter matches source ledger','Empty acceptance filter is honest and visible','Text search and reset remain usable'],errors};
+  await writeFile('evidence/tracker-browser.json',JSON.stringify(result,null,2)+'\n'); console.log(JSON.stringify(result,null,2));
+} finally {await browser.close();}

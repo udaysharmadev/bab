@@ -1,0 +1,203 @@
+{
+  "phase": "M1",
+  "title": "Reliable, measurable foundation",
+  "engineeringState": "VERIFIED",
+  "productionGate": "OPEN",
+  "date": "2026-10-20T11:16:15.604Z",
+  "protocol": 5,
+  "physics": "basin-0.6",
+  "scope": "Verified foundation engineering and repeatable local measurements. Human/device/Internet/long-soak acceptance remains open; no production scope points awarded.",
+  "verification": {
+    "tests": {
+      "passed": 85,
+      "failed": 0,
+      "seconds": 75.2467,
+      "command": "npm test"
+    },
+    "typecheck": "PASS",
+    "build": "PASS",
+    "graphics": {
+      "views": 21,
+      "titleViewports": 3,
+      "maxCalls": 723,
+      "maxTriangles": 2235244,
+      "errors": []
+    },
+    "waterOptics": "PASS",
+    "dryHullHighLow": "PASS",
+    "browserFlowGroups": 8,
+    "accessibilityGroups": 7,
+    "trackerUi": {
+      "checks": 6,
+      "result": "PASS"
+    },
+    "fieldParity": {
+      "samples": 210,
+      "sha256": "da8ab2afdbda78a6617719583865e74fb86782420091b7a351e8e61ea7435b8f"
+    },
+    "mesh": {
+      "vertices": 6369,
+      "priorVertices": 15729,
+      "maxObservedInterpolationErrorMetres": 0.01491709034923197
+    }
+  },
+  "load": {
+    "seconds": 120.152,
+    "rooms": 4,
+    "clients": 16,
+    "resets": 32,
+    "reconnects": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "eventLoop": {
+      "utilization": 0.15315704853228376,
+      "delayP50ms": 10.502143,
+      "delayP95ms": 11.591679,
+      "delayMaxMs": 40.861695
+    },
+    "averageOutboundBytesPerClientSecond": [
+      18961.900342898993,
+      18960.583261202475,
+      18955.289966043012,
+      18955.07565417138
+    ],
+    "violations": [],
+    "roomsDisposed": true
+  },
+  "performance": {
+    "host": {
+      "platform": "darwin",
+      "arch": "arm64",
+      "osRelease": "27.0.0",
+      "cpu": "Apple M4",
+      "logicalCpus": 10,
+      "totalMemoryBytes": 17179869184
+    },
+    "browser": "155.0.8059.82",
+    "gpu": {
+      "vendor": "Google Inc. (Apple)",
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+      "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "timerAvailable": true
+    },
+    "snapshotHz": 20,
+    "advancingClock": true,
+    "framesPerCase": 90,
+    "cases": [
+      {
+        "view": "crew",
+        "quality": "High",
+        "waterUpdateP95Ms": 0.6000000014901161,
+        "priorWaterUpdateP95Ms": 3.7000000029802322,
+        "cpuP95Ms": 4.5,
+        "gpuP95Ms": 14.079208,
+        "frameIntervalP95Ms": 16.700000000000273,
+        "snapshotUpdates": 28,
+        "waterGeometryUpdates": 26,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "crew",
+        "quality": "Low",
+        "waterUpdateP95Ms": 0.6999999955296516,
+        "priorWaterUpdateP95Ms": 5.799999997019768,
+        "cpuP95Ms": 3,
+        "gpuP95Ms": 8.676791,
+        "frameIntervalP95Ms": 16.700000000000273,
+        "snapshotUpdates": 28,
+        "waterGeometryUpdates": 25,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "High",
+        "waterUpdateP95Ms": 0.6000000014901161,
+        "priorWaterUpdateP95Ms": 4.4000000059604645,
+        "cpuP95Ms": 3.2999999970197678,
+        "gpuP95Ms": 13.890999,
+        "frameIntervalP95Ms": 16.799999999999955,
+        "snapshotUpdates": 28,
+        "waterGeometryUpdates": 24,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "Low",
+        "waterUpdateP95Ms": 0.8000000044703484,
+        "priorWaterUpdateP95Ms": 5.700000002980232,
+        "cpuP95Ms": 2.899999998509884,
+        "gpuP95Ms": 12.283708,
+        "frameIntervalP95Ms": 16.700000000000273,
+        "snapshotUpdates": 27,
+        "waterGeometryUpdates": 25,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "High",
+        "waterUpdateP95Ms": 0.5,
+        "priorWaterUpdateP95Ms": 3.100000001490116,
+        "cpuP95Ms": 5.5,
+        "gpuP95Ms": 13.146916,
+        "frameIntervalP95Ms": 16.799999999999727,
+        "snapshotUpdates": 27,
+        "waterGeometryUpdates": 26,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "Low",
+        "waterUpdateP95Ms": 0.7000000029802322,
+        "priorWaterUpdateP95Ms": 4.5,
+        "cpuP95Ms": 4,
+        "gpuP95Ms": 7.406249,
+        "frameIntervalP95Ms": 16.799999999999955,
+        "snapshotUpdates": 27,
+        "waterGeometryUpdates": 26,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      }
+    ],
+    "budgetAcceptance": "OPEN: CPU/GPU target misses retained; local headless captures are not a consumer hardware/browser matrix. RAF timestamps are quantized."
+  },
+  "evidence": [
+    "evidence/load-phase-1.json",
+    "evidence/performance-phase-1.json",
+    "evidence/performance-before-grid-optimization.json",
+    "evidence/water-field-parity.json",
+    "evidence/graphics.json",
+    "evidence/water-depth.json",
+    "evidence/landing.json",
+    "evidence/browser.json",
+    "evidence/accessibility.json",
+    "evidence/tracker-browser.json"
+  ],
+  "nextPhase": "M2 \u2014 authored premium Headwaters/Timber Gorge slice; hull/collision agreement, bends/rescue, art/audio and real human acceptance.",
+  "buildProvenance": "evidence/build-phase-1.json"
+}

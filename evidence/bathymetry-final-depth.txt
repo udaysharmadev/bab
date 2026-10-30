@@ -1,0 +1,13 @@
+✔ Exact bed triangles agree between authority rays, rendered surfaces and interpolation over the entire route (111.265375ms)
+✔ Canonical checkpoints retain deep hull/blade lanes and depth drag is continuous, bounded and dissipative (0.978958ms)
+✔ Water depth attributes follow exact bed heights through both quality modes and same-tick relocations (39.225875ms)
+✔ A settled sandbar hull stays nonlethal and idle; four real reverse paddles can push off into deep water without recovery (805.59225ms)
+✔ Passive bed-paddle friction dissipates motion without lift; resting and released paddles supply no force (23.411917ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1199.57675

@@ -1,0 +1,11 @@
+✔ Geological bank chunks share positions, texture coordinates, colour and shading at every seam (122.087584ms)
+✔ Vegetation ground queries agree with independent ray hits on actual bank triangles (32.037708ms)
+✔ Small procedural rock texture is deterministic, filtered and seamless at the wrap (142.399792ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 470.038417

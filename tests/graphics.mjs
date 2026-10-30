@@ -12,7 +12,7 @@ try {
   const page = await browser.newPage({viewport:{width:1440,height:960}});
   page.on('pageerror',error=>errors.push(error.message));
   page.on('console',message=>{if(message.type()==='error'||/GL_INVALID_(?:OPERATION|ENUM|VALUE)/.test(message.text()))errors.push(message.text())});
-  const views=process.env.NATURE_ONLY ? ['shore','trees','grass','shore&low'] : ['crew','underside','spikes','log','vortex','vortex&low','wreck','gorge','rapids','timber','narrows','finish','millstone','boulders','wheel2','haven','waterwheel','shore','trees','grass','shore&low'];
+  const views=process.env.NATURE_ONLY ? ['shore','trees','grass','shore&low'] : ['crew','underside','spikes','log','vortex','vortex&low','wreck','gorge','bank','bank&low','shoal','shoal&low','rapids','rescue','rescue&low','timber','narrows','finish','millstone','boulders','wheel2','haven','waterwheel','shore','trees','grass','shore&low'];
   for (const view of views) {
     await page.goto(`http://127.0.0.1:5174/tests/graphics.html?view=${view}${noRefraction?'&noRefraction':''}`);
     await page.waitForFunction(()=>Number(document.body.dataset.frames)>35);
@@ -21,22 +21,40 @@ try {
     const stats=JSON.parse(await page.locator('canvas').getAttribute('data-render-info'));
     assert(Number(await page.locator('body').getAttribute('data-sweeper-error'))<1e-8);
     assert(Math.abs(Number(await page.locator('body').getAttribute('data-wheel-error')))<1e-8);
-    // Main view + Water reflection are existing passes; the measured complete
-    // high-detail frame is 706 calls after transmission is narrowed to bed only.
-    assert(stats.calls<800,JSON.stringify(stats));
-    // info.autoReset used to erase the parent shadow count inside Water's
-    // nested reflection render. These are now complete frame totals. Measured
-    // The heaviest authored log frame measures 6.03m triangles; this leaves
-    // a modest regression margin while separately capping transmission work.
-    assert(stats.triangles<6500000,`Full color/reflection/shadow/capture frame exceeds measured fixture budget for ${view}: ${JSON.stringify(stats)}`);
+    // Complete main/reflection/shadow/capture totals after spatial foliage LOD:
+    // observed maxima 723 calls /2.254m triangles. Preserve that improvement.
+    assert(stats.calls<760,JSON.stringify(stats));
+    assert(stats.triangles<2600000,`Full color/reflection/shadow/capture frame exceeds measured fixture budget for ${view}: ${JSON.stringify(stats)}`);
     assert(stats.captureCalls<100&&stats.captureTriangles<100000,'Transmission must exclude the expensive above-water forest and crew');
     assert(stats.captureSize[0]<=1280&&stats.captureSize[1]<=960);
     assert(stats.refraction===(!view.includes('low')&&!noRefraction));
-    results.push({view,stats});
+    const bankGrounding=await page.evaluate(()=>window.checkBankVegetation());
+    assert.equal(bankGrounding.failures.length,0,JSON.stringify({view,...bankGrounding}));
+    assert(bankGrounding.paintChecks>0&&bankGrounding.paintMaxError<.00001,JSON.stringify(bankGrounding));
+    results.push({view,stats,bankGrounding});
   }
   const high=results.find(result=>result.view==='shore'),low=results.find(result=>result.view==='shore&low');
   console.log(JSON.stringify({natureHigh:high?.stats,natureLow:low?.stats}));
   assert(high&&low&&low.stats.triangles<high.stats.triangles*.8,`Lower Graphics must reduce foliage geometry: ${JSON.stringify({high,low})}`);
+  await page.goto('http://127.0.0.1:5174/tests/graphics.html?view=crew');
+  await page.waitForFunction(()=>Number(document.body.dataset.frames)>35);
+  const residency=[];
+  const signature=()=>page.evaluate(()=>JSON.stringify([...window.scene.vegetation].map(([id,group])=>[id,...group.children.map(mesh=>Array.from(mesh.instanceMatrix.array))])));
+  const initialSignature=await signature();
+  for(let cycle=0;cycle<3;cycle++) for(const z of [310,870,1390,0]) {
+    const start=Number(await page.locator('body').getAttribute('data-frames'));
+    await page.evaluate(z=>{
+      const scene=window.scene,snapshot=scene.snapshot;
+      scene.setSnapshot({...snapshot,position:{x:window.riverX(0,z),y:.08,z},resetId:snapshot.resetId+1});
+    },z);
+    await page.waitForFunction(start=>Number(document.body.dataset.frames)>start+4,start);
+    const stats=JSON.parse(await page.locator('canvas').getAttribute('data-render-info'));
+    assert(stats.vegetationChunks<=6,`Vegetation chunks must stay bounded: ${JSON.stringify(stats)}`);
+    residency.push({cycle,z,...stats});
+    if(z===0)assert.equal(await signature(),initialSignature,'Backtracking must rebuild identical vegetation');
+  }
+  const returns=residency.filter(sample=>sample.z===0);
+  assert(returns.every(sample=>sample.geometries<=returns[0].geometries+2&&sample.textures<=returns[0].textures+1),'GPU resources must plateau on repeated route visits');
   await page.goto('http://127.0.0.1:5174/tests/audio.html');
   await page.waitForFunction(()=>document.body.dataset.result || document.body.dataset.error);
   assert.equal(await page.locator('body').getAttribute('data-error'),null);
@@ -59,6 +77,6 @@ try {
     titleViews.push({width,height,playButton:rect});
   }
   assert.deepEqual(errors,[]);
-  await writeFile('evidence/graphics.json',JSON.stringify({result:'PASS',fixture:true,humanPlaytest:false,browser:browser.version(),results,titleViews,audio,errors},null,2));
+  await writeFile('evidence/graphics.json',JSON.stringify({result:'PASS',fixture:true,humanPlaytest:false,browser:browser.version(),results,residency,titleViews,audio,errors},null,2));
   console.log(JSON.stringify({result:'PASS',results,errors},null,2));
 }finally{await browser?.close();await server.close()}

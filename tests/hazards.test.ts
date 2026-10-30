@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { BoatSimulation, initPhysics } from '../src/shared/simulation';
 import { CHECKPOINTS, SPIKES, SWEEPER, WHIRLPOOL, sampleSweeper, sampleWater } from '../src/shared/world';
 import { DT } from '../src/shared/protocol';
+import RAPIER from '@dimforge/rapier3d-compat';
 
 before(initPhysics);
 
@@ -69,12 +70,18 @@ test('An iron tooth touched only by the paddle permits bracing without hull dest
 
 test('Tapered spike tips have actual cone clearance rather than an invisible full-width box', () => {
   const high = new BoatSimulation(true);
-  high.hull.setTranslation({ x: 5.15, y: 1.1, z: 87.15 }, true);
+  // The former x=5.15 pose occupied only the discarded box corner. This pose
+  // overlaps a full-width cylinder but clears the actual cone at height.
+  const spike=SPIKES.find(s=>s.id==='iron-tooth-4')!;
+  high.hull.setTranslation({ x: 5.75, y: 1.1, z: 87.15 }, true);
+  high.world.propagateModifiedBodyPositionsToColliders();
+  assert(high.hullCollider.intersectsShape(new RAPIER.Cylinder(spike.height/2,spike.radius),
+    {x:spike.x,y:spike.height/2-.35,z:spike.z},{x:0,y:0,z:0,w:1}),'Negative control must intersect an incorrectly full-width obstacle');
   for (let t = 0; t < 3; t++) high.step();
   assert.equal(high.condition, 'afloat', 'The high hull clears the narrow tip');
   high.dispose();
   const low = new BoatSimulation(true);
-  low.hull.setTranslation({ x: 5.15, y: 0.08, z: 87.15 }, true);
+  low.hull.setTranslation({ x: 5.75, y: 0.08, z: 87.15 }, true);
   for (let t = 0; t < 3; t++) low.step();
   assert.equal(low.condition, 'breaking', 'The same horizontal footprint contacts the broad lower cone');
   assert.equal(low.obstacleId, 'iron-tooth-4');

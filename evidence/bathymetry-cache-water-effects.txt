@@ -1,0 +1,76 @@
+{
+  "result": "PASS",
+  "fixture": true,
+  "humanPlaytest": false,
+  "browser": "155.0.8059.82",
+  "checks": [
+    "drift: actual scene derives water-relative wake direction/strength without modifying the snapshot",
+    "forward: actual scene derives water-relative wake direction/strength without modifying the snapshot",
+    "reverse: actual scene derives water-relative wake direction/strength without modifying the snapshot",
+    "sideways: actual scene derives water-relative wake direction/strength without modifying the snapshot",
+    "Paused visible whirlpool tracers remain frozen",
+    "Offscreen whirlpool skips all tracer advection and instance-buffer uploads",
+    "Visible re-entry resumes finite current-driven tracers"
+  ],
+  "wakes": [
+    {
+      "name": "drift",
+      "speed": 0,
+      "direction": [
+        0,
+        1
+      ],
+      "velocity": {
+        "x": 0,
+        "y": 0,
+        "z": 0.12
+      }
+    },
+    {
+      "name": "forward",
+      "speed": 3,
+      "direction": [
+        0,
+        1
+      ],
+      "velocity": {
+        "x": 0,
+        "y": 0,
+        "z": 3.12
+      }
+    },
+    {
+      "name": "reverse",
+      "speed": 3,
+      "direction": [
+        0,
+        -1
+      ],
+      "velocity": {
+        "x": 0,
+        "y": 0,
+        "z": -2.88
+      }
+    },
+    {
+      "name": "sideways",
+      "speed": 3,
+      "direction": [
+        1,
+        0
+      ],
+      "velocity": {
+        "x": 3,
+        "y": 0,
+        "z": 0.12
+      }
+    }
+  ],
+  "lifecycle": {
+    "frozen": true,
+    "skipped": true,
+    "reentered": true,
+    "finite": true
+  },
+  "errors": []
+}

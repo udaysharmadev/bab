@@ -1,0 +1,360 @@
+{
+  "result": "PASS",
+  "date": "2026-10-21T12:59:11.630Z",
+  "runtime": "v24.11.0",
+  "protocol": 6,
+  "physics": "basin-0.11",
+  "shaftContactRadius": 0.022,
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "osRelease": "27.0.0",
+    "cpu": "Apple M4",
+    "logicalCpus": 10,
+    "totalMemoryBytes": 17179869184
+  },
+  "requestedSeconds": 60,
+  "actualSeconds": 60.124,
+  "roomCount": 4,
+  "clientCount": 16,
+  "realWebSockets": true,
+  "humanPlaytest": false,
+  "scope": "Local co-hosted authority+SDK clients, synthetic workload; not Internet, browser GPU, maximum capacity or hosting certification. Wire bytes count WS application payloads, excluding WS/TCP framing; per-client average includes setup/reconnect traffic.",
+  "cpuUserMs": 9323.594,
+  "cpuSystemMs": 653.976,
+  "eventLoop": {
+    "utilization": 0.1350483216974375,
+    "delayP50ms": 10.543103,
+    "delayP95ms": 11.599871,
+    "delayMaxMs": 15.908863
+  },
+  "forcedGc": true,
+  "rooms": [
+    {
+      "packets": 5114,
+      "maxSnapshotGapMs": 82,
+      "resets": 4,
+      "reconnects": 1,
+      "droppedSteps": 0,
+      "tick": 3595,
+      "wirePayloadBytes": {
+        "outBytes": 5085320,
+        "inBytes": 72639,
+        "outMessages": 5140
+      },
+      "averageOutboundBytesPerClientSecond": 21119.752511476283
+    },
+    {
+      "packets": 5113,
+      "maxSnapshotGapMs": 96,
+      "resets": 4,
+      "reconnects": 1,
+      "droppedSteps": 0,
+      "tick": 3594,
+      "wirePayloadBytes": {
+        "outBytes": 5080700,
+        "inBytes": 72639,
+        "outMessages": 5136
+      },
+      "averageOutboundBytesPerClientSecond": 21100.542212760294
+    },
+    {
+      "packets": 5111,
+      "maxSnapshotGapMs": 77,
+      "resets": 4,
+      "reconnects": 0,
+      "droppedSteps": 0,
+      "tick": 3612,
+      "wirePayloadBytes": {
+        "outBytes": 5079196,
+        "inBytes": 73004,
+        "outMessages": 5130
+      },
+      "averageOutboundBytesPerClientSecond": 21094.28847049431
+    },
+    {
+      "packets": 5111,
+      "maxSnapshotGapMs": 84,
+      "resets": 4,
+      "reconnects": 0,
+      "droppedSteps": 0,
+      "tick": 3610,
+      "wirePayloadBytes": {
+        "outBytes": 5079708,
+        "inBytes": 73004,
+        "outMessages": 5130
+      },
+      "averageOutboundBytesPerClientSecond": 21096.41740403167
+    }
+  ],
+  "memory": [
+    {
+      "seconds": 0.013,
+      "rss": 337903616,
+      "heapTotal": 72548352,
+      "heapUsed": 36763856,
+      "external": 12085977,
+      "arrayBuffers": 528687,
+      "rooms": [
+        {
+          "tick": 4,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 3,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 4,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 3,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        }
+      ]
+    },
+    {
+      "seconds": 10.094,
+      "rss": 422838272,
+      "heapTotal": 77004800,
+      "heapUsed": 37561440,
+      "external": 12141582,
+      "arrayBuffers": 480382,
+      "rooms": [
+        {
+          "tick": 609,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 608,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 609,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 608,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        }
+      ]
+    },
+    {
+      "seconds": 20.183,
+      "rss": 445628416,
+      "heapTotal": 106708992,
+      "heapUsed": 31900560,
+      "external": 12233512,
+      "arrayBuffers": 480406,
+      "rooms": [
+        {
+          "tick": 1215,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 1214,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 1215,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 1214,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        }
+      ]
+    },
+    {
+      "seconds": 30.215,
+      "rss": 446054400,
+      "heapTotal": 106708992,
+      "heapUsed": 31900192,
+      "external": 12347739,
+      "arrayBuffers": 488598,
+      "rooms": [
+        {
+          "tick": 1799,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 1815,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 1816,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 1815,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        }
+      ]
+    },
+    {
+      "seconds": 40.311,
+      "rss": 446349312,
+      "heapTotal": 107233280,
+      "heapUsed": 31915088,
+      "external": 12278079,
+      "arrayBuffers": 488598,
+      "rooms": [
+        {
+          "tick": 2406,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 2422,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 2423,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 2421,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        }
+      ]
+    },
+    {
+      "seconds": 50.645,
+      "rss": 446955520,
+      "heapTotal": 108281856,
+      "heapUsed": 31995008,
+      "external": 12381582,
+      "arrayBuffers": 497382,
+      "rooms": [
+        {
+          "tick": 3025,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 3024,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 3042,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 3041,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        }
+      ]
+    },
+    {
+      "seconds": 60.124,
+      "rss": 447053824,
+      "heapTotal": 105660416,
+      "heapUsed": 32052528,
+      "external": 12134683,
+      "arrayBuffers": 487617,
+      "rooms": [
+        {
+          "tick": 3595,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 3594,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 3612,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        },
+        {
+          "tick": 3610,
+          "droppedSteps": 0,
+          "bodies": 8,
+          "colliders": 817,
+          "members": 4
+        }
+      ]
+    }
+  ],
+  "violations": [],
+  "roomsDisposed": true
+}

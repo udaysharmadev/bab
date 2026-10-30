@@ -1,0 +1,206 @@
+{
+  "title": "M2-D7 entry-flow fixes and evidence-based performance evaluation",
+  "date": "2026-10-21",
+  "state": "VERIFIED_SCOPED",
+  "protocol": 6,
+  "physics": "basin-0.9",
+  "world": "waterworks-1",
+  "changes": [
+    "Original production Standard foliage retained; Lambert and zero-specular Phong experiments rejected after High-mode timing regressions",
+    "Built-game fixtures explicitly confirm saved names rather than bypassing the required user flow",
+    "Name field permits 20 Unicode codepoints including non-BMP letters; 21 rejected by shared validation",
+    "Unique lobby/settings control-note IDs preserve remapped guidance"
+  ],
+  "verification": {
+    "suite": "PASS: 120 tests, 0 failed, 88.854 seconds",
+    "native": "PASS: 8 same-pose High/Low experimental material comparisons; original Standard retained",
+    "browser": "PASS: explicit name submission across 11 gameplay fixture families; four-player controls 71/71",
+    "performance": "PASS measurement: retained Standard, 8 cases \u00d7180 frames; all sampled CPU/GPU targets meet, strict frame intervals miss",
+    "tracker": "PASS: 49 deliverables +90 content tasks, 2/100 accepted scope points",
+    "package": "PASS: ZIP runtime bytes independently matched; no private data",
+    "route": "PASS: final retained Standard renderer, 25 route views, 3 title viewports and 3 residency returns",
+    "camera": "PASS: 180 cases; geometry/camera unchanged by rejected material experiments",
+    "trackerBrowser": "PASS: 6 native dashboard groups",
+    "build": "PASS: strict release build and final typecheck"
+  },
+  "corrections": [
+    "Controlled material comparison initially allowed wall-clock ripple expiry during program compilation, changing draw counts. Freeze display time and clear transient stroke effects before comparing foliage. Advancing effects remain covered by the performance fixture.",
+    "Onboarding exposed duplicate paddle-controls-note IDs from the earlier lobby/settings implementation. Give settings guidance its own ID and update it explicitly.",
+    "Ten synchronous baseline draws were not equivalent to default display-frame warmup. Both modes now receive 60 actual display frames; first and final captures are preserved.",
+    "Final route/title invocation omitted GAME_URL and failed when its title step used old default localhost:2570. Rerun explicitly targets the live localhost:2571 preview; first output preserved."
+  ],
+  "limits": [
+    "M2 remains 3/5 checks; M2-D presentation and M2-E human/device acceptance remain PENDING",
+    "No human study, full-route human duration, named-device matrix, public deployment or private save mutation"
+  ],
+  "evidence": [
+    "evidence/phase-2-foliage-build.txt",
+    "evidence/phase-2-foliage-tests.txt",
+    "evidence/phase-2-foliage-fixtures.json",
+    "evidence/foliage.json",
+    "evidence/lobby.json",
+    "evidence/controls-after.json",
+    "evidence/onboarding.json",
+    "evidence/save-browser.json",
+    "evidence/audio.json",
+    "evidence/phase-2-foliage-deployment.txt",
+    "evidence/phase-2-foliage-retained-performance.txt",
+    "evidence/phase-2-foliage-retained-browser.txt",
+    "evidence/phase-2-foliage-retained-accessibility.txt",
+    "evidence/phase-2-foliage-retained-graphics.txt",
+    "evidence/phase-2-foliage-tracker-browser-final.txt",
+    "evidence/phase-2-foliage-package.json",
+    "evidence/phase-2-foliage-release-build.txt",
+    "evidence/phase-2-foliage-typecheck.txt"
+  ],
+  "decision": {
+    "ship": [
+      "Unicode name length matches the shared server validator",
+      "Required name confirmation exercised across native built-game fixtures",
+      "Unique lobby/settings IDs and remapped help text",
+      "Reproducible optional material benchmarks and equal warmup"
+    ],
+    "reject": [
+      "Lambert foliage",
+      "Zero-specular Phong foliage"
+    ],
+    "reason": "Native High-mode timing regressions; no rendering speedup claimed"
+  },
+  "performance": {
+    "retained": "evidence/performance.json",
+    "priorStandardComparison": "evidence/performance-foliage-prior.json",
+    "rejectedLambert": "evidence/performance-foliage-lambert.json",
+    "rejectedPhong": "evidence/performance-foliage-phong.json",
+    "firstCaptures": [
+      "evidence/performance-foliage-prior-foliage-first.json",
+      "evidence/performance-foliage-first.json"
+    ],
+    "budgetAccepted": false,
+    "causalSpeedupClaim": false,
+    "warmupFramesAfterMaterialSelection": 60,
+    "retainedCases": [
+      {
+        "view": "crew",
+        "quality": "High",
+        "cpuP95": 3.2000000001862645,
+        "gpuP95": 6.945625,
+        "frameP95": 16.800000000000182,
+        "targets": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "crew",
+        "quality": "Low",
+        "cpuP95": 1.8999999994412065,
+        "gpuP95": 3.018083,
+        "frameP95": 16.800000000000182,
+        "targets": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "High",
+        "cpuP95": 2.5,
+        "gpuP95": 8.923874,
+        "frameP95": 16.800000000000182,
+        "targets": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "Low",
+        "cpuP95": 1.5,
+        "gpuP95": 3.945874,
+        "frameP95": 16.700000000000728,
+        "targets": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "High",
+        "cpuP95": 3.8999999994412065,
+        "gpuP95": 7.430458,
+        "frameP95": 16.700000000000728,
+        "targets": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "Low",
+        "cpuP95": 2.5,
+        "gpuP95": 2.598999,
+        "frameP95": 16.700000000000728,
+        "targets": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rescue",
+        "quality": "High",
+        "cpuP95": 3.7999999998137355,
+        "gpuP95": 5.922999,
+        "frameP95": 16.799999999999727,
+        "targets": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rescue",
+        "quality": "Low",
+        "cpuP95": 2.5,
+        "gpuP95": 2.530333,
+        "frameP95": 16.700000000000273,
+        "targets": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      }
+    ]
+  },
+  "graphics": {
+    "views": 25,
+    "titles": 3,
+    "maxCalls": 699,
+    "maxTriangles": 2249368,
+    "startReturns": [
+      [
+        173,
+        11
+      ],
+      [
+        173,
+        11
+      ],
+      [
+        173,
+        11
+      ]
+    ]
+  },
+  "experimentPixels": {
+    "cases": 8,
+    "maxMeanChannelDeltaOutOf255": 0.8481520061728395,
+    "maxLargeDeltaPixelFraction": 0,
+    "scope": "Rejected Lambert compared with retained Standard; not a renderer optimization acceptance"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "title": "Readable lethal obstacles and varied crew runs",
+  "date": "2026-10-21",
+  "state": "VERIFIED_SCOPED",
+  "protocol": 6,
+  "physics": "basin-0.9",
+  "world": "waterworks-1",
+  "requirements": {
+    "dangerReadability": "Implemented: faceted red/ivory rocks with pointed crowns, sharp red pilings, red iron teeth, striped moving logs, dock warning; human instant-recognition test pending",
+    "obstacleVariety": "Existing five physical families retained: rocks, pilings, iron teeth, moving logs, rotating wheels. Three deterministic rock treatments; no untested new collision type",
+    "randomness": "Server draws a uniform0\u2013120s mover phase per crew; logs/wheels use it in collider initialization, simulation and snapshot rendering. Clients cannot choose phase; retry retains phase; new crew/resumed voyage gets a new phase. Static route placements remain authored",
+    "mapDuration": "Existing1400m/18-section/10-checkpoint route retained. Actual270s four-paddle flat-water diagnostic travels323.693m; flat-water extrapolation19.46min. This is not fastest/full-route/human timing; no artificial finish timer or inflated map length added",
+    "simpleBrowserGraphics": "Existing Three.js materials/mesh batching; no dependency or texture asset pipeline added"
+  },
+  "verification": {
+    "geometryAndPacing": "PASS:3 groups",
+    "phaseNetwork": "PASS:4 peers, server-only phase, retry retention, old-client rejection",
+    "nativeHighLow": "PASS:8 views/24 phase comparisons",
+    "build": "PASS",
+    "fullSuite": "PASS: 120 tests, 0 failures",
+    "route": "PASS: 25 route views, 3 title sizes, 3 residency cycles",
+    "camera": "PASS: 180 cases",
+    "gameFlow": "PASS: 8 groups",
+    "deployment": "PASS: protocol 6, four seats, ready launch, drop and reconnect",
+    "performance": "Measured 8 High/Low cases; CPU/GPU/frame budget misses remain",
+    "package": "PASS: ZIP runtime bytes independently matched; no private data",
+    "tracker": "PASS: 49 deliverables + 90 content tasks; 2/100 accepted",
+    "accessibility": "PASS: 7 automated groups"
+  },
+  "evidence": [
+    "evidence/danger-targeted.txt",
+    "evidence/route-pacing.json",
+    "evidence/danger-network.txt",
+    "evidence/danger-browser.json",
+    "evidence/danger-tests.txt",
+    "evidence/graphics.json",
+    "evidence/camera.json",
+    "evidence/browser.json",
+    "evidence/danger-deployment.txt",
+    "evidence/performance.json",
+    "evidence/danger-package.json",
+    "evidence/danger-accessibility.txt"
+  ],
+  "corrections": [
+    "First version-rejection test attempted an old-client join after all4 seats were occupied; matcher correctly returned room locked. Moved version assertion before room fills; retained full four-peer phase comparison."
+  ],
+  "limits": [
+    "Full premium art, human readability/pacing, device performance and release acceptance remain open",
+    "M2 stays3/5 checks, full presentation PENDING; accepted scope2/100 and0/14 regions",
+    "Requires protocol6 client/server; refresh all browsers",
+    "No public deployment or private save mutation"
+  ],
+  "graphics": {
+    "maxCalls": 703,
+    "maxTriangles": 2249368,
+    "startReturns": [
+      [
+        173,
+        11
+      ],
+      [
+        173,
+        11
+      ],
+      [
+        173,
+        11
+      ]
+    ]
+  }
+}

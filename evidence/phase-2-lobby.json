@@ -1,0 +1,168 @@
+{
+  "phase": "M2",
+  "check": "M2-D",
+  "subcheck": "M2-D1",
+  "title": "Simple animated invite lobby and named crew",
+  "engineeringState": "VERIFIED",
+  "parentCheckState": "PENDING",
+  "phaseEngineeringState": "ACTIVE",
+  "productionGate": "OPEN",
+  "date": "2026-10-20T17:02:44.646370+00:00",
+  "protocol": 5,
+  "physics": "basin-0.9",
+  "world": "waterworks-1",
+  "scope": "Owner-requested lobby revision and first M2-D presentation batch. Direct invite admission, one short name prompt, compact invite/Ready controls, avatar-attached names/ticks and visual water/hull/idle animation. Authority remains anchored until four-ready launch. Not full M2-D or production acceptance.",
+  "implemented": [
+    "Invite URLs join the actual crew before collecting a new display name; remembered names avoid re-entry on reload",
+    "Server validates bounded Unicode display names and binds updates to the sender seat; reconnect retains member names; no name stored in durable checkpoint records",
+    "Own avatar says You, others show their entered names; a Ready tick appears above each ready avatar; all-four barrier and cancellation remain",
+    "Ready can be selected before all four players arrive; optional paddle instructions replace the old verbose lobby card",
+    "Water geometry, foam, idle crew and gentle hull bob/heel run on a lobby presentation clock; authoritative tick, hull pose, rowing force and save progress stay frozen",
+    "Five viewport layouts keep labels separate; normal playing view hides the lobby labels and returns to its gameplay camera"
+  ],
+  "compatibility": "Additive optional Crew.name snapshot field plus a validated name message; protocol5 and physics0.9 unchanged. Older clients/SDK fixtures have PaddlerN fallbacks.",
+  "corrections": [
+    "Strict build rejected the generic/interleaved water attribute diagnostic; its version accessor now narrows the actual attribute type.",
+    "The initial boundary-name fixture accidentally used21 characters; the enforced20-character limit was retained and the fixture corrected.",
+    "A short landscape view exposed overlapping bow/stern labels; vertical spacing was corrected without relaxing the overlap checks."
+  ],
+  "humanPlaytest": false,
+  "physicalControllerTest": false,
+  "publicDeployment": false,
+  "privateDatabaseModified": false,
+  "remaining": [
+    "Rest of M2-D premium boat/crew/water/audio, cliff/material and performance polish",
+    "M2-E genuine four-human/newcomer and named-device acceptance",
+    "Existing CPU/GPU/frame-time and broader production/release gates"
+  ],
+  "verifiedUTC": "2026-10-20T17:10:19.917452+00:00",
+  "automatedTests": {
+    "command": "npm test",
+    "passed": 106,
+    "failed": 0,
+    "seconds": 84.000730583,
+    "log": "evidence/phase-2-lobby-tests.txt"
+  },
+  "verification": {
+    "lobby": {
+      "result": "PASS",
+      "evidence": "evidence/lobby.json",
+      "groups": 7,
+      "viewports": 5,
+      "maximumNameLayouts": 5
+    },
+    "onboarding": {
+      "result": "PASS",
+      "evidence": "evidence/onboarding.json",
+      "groups": 7
+    },
+    "browser": {
+      "result": "PASS",
+      "evidence": "evidence/browser.json",
+      "groups": 8
+    },
+    "accessibility": {
+      "result": "PASS",
+      "evidence": "evidence/accessibility.json",
+      "groups": 7
+    },
+    "touch": {
+      "result": "PASS",
+      "evidence": "evidence/touch.json",
+      "groups": 5
+    },
+    "reconnect": {
+      "result": "PASS",
+      "evidence": "evidence/reconnect.json",
+      "groups": 4
+    },
+    "camera": {
+      "result": "PASS",
+      "evidence": "evidence/camera.json",
+      "cases": 180
+    },
+    "graphics": {
+      "result": "PASS",
+      "evidence": "evidence/graphics.json",
+      "views": 23,
+      "maxCalls": 727,
+      "maxTriangles": 2252580,
+      "revisitResources": [
+        [
+          175,
+          11
+        ],
+        [
+          175,
+          11
+        ],
+        [
+          175,
+          11
+        ]
+      ]
+    },
+    "landing": {
+      "result": "PASS",
+      "evidence": "evidence/landing.json"
+    },
+    "rescue-browser": {
+      "result": "PASS",
+      "evidence": "evidence/rescue-browser.json",
+      "groups": 4
+    },
+    "load": {
+      "result": "PASS",
+      "evidence": "evidence/load.json",
+      "actualSeconds": 120.079,
+      "rooms": 4,
+      "clients": 16,
+      "resets": 32,
+      "reconnects": 4,
+      "violations": [],
+      "disposed": true
+    },
+    "tracker-browser": {
+      "result": "PASS",
+      "evidence": "evidence/tracker-browser.json",
+      "groups": 6
+    },
+    "staticChecks": "PASS: TypeScript, source/report freshness, two tracker integrity tests and git diff --check",
+    "deploymentSmoke": {
+      "result": "PASS",
+      "origin": "http://localhost:2571",
+      "checks": 8,
+      "scope": "Local in-memory authority only"
+    },
+    "performance": "Retained M2-C2 eight-case moving-clock capture, including its misses. Animated-lobby device/FPS acceptance not run.",
+    "commandLogs": [
+      "evidence/phase-2-lobby-accessibility.txt",
+      "evidence/phase-2-lobby-browser.txt",
+      "evidence/phase-2-lobby-build.txt",
+      "evidence/phase-2-lobby-camera.txt",
+      "evidence/phase-2-lobby-deployment.txt",
+      "evidence/phase-2-lobby-graphics.txt",
+      "evidence/phase-2-lobby-landing.txt",
+      "evidence/phase-2-lobby-load.txt",
+      "evidence/phase-2-lobby-lobby.txt",
+      "evidence/phase-2-lobby-onboarding.txt",
+      "evidence/phase-2-lobby-reconnect.txt",
+      "evidence/phase-2-lobby-rescue-browser.txt",
+      "evidence/phase-2-lobby-tests.txt",
+      "evidence/phase-2-lobby-touch.txt",
+      "evidence/phase-2-lobby-tracker.txt"
+    ]
+  },
+  "cpanel": {
+    "result": "PASS",
+    "archive": "releases/Bad-at-Boating-cPanel.zip",
+    "matchedSha256": {
+      "dist/index.html": "77d490887ccadee54ceaaa0bb3cbb74977864da0c86df00399339a46fe3db063",
+      "build/server.mjs": "1f4b0989764e41d572d563e1d32f5bd72185a7a4d7a929a7a9b743bb4d970758",
+      "dist/assets/index-IkD6Kd2Y.js": "92a400b52e86c1bffcf2ff19d0ac8a86bc99d7780dd5c4819bee26713d4e718e",
+      "dist/assets/index-FQ1In_a6.css": "e13834a5145e3476fd69b5e07e730c984069fb819d24e8d9634563913bffa14e"
+    },
+    "privateDataShipped": false,
+    "publicDeployment": false
+  }
+}

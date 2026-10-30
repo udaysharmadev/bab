@@ -1,0 +1,38 @@
+✔ Shared rounded blade preserves original render geometry and both convex cores stay inside its faces (13.272667ms)
+✔ Rounded volume catches edge-only contacts and sweeps, while shoulder gaps, sensors and own hull remain clear (48.610959ms)
+✖ Blade-only bracing is bounded, passive and nonlethal across seats, headings and heels (74.114208ms)
+✔ Rounded paddle retains its attachment envelope and rejects the old rectangular corners (6.281292ms)
+✔ Hull fibres align along each plank and share coordinates across its actual triangulation (0.392125ms)
+✔ Rope coil is compact, finite and can rest directly on the floor (1.552791ms)
+✔ Persistent shaft-only contacts are nonlethal and dissipative across every seat, heading and heel (529.074875ms)
+✔ Holding a dipped shaft still produces no free force; release and inactive paddles stop bracing (14.645167ms)
+✔ Shaft queries exclude own hull, sensors and separated solids (5.601625ms)
+✔ Moving-solid relative velocity and saturated impacts remain bounded for every seat (129.607666ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 9
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 936.18975
+
+✖ failing tests:
+
+test at tests/blade.test.ts:1:3961
+✖ Blade-only bracing is bounded, passive and nonlethal across seats, headings and heels (74.114208ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(force>0&&force<=260.00001)
+  
+      at TestContext.<anonymous> (/Users/uday/Bad at Boating/tests/blade.test.ts:71:7)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

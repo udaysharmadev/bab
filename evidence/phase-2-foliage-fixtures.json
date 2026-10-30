@@ -1,0 +1,74 @@
+[
+  {
+    "fixture": "foliage",
+    "exitCode": 0,
+    "executionScope": "Rerun after controlled-clock and unique help-ID correction",
+    "firstAttemptSeconds": 2.38
+  },
+  {
+    "fixture": "lobby",
+    "exitCode": 0,
+    "seconds": 12.83
+  },
+  {
+    "fixture": "onboarding",
+    "exitCode": 0,
+    "executionScope": "Rerun after controlled-clock and unique help-ID correction",
+    "firstAttemptSeconds": 5.01
+  },
+  {
+    "fixture": "browser",
+    "exitCode": 0,
+    "seconds": 40.98
+  },
+  {
+    "fixture": "accessibility",
+    "exitCode": 0,
+    "executionScope": "Rerun after controlled-clock and unique help-ID correction",
+    "firstAttemptSeconds": 19.94
+  },
+  {
+    "fixture": "touch",
+    "exitCode": 0,
+    "seconds": 12.16
+  },
+  {
+    "fixture": "reconnect",
+    "exitCode": 0,
+    "seconds": 17.42
+  },
+  {
+    "fixture": "audio",
+    "exitCode": 0,
+    "seconds": 8.72
+  },
+  {
+    "fixture": "controls",
+    "exitCode": 0,
+    "seconds": 175.54
+  },
+  {
+    "fixture": "rescue-browser",
+    "exitCode": 0,
+    "seconds": 36.53
+  },
+  {
+    "fixture": "bends-browser",
+    "exitCode": 0,
+    "seconds": 20.73
+  },
+  {
+    "fixture": "camera",
+    "exitCode": 0,
+    "seconds": 10.29
+  },
+  {
+    "fixture": "graphics",
+    "exitCode": 0,
+    "seconds": 64.54
+  },
+  {
+    "fixture": "save-browser",
+    "exitCode": 0
+  }
+]

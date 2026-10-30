@@ -5,6 +5,8 @@ import { Server } from '@colyseus/core';
 import { WebSocketTransport } from '@colyseus/ws-transport';
 import { initPhysics } from '../shared/simulation';
 import { BoatRoom } from './BoatRoom';
+import { FanRoom } from './FanRoom';
+import { FAN_PROTOCOL, FAN_PHYSICS, FAN_WORLD } from '../shared/fan';
 import { voyageStore, WORLD_VERSION } from './voyages';
 import { PROTOCOL_VERSION, PHYSICS_VERSION } from '../shared/protocol';
 
@@ -19,7 +21,7 @@ const server = new Server({
     app.use((req: IncomingMessage, res: ServerResponse) => {
   if (req.url === '/health') {
     res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
-    res.end(JSON.stringify({ game: 'Bad at Boating', protocol: PROTOCOL_VERSION, physics: PHYSICS_VERSION, world: WORLD_VERSION, status: 'ready' }));
+    res.end(JSON.stringify({ game: 'Bad at Boating', protocol: PROTOCOL_VERSION, physics: PHYSICS_VERSION, world: WORLD_VERSION, fan:{protocol:FAN_PROTOCOL,physics:FAN_PHYSICS,world:FAN_WORLD}, status: 'ready' }));
     return;
   }
   let pathname: string;
@@ -41,6 +43,7 @@ const server = new Server({
   },
 });
 server.define('boat', BoatRoom);
-const port = Number(process.env.PORT ?? 2567);
+server.define('fan-raft', FanRoom);
+const port = Number.parseInt(process.env.PORT ?? '2567', 10) || 2567;
 await server.listen(port, '0.0.0.0');
 console.log(`Bad at Boating authority listening on port ${port}`);

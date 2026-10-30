@@ -1,0 +1,12 @@
+✔ Shared rounded blade preserves original render geometry and both convex cores stay inside its faces (11.339ms)
+✔ Rounded volume catches edge-only contacts and sweeps, while shoulder gaps, sensors and own hull remain clear (28.306542ms)
+✔ Blade-only bracing is bounded, passive and nonlethal across seats, headings and heels (435.461375ms)
+✔ Blade-only moving-frame response, saturation, resting contact and release stay bounded (133.338792ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 825.705042

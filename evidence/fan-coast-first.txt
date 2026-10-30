@@ -1,0 +1,57 @@
+{"case":"fan-opposite-thrust","cases":[{"seat":0,"yaw":0,"speed":0.5815961217480616},{"seat":1,"yaw":0,"speed":0.5815966701468134},{"seat":2,"yaw":0,"speed":0.581596543128278},{"seat":3,"yaw":0,"speed":0.5815962484103157},{"seat":0,"yaw":1.5707963267948966,"speed":0.5815965437451198},{"seat":1,"yaw":1.5707963267948966,"speed":0.5815959112544399},{"seat":2,"yaw":1.5707963267948966,"speed":0.581596332469102},{"seat":3,"yaw":1.5707963267948966,"speed":0.5815967117113472},{"seat":0,"yaw":3.141592653589793,"speed":0.5815962484103157},{"seat":1,"yaw":3.141592653589793,"speed":0.581596543128278},{"seat":2,"yaw":3.141592653589793,"speed":0.5815966701468134},{"seat":3,"yaw":3.141592653589793,"speed":0.5815961217480616},{"seat":0,"yaw":-1.5707963267948966,"speed":0.5815967117113472},{"seat":1,"yaw":-1.5707963267948966,"speed":0.5815962903232508},{"seat":2,"yaw":-1.5707963267948966,"speed":0.5815959112544399},{"seat":3,"yaw":-1.5707963267948966,"speed":0.5815965437451198}]}
+{"case":"fan-offset-torque","values":[{"seat":0,"direction":-1,"yaw":0.1693756878376007},{"seat":0,"direction":1,"yaw":-0.16952776908874512},{"seat":1,"direction":-1,"yaw":0.1694006472826004},{"seat":1,"direction":1,"yaw":-0.169481560587883},{"seat":2,"direction":-1,"yaw":0.1693822741508484},{"seat":2,"direction":1,"yaw":-0.16950209438800812},{"seat":3,"direction":-1,"yaw":0.16941776871681213},{"seat":3,"direction":1,"yaw":-0.16948281228542328}]}
+{"case":"fan-buoyancy-60s","maxSpeed":1.8165227544386653e-8,"maxYaw":1.490587830543518,"y":-0.10313278436660767}
+✔ Fan input rejects forged seats, nonfinite values, stale/oversized sequences and extra force; touch/keyboard aliases stay independent (4.254625ms)
+✔ Each fan pushes opposite its air at four headings, without a hidden centred yaw command (109.786709ms)
+✔ Opposite fans and four equal radial fans cancel; scooting alone adds no horizontal propulsion (16.954042ms)
+✔ Small player offsets reverse actual torque at every station and stay bounded (30.404458ms)
+✔ Fan cadence is simulation-owned; release/staleness/pause cannot replay held power (10.530083ms)
+✔ Sampled buoyancy stays finite, rights a heel and bounds repeated simultaneous thrust (54.423958ms)
+✖ Real spike contacts including a fast approach fail once, ordinary rocks/banks bump, retry is clear, and finish freezes (18.789584ms)
+✖ A four-seat input pilot traverses the complete feel course without teleports or resets (302.884834ms)
+✔ Predicted spike near misses remain safe until real touch; the actual moving sweeper can strike the raft (4.172ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 7
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 729.61375
+
+✖ failing tests:
+
+test at tests/fan.test.ts:1:5871
+✖ Real spike contacts including a fast approach fail once, ordinary rocks/banks bump, retry is clear, and finish freezes (18.789584ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'afloat'
+  - 'wrecked'
+  
+      at TestContext.<anonymous> (/Users/uday/Bad at Boating/tests/fan.test.ts:91:69)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'afloat',
+    expected: 'wrecked',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/fan.test.ts:1:7358
+✖ A four-seat input pilot traverses the complete feel course without teleports or resets (302.884834ms)
+  AssertionError [ERR_ASSERTION]: Slice pilot duration 145.43333333333334
+      at TestContext.<anonymous> (/Users/uday/Bad at Boating/tests/fan.test.ts:124:36)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

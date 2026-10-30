@@ -1,0 +1,199 @@
+{
+  "result": "PASS",
+  "physics": "basin-0.13",
+  "cases": [
+    {
+      "seat": 0,
+      "hullSpeed": 0,
+      "solidSpeed": 0,
+      "force": 0
+    },
+    {
+      "seat": 0,
+      "hullSpeed": 1,
+      "solidSpeed": 1,
+      "force": 0
+    },
+    {
+      "seat": 0,
+      "hullSpeed": 1,
+      "solidSpeed": 0,
+      "force": 78.55575558834707
+    },
+    {
+      "seat": 0,
+      "hullSpeed": 3,
+      "solidSpeed": 2,
+      "force": 78.55575558834707
+    },
+    {
+      "seat": 0,
+      "hullSpeed": 0,
+      "solidSpeed": -1,
+      "force": 78.55575558834707
+    },
+    {
+      "seat": 0,
+      "hullSpeed": 0,
+      "solidSpeed": 1,
+      "force": 0
+    },
+    {
+      "seat": 0,
+      "hullSpeed": 0,
+      "solidSpeed": 20,
+      "force": 0
+    },
+    {
+      "seat": 0,
+      "hullSpeed": 20,
+      "solidSpeed": 0,
+      "force": 225.75581000059307
+    },
+    {
+      "seat": 1,
+      "hullSpeed": 0,
+      "solidSpeed": 0,
+      "force": 0
+    },
+    {
+      "seat": 1,
+      "hullSpeed": 1,
+      "solidSpeed": 1,
+      "force": 0
+    },
+    {
+      "seat": 1,
+      "hullSpeed": 1,
+      "solidSpeed": 0,
+      "force": 78.55644245266343
+    },
+    {
+      "seat": 1,
+      "hullSpeed": 3,
+      "solidSpeed": 2,
+      "force": 78.55645314841773
+    },
+    {
+      "seat": 1,
+      "hullSpeed": 0,
+      "solidSpeed": -1,
+      "force": 78.55644245266343
+    },
+    {
+      "seat": 1,
+      "hullSpeed": 0,
+      "solidSpeed": 1,
+      "force": 0
+    },
+    {
+      "seat": 1,
+      "hullSpeed": 0,
+      "solidSpeed": 20,
+      "force": 0
+    },
+    {
+      "seat": 1,
+      "hullSpeed": 20,
+      "solidSpeed": 0,
+      "force": 225.75646797554347
+    },
+    {
+      "seat": 2,
+      "hullSpeed": 0,
+      "solidSpeed": 0,
+      "force": 0
+    },
+    {
+      "seat": 2,
+      "hullSpeed": 1,
+      "solidSpeed": 1,
+      "force": 0
+    },
+    {
+      "seat": 2,
+      "hullSpeed": 1,
+      "solidSpeed": 0,
+      "force": 78.55575558834707
+    },
+    {
+      "seat": 2,
+      "hullSpeed": 3,
+      "solidSpeed": 2,
+      "force": 78.55575558834707
+    },
+    {
+      "seat": 2,
+      "hullSpeed": 0,
+      "solidSpeed": -1,
+      "force": 78.55575558834707
+    },
+    {
+      "seat": 2,
+      "hullSpeed": 0,
+      "solidSpeed": 1,
+      "force": 0
+    },
+    {
+      "seat": 2,
+      "hullSpeed": 0,
+      "solidSpeed": 20,
+      "force": 0
+    },
+    {
+      "seat": 2,
+      "hullSpeed": 20,
+      "solidSpeed": 0,
+      "force": 225.75581000059307
+    },
+    {
+      "seat": 3,
+      "hullSpeed": 0,
+      "solidSpeed": 0,
+      "force": 0
+    },
+    {
+      "seat": 3,
+      "hullSpeed": 1,
+      "solidSpeed": 1,
+      "force": 0
+    },
+    {
+      "seat": 3,
+      "hullSpeed": 1,
+      "solidSpeed": 0,
+      "force": 78.55644245266343
+    },
+    {
+      "seat": 3,
+      "hullSpeed": 3,
+      "solidSpeed": 2,
+      "force": 78.55645314841773
+    },
+    {
+      "seat": 3,
+      "hullSpeed": 0,
+      "solidSpeed": -1,
+      "force": 78.55644245266343
+    },
+    {
+      "seat": 3,
+      "hullSpeed": 0,
+      "solidSpeed": 1,
+      "force": 0
+    },
+    {
+      "seat": 3,
+      "hullSpeed": 0,
+      "solidSpeed": 20,
+      "force": 0
+    },
+    {
+      "seat": 3,
+      "hullSpeed": 20,
+      "solidSpeed": 0,
+      "force": 225.75646797554347
+    }
+  ],
+  "forceCap": 260
+}

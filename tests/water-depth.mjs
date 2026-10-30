@@ -15,6 +15,10 @@ try{
  assert(difference(result.magentaOutside,result.cyanOutside)<=2,'Above-water foreground must not leak into refracted neighboring pixels');
  assert(difference(result.foregroundWater,result.foregroundDry)<=2,'Opaque foreground remains unaffected by water');
  assert(result.lowSkipsCapture&&result.restored,'Low must skip the pass; capture must restore renderer/camera state');
+ assert(result.exceptionRestored,'Injected capture failure must restore every touched render state');
+ assert(result.nativeDepth,'High transmission must use the actual native depth attachment');
+ assert.deepEqual(result.depthSize,result.captureSize,'Native depth must resize with its color target');
+ assert(result.capturePasses.every(({low,calls})=>calls===(low?0:1)),'High captures color and depth with exactly one render; Low captures neither');
  assert(Math.max(...result.textureCounts)-Math.min(...result.textureCounts)<=1,'Quality toggles must not leak capture textures');
  assert(result.captureSize[0]<=1280&&result.captureSize[1]<=960);
  assert.deepEqual(errors,[]);await page.screenshot({path:'evidence/water-depth-fixture.png'});

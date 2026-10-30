@@ -1,3 +1,4 @@
+import {confirmName} from './support/name.mjs';
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
@@ -11,6 +12,7 @@ await mkdir('evidence', { recursive: true });
 async function newPage(viewport = { width: 1440, height: 960 }) {
   const context = await browser.newContext({ viewport, deviceScaleFactor: 1 });
   const page = await context.newPage(); pages.push(page);
+  await page.addInitScript(()=>localStorage.setItem('bad-at-boating-name','River Tester'));
   page.setDefaultTimeout(12000);
   page.setDefaultNavigationTimeout(12000);
   page.on('pageerror', error => errors.push(error.message));
@@ -37,11 +39,12 @@ try {
   evidence.checks.push('Main menu appears before a room is created; only Play with Friends and Join Crew are shown; extra title text/buttons are absent');
   await first.getByRole('button', { name: 'Play with Friends', exact: true }).click();
   await first.waitForFunction(() => document.body.dataset.stage === 'lobby' && document.body.dataset.seat === '0');
+  await confirmName(first);
   const invite = first.url();
   const lobbyTick = await data(first, 'tick');
   await first.keyboard.down('ArrowDown'); await first.waitForTimeout(200); await first.keyboard.up('ArrowDown');
   assert.equal(await data(first, 'tick'), lobbyTick);
-  assert.equal(await first.getByRole('button', { name: 'Ready to Row' }).isEnabled(), false);
+  assert.equal(await first.getByRole('button', { name: 'Ready', exact:true }).isEnabled(), true);
   await first.screenshot({ path: 'evidence/game-lobby.png' });
   for (let i = 1; i < 4; i++) {
     const page = await newPage({width:640,height:400});
@@ -52,16 +55,17 @@ try {
       await page.getByRole('button', { name: 'Join Boat' }).click();
     } else await page.goto(invite);
     await page.waitForFunction(seat => document.body.dataset.seat === String(seat), i);
+    await confirmName(page);
     await page.getByRole('button',{name:'Open game menu'}).click();
     await page.getByLabel('Lower graphics').check();
     await page.getByRole('button',{name:'Back to the River'}).click();
   }
   const crew = pages.slice(0, 4);
   await first.waitForFunction(() => document.querySelectorAll('.crew-seat.connected').length === 4);
-  evidence.checks.push('Private crew is frozen safely at the dock; join form and invite links allocate four distinct seats');
-  for (const page of crew.slice(0, 3)) await page.getByRole('button', { name: 'Ready to Row', exact: true }).click();
+  evidence.checks.push('Private crew stays anchored at the animated dock; join form and invite links allocate four distinct seats');
+  for (const page of crew.slice(0, 3)) await page.getByRole('button', { name: 'Ready', exact: true }).click();
   assert.equal(await data(first, 'stage'), 'lobby');
-  await crew[3].getByRole('button', { name: 'Ready to Row', exact: true }).click();
+  await crew[3].getByRole('button', { name: 'Ready', exact: true }).click();
   await Promise.all(crew.map(page => page.waitForFunction(() => document.body.dataset.stage === 'playing')));
   assert.equal(await first.getByRole('button').count(), 1);
   evidence.checks.push('Four ready clients launch; ordinary gameplay shows only the small menu button');

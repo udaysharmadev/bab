@@ -1,0 +1,331 @@
+
+> bad-at-boating@0.1.0 test:audio
+> node tests/audio.mjs
+
+{
+  "result": "PASS",
+  "browser": "155.0.8059.82",
+  "automated": true,
+  "humanListening": false,
+  "base": "http://localhost:2571",
+  "checks": [
+    "Actual stereo PCM: dock, drift, rowing, rapids and left/right immersed brace layers; volume scales output",
+    "Actual PCM silence after pause, wreck, completion, mute, menu/visibility gate and clear",
+    "200 overlapping break requests stay within 24 voices, do not clip and release all ended source graphs",
+    "Built game unlocks on a real gesture; menu silences native output and mute/volume persist across same-seat reload",
+    "Real authority launch/rowing produces sound; playing menu fade and resume restore native output",
+    "Synthetic visibility transition exercises the built visibility gate and restores native output without replaying strokes",
+    "Actual peer transport loss pauses and fades water output; same-seat reconnect resumes ambience"
+  ],
+  "pcm": {
+    "audible": {
+      "peak": 0.25976717472076416,
+      "rms": 0.016177378159096936,
+      "left": 2.443082340552639,
+      "right": 0.5137638370757216,
+      "samples": 264600
+    },
+    "muted": {
+      "peak": 0,
+      "rms": 0,
+      "left": 0,
+      "right": 0,
+      "samples": 264600
+    },
+    "scenarios": {
+      "dock": {
+        "whole": {
+          "peak": 0.07488346099853516,
+          "rms": 0.01750060266599865,
+          "left": 35.993068198233445,
+          "right": 35.59228706818136,
+          "stereoDifference": 0.024699196693629178
+        },
+        "tail": {
+          "peak": 0.05756056308746338,
+          "rms": 0.01723970291648128,
+          "left": 9.282755490419284,
+          "right": 9.067421123774452,
+          "stereoDifference": 0.024474071972501184
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "drift": {
+        "whole": {
+          "peak": 0.11767399311065674,
+          "rms": 0.027501163757981884,
+          "left": 88.88240001327993,
+          "right": 87.89238571470514,
+          "stereoDifference": 0.03881330642828506
+        },
+        "tail": {
+          "peak": 0.09045231342315674,
+          "rms": 0.02709096155578379,
+          "left": 22.922722328408604,
+          "right": 22.390978537554254,
+          "stereoDifference": 0.03845925536256979
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "row": {
+        "whole": {
+          "peak": 0.1925148367881775,
+          "rms": 0.04841226611339842,
+          "left": 273.4987927544586,
+          "right": 274.31000030767285,
+          "stereoDifference": 0.06859469032621264
+        },
+        "tail": {
+          "peak": 0.18352782726287842,
+          "rms": 0.04847241767342886,
+          "left": 73.29435125421348,
+          "right": 71.77312538146379,
+          "stereoDifference": 0.06925719302927878
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "rapids": {
+        "whole": {
+          "peak": 0.17323195934295654,
+          "rms": 0.03862353750741773,
+          "left": 176.68787161910123,
+          "right": 171.9883019741451,
+          "stereoDifference": 0.05452031161583378
+        },
+        "tail": {
+          "peak": 0.15476489067077637,
+          "rms": 0.03831286630342198,
+          "left": 46.39960705701283,
+          "right": 44.22997591789715,
+          "stereoDifference": 0.05435136270528616
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "port": {
+        "whole": {
+          "peak": 0.17598271369934082,
+          "rms": 0.035137525278923304,
+          "left": 192.77112744698854,
+          "right": 95.80507726815262,
+          "stereoDifference": 0.04632993628452083
+        },
+        "tail": {
+          "peak": 0.17598271369934082,
+          "rms": 0.03506846219671256,
+          "left": 51.49280191907573,
+          "right": 24.437326976606943,
+          "stereoDifference": 0.046256120827480006
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "starboard": {
+        "whole": {
+          "peak": 0.1725197434425354,
+          "rms": 0.03513368969849243,
+          "left": 97.64499407209941,
+          "right": 190.86821264741923,
+          "stereoDifference": 0.04634729964755643
+        },
+        "tail": {
+          "peak": 0.151325523853302,
+          "rms": 0.03502682522266746,
+          "left": 25.480951238186663,
+          "right": 50.26898019375325,
+          "stereoDifference": 0.04616898187935381
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "quiet": {
+        "whole": {
+          "peak": 0.029418468475341797,
+          "rms": 0.0068752908452020855,
+          "left": 5.55514985144762,
+          "right": 5.493273953497127,
+          "stereoDifference": 0.009703326414140064
+        },
+        "tail": {
+          "peak": 0.022613048553466797,
+          "rms": 0.006772740513604914,
+          "left": 1.4326701662925885,
+          "right": 1.3994362420855104,
+          "stereoDifference": 0.009614813839915427
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "muted": {
+        "whole": {
+          "peak": 0,
+          "rms": 0,
+          "left": 0,
+          "right": 0,
+          "stereoDifference": 0
+        },
+        "tail": {
+          "peak": 0,
+          "rms": 0,
+          "left": 0,
+          "right": 0,
+          "stereoDifference": 0
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "paused": {
+        "whole": {
+          "peak": 0.08497011661529541,
+          "rms": 0.009128973813751875,
+          "left": 9.780354120103414,
+          "right": 9.69844136900867,
+          "stereoDifference": 0.013014154889952058
+        },
+        "tail": {
+          "peak": 0,
+          "rms": 0,
+          "left": 0,
+          "right": 0,
+          "stereoDifference": 0
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "wreck": {
+        "whole": {
+          "peak": 0.08497011661529541,
+          "rms": 0.009128973813751875,
+          "left": 9.780354120103414,
+          "right": 9.69844136900867,
+          "stereoDifference": 0.013014154889952058
+        },
+        "tail": {
+          "peak": 0,
+          "rms": 0,
+          "left": 0,
+          "right": 0,
+          "stereoDifference": 0
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "complete": {
+        "whole": {
+          "peak": 0.1137990951538086,
+          "rms": 0.015217373355900555,
+          "left": 27.076931910342882,
+          "right": 27.048025478132626,
+          "stereoDifference": 0.013014154939690123
+        },
+        "tail": {
+          "peak": 0,
+          "rms": 0,
+          "left": 0,
+          "right": 0,
+          "stereoDifference": 0
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "inaudible": {
+        "whole": {
+          "peak": 0.08497011661529541,
+          "rms": 0.00840415181602201,
+          "left": 8.322283278812733,
+          "right": 8.186153596169717,
+          "stereoDifference": 0.011965170252974344
+        },
+        "tail": {
+          "peak": 0,
+          "rms": 0,
+          "left": 0,
+          "right": 0,
+          "stereoDifference": 0
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "disabled": {
+        "whole": {
+          "peak": 0.08497011661529541,
+          "rms": 0.00840415181602201,
+          "left": 8.322283278812733,
+          "right": 8.186153596169717,
+          "stereoDifference": 0.011965170252974344
+        },
+        "tail": {
+          "peak": 0,
+          "rms": 0,
+          "left": 0,
+          "right": 0,
+          "stereoDifference": 0
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "clear": {
+        "whole": {
+          "peak": 0.08497011661529541,
+          "rms": 0.00840415181602201,
+          "left": 8.322283278812733,
+          "right": 8.186153596169717,
+          "stereoDifference": 0.011965170252974344
+        },
+        "tail": {
+          "peak": 0,
+          "rms": 0,
+          "left": 0,
+          "right": 0,
+          "stereoDifference": 0
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      }
+    },
+    "stress": {
+      "peak": 0.9448018670082092,
+      "rms": 0.10086600583323202,
+      "left": 1372.303563883869,
+      "right": 1319.7239058416742,
+      "stereoDifference": 0.1208260146228364,
+      "peakVoices": 24,
+      "resources": {
+        "ambientLayers": 7,
+        "activeVoices": 0
+      }
+    }
+  },
+  "errors": []
+}

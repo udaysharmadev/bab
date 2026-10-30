@@ -1,0 +1,12 @@
+✔ Persistent shaft-only contacts are nonlethal and dissipative across every seat, heading and heel (463.4605ms)
+✔ Holding a dipped shaft still produces no free force; release and inactive paddles stop bracing (13.399792ms)
+✔ Shaft queries exclude own hull, sensors and separated solids (5.07825ms)
+✔ Moving-solid relative velocity and saturated impacts remain bounded for every seat (124.164083ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 793.324292

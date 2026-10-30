@@ -1,0 +1,8 @@
+{
+  "result": "PASS",
+  "renderedDividers": 4,
+  "stationSamples": 1604,
+  "bodyEnvelopeRadius": 0.34,
+  "minimumClearanceMetres": 0.2582790397802846,
+  "scope": "Actual batched raft divider geometry and all bounded player station paths; fan leaf reach is separate"
+}

@@ -1,11 +1,11 @@
 {
-  "date": "2026-10-19T20:53:45.403Z",
+  "date": "2026-10-21T16:05:03.898Z",
   "base": "http://localhost:2571",
   "automated": true,
   "humanPlaytest": false,
   "checks": [
     "Main menu appears before a room is created; only Play with Friends and Join Crew are shown; extra title text/buttons are absent",
-    "Private crew is frozen safely at the dock; join form and invite links allocate four distinct seats",
+    "Private crew stays anchored at the animated dock; join form and invite links allocate four distinct seats",
     "Four ready clients launch; ordinary gameplay shows only the small menu button",
     "Mouse has no paddle effect; holding Up alone repeats at least two server-confirmed strokes on the local seat",
     "Refresh rejoins the same crew and seat",
@@ -25,30 +25,30 @@
       "width": 907,
       "height": 510,
       "bounds": {
-        "left": 0.3910357965305241,
-        "right": 0.6463628266990762,
-        "top": 0.42392526521319845,
-        "bottom": 0.7791856009695333
+        "left": 0.39123258397902905,
+        "right": 0.6470469095462011,
+        "top": 0.4217771603698908,
+        "bottom": 0.7766522311238564
       }
     },
     {
       "width": 700,
       "height": 982,
       "bounds": {
-        "left": 0.3134257745884947,
-        "right": 0.7593301839555925,
-        "top": 0.43940993906854636,
-        "bottom": 0.703209267545106
+        "left": 0.3139244533294277,
+        "right": 0.759653635510535,
+        "top": 0.44072875680027374,
+        "bottom": 0.7023809430575345
       }
     },
     {
       "width": 480,
       "height": 900,
       "bounds": {
-        "left": 0.32572951779687176,
-        "right": 0.7494175575257499,
-        "top": 0.453830600576788,
-        "bottom": 0.6511936803095314
+        "left": 0.3237817384992395,
+        "right": 0.7474812075673416,
+        "top": 0.45409936709195825,
+        "bottom": 0.6509336986376143
       }
     }
   ],

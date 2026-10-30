@@ -1,0 +1,146 @@
+{
+  "game": "Bad at Boating",
+  "generatedUTC": "2026-10-20T10:51:57.679741+00:00",
+  "baseCommit": "1dee20db314dda485c734932df48e9780bb53d03",
+  "workingTreeChanges": true,
+  "protocol": 5,
+  "physics": "basin-0.6",
+  "world": "waterworks-1",
+  "scope": "Locally verified foundation implementation; complete game and production acceptance remain partial.",
+  "sourceSha256": "3c2259352368bdd4011f83f499b88cecead8cd08f67a66fbe5480b3735dc0a53",
+  "sourceHashScope": "Sorted relative path + NUL + bytes + NUL for src/tests/scripts/docs/.github and listed root metadata; excludes generated build/evidence/reference/private data.",
+  "fileCount": 91,
+  "build": "PASS",
+  "typecheck": "PASS",
+  "automatedTests": {
+    "command": "npm test",
+    "passed": 81,
+    "failed": 0,
+    "seconds": 74.832
+  },
+  "fixtures": {
+    "browser": {
+      "result": "PASS",
+      "checks": 8,
+      "errors": [],
+      "evidence": "evidence/browser.json"
+    },
+    "controls-after": {
+      "result": "PASS",
+      "checks": 71,
+      "errors": [],
+      "evidence": "evidence/controls-after.json"
+    },
+    "accessibility": {
+      "result": "PASS",
+      "checks": 7,
+      "errors": [],
+      "evidence": "evidence/accessibility.json"
+    },
+    "touch": {
+      "result": "PASS",
+      "checks": 5,
+      "errors": [],
+      "evidence": "evidence/touch.json"
+    },
+    "reconnect": {
+      "result": "PASS",
+      "checks": 4,
+      "errors": [],
+      "evidence": "evidence/reconnect.json"
+    },
+    "camera": {
+      "result": "PASS",
+      "checks": 92,
+      "errors": [],
+      "evidence": "evidence/camera.json"
+    },
+    "graphics": {
+      "result": "PASS",
+      "checks": 21,
+      "errors": [],
+      "evidence": "evidence/graphics.json"
+    },
+    "water-depth": {
+      "result": "PASS",
+      "checks": 0,
+      "errors": [],
+      "evidence": "evidence/water-depth.json"
+    },
+    "tracker-browser": {
+      "result": "PASS",
+      "checks": 5,
+      "errors": [],
+      "evidence": "evidence/tracker-browser.json"
+    }
+  },
+  "graphics": {
+    "views": 21,
+    "titleViewports": 3,
+    "maxCalls": 723,
+    "maxTriangles": 2253676,
+    "priorRecordedMaxTriangles": 6033248,
+    "residencyCycles": 3,
+    "maxVegetationChunks": 6,
+    "startRevisitGeometryTextureCounts": [
+      [
+        174,
+        11
+      ],
+      [
+        174,
+        11
+      ],
+      [
+        174,
+        11
+      ]
+    ],
+    "scope": "Complete pass counts and bounded local GPU residency; not FPS or90-minute leak certification."
+  },
+  "tracker": {
+    "deliverables": 49,
+    "obstacleConcepts": 80,
+    "signatureEncounters": 10,
+    "regionCards": 14,
+    "acceptedScopePoints": 2,
+    "productionReadyRegions": 0
+  },
+  "artifacts": {
+    "dist/assets/index-CpzrwBTI.js": {
+      "bytes": 829865,
+      "sha256": "4560b905b8554c643329708263f5da5427ddbc1f505f84e8fca0750c00c24a66"
+    },
+    "dist/assets/index-QafvikyD.css": {
+      "bytes": 7921,
+      "sha256": "b81cb0f7b7187db5965e36108faf348f0f24075640c6fd0436007115caaaa517"
+    },
+    "dist/index.html": {
+      "bytes": 7015,
+      "sha256": "9c0e89152635a60a5fa94f2dfad947845daa9a0e1251559c216bacec3eba88fa"
+    },
+    "build/server.mjs": {
+      "bytes": 53578,
+      "sha256": "9c85c2aa91500303e5cc1d750fcca9f3e197e657473c19e7d78d2ee1782ecf1b"
+    },
+    "releases/Bad-at-Boating-cPanel.zip": {
+      "bytes": 277159,
+      "sha256": "550276d81a0bece240b67c25bba3fc8675287e62ba998e824684c010e93da545"
+    }
+  },
+  "preview": "http://localhost:2571",
+  "previewDatabase": "Isolated in-memory QA database; no private durable database replaced.",
+  "cpanel": {
+    "packaged": true,
+    "cleanDependencyInstall": "NOT RERUN; runtime dependencies unchanged",
+    "publicDeployment": "NOT RUN for this release"
+  },
+  "humanPlaytest": false,
+  "physicalControllerTest": false,
+  "namedDevicePerformance": false,
+  "longInternetBrowserSoak": false,
+  "remoteCI": "NOT RUN; workflow updated",
+  "containerExecution": "NOT RUN",
+  "actualCommandOutput": "evidence/production-checks.txt",
+  "finalStaticChecks": "PASS: TypeScript, tracker validation/report freshness, tracker integrity unit check and git diff --check after final reporting edits."
+}

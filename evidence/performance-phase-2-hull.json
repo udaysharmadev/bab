@@ -1,0 +1,561 @@
+{
+  "result": "PASS",
+  "date": "2026-10-20T11:30:38.125Z",
+  "browser": "155.0.8059.82",
+  "headless": true,
+  "snapshotHz": 20,
+  "advancingClock": true,
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "osRelease": "27.0.0",
+    "cpu": "Apple M4",
+    "logicalCpus": 10,
+    "totalMemoryBytes": 17179869184
+  },
+  "scope": "Local headless authored scene measurements at1080p with advancing20Hz snapshots/waves/effects, not a named consumer-device matrix, human gameplay or universal60FPS certification. PASS means measurement completed without render errors; target misses remain visible. CPU covers RiverScene.render only; GPU includes its color/reflection/shadow/capture work. Heap/DOM metrics are observations, not leak certification.",
+  "framesPerCase": 90,
+  "cases": [
+    {
+      "view": "crew",
+      "quality": "High",
+      "cpuRenderMs": {
+        "samples": 90,
+        "p50": 2.899999998509884,
+        "p95": 3.7999999970197678,
+        "max": 4.5
+      },
+      "cpuWaterUpdateMs": {
+        "samples": 90,
+        "p50": 0,
+        "p95": 0.5,
+        "max": 1
+      },
+      "frameIntervalMs": {
+        "samples": 89,
+        "p50": 16.699999999999818,
+        "p95": 16.799999999999727,
+        "max": 16.799999999999955
+      },
+      "gpuRenderMs": {
+        "samples": 90,
+        "p50": 13.185416,
+        "p95": 14.43275,
+        "max": 15.511249
+      },
+      "snapshotUpdates": 27,
+      "waterGeometryUpdates": 26,
+      "gpuQueriesDiscarded": 0,
+      "gpuQueriesSkipped": 0,
+      "seconds": 1.5345,
+      "gpu": {
+        "vendor": "Google Inc. (Apple)",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "timerAvailable": true
+      },
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "render": {
+        "calls": 550,
+        "triangles": 1330594,
+        "geometries": 174,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 2,
+        "captureTriangles": 288,
+        "captureSize": [
+          1248,
+          702
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "heapAndDomBefore": {
+        "Documents": 1,
+        "JSEventListeners": 20,
+        "Nodes": 44,
+        "JSHeapUsedSize": 9205848,
+        "JSHeapTotalSize": 10174464
+      },
+      "heapAndDomAfter": {
+        "Documents": 1,
+        "JSEventListeners": 20,
+        "Nodes": 44,
+        "JSHeapUsedSize": 11248676,
+        "JSHeapTotalSize": 16465920
+      },
+      "targets": {
+        "cpuRenderP95Ms": 4,
+        "gpuRenderP95Ms": 10.5,
+        "frameIntervalP95Ms": 16.67
+      },
+      "targetComparison": {
+        "cpu": "MEETS",
+        "gpu": "MISSES",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "crew",
+      "quality": "Low",
+      "cpuRenderMs": {
+        "samples": 90,
+        "p50": 1.3999999985098839,
+        "p95": 3.1999999955296516,
+        "max": 4.200000002980232
+      },
+      "cpuWaterUpdateMs": {
+        "samples": 90,
+        "p50": 0,
+        "p95": 0.8000000044703484,
+        "max": 1.3000000044703484
+      },
+      "frameIntervalMs": {
+        "samples": 89,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000045,
+        "max": 16.799999999999955
+      },
+      "gpuRenderMs": {
+        "samples": 90,
+        "p50": 6.602875,
+        "p95": 8.744083,
+        "max": 8.991041
+      },
+      "snapshotUpdates": 28,
+      "waterGeometryUpdates": 25,
+      "gpuQueriesDiscarded": 0,
+      "gpuQueriesSkipped": 0,
+      "seconds": 1.5125,
+      "gpu": {
+        "vendor": "Google Inc. (Apple)",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "timerAvailable": true
+      },
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "render": {
+        "calls": 186,
+        "triangles": 406826,
+        "geometries": 162,
+        "textures": 6,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "heapAndDomBefore": {
+        "Documents": 1,
+        "JSEventListeners": 20,
+        "Nodes": 44,
+        "JSHeapUsedSize": 8871804,
+        "JSHeapTotalSize": 10174464
+      },
+      "heapAndDomAfter": {
+        "Documents": 1,
+        "JSEventListeners": 20,
+        "Nodes": 44,
+        "JSHeapUsedSize": 10618516,
+        "JSHeapTotalSize": 14368768
+      },
+      "targets": {
+        "cpuRenderP95Ms": 4,
+        "gpuRenderP95Ms": 10.5,
+        "frameIntervalP95Ms": 16.67
+      },
+      "targetComparison": {
+        "cpu": "MEETS",
+        "gpu": "MEETS",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "trees",
+      "quality": "High",
+      "cpuRenderMs": {
+        "samples": 90,
+        "p50": 2.8000000044703484,
+        "p95": 3.899999998509884,
+        "max": 5.200000002980232
+      },
+      "cpuWaterUpdateMs": {
+        "samples": 90,
+        "p50": 0,
+        "p95": 0.8000000044703484,
+        "max": 1.0999999940395355
+      },
+      "frameIntervalMs": {
+        "samples": 89,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000273,
+        "max": 16.80000000000041
+      },
+      "gpuRenderMs": {
+        "samples": 90,
+        "p50": 13.557375,
+        "p95": 14.327833,
+        "max": 14.619208
+      },
+      "snapshotUpdates": 28,
+      "waterGeometryUpdates": 25,
+      "gpuQueriesDiscarded": 0,
+      "gpuQueriesSkipped": 0,
+      "seconds": 1.5222000000029803,
+      "gpu": {
+        "vendor": "Google Inc. (Apple)",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "timerAvailable": true
+      },
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "render": {
+        "calls": 415,
+        "triangles": 2254784,
+        "geometries": 229,
+        "textures": 13,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          1248,
+          702
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          4,
+          4,
+          12
+        ]
+      },
+      "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "heapAndDomBefore": {
+        "Documents": 1,
+        "JSEventListeners": 20,
+        "Nodes": 44,
+        "JSHeapUsedSize": 8974452,
+        "JSHeapTotalSize": 10698752
+      },
+      "heapAndDomAfter": {
+        "Documents": 1,
+        "JSEventListeners": 20,
+        "Nodes": 44,
+        "JSHeapUsedSize": 11309712,
+        "JSHeapTotalSize": 15679488
+      },
+      "targets": {
+        "cpuRenderP95Ms": 4,
+        "gpuRenderP95Ms": 10.5,
+        "frameIntervalP95Ms": 16.67
+      },
+      "targetComparison": {
+        "cpu": "MEETS",
+        "gpu": "MISSES",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "trees",
+      "quality": "Low",
+      "cpuRenderMs": {
+        "samples": 90,
+        "p50": 1.6000000014901161,
+        "p95": 3.600000001490116,
+        "max": 4.200000002980232
+      },
+      "cpuWaterUpdateMs": {
+        "samples": 90,
+        "p50": 0,
+        "p95": 1,
+        "max": 2.100000001490116
+      },
+      "frameIntervalMs": {
+        "samples": 89,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000273,
+        "max": 16.800000000000182
+      },
+      "gpuRenderMs": {
+        "samples": 90,
+        "p50": 10.500208,
+        "p95": 10.884374,
+        "max": 12.387166
+      },
+      "snapshotUpdates": 27,
+      "waterGeometryUpdates": 26,
+      "gpuQueriesDiscarded": 0,
+      "gpuQueriesSkipped": 0,
+      "seconds": 1.51510000000149,
+      "gpu": {
+        "vendor": "Google Inc. (Apple)",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "timerAvailable": true
+      },
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "render": {
+        "calls": 114,
+        "triangles": 585544,
+        "geometries": 77,
+        "textures": 7,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "heapAndDomBefore": {
+        "Documents": 1,
+        "JSEventListeners": 20,
+        "Nodes": 44,
+        "JSHeapUsedSize": 8510384,
+        "JSHeapTotalSize": 9912320
+      },
+      "heapAndDomAfter": {
+        "Documents": 1,
+        "JSEventListeners": 20,
+        "Nodes": 44,
+        "JSHeapUsedSize": 9531780,
+        "JSHeapTotalSize": 14106624
+      },
+      "targets": {
+        "cpuRenderP95Ms": 4,
+        "gpuRenderP95Ms": 10.5,
+        "frameIntervalP95Ms": 16.67
+      },
+      "targetComparison": {
+        "cpu": "MEETS",
+        "gpu": "MISSES",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "rapids",
+      "quality": "High",
+      "cpuRenderMs": {
+        "samples": 90,
+        "p50": 4.299999997019768,
+        "p95": 4.899999998509884,
+        "max": 6.0999999940395355
+      },
+      "cpuWaterUpdateMs": {
+        "samples": 90,
+        "p50": 0,
+        "p95": 0.5,
+        "max": 1.2999999970197678
+      },
+      "frameIntervalMs": {
+        "samples": 89,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000273,
+        "max": 16.800000000000182
+      },
+      "gpuRenderMs": {
+        "samples": 90,
+        "p50": 7.095541,
+        "p95": 12.669083,
+        "max": 15.730624
+      },
+      "snapshotUpdates": 27,
+      "waterGeometryUpdates": 27,
+      "gpuQueriesDiscarded": 0,
+      "gpuQueriesSkipped": 0,
+      "seconds": 1.5302999999970197,
+      "gpu": {
+        "vendor": "Google Inc. (Apple)",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "timerAvailable": true
+      },
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "render": {
+        "calls": 715,
+        "triangles": 691666,
+        "geometries": 245,
+        "textures": 16,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 8,
+        "captureTriangles": 1152,
+        "captureSize": [
+          1248,
+          702
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          4,
+          4,
+          16
+        ]
+      },
+      "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "heapAndDomBefore": {
+        "Documents": 1,
+        "JSEventListeners": 20,
+        "Nodes": 44,
+        "JSHeapUsedSize": 10049980,
+        "JSHeapTotalSize": 12533760
+      },
+      "heapAndDomAfter": {
+        "Documents": 1,
+        "JSEventListeners": 20,
+        "Nodes": 44,
+        "JSHeapUsedSize": 13541040,
+        "JSHeapTotalSize": 17514496
+      },
+      "targets": {
+        "cpuRenderP95Ms": 4,
+        "gpuRenderP95Ms": 10.5,
+        "frameIntervalP95Ms": 16.67
+      },
+      "targetComparison": {
+        "cpu": "MISSES",
+        "gpu": "MISSES",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "rapids",
+      "quality": "Low",
+      "cpuRenderMs": {
+        "samples": 90,
+        "p50": 3,
+        "p95": 4.299999997019768,
+        "max": 4.5
+      },
+      "cpuWaterUpdateMs": {
+        "samples": 90,
+        "p50": 0,
+        "p95": 0.8000000044703484,
+        "max": 1.7000000029802322
+      },
+      "frameIntervalMs": {
+        "samples": 89,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000273,
+        "max": 16.800000000000182
+      },
+      "gpuRenderMs": {
+        "samples": 90,
+        "p50": 5.541375,
+        "p95": 5.880208,
+        "max": 5.948958
+      },
+      "snapshotUpdates": 27,
+      "waterGeometryUpdates": 26,
+      "gpuQueriesDiscarded": 0,
+      "gpuQueriesSkipped": 0,
+      "seconds": 1.5139000000059604,
+      "gpu": {
+        "vendor": "Google Inc. (Apple)",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "timerAvailable": true
+      },
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "render": {
+        "calls": 268,
+        "triangles": 169910,
+        "geometries": 227,
+        "textures": 11,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          0,
+          8,
+          16
+        ]
+      },
+      "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "heapAndDomBefore": {
+        "Documents": 1,
+        "JSEventListeners": 20,
+        "Nodes": 44,
+        "JSHeapUsedSize": 9359828,
+        "JSHeapTotalSize": 10436608
+      },
+      "heapAndDomAfter": {
+        "Documents": 1,
+        "JSEventListeners": 20,
+        "Nodes": 44,
+        "JSHeapUsedSize": 11502332,
+        "JSHeapTotalSize": 15417344
+      },
+      "targets": {
+        "cpuRenderP95Ms": 4,
+        "gpuRenderP95Ms": 10.5,
+        "frameIntervalP95Ms": 16.67
+      },
+      "targetComparison": {
+        "cpu": "MISSES",
+        "gpu": "MEETS",
+        "frameInterval": "MISSES"
+      }
+    }
+  ],
+  "errors": []
+}

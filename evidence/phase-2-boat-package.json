@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "matchingArchiveFiles": [
+    "build/server.mjs",
+    "dist/assets/index-Dr9dsw28.js",
+    "dist/assets/index-FQ1In_a6.css",
+    "dist/index.html"
+  ],
+  "privateDataIncluded": false,
+  "publicDeployment": false,
+  "archiveBytes": 288017,
+  "archiveSha256": "0d0a7fcd9dd15f01e23c870cec065d70237e04d52c8793918cac6beab84f8cfc"
+}

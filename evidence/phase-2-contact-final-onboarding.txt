@@ -1,0 +1,124 @@
+{
+  "result": "PASS",
+  "generatedUTC": "2026-10-21T12:23:12.018Z",
+  "protocol": 6,
+  "physics": "basin-0.10",
+  "browser": "155.0.8059.82",
+  "checks": [
+    "Own rendered paddle catches and recovers at the dock; other three paddles, authority tick/pose/blades/acks/strokes/reset remain unchanged",
+    "Menu clears the preview; a held keyboard auto-repeat cannot reactivate it; a fresh press can",
+    "Remapped key rows at the dock, replaced default stays inactive and waiting-dock guidance reflects the mapping",
+    "Standard Gamepad API rehearses the assigned paddle and requires neutral after release (simulated hardware)",
+    "Real touch press/release drives local rehearsal; portrait and short touch layouts keep lobby/actions and touch controls separate",
+    "Native WebGL loss/restoration and blur release the dock preview without changing the authority",
+    "Four-ready countdown cancels rehearsal; cancel/restart and launch do not leak held input; a fresh in-game press produces an authoritative stroke"
+  ],
+  "layouts": [
+    {
+      "width": 480,
+      "height": 900,
+      "lobby": {
+        "top": 648.609375,
+        "bottom": 814,
+        "right": 400
+      },
+      "touch": {
+        "top": 831,
+        "bottom": 882
+      },
+      "bounds": {
+        "left": 0.19078992209582907,
+        "right": 0.8777706917587903,
+        "top": 0.22704063790309265,
+        "bottom": 0.5382172669356857
+      }
+    },
+    {
+      "width": 390,
+      "height": 700,
+      "lobby": {
+        "top": 448.609375,
+        "bottom": 614,
+        "right": 355
+      },
+      "touch": {
+        "top": 631,
+        "bottom": 682
+      },
+      "bounds": {
+        "left": 0.18817760492223834,
+        "right": 0.8819893245831067,
+        "top": 0.12082714733108496,
+        "bottom": 0.44566328469419964
+      }
+    },
+    {
+      "width": 907,
+      "height": 510,
+      "lobby": {
+        "top": 266.609375,
+        "bottom": 424,
+        "right": 356
+      },
+      "touch": {
+        "top": 441,
+        "bottom": 492
+      },
+      "bounds": {
+        "left": 0.5612814198599783,
+        "right": 0.9110494890622084,
+        "top": 0.3061893317210312,
+        "bottom": 0.7789437970093465
+      }
+    },
+    {
+      "width": 640,
+      "height": 400,
+      "lobby": {
+        "top": 156.609375,
+        "bottom": 314,
+        "right": 284.796875
+      },
+      "touch": {
+        "top": 331,
+        "bottom": 382
+      },
+      "bounds": {
+        "left": 0.5439354164598412,
+        "right": 0.9325245691739208,
+        "top": 0.30662312388467916,
+        "bottom": 0.7792966784966282
+      }
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "lobby": {
+        "top": 708.609375,
+        "bottom": 874,
+        "right": 356
+      },
+      "touch": {
+        "top": 891,
+        "bottom": 942
+      },
+      "bounds": {
+        "left": 0.5323320798814393,
+        "right": 0.9469065566969799,
+        "top": 0.306251243792149,
+        "bottom": 0.7791382185958708
+      }
+    }
+  ],
+  "frozenDock": {
+    "tick": "0",
+    "position": "{\"x\":0,\"y\":0.07999999821186066,\"z\":0}",
+    "rotation": "{\"x\":0,\"y\":0,\"z\":0,\"w\":1}",
+    "blades": "[{\"x\":-1.45,\"y\":0.62,\"z\":0.95,\"immersion\":0,\"force\":0,\"state\":\"AIR\"},{\"x\":1.45,\"y\":0.62,\"z\":0.95,\"immersion\":0,\"force\":0,\"state\":\"DISABLED\"},{\"x\":-1.45,\"y\":0.62,\"z\":-0.95,\"immersion\":0,\"force\":0,\"state\":\"DISABLED\"},{\"x\":1.45,\"y\":0.62,\"z\":-0.95,\"immersion\":0,\"force\":0,\"state\":\"DISABLED\"}]",
+    "ack": "[0,0,0,0]",
+    "strokes": "0",
+    "resetId": "1"
+  },
+  "errors": [],
+  "scope": "Automated built-client local rehearsal and lifecycle checks. Does not teach/measure hull response or substitute for genuine newcomer/physical-device acceptance; genuine newcomer/device acceptance remains open."
+}

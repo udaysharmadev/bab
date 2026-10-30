@@ -1,0 +1,72 @@
+PASS: four-ready launch focuses all four game canvases
+PASS: connection interruption pauses safely and explains the wait
+PASS: automatic reconnect recovers all four seats
+PASS: seat 0: held w repeats own paddle
+PASS: seat 0: w moves in the visible requested direction
+PASS: seat 0: held s repeats own paddle
+PASS: seat 0: s moves in the visible requested direction
+PASS: seat 0: held a repeats own paddle
+PASS: seat 0: a moves in the visible requested direction
+PASS: seat 0: held d repeats own paddle
+PASS: seat 0: d moves in the visible requested direction
+PASS: seat 1: held w repeats own paddle
+PASS: seat 1: w moves in the visible requested direction
+PASS: seat 1: held s repeats own paddle
+PASS: seat 1: s moves in the visible requested direction
+PASS: seat 1: held a repeats own paddle
+PASS: seat 1: a moves in the visible requested direction
+PASS: seat 1: held d repeats own paddle
+PASS: seat 1: d moves in the visible requested direction
+PASS: seat 2: held w repeats own paddle
+PASS: seat 2: w moves in the visible requested direction
+PASS: seat 2: held s repeats own paddle
+PASS: seat 2: s moves in the visible requested direction
+PASS: seat 2: held a repeats own paddle
+PASS: seat 2: a moves in the visible requested direction
+PASS: seat 2: held d repeats own paddle
+PASS: seat 2: d moves in the visible requested direction
+PASS: seat 3: held w repeats own paddle
+PASS: seat 3: w moves in the visible requested direction
+PASS: seat 3: held s repeats own paddle
+PASS: seat 3: s moves in the visible requested direction
+PASS: seat 3: held a repeats own paddle
+PASS: seat 3: a moves in the visible requested direction
+PASS: seat 3: held d repeats own paddle
+PASS: seat 3: d moves in the visible requested direction
+PASS: seat 3: held ArrowUp repeats own paddle
+PASS: seat 3: ArrowUp moves in the visible requested direction
+PASS: seat 3: held ArrowDown repeats own paddle
+PASS: seat 3: ArrowDown moves in the visible requested direction
+PASS: seat 3: held ArrowLeft repeats own paddle
+PASS: seat 3: ArrowLeft moves in the visible requested direction
+PASS: seat 3: held ArrowRight repeats own paddle
+PASS: seat 3: ArrowRight moves in the visible requested direction
+PASS: all four players: simultaneous w
+PASS: all four players: simultaneous s
+PASS: all four players: simultaneous a
+PASS: all four players: simultaneous d
+PASS: all four players: W+A curves in requested direction
+PASS: all four players: W+D curves in requested direction
+PASS: uppercase key-only W repeats strokes
+PASS: releasing W leaves held Up alias rowing
+PASS: opposite keys cancel without a stroke
+PASS: open dialog blocks rowing
+PASS: seat 3: held w repeats own paddle
+PASS: seat 3: w moves in the visible requested direction
+PASS: reload retains seat 0
+PASS: seat 0: held w repeats own paddle
+PASS: seat 0: w moves in the visible requested direction
+PASS: reload retains seat 1
+PASS: seat 1: held w repeats own paddle
+PASS: seat 1: w moves in the visible requested direction
+PASS: reload retains seat 2
+PASS: seat 2: held w repeats own paddle
+PASS: seat 2: w moves in the visible requested direction
+PASS: reload retains seat 3
+PASS: seat 3: held w repeats own paddle
+PASS: seat 3: w moves in the visible requested direction
+PASS: blur lifts blade and cancels held action
+PASS: no new catches after release
+PASS: Main Menu remains usable during interruption and old reconnect cannot hijack it
+PASS: no browser errors
+PASS: 71/71 four-player control checks

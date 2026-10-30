@@ -1,0 +1,147 @@
+{
+  "result": "VERIFIED_SCOPED",
+  "date": "2026-10-21",
+  "phase": "R1 playable fan raft feel slice",
+  "protocol": 1,
+  "physics": "fan-raft-0.1",
+  "world": "toy-bend-1",
+  "preview": "http://localhost:2571/",
+  "runtimeSource": {
+    "files": 43,
+    "sha256": "02d5c0e04f0d096bd3fdf53142acbe9e27bd865b707222aca7ec5eaf3d4cfd42",
+    "scope": "src plus both HTML entrypoints, package metadata, TypeScript/Vite configuration and authority build script; documentation/tests/evidence excluded from this runtime fingerprint"
+  },
+  "artifacts": [
+    {
+      "path": "build/server.mjs",
+      "bytes": 93617,
+      "sha256": "7c9b3d132ec3101811399a8470a188bc2c3ff34df66eec24a8b3b8747376d58e"
+    },
+    {
+      "path": "build/server.mjs.map",
+      "bytes": 187833,
+      "sha256": "09e3030e3845f25767775c26814f29e816418ba79e2be8030a870639c2d38092"
+    },
+    {
+      "path": "dist/assets/legacy-5ACvpYZL.js",
+      "bytes": 122474,
+      "sha256": "e49470f2b3d8f8e396445eb495b9a2f3cb233376db991463a30abf1afcaf0041"
+    },
+    {
+      "path": "dist/assets/legacy-CJcCEMWV.css",
+      "bytes": 9645,
+      "sha256": "00e812d95a5f356d99f67b693455f0d03d6489960f046c7bb82ab1d62ecb49b7"
+    },
+    {
+      "path": "dist/assets/main-CRpjaZ3Z.js",
+      "bytes": 24834,
+      "sha256": "48f8336eadfb0ea5a5d9d379128789ca4910467c82298bddc74003a7f0a5d13d"
+    },
+    {
+      "path": "dist/assets/main-CrZLsUZ2.css",
+      "bytes": 7120,
+      "sha256": "b87a55e750d851ebf4d14afa1dc22d4e7710efbb30d6721364d63633256d6d81"
+    },
+    {
+      "path": "dist/assets/names-CkNsStTf.js",
+      "bytes": 749287,
+      "sha256": "42b14c14b1731fd73755eab5d55322465fabc8a2a2c706f1f096e70c242a50b7"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 4582,
+      "sha256": "816017ae4f274e5937e435cad498968dbae981f592567a3396fdef4696ef750b"
+    },
+    {
+      "path": "dist/legacy.html",
+      "bytes": 8388,
+      "sha256": "f8b026920255db569493154ba7de14d2a2699585ffdedad0a6a17d994476e9d5"
+    }
+  ],
+  "checks": {
+    "build": {
+      "result": "PASS",
+      "log": "evidence/fan-build-final.txt",
+      "advisory": "Existing shared engine chunk exceeds500 kB; no FPS or payload acceptance inferred"
+    },
+    "regression": {
+      "tests": 153,
+      "pass": 153,
+      "fail": 0,
+      "durationMs": 109502.953708,
+      "log": "evidence/fan-complete-regression.txt"
+    },
+    "fanTargeted": {
+      "tests": 11,
+      "pass": 11,
+      "fail": 0,
+      "log": "evidence/fan-targeted-final.txt"
+    },
+    "native": {
+      "groups": 8,
+      "browser": "155.0.8059.82",
+      "metrics": [
+        {
+          "viewport": {
+            "width": 1280,
+            "height": 900
+          },
+          "calls": 96,
+          "triangles": 50066
+        },
+        {
+          "viewport": {
+            "width": 700,
+            "height": 480
+          },
+          "calls": 94,
+          "triangles": 49970
+        },
+        {
+          "viewport": {
+            "width": 700,
+            "height": 480
+          },
+          "calls": 94,
+          "triangles": 49970
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "calls": 98,
+          "triangles": 50162
+        }
+      ],
+      "errors": [],
+      "record": "evidence/fan-browser.json"
+    },
+    "camera": {
+      "views": 18,
+      "errors": [],
+      "record": "evidence/fan-route.json"
+    },
+    "localSmoke": {
+      "result": "PASS",
+      "record": "evidence/fan-local-smoke.json"
+    },
+    "pilot": {
+      "seconds": 83.55,
+      "maxSpeed": 2.608499032868891,
+      "checkpoint": 1,
+      "resets": 0,
+      "teleports": 0,
+      "source": "tests/fan.test.ts; logged in final regression",
+      "scope": "Synthetic four-seat inputs, not human fun or complete-game duration"
+    }
+  },
+  "limits": [
+    "R1 human/owner art review open",
+    "Full4–4.5 minute course, curated variants and additional levels pending",
+    "Fixed loaded mass; separate player weight transfer not simulated",
+    "Durable fan-world saves, final sound/animation and controls migration pending",
+    "Named-device frame/CPU/GPU, Internet impairment and long-session acceptance pending",
+    "No public deployment or rebuilt release ZIP"
+  ]
+}

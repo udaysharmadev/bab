@@ -1,0 +1,14 @@
+(node:15024) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Bad at Boating authority listening on port 2596
+Error: This voyage is already active in another crew. Join that crew or wait for it to close.
+    at VoyageStore.claim (file:///Users/uday/Bad%20at%20Boating/build/server.mjs:899:15)
+    at BoatRoom.onCreate (file:///Users/uday/Bad%20at%20Boating/build/server.mjs:985:34)
+    at handleCreateRoom (file:///Users/uday/Bad%20at%20Boating/node_modules/@colyseus/core/build/MatchMaker.mjs:301:18)
+    at createRoom (file:///Users/uday/Bad%20at%20Boating/node_modules/@colyseus/core/build/MatchMaker.mjs:246:18)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Module.create (file:///Users/uday/Bad%20at%20Boating/node_modules/@colyseus/core/build/MatchMaker.mjs:117:16)
+    at async Object.invokeMethod (file:///Users/uday/Bad%20at%20Boating/node_modules/@colyseus/core/build/matchmaker/controller.mjs:42:14)
+    at async file:///Users/uday/Bad%20at%20Boating/node_modules/@colyseus/core/build/router/default_routes.mjs:15:22
+    at async internalHandler (file:///Users/uday/Bad%20at%20Boating/node_modules/@colyseus/better-call/dist/endpoint.mjs:30:20)
+    at async processRequest (file:///Users/uday/Bad%20at%20Boating/node_modules/@colyseus/better-call/dist/router.mjs:85:11)

@@ -1,0 +1,22 @@
+✔ Exact bed triangles agree between authority rays, rendered surfaces and interpolation over the entire route (143.8065ms)
+✔ Canonical checkpoints retain deep hull/blade lanes and depth drag is continuous, bounded and dissipative (2.23725ms)
+✔ Water depth attributes follow exact bed heights through both quality modes and same-tick relocations (52.401333ms)
+✔ A settled sandbar hull stays nonlethal and idle; four real reverse paddles can push off into deep water without recovery (871.950375ms)
+✔ Passive bed-paddle friction dissipates motion without lift; resting and released paddles supply no force (25.282583ms)
+✔ Blade pose matches renderer for zero-length, vertical and near-antiparallel directions (5.192292ms)
+✔ Shared rounded blade preserves original render geometry and both convex cores stay inside its faces (7.004542ms)
+✔ Rounded volume catches edge-only contacts and sweeps, while shoulder gaps, sensors and own hull remain clear (40.212458ms)
+✔ Blade-only bracing is bounded, passive and nonlethal across seats, headings and heels (839.702292ms)
+✔ Blade-only moving-frame response, saturation, resting contact and release stay bounded (210.061333ms)
+✔ Persistent shaft-only contacts are nonlethal and dissipative across every seat, heading and heel (874.874792ms)
+✔ Holding a dipped shaft still produces no free force; release and inactive paddles stop bracing (21.748917ms)
+✔ Shaft queries exclude own hull, sensors and separated solids (6.200208ms)
+✔ Moving-solid relative velocity and saturated impacts remain bounded for every seat (203.888125ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1336.485167

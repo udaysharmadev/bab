@@ -1,0 +1,844 @@
+{"natureHigh":{"calls":373,"triangles":1976716,"geometries":190,"textures":12,"reflections":true,"refraction":true,"captureCalls":4,"captureTriangles":576,"captureSize":[936,624],"vegetationChunks":5,"vegetationInstances":5384,"foliageLevels":[2,6,12]},"natureLow":{"calls":93,"triangles":574190,"geometries":58,"textures":7,"reflections":false,"refraction":false,"captureCalls":0,"captureTriangles":0,"captureSize":[0,0],"vegetationChunks":5,"vegetationInstances":5384,"foliageLevels":[0,8,12]}}
+{
+  "result": "PASS",
+  "results": [
+    {
+      "view": "crew",
+      "stats": {
+        "calls": 528,
+        "triangles": 1332146,
+        "geometries": 172,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 1,
+        "captureTriangles": 144,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 54,
+        "maxError": 0.0000015319888646558866,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "underside",
+      "stats": {
+        "calls": 528,
+        "triangles": 1332146,
+        "geometries": 172,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 1,
+        "captureTriangles": 144,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 54,
+        "maxError": 0.0000015319888646558866,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "spikes",
+      "stats": {
+        "calls": 692,
+        "triangles": 2033124,
+        "geometries": 215,
+        "textures": 15,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 3,
+        "captureTriangles": 432,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          12,
+          8
+        ]
+      },
+      "bankGrounding": {
+        "checks": 54,
+        "maxError": 0.0000015319888646558866,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "log",
+      "stats": {
+        "calls": 705,
+        "triangles": 1885494,
+        "geometries": 223,
+        "textures": 17,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 5612,
+        "foliageLevels": [
+          0,
+          8,
+          16
+        ]
+      },
+      "bankGrounding": {
+        "checks": 85,
+        "maxError": 0.000003327225975624515,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "vortex",
+      "stats": {
+        "calls": 680,
+        "triangles": 1855766,
+        "geometries": 213,
+        "textures": 17,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 4400,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 83,
+        "maxError": 0.000003327225975624515,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "vortex&low",
+      "stats": {
+        "calls": 242,
+        "triangles": 615694,
+        "geometries": 203,
+        "textures": 12,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 4400,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 82,
+        "maxError": 0.000003327225975624515,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "wreck",
+      "stats": {
+        "calls": 685,
+        "triangles": 1609032,
+        "geometries": 218,
+        "textures": 15,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 54,
+        "maxError": 0.0000015319888646558866,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "gorge",
+      "stats": {
+        "calls": 691,
+        "triangles": 1536836,
+        "geometries": 222,
+        "textures": 18,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 3542,
+        "foliageLevels": [
+          1,
+          7,
+          16
+        ]
+      },
+      "bankGrounding": {
+        "checks": 143,
+        "maxError": 0.000005714594973227349,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "bank",
+      "stats": {
+        "calls": 402,
+        "triangles": 1237882,
+        "geometries": 222,
+        "textures": 18,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 3542,
+        "foliageLevels": [
+          2,
+          7,
+          15
+        ]
+      },
+      "bankGrounding": {
+        "checks": 143,
+        "maxError": 0.000005714594973227349,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "bank&low",
+      "stats": {
+        "calls": 106,
+        "triangles": 326176,
+        "geometries": 72,
+        "textures": 12,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 3542,
+        "foliageLevels": [
+          0,
+          9,
+          15
+        ]
+      },
+      "bankGrounding": {
+        "checks": 142,
+        "maxError": 0.000003327225975624515,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "shoal",
+      "stats": {
+        "calls": 652,
+        "triangles": 607946,
+        "geometries": 217,
+        "textures": 17,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 2464,
+        "foliageLevels": [
+          2,
+          8,
+          14
+        ]
+      },
+      "bankGrounding": {
+        "checks": 175,
+        "maxError": 0.000005714594973227349,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "shoal&low",
+      "stats": {
+        "calls": 236,
+        "triangles": 163002,
+        "geometries": 205,
+        "textures": 12,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 2464,
+        "foliageLevels": [
+          0,
+          10,
+          14
+        ]
+      },
+      "bankGrounding": {
+        "checks": 171,
+        "maxError": 0.000003327225975624515,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "rapids",
+      "stats": {
+        "calls": 681,
+        "triangles": 680948,
+        "geometries": 238,
+        "textures": 18,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          4,
+          4,
+          16
+        ]
+      },
+      "bankGrounding": {
+        "checks": 180,
+        "maxError": 0.000004807212544477579,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "rescue",
+      "stats": {
+        "calls": 672,
+        "triangles": 675318,
+        "geometries": 233,
+        "textures": 17,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          4,
+          4,
+          16
+        ]
+      },
+      "bankGrounding": {
+        "checks": 180,
+        "maxError": 0.000005967438774234779,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "rescue&low",
+      "stats": {
+        "calls": 250,
+        "triangles": 152270,
+        "geometries": 218,
+        "textures": 12,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          0,
+          8,
+          16
+        ]
+      },
+      "bankGrounding": {
+        "checks": 178,
+        "maxError": 0.000004807212544477579,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "timber",
+      "stats": {
+        "calls": 642,
+        "triangles": 480622,
+        "geometries": 221,
+        "textures": 15,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 3,
+        "captureTriangles": 432,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 1140,
+        "foliageLevels": [
+          2,
+          6,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 150,
+        "maxError": 0.000003589559913308449,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "narrows",
+      "stats": {
+        "calls": 614,
+        "triangles": 673510,
+        "geometries": 202,
+        "textures": 14,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          5,
+          3,
+          16
+        ]
+      },
+      "bankGrounding": {
+        "checks": 180,
+        "maxError": 0.000007497355959174001,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "finish",
+      "stats": {
+        "calls": 480,
+        "triangles": 374852,
+        "geometries": 166,
+        "textures": 12,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 2,
+        "captureTriangles": 288,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 3,
+        "vegetationInstances": 684,
+        "foliageLevels": [
+          2,
+          6,
+          4
+        ]
+      },
+      "bankGrounding": {
+        "checks": 90,
+        "maxError": 0.000009601022668448422,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "millstone",
+      "stats": {
+        "calls": 609,
+        "triangles": 589098,
+        "geometries": 202,
+        "textures": 15,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          2,
+          10,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 180,
+        "maxError": 0.0000050276319036868244,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "boulders",
+      "stats": {
+        "calls": 616,
+        "triangles": 539590,
+        "geometries": 214,
+        "textures": 15,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 3,
+        "captureTriangles": 432,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 1140,
+        "foliageLevels": [
+          3,
+          8,
+          9
+        ]
+      },
+      "bankGrounding": {
+        "checks": 150,
+        "maxError": 0.000005250324647931848,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "wheel2",
+      "stats": {
+        "calls": 650,
+        "triangles": 556894,
+        "geometries": 216,
+        "textures": 15,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          2,
+          6,
+          16
+        ]
+      },
+      "bankGrounding": {
+        "checks": 180,
+        "maxError": 0.000006424770180757378,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "haven",
+      "stats": {
+        "calls": 606,
+        "triangles": 478682,
+        "geometries": 202,
+        "textures": 13,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          1,
+          7,
+          16
+        ]
+      },
+      "bankGrounding": {
+        "checks": 180,
+        "maxError": 0.000009601022668448422,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "waterwheel",
+      "stats": {
+        "calls": 325,
+        "triangles": 570084,
+        "geometries": 214,
+        "textures": 12,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 3,
+        "captureTriangles": 432,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          4,
+          6,
+          14
+        ]
+      },
+      "bankGrounding": {
+        "checks": 180,
+        "maxError": 0.000003589559913308449,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "shore",
+      "stats": {
+        "calls": 373,
+        "triangles": 1976716,
+        "geometries": 190,
+        "textures": 12,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          2,
+          6,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 54,
+        "maxError": 0.0000015319888646558866,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "trees",
+      "stats": {
+        "calls": 384,
+        "triangles": 2249368,
+        "geometries": 215,
+        "textures": 13,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          4,
+          4,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 54,
+        "maxError": 0.0000015319888646558866,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "grass",
+      "stats": {
+        "calls": 347,
+        "triangles": 2231184,
+        "geometries": 202,
+        "textures": 13,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          4,
+          4,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 54,
+        "maxError": 0.0000015319888646558866,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "shore&low",
+      "stats": {
+        "calls": 93,
+        "triangles": 574190,
+        "geometries": 58,
+        "textures": 7,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 50,
+        "maxError": 0.0000015319888646558866,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    }
+  ],
+  "errors": []
+}

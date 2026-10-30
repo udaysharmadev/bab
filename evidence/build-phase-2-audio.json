@@ -1,0 +1,370 @@
+{
+  "game": "Bad at Boating",
+  "generatedUTC": "2026-10-20T18:21:17.636Z",
+  "baseCommit": "1dee20db314dda485c734932df48e9780bb53d03",
+  "workingTreeChanges": true,
+  "protocol": 5,
+  "physics": "basin-0.9",
+  "world": "waterworks-1",
+  "scope": "M1 verified; M2 3/5 engineering checks. Scoped M2-D1 lobby and M2-D2 current-relative stereo audio verified; full M2-D, human/device and production gates remain open.",
+  "sourceSha256": "b204cd5bfcac46ab7254cb7b307a148ce6d4209eb578ca387b0bb9619ae54e84",
+  "sourceHashScope": "Sorted relative path + NUL + bytes + NUL for src/tests/scripts/docs/.github and listed root metadata; excludes generated build/evidence/reference/private data.",
+  "fileCount": 110,
+  "build": "PASS",
+  "typecheck": "PASS",
+  "automatedTests": {
+    "command": "npm test",
+    "passed": 107,
+    "failed": 0,
+    "seconds": 84.536174375,
+    "log": "evidence/phase-2-audio-tests.txt",
+    "scope": "Full unit/authority regression; final Web Audio graph is separately covered by strict build and actual PCM/native-browser checks."
+  },
+  "fixtures": {
+    "browser": {
+      "result": "PASS",
+      "evidence": "evidence/browser.json",
+      "executionScope": "RERUN in M2-D2: full unit/authority suite or stated browser fixture; see phase-2-audio.json.",
+      "checks": 8
+    },
+    "controls-after": {
+      "result": "PASS",
+      "checks": 71,
+      "errors": [],
+      "evidence": "evidence/controls-after.json",
+      "executionScope": "Retained without rerun in M2-D2; original execution scope is in build-phase-2-lobby.json. No new graphics, performance, load or device claim."
+    },
+    "accessibility": {
+      "result": "PASS",
+      "evidence": "evidence/accessibility.json",
+      "executionScope": "Retained without rerun in M2-D2; original execution scope is in build-phase-2-lobby.json. No new graphics, performance, load or device claim.",
+      "checks": 7
+    },
+    "touch": {
+      "result": "PASS",
+      "evidence": "evidence/touch.json",
+      "executionScope": "Retained without rerun in M2-D2; original execution scope is in build-phase-2-lobby.json. No new graphics, performance, load or device claim.",
+      "checks": 5
+    },
+    "reconnect": {
+      "result": "PASS",
+      "evidence": "evidence/reconnect.json",
+      "executionScope": "Retained without rerun in M2-D2; original execution scope is in build-phase-2-lobby.json. No new graphics, performance, load or device claim.",
+      "checks": 4
+    },
+    "camera": {
+      "result": "PASS",
+      "evidence": "evidence/camera.json",
+      "executionScope": "Retained without rerun in M2-D2; original execution scope is in build-phase-2-lobby.json. No new graphics, performance, load or device claim.",
+      "checks": 180
+    },
+    "graphics": {
+      "result": "PASS",
+      "evidence": "evidence/graphics.json",
+      "executionScope": "Retained without rerun in M2-D2; original execution scope is in build-phase-2-lobby.json. No new graphics, performance, load or device claim.",
+      "checks": 23
+    },
+    "water-depth": {
+      "result": "PASS",
+      "evidence": "evidence/water-depth.json",
+      "executionScope": "Retained without rerun in M2-D2; original execution scope is in build-phase-2-lobby.json. No new graphics, performance, load or device claim."
+    },
+    "tracker-browser": {
+      "result": "PASS",
+      "evidence": "evidence/tracker-browser.json",
+      "executionScope": "RERUN in M2-D2: full unit/authority suite or stated browser fixture; see phase-2-audio.json.",
+      "checks": 6
+    },
+    "landing": {
+      "result": "PASS",
+      "evidence": "evidence/landing.json",
+      "executionScope": "Retained without rerun in M2-D2; original execution scope is in build-phase-2-lobby.json. No new graphics, performance, load or device claim.",
+      "checks": 2
+    },
+    "hull-collision": {
+      "result": "PASS",
+      "evidence": "evidence/hull-collision.json",
+      "executionScope": "RERUN in M2-D2: full unit/authority suite or stated browser fixture; see phase-2-audio.json.",
+      "checks": 4
+    },
+    "performance": {
+      "result": "PASS",
+      "evidence": "evidence/performance.json",
+      "executionScope": "Retained without rerun in M2-D2; original execution scope is in build-phase-2-lobby.json. No new graphics, performance, load or device claim.",
+      "checks": 8
+    },
+    "load": {
+      "result": "PASS",
+      "evidence": "evidence/load.json",
+      "executionScope": "Retained without rerun in M2-D2; original execution scope is in build-phase-2-lobby.json. No new graphics, performance, load or device claim."
+    },
+    "bends-browser": {
+      "result": "PASS",
+      "checks": 5,
+      "clients": 4,
+      "evidence": "evidence/bends-browser.json",
+      "executionScope": "Retained without rerun in M2-D2; original execution scope is in build-phase-2-lobby.json. No new graphics, performance, load or device claim."
+    },
+    "river-bends": {
+      "result": "PASS",
+      "evidence": "evidence/river-bends.json",
+      "executionScope": "RERUN in M2-D2: full unit/authority suite or stated browser fixture; see phase-2-audio.json.",
+      "checks": 5
+    },
+    "onboarding": {
+      "result": "PASS",
+      "evidence": "evidence/onboarding.json",
+      "executionScope": "Retained without rerun in M2-D2; original execution scope is in build-phase-2-lobby.json. No new graphics, performance, load or device claim.",
+      "checks": 7
+    },
+    "rescue": {
+      "result": "PASS",
+      "evidence": "evidence/rescue.json",
+      "executionScope": "RERUN in M2-D2: full unit/authority suite or stated browser fixture; see phase-2-audio.json.",
+      "checks": 4
+    },
+    "rescue-browser": {
+      "result": "PASS",
+      "evidence": "evidence/rescue-browser.json",
+      "executionScope": "Retained without rerun in M2-D2; original execution scope is in build-phase-2-lobby.json. No new graphics, performance, load or device claim.",
+      "checks": 4
+    },
+    "lobby": {
+      "result": "PASS",
+      "evidence": "evidence/lobby.json",
+      "executionScope": "Retained without rerun in M2-D2; original execution scope is in build-phase-2-lobby.json. No new graphics, performance, load or device claim.",
+      "checks": 7
+    },
+    "audio": {
+      "result": "PASS",
+      "checks": 7,
+      "evidence": "evidence/audio.json",
+      "executionScope": "RERUN M2-D2: actual offline stereo PCM and built-game native output/lifecycle."
+    }
+  },
+  "graphics": {
+    "views": 23,
+    "titleViewports": 3,
+    "maxCalls": 727,
+    "maxTriangles": 2252580,
+    "priorRecordedMaxTriangles": 6033248,
+    "residencyCycles": 3,
+    "maxVegetationChunks": 6,
+    "startRevisitGeometryTextureCounts": [
+      [
+        175,
+        11
+      ],
+      [
+        175,
+        11
+      ],
+      [
+        175,
+        11
+      ]
+    ],
+    "scope": "Complete pass counts and bounded local GPU residency; not FPS or90-minute leak certification.",
+    "executionScope": "Retained M2-D1 23 route views/three titles; no geometry/render change or new timing claim in M2-D2."
+  },
+  "tracker": {
+    "deliverables": 49,
+    "obstacleConcepts": 80,
+    "signatureEncounters": 10,
+    "regionCards": 14,
+    "acceptedScopePoints": 2,
+    "productionReadyRegions": 0,
+    "deliveryPhases": 5,
+    "engineeringVerified": [
+      "M1"
+    ],
+    "engineeringActive": "M2",
+    "engineeringChecksVerified": {
+      "M1": 4,
+      "M2": 3
+    },
+    "remainingEngineeringChecks": [
+      "M2-D presentation",
+      "M2-E human/device acceptance"
+    ],
+    "partialEngineeringChecks": {
+      "M2-D": "M2-D1 named animated lobby and M2-D2 current-relative stereo water/paddle audio verified; full near-field presentation and human/device acceptance remain."
+    }
+  },
+  "artifacts": {
+    "dist/index.html": {
+      "bytes": 7544,
+      "sha256": "ffb92f3b8e675746e85bf1eb8b06d0e71871a4d628e3e44d73402b0878c3e187"
+    },
+    "build/server.mjs": {
+      "bytes": 59859,
+      "sha256": "1f4b0989764e41d572d563e1d32f5bd72185a7a4d7a929a7a9b743bb4d970758"
+    },
+    "releases/Bad-at-Boating-cPanel.zip": {
+      "bytes": 283473,
+      "sha256": "7c983f2b28bef9ac82a8d26bef543f789b671e81d09f79dd5c8b84bd24afa79b"
+    },
+    "dist/assets/index-BB1Tlla7.js": {
+      "bytes": 841047,
+      "sha256": "42e89047e4777034a0e4623aa10412fe2c9377118e5b4210cf9c920ad94bf2b7"
+    },
+    "dist/assets/index-FQ1In_a6.css": {
+      "bytes": 8814,
+      "sha256": "e13834a5145e3476fd69b5e07e730c984069fb819d24e8d9634563913bffa14e"
+    }
+  },
+  "preview": "http://localhost:2571",
+  "previewDatabase": "Isolated in-memory QA database; no private durable database replaced.",
+  "cpanel": {
+    "packaged": true,
+    "cleanDependencyInstall": "NOT RERUN; runtime dependencies unchanged",
+    "publicDeployment": "NOT RUN for this release"
+  },
+  "humanPlaytest": false,
+  "physicalControllerTest": false,
+  "namedDevicePerformance": false,
+  "longInternetBrowserSoak": false,
+  "remoteCI": "NOT RUN; workflow updated",
+  "containerExecution": "NOT RUN",
+  "actualCommandOutput": "evidence/phase-2-audio-tests.txt",
+  "finalStaticChecks": "PASS: TypeScript, fresh generated tracker, two tracker integrity tests and git diff --check. ZIP dist/server bytes independently match built artifacts.",
+  "phaseEvidence": "evidence/phase-2-audio.json",
+  "deploymentSmoke": {
+    "result": "PASS",
+    "url": "http://localhost:2571",
+    "evidence": "evidence/phase-2-audio-deployment.txt",
+    "scope": "Local isolated in-memory authority only",
+    "physics": "basin-0.9"
+  },
+  "sourceHashFiles": [
+    ".github/workflows/verify.yml",
+    "Dockerfile",
+    "README.md",
+    "app.cjs",
+    "app.js",
+    "docs/ANALYSIS.md",
+    "docs/CPANEL_SETUP.md",
+    "docs/DECISIONS.md",
+    "docs/GRAPHICS_AUDIT.md",
+    "docs/MULTIPLAYER_AUDIT.md",
+    "docs/PHASE_EXECUTION.md",
+    "docs/PHYSICS_AUDIT.md",
+    "docs/PLAYTEST_KIT.md",
+    "docs/PRD_PROGRESS.md",
+    "docs/PRODUCTION_PLAN.md",
+    "docs/PRODUCTION_TRACKER.html",
+    "docs/PRODUCTION_TRACKER.json",
+    "docs/PRODUCTION_TRACKER.md",
+    "docs/PROJECT_AUDIT.md",
+    "docs/RESEARCH_GAMEPLAY.md",
+    "docs/RESEARCH_VISUALS.md",
+    "docs/ROUTE.md",
+    "docs/STATUS.md",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "scripts/build-server.mjs",
+    "scripts/check-deployment.mjs",
+    "scripts/dev.mjs",
+    "scripts/package-cpanel.mjs",
+    "scripts/tracker.mjs",
+    "src/client/audio.ts",
+    "src/client/camera.ts",
+    "src/client/crew.ts",
+    "src/client/hull.ts",
+    "src/client/input.ts",
+    "src/client/main.ts",
+    "src/client/nature.ts",
+    "src/client/rehearsal.ts",
+    "src/client/riverbed.ts",
+    "src/client/scene.ts",
+    "src/client/style.css",
+    "src/client/water.ts",
+    "src/package.json",
+    "src/server/BoatRoom.ts",
+    "src/server/index.ts",
+    "src/server/voyages.ts",
+    "src/shared/hull.ts",
+    "src/shared/names.ts",
+    "src/shared/protocol.ts",
+    "src/shared/rescue.ts",
+    "src/shared/river.ts",
+    "src/shared/rowing.ts",
+    "src/shared/simulation.ts",
+    "src/shared/world.ts",
+    "tests/accessibility.mjs",
+    "tests/animation.html",
+    "tests/animation.mjs",
+    "tests/audio.html",
+    "tests/audio.mjs",
+    "tests/audio.test.ts",
+    "tests/bends-browser.mjs",
+    "tests/bends.test.ts",
+    "tests/browser.mjs",
+    "tests/camera.html",
+    "tests/camera.mjs",
+    "tests/controls.mjs",
+    "tests/crew.test.ts",
+    "tests/finish.test.ts",
+    "tests/graphics.html",
+    "tests/graphics.mjs",
+    "tests/hazards.test.ts",
+    "tests/hull.test.ts",
+    "tests/hydrodynamics.test.ts",
+    "tests/input.test.ts",
+    "tests/landing.html",
+    "tests/landing.mjs",
+    "tests/lifecycle.test.ts",
+    "tests/load.ts",
+    "tests/lobby.mjs",
+    "tests/names.test.ts",
+    "tests/network-stress.test.ts",
+    "tests/network.test.ts",
+    "tests/onboarding.mjs",
+    "tests/package.json",
+    "tests/performance.mjs",
+    "tests/physics.test.ts",
+    "tests/presentation.test.ts",
+    "tests/reconnect.mjs",
+    "tests/rehearsal.test.ts",
+    "tests/rescue-browser.mjs",
+    "tests/rescue.test.ts",
+    "tests/route.test.ts",
+    "tests/rowing.test.ts",
+    "tests/save-browser.mjs",
+    "tests/save-restart.test.ts",
+    "tests/saves.test.ts",
+    "tests/server-reliability.test.ts",
+    "tests/soak.ts",
+    "tests/support/bends-server.ts",
+    "tests/support/rescue-server.ts",
+    "tests/support/save-server.ts",
+    "tests/touch.mjs",
+    "tests/tracker-browser.mjs",
+    "tests/tracker.test.mjs",
+    "tests/water-depth.html",
+    "tests/water-depth.mjs",
+    "tests/waterwheel.test.ts",
+    "tsconfig.json",
+    "vite.config.ts"
+  ],
+  "priorMilestoneBuild": "evidence/build-phase-2-lobby.json",
+  "performanceBudgetAccepted": false,
+  "fixtureCommandOutputs": [
+    "evidence/phase-2-audio-browser.txt",
+    "evidence/phase-2-audio-build.txt",
+    "evidence/phase-2-audio-deployment.txt",
+    "evidence/phase-2-audio-game-flow.txt",
+    "evidence/phase-2-audio-offline.txt",
+    "evidence/phase-2-audio-tests.txt",
+    "evidence/phase-2-audio-tracker.txt"
+  ],
+  "audio": {
+    "ambientLayers": 7,
+    "noiseBytesAt44100Hz": 705600,
+    "peakTemporaryVoices": 24,
+    "remainingTemporaryVoices": 0,
+    "stressPeak": 0.9448018670082092,
+    "humanListening": false
+  }
+}

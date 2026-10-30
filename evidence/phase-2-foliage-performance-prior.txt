@@ -1,0 +1,9 @@
+{"view":"crew","quality":"High","cpuP95":4.3999999994412065,"frameP95":33.30000000000064,"gpuP95":56.438291,"targetComparison":{"cpu":"MISSES","gpu":"MISSES","frameInterval":"MISSES"}}
+{"view":"crew","quality":"Low","cpuP95":2.1000000005587935,"frameP95":16.799999999999955,"gpuP95":2.992874,"targetComparison":{"cpu":"MEETS","gpu":"MEETS","frameInterval":"MISSES"}}
+{"view":"trees","quality":"High","cpuP95":5.2999999998137355,"frameP95":16.700000000001182,"gpuP95":27.217458,"targetComparison":{"cpu":"MISSES","gpu":"MISSES","frameInterval":"MISSES"}}
+{"view":"trees","quality":"Low","cpuP95":2.2000000001862645,"frameP95":16.700000000000728,"gpuP95":7.346833,"targetComparison":{"cpu":"MEETS","gpu":"MEETS","frameInterval":"MISSES"}}
+{"view":"rapids","quality":"High","cpuP95":23,"frameP95":33.40000000000009,"gpuP95":10.40575,"targetComparison":{"cpu":"MISSES","gpu":"MEETS","frameInterval":"MISSES"}}
+{"view":"rapids","quality":"Low","cpuP95":4.300000000745058,"frameP95":16.799999999999727,"gpuP95":2.629499,"targetComparison":{"cpu":"MISSES","gpu":"MEETS","frameInterval":"MISSES"}}
+{"view":"rescue","quality":"High","cpuP95":18.40000000037253,"frameP95":16.799999999999272,"gpuP95":16.869874,"targetComparison":{"cpu":"MISSES","gpu":"MISSES","frameInterval":"MISSES"}}
+{"view":"rescue","quality":"Low","cpuP95":2.900000000372529,"frameP95":16.700000000000728,"gpuP95":2.340708,"targetComparison":{"cpu":"MEETS","gpu":"MEETS","frameInterval":"MISSES"}}
+PASS: 8 measured High/Low cases; inspect targetComparison for budget misses.

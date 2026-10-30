@@ -1,5 +1,5 @@
-export const PROTOCOL_VERSION = 5;
-export const PHYSICS_VERSION = 'basin-0.5';
+export const PROTOCOL_VERSION = 7;
+export const PHYSICS_VERSION = 'basin-0.13';
 export const DT = 1 / 60;
 export const SEATS = [
   { name: 'Bow · Port', side: -1, z: 0.95, color: '#f1ad59' },
@@ -7,6 +7,12 @@ export const SEATS = [
   { name: 'Stern · Port', side: -1, z: -0.95, color: '#df8679' },
   { name: 'Stern · Starboard', side: 1, z: -0.95, color: '#a8b5e0' },
 ] as const;
+
+// The visible seven-sided shaft has minimum face clearance .025*cos(PI/7).
+export const PADDLE_SHAFT_RADIUS = .022;
+const paddleHandles=SEATS.map(station=>Object.freeze({x:station.side*.65,y:.97,z:station.z+.03}));
+export const paddleHandle = (seat:number) => paddleHandles[seat]!;
+
 
 export type Vec3 = { x: number; y: number; z: number };
 export type Quat = Vec3 & { w: number };
@@ -17,13 +23,17 @@ export type Blade = {
   x: number; y: number; z: number; immersion: number;
   force: number; state: 'AIR' | 'WATER' | 'BRACE' | 'DISABLED';
 };
-export type Crew = { seat: number; connected: boolean; ready: boolean };
+export type Crew = { seat: number; connected: boolean; ready: boolean; name?: string };
 export type Snapshot = {
+  /** Server-selected mover clock offset; stable through this crew's retries. */
+  hazardPhase?: number;
   protocol: number; physics: string; tick: number;
   position: Vec3; rotation: Quat; velocity: Vec3;
   blades: Blade[]; ack: number[]; crew: Crew[];
   checkpoint: number; revision: number; resetId: number;
   recoveryId?: number; recoveryReason?: 'none' | 'grounded' | 'capsized' | 'unstable';
+  capsize?: {helpers:number;needed:number;seconds:number};
+  rightedId?:number;
   mode: 'practice' | 'expedition'; paused: boolean; complete: boolean;
   reconnectSeconds?: number;
   stage: 'lobby' | 'playing';

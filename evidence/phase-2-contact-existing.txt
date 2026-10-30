@@ -1,0 +1,46 @@
+✔ Whirlpool flow is finite, bounded, smoothly local, and absent in calm fixtures (13.268125ms)
+✔ Physical iron tooth contact breaks the hull once while a neighboring clear route stays intact (196.342167ms)
+✔ An iron tooth touched only by the paddle permits bracing without hull destruction (84.3925ms)
+✔ Tapered spike tips have actual cone clearance rather than an invisible full-width box (18.5065ms)
+✔ Whirlpool acts through water drag, remains stable, and repeats from the same state (1822.903458ms)
+✔ Every checkpoint resets outside spike collision and whirlpool influence (82.832875ms)
+✔ Moving timber collider follows the shared fixed-step clock through a full cycle and a wreck (126.953291ms)
+✔ Moving timber causes one physical hull break while the bank-side bypass remains clear (119.19875ms)
+✔ Checkpoint reset preserves sweeper phase and stays clear at multiple phases (106.089417ms)
+{"case":"idle-120s","y":0.053800009191036224,"speed":0.1437090039253235,"tickP95ms":0.38008300000001327}
+{"case":"air-vs-water","airZ":-5.064097058360417e-11,"wetZ":0.8718743324279785,"seatYaw":[0.333575040102005,-0.33357465267181396,0.3213750720024109,-0.3213749825954437]}
+✔ Input contract rejects NaN, stale/future sequence, teleport, spoofed seat and extra thrust (5.553709ms)
+✔ Y-up transforms preserve lengths and +Z forward turns to +X at 90° yaw (0.4085ms)
+✔ PHY-01/12: two simulated minutes at rest retain equilibrium and zero horizontal thrust (1248.296625ms)
+✔ PHY-02/03/04/06: immersed stroke moves hull, air has no thrust, four balanced strokes advance without yaw (238.624209ms)
+✔ PHY-05/07: reverse relative velocity reverses force; immersion and current affect drag; force capped (1.1955ms)
+✔ Blade reaction rotates with hull heading rather than fixed world axes (75.146583ms)
+✔ PROTO: bow/stern lateral sweep creates opposite yaw, same-side straight pulls need not (67.862417ms)
+✔ NET stale input and disconnect release blade; target teleport remains speed bounded (40.268042ms)
+✔ PHY-08: swept blade can brace against bank with bounded contact force and no wall climb (32.116041ms)
+✔ PHY-10 partial: sampled buoyancy settles a 25-degree heel in waves without orientation lock (155.325875ms)
+✔ PHY-11: 100 checkpoint resets clear momentum and return to a collision-free canonical pose (18.48375ms)
+✔ PHY-23: a sustained capsize returns every crew member to the canonical checkpoint without masking a crash (39.998042ms)
+✔ PHY-23: live rowing pinned at a bank recovers, while a stationary crew never auto-resets (89.570833ms)
+✔ Repeated recorded inputs are reproducible in this runtime (150.044208ms)
+✔ Checkpoint capture belongs to the simulation and advances its revision only once per dock (30.7015ms)
+✔ Lethal obstacle contact breaks once, disables every paddle, sinks, and restores the checkpoint cleanly (26.93175ms)
+✔ Nearby obstacles and ordinary river-bank contact do not cause a false break (22.620542ms)
+✔ A blade-only rock brace does not destroy a clear hull (36.722708ms)
+✔ Hull CCD still triggers lethal contact at a fast approach (5.680208ms)
+{"case":"hold-to-row","forward":{"key":"KeyW","seats":[0,1,2,3],"z":6.982997894287109,"surge":6.987732405585957,"yaw":-1.3655133087567013e-9,"screenHeading":-0.013092406883287685,"strokes":[4,4,4,4],"maxForce":210.67072679280167},"reverse":{"key":"KeyS","seats":[0,1,2,3],"z":-6.982998371124268,"surge":-6.9877327036421635,"yaw":4.914944694307046e-9,"screenHeading":-0.016089189641798875,"strokes":[4,4,4,4],"maxForce":210.67072679279647}}
+{"case":"seat-rowing","seat":0,"forward":1.271359028593025,"reverse":-1.2712734601984632,"left":0.4316669853373241,"right":-0.4288914779798993}
+{"case":"seat-rowing","seat":1,"forward":1.2713590288191432,"reverse":-1.2712734604476834,"left":0.42889147545465683,"right":-0.43166692275279567}
+{"case":"seat-rowing","seat":2,"forward":1.2712734601969837,"reverse":-1.2713590285884324,"left":0.4288915935293819,"right":-0.43166686215915134}
+{"case":"seat-rowing","seat":3,"forward":1.271273460424093,"reverse":-1.271359028833073,"left":0.43166692035538295,"right":-0.42889143062905827}
+✔ Holding W alone repeatedly drives the actual hull forward; S alone drives it backwards (371.93125ms)
+✔ Every seat produces forward/reverse surge and turns left/right in the actual gameplay camera (867.534ms)
+✔ A coordinated crew turns both ways with bounded force and no forward/reverse key choreography (192.829709ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2771.462042

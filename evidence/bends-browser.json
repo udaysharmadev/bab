@@ -1,0 +1,377 @@
+{
+  "result": "PASS",
+  "protocol": 6,
+  "physics": "basin-0.12",
+  "browser": "155.0.8059.82",
+  "clients": 4,
+  "poses": [
+    {
+      "bend": 0,
+      "resetId": 3,
+      "z": 210,
+      "x": 6,
+      "section": "split-stone",
+      "clients": [
+        {
+          "position": {
+            "x": 5.999744415283203,
+            "y": 0.08892487734556198,
+            "z": 210.00070190429688
+          },
+          "condition": "afloat",
+          "resetId": 3,
+          "bounds": {
+            "left": 0.29853713273680405,
+            "right": 0.6156960602126554,
+            "top": 0.41840089846820944,
+            "bottom": 0.7783997165572804
+          },
+          "section": "split-stone"
+        },
+        {
+          "position": {
+            "x": 5.999744415283203,
+            "y": 0.08892487734556198,
+            "z": 210.00070190429688
+          },
+          "condition": "afloat",
+          "resetId": 3,
+          "bounds": {
+            "left": 0.3211253632946307,
+            "right": 0.6030995494233552,
+            "top": 0.41776218954335914,
+            "bottom": 0.7790408390654984
+          },
+          "section": "split-stone"
+        },
+        {
+          "position": {
+            "x": 5.999744415283203,
+            "y": 0.08892487734556198,
+            "z": 210.00070190429688
+          },
+          "condition": "afloat",
+          "resetId": 3,
+          "bounds": {
+            "left": 0.32112530786210736,
+            "right": 0.603099562228353,
+            "top": 0.41776178014092813,
+            "bottom": 0.779040355105123
+          },
+          "section": "split-stone"
+        },
+        {
+          "position": {
+            "x": 5.999744415283203,
+            "y": 0.08892487734556198,
+            "z": 210.00070190429688
+          },
+          "condition": "afloat",
+          "resetId": 3,
+          "bounds": {
+            "left": 0.3211254509271718,
+            "right": 0.6030994971972028,
+            "top": 0.41776302960729556,
+            "bottom": 0.7790417911439552
+          },
+          "section": "split-stone"
+        }
+      ]
+    },
+    {
+      "bend": 1,
+      "resetId": 4,
+      "z": 321,
+      "x": 8,
+      "section": "whitewater",
+      "clients": [
+        {
+          "position": {
+            "x": 8.009702682495117,
+            "y": 0.06437645852565765,
+            "z": 321.01104736328125
+          },
+          "condition": "afloat",
+          "resetId": 4,
+          "bounds": {
+            "left": 0.305575645241032,
+            "right": 0.5704963795787172,
+            "top": 0.49777010432416957,
+            "bottom": 0.8249162400224138
+          },
+          "section": "whitewater"
+        },
+        {
+          "position": {
+            "x": 8.009702682495117,
+            "y": 0.06437645852565765,
+            "z": 321.01104736328125
+          },
+          "condition": "afloat",
+          "resetId": 4,
+          "bounds": {
+            "left": 0.3271475225178544,
+            "right": 0.5626348922762812,
+            "top": 0.49766963581275725,
+            "bottom": 0.8250991426053074
+          },
+          "section": "whitewater"
+        },
+        {
+          "position": {
+            "x": 8.009702682495117,
+            "y": 0.06437645852565765,
+            "z": 321.01104736328125
+          },
+          "condition": "afloat",
+          "resetId": 4,
+          "bounds": {
+            "left": 0.3271475225178544,
+            "right": 0.5626348922762812,
+            "top": 0.49766963581275725,
+            "bottom": 0.8250991426053074
+          },
+          "section": "whitewater"
+        },
+        {
+          "position": {
+            "x": 8.009702682495117,
+            "y": 0.06437645852565765,
+            "z": 321.01104736328125
+          },
+          "condition": "afloat",
+          "resetId": 4,
+          "bounds": {
+            "left": 0.3270623527147766,
+            "right": 0.562531936313956,
+            "top": 0.4974168840748957,
+            "bottom": 0.8255976916246379
+          },
+          "section": "whitewater"
+        }
+      ]
+    },
+    {
+      "bend": 2,
+      "resetId": 5,
+      "z": 440,
+      "x": -8,
+      "section": "timber-works",
+      "clients": [
+        {
+          "position": {
+            "x": -8.000044822692871,
+            "y": 0.048719946295022964,
+            "z": 440
+          },
+          "condition": "afloat",
+          "resetId": 5,
+          "bounds": {
+            "left": 0.4716486949463157,
+            "right": 0.7352633269095031,
+            "top": 0.5181424206351615,
+            "bottom": 0.8231394971930206
+          },
+          "section": "timber-works"
+        },
+        {
+          "position": {
+            "x": -8.000044822692871,
+            "y": 0.048719946295022964,
+            "z": 440
+          },
+          "condition": "afloat",
+          "resetId": 5,
+          "bounds": {
+            "left": 0.47479883995228067,
+            "right": 0.7091229572528918,
+            "top": 0.5181424206351615,
+            "bottom": 0.8231394971930206
+          },
+          "section": "timber-works"
+        },
+        {
+          "position": {
+            "x": -8.000044822692871,
+            "y": 0.048719946295022964,
+            "z": 440
+          },
+          "condition": "afloat",
+          "resetId": 5,
+          "bounds": {
+            "left": 0.47488600154738925,
+            "right": 0.7091487491420598,
+            "top": 0.5187530112765,
+            "bottom": 0.8236948634024361
+          },
+          "section": "timber-works"
+        },
+        {
+          "position": {
+            "x": -8.000044822692871,
+            "y": 0.048719946295022964,
+            "z": 440
+          },
+          "condition": "afloat",
+          "resetId": 5,
+          "bounds": {
+            "left": 0.47479883995228067,
+            "right": 0.7091229572528918,
+            "top": 0.5181424206351615,
+            "bottom": 0.8231394971930206
+          },
+          "section": "timber-works"
+        }
+      ]
+    },
+    {
+      "bend": 3,
+      "resetId": 6,
+      "z": 566,
+      "x": 8,
+      "section": "iron-narrows",
+      "clients": [
+        {
+          "position": {
+            "x": 8.002114295959473,
+            "y": 0.05849093198776245,
+            "z": 566.0011596679688
+          },
+          "condition": "afloat",
+          "resetId": 6,
+          "bounds": {
+            "left": 0.3243536731279632,
+            "right": 0.588749475601611,
+            "top": 0.5026516463187566,
+            "bottom": 0.8372625165025684
+          },
+          "section": "iron-narrows"
+        },
+        {
+          "position": {
+            "x": 8.002114295959473,
+            "y": 0.05849093198776245,
+            "z": 566.0011596679688
+          },
+          "condition": "afloat",
+          "resetId": 6,
+          "bounds": {
+            "left": 0.34386993166930063,
+            "right": 0.5788884227569875,
+            "top": 0.5026516463187566,
+            "bottom": 0.8372625165025684
+          },
+          "section": "iron-narrows"
+        },
+        {
+          "position": {
+            "x": 8.002114295959473,
+            "y": 0.05849093198776245,
+            "z": 566.0011596679688
+          },
+          "condition": "afloat",
+          "resetId": 6,
+          "bounds": {
+            "left": 0.34375472266373586,
+            "right": 0.5788363328837256,
+            "top": 0.5025004700014463,
+            "bottom": 0.8366164185835808
+          },
+          "section": "iron-narrows"
+        },
+        {
+          "position": {
+            "x": 8.002114295959473,
+            "y": 0.05849093198776245,
+            "z": 566.0011596679688
+          },
+          "condition": "afloat",
+          "resetId": 6,
+          "bounds": {
+            "left": 0.3437927010716717,
+            "right": 0.5788538208968845,
+            "top": 0.5025535414425804,
+            "bottom": 0.8368186512836047
+          },
+          "section": "iron-narrows"
+        }
+      ]
+    },
+    {
+      "bend": 4,
+      "resetId": 7,
+      "z": 696,
+      "x": -9,
+      "section": "last-descent",
+      "clients": [
+        {
+          "position": {
+            "x": -8.992043495178223,
+            "y": 0.07652231305837631,
+            "z": 696.00341796875
+          },
+          "condition": "afloat",
+          "resetId": 7,
+          "bounds": {
+            "left": 0.4563041678019961,
+            "right": 0.7286453397871138,
+            "top": 0.5004123579738927,
+            "bottom": 0.8148695083780106
+          },
+          "section": "last-descent"
+        },
+        {
+          "position": {
+            "x": -8.992043495178223,
+            "y": 0.07652231305837631,
+            "z": 696.00341796875
+          },
+          "condition": "afloat",
+          "resetId": 7,
+          "bounds": {
+            "left": 0.46115926026844095,
+            "right": 0.70324030203299,
+            "top": 0.5004123579738927,
+            "bottom": 0.8148695083780106
+          },
+          "section": "last-descent"
+        },
+        {
+          "position": {
+            "x": -8.992043495178223,
+            "y": 0.07652231305837631,
+            "z": 696.00341796875
+          },
+          "condition": "afloat",
+          "resetId": 7,
+          "bounds": {
+            "left": 0.46115926026844095,
+            "right": 0.70324030203299,
+            "top": 0.5004123579738927,
+            "bottom": 0.8148695083780106
+          },
+          "section": "last-descent"
+        },
+        {
+          "position": {
+            "x": -8.992043495178223,
+            "y": 0.07652231305837631,
+            "z": 696.00341796875
+          },
+          "condition": "afloat",
+          "resetId": 7,
+          "bounds": {
+            "left": 0.46115926026844095,
+            "right": 0.70324030203299,
+            "top": 0.5004123579738927,
+            "bottom": 0.8148695083780106
+          },
+          "section": "last-descent"
+        }
+      ]
+    }
+  ],
+  "heldRowing": "PASS; at least2 acknowledged strokes after the final bend relocation",
+  "errors": [],
+  "scope": "Four real rendered clients at5 IPC-authored authority poses, plus real held input. Not a continuous human traversal or device/FPS acceptance."
+}

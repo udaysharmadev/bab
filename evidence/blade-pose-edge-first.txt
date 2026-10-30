@@ -1,0 +1,30 @@
+✖ Blade pose matches renderer for zero-length, vertical and near-antiparallel directions (7.292125ms)
+✔ Shared rounded blade preserves original render geometry and both convex cores stay inside its faces (10.54ms)
+✔ Rounded volume catches edge-only contacts and sweeps, while shoulder gaps, sensors and own hull remain clear (36.092375ms)
+✔ Blade-only bracing is bounded, passive and nonlethal across seats, headings and heels (629.486542ms)
+✔ Blade-only moving-frame response, saturation, resting contact and release stay bounded (157.53225ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1080.020667
+
+✖ failing tests:
+
+test at tests/blade.test.ts:1:999
+✖ Blade pose matches renderer for zero-length, vertical and near-antiparallel directions (7.292125ms)
+  AssertionError [ERR_ASSERTION]: {"seat":0,"direction":{"x":0,"y":0,"z":0},"actual":{"x":0.7586287153264699,"y":-0.08815911935787524,"z":-0.6433917289492309,"w":0.05251214217562489},"expected":[-0.05251214217562489,0.6433917289492309,-0.08815911935787524,0.7586287153264699]}
+      at TestContext.<anonymous> (/Users/uday/Bad at Boating/tests/blade.test.ts:23:5)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

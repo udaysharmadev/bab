@@ -1,0 +1,132 @@
+{
+  "measuredAt": "2026-10-22T16:53:58.111Z",
+  "runtime": "v24.11.0",
+  "platform": "darwin",
+  "defaultSamples": 20,
+  "scope": "Local accelerated authority simulation; no browser or Internet timing guarantee.",
+  "measurements": [
+    {
+      "samples": 16,
+      "payloads": [
+        {
+          "massKg": 220,
+          "equilibriumY": 0.08398424088954926,
+          "expectedY": 0.08398461538461535
+        },
+        {
+          "massKg": 260,
+          "equilibriumY": 0.05379948765039444,
+          "expectedY": 0.053800000000000014
+        },
+        {
+          "massKg": 360,
+          "equilibriumY": -0.021663248538970947,
+          "expectedY": -0.02166153846153851
+        }
+      ],
+      "heels": [
+        {
+          "initialDegrees": 10,
+          "finalUpY": 0.999983107690598,
+          "maxSpeed": 0.13425461423815507
+        },
+        {
+          "initialDegrees": 25,
+          "finalUpY": 0.9999845117220323,
+          "maxSpeed": 0.16507815870848272
+        },
+        {
+          "initialDegrees": 45,
+          "finalUpY": 0.9999860725498824,
+          "maxSpeed": 0.30772051472606327
+        }
+      ],
+      "residualSpeed": 0.5415378456863005,
+      "measuredTicks": 6240,
+      "tickP50ms": 0.10858300000001009,
+      "tickP95ms": 0.1678749999999809
+    },
+    {
+      "samples": 20,
+      "payloads": [
+        {
+          "massKg": 220,
+          "equilibriumY": 0.08398418873548508,
+          "expectedY": 0.08398461538461535
+        },
+        {
+          "massKg": 260,
+          "equilibriumY": 0.05379938334226608,
+          "expectedY": 0.053800000000000014
+        },
+        {
+          "massKg": 360,
+          "equilibriumY": -0.02166345715522766,
+          "expectedY": -0.02166153846153851
+        }
+      ],
+      "heels": [
+        {
+          "initialDegrees": 10,
+          "finalUpY": 0.9999830067905835,
+          "maxSpeed": 0.13457442507370088
+        },
+        {
+          "initialDegrees": 25,
+          "finalUpY": 0.9999844214071999,
+          "maxSpeed": 0.1650997164125233
+        },
+        {
+          "initialDegrees": 45,
+          "finalUpY": 0.9999859926550652,
+          "maxSpeed": 0.3074258856973869
+        }
+      ],
+      "residualSpeed": 0.5485730052804034,
+      "measuredTicks": 6240,
+      "tickP50ms": 0.10566700000003948,
+      "tickP95ms": 0.14658299999996416
+    },
+    {
+      "samples": 24,
+      "payloads": [
+        {
+          "massKg": 220,
+          "equilibriumY": 0.08398409932851791,
+          "expectedY": 0.08398461538461535
+        },
+        {
+          "massKg": 260,
+          "equilibriumY": 0.05379924923181534,
+          "expectedY": 0.053800000000000014
+        },
+        {
+          "massKg": 360,
+          "equilibriumY": -0.02166372537612915,
+          "expectedY": -0.02166153846153851
+        }
+      ],
+      "heels": [
+        {
+          "initialDegrees": 10,
+          "finalUpY": 0.9999829142703995,
+          "maxSpeed": 0.1348365453651531
+        },
+        {
+          "initialDegrees": 25,
+          "finalUpY": 0.9999843376333128,
+          "maxSpeed": 0.1644973400540239
+        },
+        {
+          "initialDegrees": 45,
+          "finalUpY": 0.9999859213236945,
+          "maxSpeed": 0.3071193477258709
+        }
+      ],
+      "residualSpeed": 0.5543921194557684,
+      "measuredTicks": 6240,
+      "tickP50ms": 0.10866699999996854,
+      "tickP95ms": 0.1347089999999298
+    }
+  ]
+}

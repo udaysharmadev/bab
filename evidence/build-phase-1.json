@@ -1,0 +1,262 @@
+{
+  "game": "Bad at Boating",
+  "generatedUTC": "2026-10-20T11:20:15.468735+00:00",
+  "baseCommit": "1dee20db314dda485c734932df48e9780bb53d03",
+  "workingTreeChanges": true,
+  "protocol": 5,
+  "physics": "basin-0.6",
+  "world": "waterworks-1",
+  "scope": "Phase M1 engineering verified; production gates open. Phase M2 active; full game remains incomplete.",
+  "sourceSha256": "23d7ea3421a7cfac226191b08ef696fad2c1358c91014b8b811c27a7e30d2150",
+  "sourceHashScope": "Sorted relative path + NUL + bytes + NUL for src/tests/scripts/docs/.github and listed root metadata; excludes generated build/evidence/reference/private data.",
+  "fileCount": 93,
+  "build": "PASS",
+  "typecheck": "PASS",
+  "automatedTests": {
+    "command": "npm test",
+    "passed": 85,
+    "failed": 0,
+    "seconds": 75.24668525
+  },
+  "fixtures": {
+    "browser": {
+      "result": "PASS",
+      "checks": 8,
+      "errors": [],
+      "evidence": "evidence/browser.json",
+      "executionScope": "RERUN M1 final bundle"
+    },
+    "controls-after": {
+      "result": "PASS",
+      "checks": 71,
+      "errors": [],
+      "evidence": "evidence/controls-after.json",
+      "executionScope": "Retained preceding foundation evidence; not rerun in M1"
+    },
+    "accessibility": {
+      "result": "PASS",
+      "checks": 7,
+      "errors": [],
+      "evidence": "evidence/accessibility.json",
+      "executionScope": "RERUN M1 final bundle"
+    },
+    "touch": {
+      "result": "PASS",
+      "checks": 5,
+      "errors": [],
+      "evidence": "evidence/touch.json",
+      "executionScope": "Retained preceding foundation evidence; not rerun in M1"
+    },
+    "reconnect": {
+      "result": "PASS",
+      "checks": 4,
+      "errors": [],
+      "evidence": "evidence/reconnect.json",
+      "executionScope": "Retained preceding foundation evidence; not rerun in M1"
+    },
+    "camera": {
+      "result": "PASS",
+      "checks": 92,
+      "errors": [],
+      "evidence": "evidence/camera.json",
+      "executionScope": "Retained preceding foundation evidence; not rerun in M1"
+    },
+    "graphics": {
+      "result": "PASS",
+      "checks": 21,
+      "errors": [],
+      "evidence": "evidence/graphics.json",
+      "executionScope": "RERUN M1 final bundle"
+    },
+    "water-depth": {
+      "result": "PASS",
+      "checks": 0,
+      "errors": [],
+      "evidence": "evidence/water-depth.json",
+      "executionScope": "RERUN M1 final bundle"
+    },
+    "tracker-browser": {
+      "result": "PASS",
+      "checks": 6,
+      "errors": [],
+      "evidence": "evidence/tracker-browser.json",
+      "executionScope": "RERUN M1 final bundle"
+    }
+  },
+  "graphics": {
+    "views": 21,
+    "titleViewports": 3,
+    "maxCalls": 723,
+    "maxTriangles": 2235244,
+    "priorRecordedMaxTriangles": 6033248,
+    "residencyCycles": 3,
+    "maxVegetationChunks": 6,
+    "startRevisitGeometryTextureCounts": [
+      [
+        174,
+        11
+      ],
+      [
+        174,
+        11
+      ],
+      [
+        174,
+        11
+      ]
+    ],
+    "scope": "Complete pass counts and bounded local GPU residency; not FPS or90-minute leak certification."
+  },
+  "tracker": {
+    "deliverables": 49,
+    "obstacleConcepts": 80,
+    "signatureEncounters": 10,
+    "regionCards": 14,
+    "acceptedScopePoints": 2,
+    "productionReadyRegions": 0,
+    "deliveryPhases": 5,
+    "engineeringVerified": [
+      "M1"
+    ],
+    "engineeringActive": "M2"
+  },
+  "artifacts": {
+    "dist/assets/index-ChN6TlfO.js": {
+      "bytes": 830518,
+      "sha256": "2968b2dc45d6112d0a1746a964ed79613009efc10df40a7b4f0cb81a7229e14f"
+    },
+    "dist/assets/index-QafvikyD.css": {
+      "bytes": 7921,
+      "sha256": "b81cb0f7b7187db5965e36108faf348f0f24075640c6fd0436007115caaaa517"
+    },
+    "dist/index.html": {
+      "bytes": 7015,
+      "sha256": "7f1510e7fe7f7c77b83e335f91bf3d7ee03d6852fc4cbb5924dbc754dacc3db8"
+    },
+    "build/server.mjs": {
+      "bytes": 54019,
+      "sha256": "0a165176a22abfa5d463d339dd3c8db761e7f93c08fd63c042aa2753779d73bf"
+    },
+    "releases/Bad-at-Boating-cPanel.zip": {
+      "bytes": 277489,
+      "sha256": "064333d2f67f465700b2b42e6da6c86a43b8ecca40972b181997feb3141c841d"
+    }
+  },
+  "preview": "http://localhost:2571",
+  "previewDatabase": "Isolated in-memory QA database; no private durable database replaced.",
+  "cpanel": {
+    "packaged": true,
+    "cleanDependencyInstall": "NOT RERUN; runtime dependencies unchanged",
+    "publicDeployment": "NOT RUN for this release"
+  },
+  "humanPlaytest": false,
+  "physicalControllerTest": false,
+  "namedDevicePerformance": false,
+  "longInternetBrowserSoak": false,
+  "remoteCI": "NOT RUN; workflow updated",
+  "containerExecution": "NOT RUN",
+  "actualCommandOutput": "evidence/phase-1-checks.txt",
+  "finalStaticChecks": "PASS: TypeScript, tracker validation/report freshness, tracker integrity unit check and git diff --check after final reporting edits.",
+  "phaseEvidence": "evidence/phase-1.json",
+  "deploymentSmoke": {
+    "result": "PASS",
+    "url": "http://localhost:2571",
+    "evidence": "evidence/phase-1-checks.txt",
+    "scope": "Local isolated in-memory authority only"
+  },
+  "sourceHashFiles": [
+    ".github/workflows/verify.yml",
+    "Dockerfile",
+    "README.md",
+    "app.cjs",
+    "app.js",
+    "docs/ANALYSIS.md",
+    "docs/CPANEL_SETUP.md",
+    "docs/DECISIONS.md",
+    "docs/GRAPHICS_AUDIT.md",
+    "docs/MULTIPLAYER_AUDIT.md",
+    "docs/PHASE_EXECUTION.md",
+    "docs/PHYSICS_AUDIT.md",
+    "docs/PLAYTEST_KIT.md",
+    "docs/PRD_PROGRESS.md",
+    "docs/PRODUCTION_PLAN.md",
+    "docs/PRODUCTION_TRACKER.html",
+    "docs/PRODUCTION_TRACKER.json",
+    "docs/PRODUCTION_TRACKER.md",
+    "docs/PROJECT_AUDIT.md",
+    "docs/RESEARCH_GAMEPLAY.md",
+    "docs/RESEARCH_VISUALS.md",
+    "docs/ROUTE.md",
+    "docs/STATUS.md",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "scripts/build-server.mjs",
+    "scripts/check-deployment.mjs",
+    "scripts/dev.mjs",
+    "scripts/package-cpanel.mjs",
+    "scripts/tracker.mjs",
+    "src/client/audio.ts",
+    "src/client/camera.ts",
+    "src/client/crew.ts",
+    "src/client/hull.ts",
+    "src/client/input.ts",
+    "src/client/main.ts",
+    "src/client/nature.ts",
+    "src/client/riverbed.ts",
+    "src/client/scene.ts",
+    "src/client/style.css",
+    "src/client/water.ts",
+    "src/package.json",
+    "src/server/BoatRoom.ts",
+    "src/server/index.ts",
+    "src/server/voyages.ts",
+    "src/shared/protocol.ts",
+    "src/shared/rowing.ts",
+    "src/shared/simulation.ts",
+    "src/shared/world.ts",
+    "tests/accessibility.mjs",
+    "tests/animation.html",
+    "tests/animation.mjs",
+    "tests/audio.html",
+    "tests/audio.test.ts",
+    "tests/browser.mjs",
+    "tests/camera.html",
+    "tests/camera.mjs",
+    "tests/controls.mjs",
+    "tests/crew.test.ts",
+    "tests/finish.test.ts",
+    "tests/graphics.html",
+    "tests/graphics.mjs",
+    "tests/hazards.test.ts",
+    "tests/hydrodynamics.test.ts",
+    "tests/input.test.ts",
+    "tests/landing.html",
+    "tests/landing.mjs",
+    "tests/lifecycle.test.ts",
+    "tests/load.ts",
+    "tests/network-stress.test.ts",
+    "tests/network.test.ts",
+    "tests/package.json",
+    "tests/performance.mjs",
+    "tests/physics.test.ts",
+    "tests/presentation.test.ts",
+    "tests/reconnect.mjs",
+    "tests/route.test.ts",
+    "tests/rowing.test.ts",
+    "tests/save-browser.mjs",
+    "tests/save-restart.test.ts",
+    "tests/saves.test.ts",
+    "tests/server-reliability.test.ts",
+    "tests/soak.ts",
+    "tests/support/save-server.ts",
+    "tests/touch.mjs",
+    "tests/tracker-browser.mjs",
+    "tests/tracker.test.mjs",
+    "tests/water-depth.html",
+    "tests/water-depth.mjs",
+    "tests/waterwheel.test.ts",
+    "tsconfig.json",
+    "vite.config.ts"
+  ]
+}

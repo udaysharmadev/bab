@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { PaddleInput, PaddleStroke, paddleKey } from '../src/client/input';
+import { DEFAULT_KEYS, PaddleInput, PaddleStroke, paddleKey, validBindings, controllerAction } from '../src/client/input';
 import { validateRowIntent } from '../src/shared/protocol';
 
 const sample = (keys: string[], seat = 0, time = 0.8) => {
@@ -90,4 +90,37 @@ test('Keyboard and multiple touch pointers retain independent held actions', () 
   input.touches.set(3, 'KeyD'); input.touches.delete(2);
   assert.deepEqual(input.action(), {forward:0, turn:1});
   input.clear(); assert.deepEqual(input.action(), {forward:0, turn:0});
+});
+
+test('Remapped keys preserve arrow aliases, reject duplicates and ignore replaced defaults', () => {
+  const keys = {forward:'KeyI',reverse:'KeyK',left:'KeyJ',right:'KeyL'};
+  assert(validBindings(keys)); assert(validBindings(DEFAULT_KEYS));
+  for (const value of [null, {}, {...keys,left:'KeyI'}, {...keys,forward:'Escape'}, {...keys,extra:'KeyQ'}]) assert(!validBindings(value));
+  assert.equal(paddleKey({code:'KeyI'},keys),'KeyW');
+  assert.equal(paddleKey({key:'K'},keys),'KeyS');
+  assert.equal(paddleKey({code:'ArrowLeft'},keys),'ArrowLeft');
+  assert.equal(paddleKey({code:'KeyW',key:'w'},keys),undefined);
+  assert.equal(paddleKey({key:'constructor'},keys),undefined);
+  assert.equal(paddleKey({code:'Digit2'},{...keys,right:'Digit2'}),'KeyD');
+});
+
+test('Controller input has bounded digital axes, deadzone, independent ownership and neutral rearming', () => {
+  const pad = {connected:true,mapping:'standard' as const,axes:[0,0],buttons:Array.from({length:16},()=>({pressed:false,value:0,touched:false}))};
+  const input = new PaddleInput();
+  pad.axes=[0,-1]; input.updateController(pad,true);
+  assert.deepEqual(input.action(),{forward:0,turn:0},'A held stick cannot activate on first connection');
+  pad.axes=[.2,-.3]; input.updateController(pad,true);
+  pad.axes=[1,-1]; assert(input.updateController(pad,true));
+  assert.deepEqual(input.action(),{forward:1,turn:1});
+  input.keyboard.add('KeyS'); assert.deepEqual(input.action(),{forward:0,turn:1});
+  input.keyboard.clear(); input.clear(); input.updateController(pad,true);
+  assert.deepEqual(input.action(),{forward:0,turn:0},'Menu/blur clear requires returning to neutral');
+  pad.axes=[0,0]; input.updateController(pad,true); pad.buttons[12]!.pressed=true;
+  input.updateController(pad,true); assert.equal(input.action().forward,1);
+  pad.buttons[12]!.pressed=false; input.updateController(pad,true); assert.equal(input.action().forward,0);
+  input.updateController({...pad,connected:false},true); assert.equal(input.action().turn,0);
+  assert.deepEqual(controllerAction({...pad,axes:[NaN,Infinity]}),{forward:0,turn:0});
+  assert.deepEqual(controllerAction({...pad,mapping:''}),{forward:0,turn:0});
+  pad.axes=[0,-1]; input.updateController(pad,false); input.updateController(pad,true);
+  assert.equal(input.action().forward,0,'A disabled controller cannot rearm while held');
 });

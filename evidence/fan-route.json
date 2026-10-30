@@ -1,0 +1,368 @@
+{
+  "result": "PASS",
+  "browser": "155.0.8059.82",
+  "poses": [
+    {
+      "label": "launch",
+      "z": 2,
+      "offset": 0,
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.3786743462655924,
+        "right": 0.6231702046933099,
+        "top": 0.5350480284722359,
+        "bottom": 0.8694856368274728
+      },
+      "calls": 115,
+      "triangles": 62412,
+      "scrollWidth": 1280,
+      "width": 1280
+    },
+    {
+      "label": "teeth",
+      "z": 46,
+      "offset": 0,
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.3941129978437602,
+        "right": 0.638467556251773,
+        "top": 0.5365301163819564,
+        "bottom": 0.8692894770734494
+      },
+      "calls": 115,
+      "triangles": 62412,
+      "scrollWidth": 1280,
+      "width": 1280
+    },
+    {
+      "label": "checkpoint",
+      "z": 73,
+      "offset": 0,
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.36041247203988624,
+        "right": 0.6045641638167013,
+        "top": 0.5366338372482251,
+        "bottom": 0.8704414253244961
+      },
+      "calls": 121,
+      "triangles": 63484,
+      "scrollWidth": 1280,
+      "width": 1280
+    },
+    {
+      "label": "sweeper",
+      "z": 88,
+      "offset": 3.5,
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.30830704158700384,
+        "right": 0.5527405942042004,
+        "top": 0.5367188406722416,
+        "bottom": 0.8679014807072203
+      },
+      "calls": 120,
+      "triangles": 63482,
+      "scrollWidth": 1280,
+      "width": 1280
+    },
+    {
+      "label": "home",
+      "z": 130,
+      "offset": -1.2,
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.4190606629343042,
+        "right": 0.6636926095175669,
+        "top": 0.5344987991648271,
+        "bottom": 0.8679545197933995
+      },
+      "calls": 120,
+      "triangles": 63482,
+      "scrollWidth": 1280,
+      "width": 1280
+    },
+    {
+      "label": "finish",
+      "z": 150,
+      "offset": 0,
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.37814548863733966,
+        "right": 0.6225653204396249,
+        "top": 0.5365320222903669,
+        "bottom": 0.8678839538145805
+      },
+      "calls": 116,
+      "triangles": 62852,
+      "scrollWidth": 1280,
+      "width": 1280
+    },
+    {
+      "label": "launch",
+      "z": 2,
+      "offset": 0,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.22136875105724124,
+        "right": 0.7811335170625227,
+        "top": 0.493017990956445,
+        "bottom": 0.7403786089020239
+      },
+      "calls": 116,
+      "triangles": 62852,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "label": "teeth",
+      "z": 46,
+      "offset": 0,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.2526675293364981,
+        "right": 0.8121557074227104,
+        "top": 0.4932838544356485,
+        "bottom": 0.7412622205307606
+      },
+      "calls": 115,
+      "triangles": 62412,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "label": "checkpoint",
+      "z": 73,
+      "offset": 0,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.18862412480116286,
+        "right": 0.7479835085358143,
+        "top": 0.49432743897024767,
+        "bottom": 0.7403023803848595
+      },
+      "calls": 115,
+      "triangles": 62412,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "label": "sweeper",
+      "z": 88,
+      "offset": 3.5,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.07010866986163755,
+        "right": 0.6303158368499471,
+        "top": 0.49183941364770606,
+        "bottom": 0.7407503088881995
+      },
+      "calls": 120,
+      "triangles": 63436,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "label": "home",
+      "z": 130,
+      "offset": -1.2,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.30332549578329737,
+        "right": 0.8635246085061775,
+        "top": 0.4923613425353388,
+        "bottom": 0.7393547850119623
+      },
+      "calls": 120,
+      "triangles": 63436,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "label": "finish",
+      "z": 150,
+      "offset": 0,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.21845926343123928,
+        "right": 0.7788783495035835,
+        "top": 0.49166980425906504,
+        "bottom": 0.7381021859680976
+      },
+      "calls": 112,
+      "triangles": 61776,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "label": "launch",
+      "z": 2,
+      "offset": 0,
+      "viewport": {
+        "width": 907,
+        "height": 510
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.40194061978826623,
+        "right": 0.5973253412225327,
+        "top": 0.5369125357721922,
+        "bottom": 0.8682955759293212
+      },
+      "calls": 112,
+      "triangles": 61776,
+      "scrollWidth": 907,
+      "width": 907
+    },
+    {
+      "label": "teeth",
+      "z": 46,
+      "offset": 0,
+      "viewport": {
+        "width": 907,
+        "height": 510
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.4157673247225786,
+        "right": 0.6110696715960116,
+        "top": 0.5367769588757807,
+        "bottom": 0.869358184857522
+      },
+      "calls": 115,
+      "triangles": 62804,
+      "scrollWidth": 907,
+      "width": 907
+    },
+    {
+      "label": "checkpoint",
+      "z": 73,
+      "offset": 0,
+      "viewport": {
+        "width": 907,
+        "height": 510
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.38948170772711277,
+        "right": 0.5848541511096199,
+        "top": 0.536946971149957,
+        "bottom": 0.8686658666538494
+      },
+      "calls": 115,
+      "triangles": 62804,
+      "scrollWidth": 907,
+      "width": 907
+    },
+    {
+      "label": "sweeper",
+      "z": 88,
+      "offset": 3.5,
+      "viewport": {
+        "width": 907,
+        "height": 510
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.34742507463366323,
+        "right": 0.5428537527781803,
+        "top": 0.5361289518639469,
+        "bottom": 0.8707219237536514
+      },
+      "calls": 120,
+      "triangles": 63482,
+      "scrollWidth": 907,
+      "width": 907
+    },
+    {
+      "label": "home",
+      "z": 130,
+      "offset": -1.2,
+      "viewport": {
+        "width": 907,
+        "height": 510
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.43407615810356703,
+        "right": 0.6294017253843687,
+        "top": 0.5369093897954511,
+        "bottom": 0.8699217291652808
+      },
+      "calls": 120,
+      "triangles": 63482,
+      "scrollWidth": 907,
+      "width": 907
+    },
+    {
+      "label": "finish",
+      "z": 150,
+      "offset": 0,
+      "viewport": {
+        "width": 907,
+        "height": 510
+      },
+      "condition": "afloat",
+      "bounds": {
+        "left": 0.4014927026649955,
+        "right": 0.5970020601106109,
+        "top": 0.5352682064218434,
+        "bottom": 0.8690979059793509
+      },
+      "calls": 120,
+      "triangles": 63482,
+      "scrollWidth": 907,
+      "width": 907
+    }
+  ],
+  "errors": [],
+  "scope": "18 authored IPC poses across desktop, portrait and landscape; four real socket seats, one renderer. Not a continuous human route or device FPS test."
+}

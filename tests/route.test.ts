@@ -1,7 +1,7 @@
 import { before, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { BoatSimulation, initPhysics } from '../src/shared/simulation';
-import { CHECKPOINTS, FINISH_Z, PYLONS, RAPIDS, ROCKS, ROUTE_SECTIONS, SPIKES, SWEEPERS, WATERWHEEL, WATERWHEEL2, channelHalfWidth, sampleSweeper, sampleWater } from '../src/shared/world';
+import { CHECKPOINTS, FINISH_Z, PYLONS, RAPIDS, ROCKS, ROUTE_SECTIONS, SPIKES, SWEEPERS, WATERWHEEL, WATERWHEEL2, channelHalfWidth, channelCenter, channelSlope, riverX, bankEdge, sampleSweeper, sampleWater } from '../src/shared/world';
 import { DT } from '../src/shared/protocol';
 
 before(initPhysics);
@@ -26,7 +26,7 @@ test('Shared channel and rapids stay continuous, finite and bounded with flat-wa
     assert(width >= 6.5 && width <= 12.5);
     assert(Math.abs(channelHalfWidth(z + 0.001) - width) < 0.001);
     if (z <= 138) assert.equal(width, 12.5);
-    for (const x of [-width + 1, 0, width - 1]) for (const time of [0, 1.7, 9.3]) {
+    for (const x of [-width + 1, 0, width - 1].map(lateral=>riverX(lateral,z))) for (const time of [0, 1.7, 9.3]) {
       const water = sampleWater(x, z, time);
       assert(Number.isFinite(water.height) && Object.values(water.velocity).every(Number.isFinite));
       assert(Math.abs(water.height) <= 0.61 && Math.hypot(water.velocity.x, water.velocity.z) < 2);
@@ -84,7 +84,7 @@ test('Gorge rock, spike and both moving timber colliders cause genuine one-shot 
 test('Rapids impart bounded flow through immersed drag, while calm controls retain zero propulsion', () => {
   const run = (calm: boolean) => {
     const sim = new BoatSimulation(calm);
-    sim.hull.setTranslation({ x: 0, y: 0.08, z: 286 }, true);
+    sim.hull.setTranslation({ x: channelCenter(286), y: 0.08, z: 286 }, true);
     // One second is before the next authored solid; no inputs are supplied.
     for (let t = 0; t < 60; t++) sim.step();
     const moved = sim.hull.translation().z - 286;
@@ -102,17 +102,19 @@ test('Authored extension has a connected hull-width corridor at sampled timber p
   for (const time of [0, 3, 7, 11, 17]) {
     let previous: number[] = [0];
     for (let z = 138; z <= FINISH_Z; z += 0.5) {
-      const width = Math.min(channelHalfWidth(z - 1.9), channelHalfWidth(z), channelHalfWidth(z + 1.9));
+      const yaw=Math.atan(channelSlope(z)),halfX=Math.abs(Math.cos(yaw))*.96+Math.abs(Math.sin(yaw))*2.25,halfZ=Math.abs(Math.sin(yaw))*.96+Math.abs(Math.cos(yaw))*2.25;
+      const left=Math.max(...[z-halfZ,z,z+halfZ].map(station=>bankEdge(station,-1)))+halfX+.05;
+      const right=Math.min(...[z-halfZ,z,z+halfZ].map(station=>bankEdge(station,1)))-halfX-.05;
       const solids = [
         ...[WATERWHEEL, WATERWHEEL2].map(w => ({ x: w.x, z: w.z, rx: w.halfWidth + 0.08, rz: w.radius + 0.08 })),
         ...ROCKS.map(s => ({ x: s.x, z: s.z, rx: s.radius, rz: s.radius })),
         ...SPIKES.map(s => ({ x: s.x, z: s.z, rx: s.radius, rz: s.radius })),
         ...PYLONS.map(s => ({ x: s.x, z: s.z, rx: 0.27, rz: 0.27 })),
         ...SWEEPERS.map(s => ({ ...sampleSweeper(time, s), rx: s.halfLength + s.radius, rz: s.radius })),
-      ].filter(s => Math.abs(s.z - z) < s.rz + 1.95);
+      ].filter(s => Math.abs(s.z - z) < s.rz + halfZ+.05);
       const reachable: number[] = [];
-      for (let x = -width + 1; x <= width - 1; x += step) {
-        if (solids.some(s => Math.abs(s.x - x) < s.rx + 0.95)) continue;
+      for (let x = left; x <= right; x += step) {
+        if (solids.some(s => Math.abs(s.x - x) < s.rx + halfX+.05)) continue;
         if (previous.some(p => Math.abs(p - x) < 0.55)) reachable.push(x);
       }
       assert(reachable.length > 0, `No connected corridor z=${z}, timber time=${time}`);
@@ -139,19 +141,20 @@ test('Only the final river gate completes the run, and checkpoint retry clears c
 
 test('Narrow gorge banks stop the hull and permit paddle bracing without becoming lethal', () => {
   const contact = new BoatSimulation(true);
-  contact.hull.setTranslation({ x: 6, y: 0.08, z: 566 }, true);
+  const centre=channelCenter(566);
+  contact.hull.setTranslation({ x: centre+6, y: 0.08, z: 566 }, true);
   for (let t = 0; t < 60; t++) contact.step();
-  assert(contact.hull.translation().x < 5.7, 'A 6.5m half-width bank must stop the 0.9m half-width hull');
+  assert(contact.hull.translation().x-centre < 5.7, 'The narrow bank must stop the hull at the visible bent channel edge');
   assert.equal(contact.condition, 'afloat'); assert.equal(contact.crashId, 0);
   contact.dispose();
   const brace = new BoatSimulation(true); brace.setActive(1, true);
-  brace.hull.setTranslation({ x: 4.8, y: 0.08, z: 566 }, true);
+  brace.hull.setTranslation({ x: centre+4.8, y: 0.08, z: 566 }, true);
   let braces = 0;
   for (let t = 0; t < 200; t++) {
     brace.accept(1, { seq: t + 1, x: t < 120 ? -1 : 1, z: 0, dip: 1 }); brace.step();
     if (brace.blades[1]!.state === 'BRACE') braces++;
   }
-  assert(braces > 0); assert(brace.hull.translation().x < 4.8);
+  assert(braces > 0); assert(brace.hull.translation().x-centre < 4.8);
   assert.equal(brace.condition, 'afloat'); assert.equal(brace.crashId, 0);
   brace.dispose();
 });

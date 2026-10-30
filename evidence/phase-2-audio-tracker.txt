@@ -1,0 +1,19 @@
+
+> bad-at-boating@0.1.0 tracker
+> node scripts/tracker.mjs
+
+PASS: 49 deliverables + 90 content tasks, 2/100 accepted scope points; dependency/evidence/report checks passed.
+{
+  "result": "PASS",
+  "browser": "155.0.8059.82",
+  "records": 139,
+  "checks": [
+    "Five execution phases match the source states",
+    "All deliverables and content cards visible",
+    "Obstacle search finds the correct record",
+    "Phase filter matches source ledger",
+    "Empty acceptance filter is honest and visible",
+    "Text search and reset remain usable"
+  ],
+  "errors": []
+}

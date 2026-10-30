@@ -1,0 +1,15 @@
+
+> bad-at-boating@0.1.0 test:performance
+> node tests/performance.mjs
+
+{"view":"crew","quality":"High","cpuP95":4,"frameP95":16.799999999999727,"gpuP95":14.105666,"targetComparison":{"cpu":"MEETS","gpu":"MISSES","frameInterval":"MISSES"}}
+{"view":"crew","quality":"Low","cpuP95":3.7000000001862645,"frameP95":16.799999999999727,"gpuP95":7.307166,"targetComparison":{"cpu":"MEETS","gpu":"MEETS","frameInterval":"MISSES"}}
+{"view":"trees","quality":"High","cpuP95":3.7999999998137355,"frameP95":16.799999999999727,"gpuP95":14.530124,"targetComparison":{"cpu":"MEETS","gpu":"MISSES","frameInterval":"MISSES"}}
+{"view":"trees","quality":"Low","cpuP95":3.7999999998137355,"frameP95":16.700000000000273,"gpuP95":13.640958,"targetComparison":{"cpu":"MEETS","gpu":"MISSES","frameInterval":"MISSES"}}
+{"view":"rapids","quality":"High","cpuP95":4.8999999994412065,"frameP95":16.800000000000182,"gpuP95":14.185291,"targetComparison":{"cpu":"MISSES","gpu":"MISSES","frameInterval":"MISSES"}}
+4:49:32 PM [vite] (client) page reload docs/PRODUCTION_TRACKER.html
+4:49:32 PM [vite] (client) page reload releases/bad-at-boating-cpanel/dist/index.html
+{"view":"rapids","quality":"Low","cpuP95":3.400000000372529,"frameP95":16.700000000000273,"gpuP95":6.042125,"targetComparison":{"cpu":"MEETS","gpu":"MEETS","frameInterval":"MISSES"}}
+{"view":"rescue","quality":"High","cpuP95":4.7999999998137355,"frameP95":16.799999999999955,"gpuP95":14.088625,"targetComparison":{"cpu":"MISSES","gpu":"MISSES","frameInterval":"MISSES"}}
+{"view":"rescue","quality":"Low","cpuP95":3.7000000001862645,"frameP95":16.800000000000182,"gpuP95":5.489916,"targetComparison":{"cpu":"MEETS","gpu":"MEETS","frameInterval":"MISSES"}}
+PASS: 8 measured High/Low cases; inspect targetComparison for budget misses.

@@ -42,6 +42,17 @@ export class CrewMember extends T.Group {
   readonly arms: { upper: T.Mesh; lower: T.Mesh; hand: T.Mesh }[] = [];
   readonly shoulders = [new T.Vector3(-.19, .39, 0), new T.Vector3(.19, .39, 0)];
   readonly jointPositions: { shoulder: T.Vector3; elbow: T.Vector3; hand: T.Vector3 }[] = [];
+  // ── Scratch vectors for pose / reachArm — reused every frame ──
+  private readonly _poseHandle = new T.Vector3();
+  private readonly _poseTip    = new T.Vector3();
+  private readonly _poseShaft  = new T.Vector3();
+  private readonly _poseGrip   = new T.Vector3();
+  private readonly _raShoulder = new T.Vector3();
+  private readonly _raAxis     = new T.Vector3();
+  private readonly _raHand     = new T.Vector3();
+  private readonly _raBend     = new T.Vector3();
+  private readonly _raElbow    = new T.Vector3();
+  private readonly _raReactHand = new T.Vector3();
   constructor(readonly seat: number) {
     super();
     const station = SEATS[seat]!;
@@ -124,6 +135,8 @@ export class CrewMember extends T.Group {
       if (gripGeometry) palm.dispose(); thumb.dispose();
       this.arms.push({ upper, lower, hand });
     }
+    // Pre-allocate per-arm joint position vectors (reused every frame, never replaced).
+    for (let i = 0; i < 2; i++) this.jointPositions.push({ shoulder: new T.Vector3(), elbow: new T.Vector3(), hand: new T.Vector3() });
     this.pose({ x: station.side * 1.45, y: .62, z: station.z }, 0, 0);
   }
   react(age: number) {
@@ -131,9 +144,9 @@ export class CrewMember extends T.Group {
     this.torso.rotation.set(-.15, 0, Math.sin(age * 8 + this.seat) * .12);
     this.head.rotation.set(-.1, 0, 0); this.eyes.scale.y = 1; this.torso.updateMatrix();
     this.arms.forEach((_arm, i) => {
-      const shoulder = this.shoulders[i]!.clone().applyMatrix4(this.torso.matrix);
-      const hand = shoulder.add(new T.Vector3((i ? 1 : -1) * .25, .43 + Math.sin(age * 8 + i) * .055, Math.sin(age * 11 + i) * .1));
-      this.reachArm(i, hand);
+      this._raShoulder.copy(this.shoulders[i]!).applyMatrix4(this.torso.matrix);
+      this._raReactHand.copy(this._raShoulder).add(this._raBend.set((i ? 1 : -1) * .25, .43 + Math.sin(age * 8 + i) * .055, Math.sin(age * 11 + i) * .1));
+      this.reachArm(i, this._raReactHand);
     });
   }
   pose(blade: Vec3, time: number, force: number) {
@@ -152,24 +165,31 @@ export class CrewMember extends T.Group {
     const blinkPhase = (Math.max(0, time) + this.seat * 1.31) % (4.3 + this.seat * .37);
     this.eyes.scale.y = .06 + .94 * T.MathUtils.smoothstep(Math.abs(blinkPhase - .12), 0, .12);
     this.torso.updateMatrix();
-    const handle = new T.Vector3(station.side * .65, .97, station.z + .03);
-    const tip = new T.Vector3(blade.x, blade.y, blade.z);
-    const shaft = tip.clone().sub(handle).normalize();
+    this._poseHandle.set(station.side * .65, .97, station.z + .03);
+    this._poseTip.set(blade.x, blade.y, blade.z);
+    this._poseShaft.copy(this._poseTip).sub(this._poseHandle).normalize();
     this.arms.forEach((_arm, i) => {
-      const grip = handle.clone().lerp(tip, i === (station.side < 0 ? 0 : 1) ? .28 : .015).sub(this.position);
-      this.reachArm(i, grip, shaft);
+      this._poseGrip.copy(this._poseHandle).lerp(this._poseTip, i === (station.side < 0 ? 0 : 1) ? .28 : .015).sub(this.position);
+      this.reachArm(i, this._poseGrip, this._poseShaft);
     });
   }
   private reachArm(i: number, grip: T.Vector3, shaft?: T.Vector3) {
     const arm = this.arms[i]!;
-    const shoulder = this.shoulders[i]!.clone().applyMatrix4(this.torso.matrix);
-    const axis = grip.clone().sub(shoulder), distance = Math.min(.63, axis.length());
-    axis.normalize();
-    const hand = shoulder.clone().addScaledVector(axis, distance);
-    const bend = new T.Vector3(0, -.65, -.6); bend.addScaledVector(axis, -bend.dot(axis)).normalize();
-    const elbow = shoulder.clone().addScaledVector(axis, distance * .5).addScaledVector(bend, Math.sqrt(Math.max(0, .32 ** 2 - (distance * .5) ** 2)));
-    segment(arm.upper, shoulder, elbow); segment(arm.lower, elbow, hand); arm.hand.position.copy(hand);
-    arm.hand.quaternion.setFromUnitVectors(up, shaft ?? axis);
-    this.jointPositions[i] = { shoulder, elbow, hand };
+    // Reuse scratch; copy result into stable jointPositions slots allocated at construction.
+    this._raShoulder.copy(this.shoulders[i]!).applyMatrix4(this.torso.matrix);
+    this._raAxis.copy(grip).sub(this._raShoulder);
+    const distance = Math.min(.63, this._raAxis.length());
+    this._raAxis.normalize();
+    this._raHand.copy(this._raShoulder).addScaledVector(this._raAxis, distance);
+    this._raBend.set(0, -.65, -.6).addScaledVector(this._raAxis, -this._raBend.dot(this._raAxis)).normalize();
+    this._raElbow.copy(this._raShoulder).addScaledVector(this._raAxis, distance * .5)
+      .addScaledVector(this._raBend, Math.sqrt(Math.max(0, .32 ** 2 - (distance * .5) ** 2)));
+    segment(arm.upper, this._raShoulder, this._raElbow);
+    segment(arm.lower, this._raElbow, this._raHand);
+    arm.hand.position.copy(this._raHand);
+    arm.hand.quaternion.setFromUnitVectors(up, shaft ?? this._raAxis);
+    // Write result into pre-allocated joint vectors (never replaced by a new object).
+    const jp = this.jointPositions[i]!;
+    jp.shoulder.copy(this._raShoulder); jp.elbow.copy(this._raElbow); jp.hand.copy(this._raHand);
   }
 }

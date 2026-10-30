@@ -1,0 +1,27 @@
+{
+  "result": "PASS",
+  "fixture": true,
+  "physicsChanged": false,
+  "humanArtReview": false,
+  "measurements": [
+    {
+      "case": "all-bank-seams-and-contact-faces",
+      "checks": 52074,
+      "maxGap": 0,
+      "triangles": 42080
+    },
+    {
+      "case": "independent-triangle-ground-rays",
+      "checks": 3696,
+      "maxError": 0.000006221167370590308
+    },
+    {
+      "case": "periodic-filtered-rock-texture",
+      "bytes": 262144,
+      "maxSeam": 13,
+      "maxInterior": 16,
+      "min": 162,
+      "max": 237
+    }
+  ]
+}

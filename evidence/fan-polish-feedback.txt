@@ -1,0 +1,10 @@
+✔ Owned feedback distinguishes stroke, recovery, glide and rest without treating another fan as your action (0.385416ms)
+✔ Practice lesson requires owned stroke, offset power and released settled rest; blocked states cannot advance it and retry resets it (0.140083ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 135.499084

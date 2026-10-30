@@ -1,0 +1,23 @@
+
+> bad-at-boating@0.1.0 test:accessibility
+> node tests/accessibility.mjs
+
+{
+  "result": "PASS",
+  "base": "http://localhost:2571",
+  "protocol": 6,
+  "physics": "basin-0.9",
+  "automated": true,
+  "humanPlaytest": false,
+  "controller": "Browser Gamepad API fixture; physical controller acceptance pending",
+  "checks": [
+    "Unique remapped keys and graphics/camera preferences persist across reload",
+    "Remapped I rows the real assigned paddle; replaced W remains inactive",
+    "Arrow controls remain available after remapping",
+    "Standard controller API drives real paddle and requires neutral after menu release (simulated hardware)",
+    "Low: native WebGL loss releases input, restores rendering/water and allows subsequent rowing",
+    "High: native WebGL loss releases input, restores rendering/water and allows subsequent rowing",
+    "Restoring WASD takes effect immediately without a new crew"
+  ],
+  "errors": []
+}

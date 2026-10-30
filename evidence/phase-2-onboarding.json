@@ -1,0 +1,113 @@
+{
+  "phase": "M2",
+  "check": "M2-C",
+  "subcheck": "M2-C1",
+  "title": "Waiting-dock own-paddle rehearsal",
+  "engineeringState": "VERIFIED",
+  "parentCheckState": "PENDING",
+  "phaseEngineeringState": "ACTIVE",
+  "productionGate": "OPEN",
+  "date": "2026-10-20T16:14:35.038Z",
+  "protocol": 5,
+  "physics": "basin-0.8",
+  "world": "waterworks-1",
+  "scope": "Local visual rehearsal only. The frozen authoritative dock, four-ready launch, lethal marked obstacles, saves and quiet playing HUD retain their contracts. No physics/protocol migration or production scope points.",
+  "implemented": [
+    "Own assigned paddle uses the shared hold/reverse/turn stroke cycle with bounded visual travel",
+    "Existing remapped keyboard, touch controls and standard Gamepad API work while waiting; no lobby rowing messages or authoritative ticks/forces/strokes",
+    "Countdown, menu, graphics loss, blur and reconnect clear input; fresh keyboard press / neutral controller needed after a cleared hold",
+    "Portrait/landscape dock framing keeps the full boat/paddle envelope clear of the waiting card; playing projection restored at launch"
+  ],
+  "verification": {
+    "automatedTests": {
+      "passed": 99,
+      "failed": 0,
+      "seconds": 76.933587791,
+      "command": "npm test"
+    },
+    "onboarding": "evidence/onboarding.json",
+    "browser": {
+      "result": "PASS",
+      "checks": 8,
+      "evidence": "evidence/browser.json"
+    },
+    "accessibility": {
+      "result": "PASS",
+      "checks": 7,
+      "evidence": "evidence/accessibility.json"
+    },
+    "touch": {
+      "result": "PASS",
+      "checks": 5,
+      "evidence": "evidence/touch.json"
+    },
+    "camera": {
+      "result": "PASS",
+      "checks": 132,
+      "evidence": "evidence/camera.json"
+    },
+    "actualCommandOutput": "evidence/phase-2-onboarding-checks.txt",
+    "build": "PASS",
+    "typecheck": "PASS",
+    "onboardingGroups": 7,
+    "dockViewports": [
+      {
+        "width": 480,
+        "height": 900
+      },
+      {
+        "width": 390,
+        "height": 700
+      },
+      {
+        "width": 907,
+        "height": 510
+      },
+      {
+        "width": 640,
+        "height": 400
+      },
+      {
+        "width": 1440,
+        "height": 960
+      }
+    ],
+    "tracker-browser": {
+      "result": "PASS",
+      "checks": 6,
+      "evidence": "evidence/tracker-browser.json"
+    },
+    "trackerIntegrity": "PASS: 2 tests; source/report freshness and all139 records/filters verified",
+    "deploymentSmoke": "PASS: local health/static/4-seat launch/clock/drop pause/reconnect (8 checks); no public deployment",
+    "gitDiffCheck": "PASS"
+  },
+  "corrections": [
+    "The first peer-join assertion compared disabled empty-seat blades with newly enabled occupied seats. Capture the full-crew baseline separately while retaining identical authority pose/tick/acks/strokes checks.",
+    "A generic first .control-note lookup selected the new ownership hint; binding guidance now has its own explicit element id.",
+    "Landscape screenshots revealed the waiting card covering the boat; the stronger portrait envelope assertion also failed. Dock-only projection framing and a side card now pass the original non-overlap checks across five viewport sizes."
+  ],
+  "remaining": [
+    "M2-C staged nonlethal rescue encounter",
+    "Teaching actual boat response and genuine newcomer comprehension",
+    "M2-D boat/crew/water/audio presentation",
+    "M2-E continuous human traversal and named consumer-device acceptance",
+    "Previously measured GPU/CPU budget gaps and broader release gates"
+  ],
+  "humanPlaytest": false,
+  "physicalControllerTest": false,
+  "performanceRerun": false,
+  "performanceScope": "Retain M2-B timing/load evidence; no new FPS, Internet or capacity claim. Authority and water physics unchanged.",
+  "cpanel": {
+    "result": "PASS",
+    "archive": "releases/Bad-at-Boating-cPanel.zip",
+    "matchedSha256": {
+      "build/server.mjs": "415c8d12924a1902e2a7306d63feba41d9ef1f53df2f695cd153708126b40db7",
+      "dist/index.html": "6e4116ab35e40b2c123656c3f1176667d6347f156086d5102d096ee15c89fb1d",
+      "dist/assets/index-BE9tlafO.css": "058b5e5e482f23fcc8deb260a42361611bad396e80ebb75ced112f66428099e1",
+      "dist/assets/index-CBml49Mf.js": "c76e1c9182a388ce92068e0aebba7a3181226bc56d5bfa68f08845fdc7d93bd3"
+    },
+    "privateDataShipped": false,
+    "publicDeployment": false
+  },
+  "verifiedUTC": "2026-10-20T16:18:24.355420+00:00"
+}

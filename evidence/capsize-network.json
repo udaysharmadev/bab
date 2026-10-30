@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "protocol": 7,
+  "physics": "basin-0.13",
+  "checks": [
+    "Entry requires neutral rearming;owned validated reverse actions count distinct seats;spoofed extra fields and minority cannot right the hull",
+    "Missing heartbeats expire through the actual production row timeout;stale sequence cannot rearm effort",
+    "Actual socket drop freezes rescue time and clears all effort;reconnect retains the hull/window without replaying input",
+    "Fresh majority physically rights the same hull;checkpoint/reset/crash stay unchanged and success clears held rows"
+  ],
+  "scope": "Actual local WebSockets;real disconnect/reconnect. Not Internet or human handling acceptance."
+}

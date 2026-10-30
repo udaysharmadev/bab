@@ -1,7 +1,7 @@
 import {before,test} from 'node:test';
 import assert from 'node:assert/strict';
 import {BoatSimulation,initPhysics} from '../src/shared/simulation';
-import {WATERWHEEL,WATERWHEEL2,sampleWaterwheel,sampleWaterwheel2} from '../src/shared/world';
+import {WATERWHEEL,WATERWHEEL2,sampleWaterwheel,sampleWaterwheel2,riverX,channelCenter} from '../src/shared/world';
 import {DT} from '../src/shared/protocol';
 before(initPhysics);
 test('Waterwheel is a real shared-clock kinematic hazard; reset preserves its phase',()=>{
@@ -29,7 +29,7 @@ for (const wheel of [WATERWHEEL,WATERWHEEL2]) test(`${wheel.id}: real contact br
  }finally{hit.dispose();}
  const bypass=new BoatSimulation(true);
  try{
-  bypass.hull.setTranslation({x:-Math.sign(wheel.x)*3.8,y:.08,z:wheel.z},true);
+  bypass.hull.setTranslation({x:riverX(-Math.sign(wheel.x-channelCenter(wheel.z))*3.8,wheel.z),y:.08,z:wheel.z},true);
   for(let i=0;i<wheel.period*2/DT;i++)bypass.step();
   assert.equal(bypass.condition,'afloat');assert.equal(bypass.crashId,0);assert(bypass.maxSpeed<2);
  }finally{bypass.dispose();}

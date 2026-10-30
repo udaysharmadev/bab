@@ -1,0 +1,12 @@
+✔ Convex collider follows every structural panel triangle through yaw, pitch and roll (21.704ms)
+✔ Water exclusion planes agree with Rapier inside/outside queries throughout the hull volume (64.474042ms)
+✔ Visible bow, stern and shoulder contacts break once; empty tapered corners remain clear (335.547875ms)
+✔ A predicted contact stays safe until the same pair actually touches on a later tick (5.51825ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 718.652542

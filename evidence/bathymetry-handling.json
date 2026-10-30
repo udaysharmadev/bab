@@ -1,0 +1,52 @@
+{
+  "result": "PASS",
+  "physics": "basin-0.13",
+  "results": [
+    {
+      "x": -10.5,
+      "ground": true,
+      "seconds": 19.866666666666667,
+      "maxForce": 239.7400176496956,
+      "exit": {
+        "x": -6.6679792404174805,
+        "y": 0.05375227704644203,
+        "z": 245.31976318359375
+      }
+    },
+    {
+      "x": -10,
+      "ground": false,
+      "seconds": 8.75,
+      "maxForce": 234.99685325785114,
+      "exit": {
+        "x": -7.667858600616455,
+        "y": 0.05378152057528496,
+        "z": 251.708251953125
+      }
+    },
+    {
+      "x": -9.5,
+      "ground": false,
+      "seconds": 6.5,
+      "maxForce": 236.3407267413848,
+      "exit": {
+        "x": -7.6710381507873535,
+        "y": 0.05386478453874588,
+        "z": 253.5327911376953
+      }
+    },
+    {
+      "x": -9,
+      "ground": false,
+      "seconds": 5.416666666666667,
+      "maxForce": 234.91102993197887,
+      "exit": {
+        "x": -7.769111156463623,
+        "y": 0.05380016937851906,
+        "z": 254.7630615234375
+      }
+    }
+  ],
+  "humanPlaytest": false,
+  "scope": "Real normal PaddleStroke controller commands and real bed contacts; no test steering force or teleport."
+}

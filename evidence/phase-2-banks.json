@@ -1,0 +1,272 @@
+{
+  "phase": "M2",
+  "check": "M2-D",
+  "subcheck": "M2-D3",
+  "title": "Continuous geological banks and grounded vegetation",
+  "engineeringState": "VERIFIED",
+  "parentCheckState": "PENDING",
+  "phaseEngineeringState": "ACTIVE",
+  "productionGate": "OPEN",
+  "localDate": "2026-10-21",
+  "protocol": 5,
+  "physics": "basin-0.9",
+  "world": "waterworks-1",
+  "implemented": [
+    "Continuous five-metre bank chunks sampled every1.25m with shared positions, UVs, colours and world-derivative normals",
+    "Exact vertical physical contact face y-3..3; receding scenic upper ledges",
+    "Sediment/wet/moss vertex colouring plus one generated256x256 periodic colour/bump texture,262144bytes before mipmaps",
+    "Actual triangle-ground queries for trees/grass; rescue paint follows the physical bank chord",
+    "Finish backdrop supports the last vegetation tile; gameplay finish/checkpoints unchanged"
+  ],
+  "corrections": [
+    "Independent cap-normal checks found reversed end caps; winding corrected without relaxing the assertions.",
+    "Rendered grounding checks found floating scenery past1425m; terrain backdrop now reaches1460m, beyond the last1440m vegetation tile.",
+    "Close-up inspection retained a crossed-sine pattern with the old stone map, then exposed overly soft replacement detail. A periodic fractal/grit texture supplies the final surface.",
+    "Texture contrast iteration exceeded byte range and wrapped Uint8 samples; bounded amplitude fixed it. Seam continuity is checked against normal interior texture gradients, independently of the intended contrast range.",
+    "Rescue wall paint intersected widening bank faces; each vertex now follows bankEdge with a2cm offset."
+  ],
+  "geometry": {
+    "result": "PASS",
+    "evidence": "evidence/banks.json",
+    "measurements": [
+      {
+        "case": "all-bank-seams-and-contact-faces",
+        "checks": 52074,
+        "maxGap": 0,
+        "triangles": 42080
+      },
+      {
+        "case": "independent-triangle-ground-rays",
+        "checks": 3696,
+        "maxError": 0.000006221167370590308
+      },
+      {
+        "case": "periodic-filtered-rock-texture",
+        "bytes": 262144,
+        "maxSeam": 13,
+        "maxInterior": 16,
+        "min": 162,
+        "max": 237
+      }
+    ]
+  },
+  "graphics": {
+    "result": "PASS",
+    "evidence": "evidence/graphics.json",
+    "views": 25,
+    "titleViewports": 3,
+    "maxCalls": 712,
+    "maxTriangles": 2249940,
+    "renderedGroundSamples": 2934,
+    "groundMaxError": 0.000009601022668448422,
+    "paintMaxError": 4.5776367187458367e-7,
+    "revisitResources": [
+      [
+        175,
+        11
+      ],
+      [
+        175,
+        11
+      ],
+      [
+        175,
+        11
+      ]
+    ],
+    "errors": []
+  },
+  "verification": {
+    "unit": {
+      "result": "PASS",
+      "tests": 110
+    },
+    "camera": {
+      "result": "PASS",
+      "cases": 180,
+      "evidence": "evidence/camera.json",
+      "log": "evidence/phase-2-banks-camera.txt"
+    },
+    "optics": {
+      "result": "PASS",
+      "log": "evidence/phase-2-banks-water-depth.txt"
+    },
+    "dryDeck": {
+      "result": "PASS",
+      "phases": 14,
+      "evidence": "evidence/landing.json",
+      "log": "evidence/phase-2-banks-landing.txt"
+    },
+    "nativeContextRecovery": {
+      "result": "PASS",
+      "groups": 7,
+      "evidence": "evidence/accessibility.json",
+      "log": "evidence/phase-2-banks-accessibility.txt"
+    },
+    "gameFlow": {
+      "result": "PASS",
+      "groups": 8,
+      "evidence": "evidence/browser.json",
+      "log": "evidence/phase-2-banks-game-flow.txt"
+    },
+    "performanceCapture": {
+      "result": "PASS",
+      "budgetAccepted": false,
+      "evidence": "evidence/performance.json",
+      "log": "evidence/phase-2-banks-performance.txt"
+    },
+    "tracker": {
+      "result": "PASS",
+      "integrityTests": 2,
+      "browserGroups": 6,
+      "evidence": "evidence/tracker-browser.json",
+      "log": "evidence/phase-2-banks-tracker.txt"
+    },
+    "deploymentSmoke": {
+      "result": "PASS",
+      "checks": 8,
+      "scope": "Local in-memory authority only",
+      "log": "evidence/phase-2-banks-deployment.txt"
+    }
+  },
+  "humanArtReview": false,
+  "humanPlaytest": false,
+  "namedDevicePerformance": false,
+  "publicDeployment": false,
+  "privateDatabaseModified": false,
+  "performanceBudgetAccepted": false,
+  "remaining": [
+    "Full M2-D boat/crew/hero water, premium asset/material/lighting/weather and sound palette",
+    "Genuine art, readability, listening and full-route newcomer/crew acceptance",
+    "Existing CPU/GPU/frame-time and named-device performance gates"
+  ],
+  "priorBuild": "evidence/build-phase-2-audio.json",
+  "priorTiming": "evidence/performance-phase-2-rescue.json",
+  "verifiedUTC": "2026-10-20T18:42:45.743Z",
+  "automatedTests": {
+    "command": "npm test",
+    "passed": 110,
+    "failed": 0,
+    "seconds": 250.666639667,
+    "log": "evidence/phase-2-banks-tests.txt"
+  },
+  "build": {
+    "result": "PASS",
+    "typecheck": "PASS",
+    "log": "evidence/phase-2-banks-build.txt",
+    "bundleAdvisory": "Known >500kB JavaScript chunk warning remains open."
+  },
+  "performance": {
+    "result": "PASS",
+    "framesPerCase": 180,
+    "caseCount": 8,
+    "scope": "Local headless authored scene measurements at1080p with advancing20Hz snapshots/waves/effects, not a named consumer-device matrix, human gameplay or universal60FPS certification. PASS means measurement completed without render errors; target misses remain visible. CPU covers RiverScene.render only; GPU includes its color/reflection/shadow/capture work. Heap/DOM metrics are observations, not leak certification.",
+    "cases": [
+      {
+        "view": "crew",
+        "quality": "High",
+        "cpuP95": 4.299999997019768,
+        "gpuP95": 10.297083,
+        "frameP95": 16.800000000000182,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "crew",
+        "quality": "Low",
+        "cpuP95": 2.5,
+        "gpuP95": 4.837125,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "High",
+        "cpuP95": 3.5,
+        "gpuP95": 11.676374,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "Low",
+        "cpuP95": 2.1999999955296516,
+        "gpuP95": 6.108,
+        "frameP95": 16.799999999999727,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "High",
+        "cpuP95": 5.5,
+        "gpuP95": 8.96775,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "Low",
+        "cpuP95": 4,
+        "gpuP95": 6.331333,
+        "frameP95": 16.799999999999727,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rescue",
+        "quality": "High",
+        "cpuP95": 5.700000002980232,
+        "gpuP95": 9.278208,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rescue",
+        "quality": "Low",
+        "cpuP95": 4.100000001490116,
+        "gpuP95": 6.343125,
+        "frameP95": 16.799999999999727,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      }
+    ],
+    "budgetAccepted": false,
+    "firstCapture": "evidence/performance-phase-2-banks-first.json",
+    "repeatReason": "Initial90-frame capture overlapped the local deployment smoke and showed large timing outliers. Retained it, then measured180 frames/case after all other workers completed. No device or universal FPS acceptance."
+  },
+  "retainedEvidence": {
+    "audio": "M2-D2 seven audio groups; no audio change",
+    "lobby": "M2-D1 five viewport invite/name/Ready checks; no lobby flow change",
+    "load": "M2-D1 four-room/16-client120.079s run; no authority change; not rerun"
+  },
+  "finalStaticChecks": "PASS: TypeScript, generated tracker freshness, two tracker integrity tests and git diff --check"
+}

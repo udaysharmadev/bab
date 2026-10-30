@@ -1,3 +1,4 @@
+import {confirmName} from './support/name.mjs';
 import {chromium} from 'playwright';
 import {PerspectiveCamera, Quaternion, Vector3} from 'three';
 import assert from 'node:assert/strict';
@@ -62,7 +63,7 @@ try {
   page.setDefaultTimeout(15000);
   // Four clients share one test GPU; cap rendering near 15 FPS to verify that
   // the real keyboard/socket path works independently of render cadence.
-  await page.addInitScript(()=>{
+  await page.addInitScript(()=>{localStorage.setItem('bad-at-boating-name','River Tester');
    const frame=window.requestAnimationFrame.bind(window);
    window.requestAnimationFrame=callback=>frame(()=>window.setTimeout(()=>callback(performance.now()),50));
   });
@@ -70,11 +71,12 @@ try {
   await page.goto(seat===0?base:pages[0].url());
   if(seat===0)await page.getByRole('button',{name:'Play with Friends',exact:true}).click();
   await page.waitForFunction(seat=>document.body.dataset.seat===String(seat)&&document.body.dataset.stage==='lobby',seat);
+  await confirmName(page);
   await page.getByRole('button',{name:'Open game menu'}).click();
   await page.getByLabel('Lower graphics').check();
   await page.getByRole('button',{name:'Back to the River'}).click();
  }
- for(const page of pages)await page.getByRole('button',{name:'Ready to Row',exact:true}).click();
+ for(const page of pages)await page.getByRole('button',{name:'Ready',exact:true}).click();
  await Promise.all(pages.map(page=>page.waitForFunction(()=>document.body.dataset.stage==='playing')));
  check('four-ready launch focuses all four game canvases',(await Promise.all(pages.map(page=>page.locator('canvas').evaluate(el=>document.activeElement===el)))).every(Boolean));
  await pages[3].context().setOffline(true);

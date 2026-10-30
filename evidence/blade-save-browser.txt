@@ -1,0 +1,18 @@
+(node:19030) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "result": "PASS",
+  "checks": [
+    "Prior basin-0.10 recovery code migrates through the built authority and opens the actual durable checkpoint in a frozen lobby",
+    "Four-ready launch retains the saved checkpoint rather than resetting to the start",
+    "Menu copies the private recovery code without placing it in the invite URL",
+    "Continue Voyage creates a fresh crew at the durable checkpoint after the old room closes",
+    "Browser refresh retains the resumed room and seat",
+    "A second live room cannot fork the same saved voyage"
+  ],
+  "errors": [],
+  "migratedFrom": "basin-0.10",
+  "physics": "basin-0.11",
+  "seededServerFixture": true,
+  "humanPlaytest": false
+}

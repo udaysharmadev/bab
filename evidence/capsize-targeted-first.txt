@@ -1,0 +1,32 @@
+✔ Cooperative righting uses bounded real torque across headings and both roll/pitch directions without teleport (1097.266542ms)
+✔ Minority,wrong action,stale input and release cannot power righting; no-input timeout returns the saved checkpoint (183.640667ms)
+✔ Practice rescue needs one active seat; release/reset/wreck clear rescue and damage retains priority (38.612ms)
+{"case":"idle-120s","y":0.053800009191036224,"speed":0.1437090039253235,"tickP95ms":0.2689579999998841}
+{"case":"air-vs-water","airZ":-5.064097058360417e-11,"wetZ":0.8718743324279785,"seatYaw":[0.333575040102005,-0.33357465267181396,0.3213750720024109,-0.3213749825954437]}
+✔ Input contract rejects NaN, stale/future sequence, teleport, spoofed seat and extra thrust (4.50975ms)
+✔ Y-up transforms preserve lengths and +Z forward turns to +X at 90° yaw (0.322834ms)
+✔ PHY-01/12: two simulated minutes at rest retain equilibrium and zero horizontal thrust (1000.040083ms)
+✔ PHY-02/03/04/06: immersed stroke moves hull, air has no thrust, four balanced strokes advance without yaw (364.732958ms)
+✔ PHY-05/07: reverse relative velocity reverses force; immersion and current affect drag; force capped (1.195042ms)
+✔ Blade reaction rotates with hull heading rather than fixed world axes (92.522709ms)
+✔ PROTO: bow/stern lateral sweep creates opposite yaw, same-side straight pulls need not (79.795625ms)
+✔ NET stale input and disconnect release blade; target teleport remains speed bounded (41.206708ms)
+✔ PHY-08: swept blade can brace against bank with bounded contact force and no wall climb (37.187625ms)
+✔ PHY-10 partial: sampled buoyancy settles a 25-degree heel in waves without orientation lock (159.449917ms)
+✔ PHY-11: 100 checkpoint resets clear momentum and return to a collision-free canonical pose (21.843041ms)
+✔ PHY-23: a sustained capsize returns every crew member to the canonical checkpoint without masking a crash (121.448ms)
+✔ PHY-23: live rowing pinned at a bank recovers, while a stationary crew never auto-resets (104.946416ms)
+✔ Repeated recorded inputs are reproducible in this runtime (108.948125ms)
+✔ Checkpoint capture belongs to the simulation and advances its revision only once per dock (23.15625ms)
+✔ Lethal obstacle contact breaks once, disables every paddle, sinks, and restores the checkpoint cleanly (32.720708ms)
+✔ Nearby obstacles and ordinary river-bank contact do not cause a false break (21.537833ms)
+✔ A blade-only rock brace does not destroy a clear hull (39.673ms)
+✔ Hull CCD still triggers lethal contact at a fast approach (8.685791ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2466.478875

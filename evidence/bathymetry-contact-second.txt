@@ -1,0 +1,29 @@
+✔ Exact bed triangles agree between authority rays, rendered surfaces and interpolation over the entire route (90.676084ms)
+✔ Canonical checkpoints retain deep hull/blade lanes and depth drag is continuous, bounded and dissipative (0.664167ms)
+✔ Water depth attributes follow exact bed heights through both quality modes and same-tick relocations (31.412042ms)
+✖ A settled sandbar hull stays nonlethal and idle; four real reverse paddles can push off the bed without recovery (712.947333ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1045.376833
+
+✖ failing tests:
+
+test at tests/bathymetry.test.ts:1:4138
+✖ A settled sandbar hull stays nonlethal and idle; four real reverse paddles can push off the bed without recovery (712.947333ms)
+  AssertionError [ERR_ASSERTION]: Normal reverse controls must reach deep upstream water
+      at TestContext.<anonymous> (/Users/uday/Bad at Boating/tests/bathymetry.test.ts:79:4)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

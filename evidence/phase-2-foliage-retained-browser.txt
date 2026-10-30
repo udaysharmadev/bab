@@ -1,0 +1,64 @@
+Four clients ready. Verifying own-seat input.
+Shared sink confirmed; checking refresh during failure.
+Refresh retained the wreck; sending checkpoint retry.
+Conditions after retry: [ 'afloat', 'afloat', 'afloat', 'afloat' ]
+Browser: Failed to load resource: the server responded with a status of 522 (unknown)
+Browser: Failed to load resource: the server responded with a status of 522 (unknown)
+{
+  "date": "2026-10-21T11:47:58.831Z",
+  "base": "http://localhost:2571",
+  "automated": true,
+  "humanPlaytest": false,
+  "checks": [
+    "Main menu appears before a room is created; only Play with Friends and Join Crew are shown; extra title text/buttons are absent",
+    "Private crew stays anchored at the animated dock; join form and invite links allocate four distinct seats",
+    "Four ready clients launch; ordinary gameplay shows only the small menu button",
+    "Mouse has no paddle effect; holding Up alone repeats at least two server-confirmed strokes on the local seat",
+    "Refresh rejoins the same crew and seat",
+    "Boat and paddles remain framed in landscape and portrait, with no permanent HUD panels",
+    "Actual rock contact produces one shared break/sink event; refresh retains the wreck and one retry restores the crew checkpoint",
+    "Full/expired invites return an actionable title-menu error and never create an unrelated crew"
+  ],
+  "firstObservedFailure": "breaking",
+  "seats": [
+    "0",
+    "1",
+    "2",
+    "3"
+  ],
+  "layouts": [
+    {
+      "width": 907,
+      "height": 510,
+      "bounds": {
+        "left": 0.39042718990487724,
+        "right": 0.6461838104372652,
+        "top": 0.4197822276333419,
+        "bottom": 0.7799306602315306
+      }
+    },
+    {
+      "width": 700,
+      "height": 982,
+      "bounds": {
+        "left": 0.3107415981657846,
+        "right": 0.7557627253538697,
+        "top": 0.4394560502481203,
+        "bottom": 0.7057620412117713
+      }
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "bounds": {
+        "left": 0.3227766660034411,
+        "right": 0.7461752592615001,
+        "top": 0.4541009934943429,
+        "bottom": 0.6511796890055662
+      }
+    }
+  ],
+  "browser": "155.0.8059.82",
+  "errors": [],
+  "result": "PASS"
+}

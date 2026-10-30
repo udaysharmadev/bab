@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.textContent: Error: strict mode violation: locator('#paddle-controls-note') resolved to 2 elements:
+    1) <p class="control-note" id="paddle-controls-note">Hold I/↑ forward · S/↓ reverse · A/← D/→ turn. Ea…</p> aka getByLabel('Crew lobby').getByText('Hold I/↑ forward · S/↓')
+    2) <p class="control-note" id="paddle-controls-note">Hold I/↑ forward · S/↓ reverse · A/← D/→ turn. Ea…</p> aka getByLabel('Paddle controls', { exact: true }).getByText('Hold I/↑ forward · S/↓')
+
+Call log:
+[2m  - waiting for locator('#paddle-controls-note')[22m
+
+    at /Users/uday/Bad at Boating/tests/onboarding.mjs:53:60 {
+  log: [ "  - waiting for locator('#paddle-controls-note')" ]
+}
+
+Node.js v24.11.0

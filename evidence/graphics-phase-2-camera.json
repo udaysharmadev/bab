@@ -1,0 +1,1404 @@
+{
+  "result": "PASS",
+  "fixture": true,
+  "humanPlaytest": false,
+  "browser": "155.0.8059.82",
+  "results": [
+    {
+      "view": "crew",
+      "stats": {
+        "calls": 527,
+        "triangles": 1328630,
+        "geometries": 174,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 1,
+        "captureTriangles": 144,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 54,
+        "maxError": 0.0000015319888646558866,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "underside",
+      "stats": {
+        "calls": 531,
+        "triangles": 1328742,
+        "geometries": 174,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 1,
+        "captureTriangles": 144,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 54,
+        "maxError": 0.0000015319888646558866,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "spikes",
+      "stats": {
+        "calls": 699,
+        "triangles": 2030718,
+        "geometries": 220,
+        "textures": 15,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 3,
+        "captureTriangles": 432,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          12,
+          8
+        ]
+      },
+      "bankGrounding": {
+        "checks": 54,
+        "maxError": 0.0000015319888646558866,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "log",
+      "stats": {
+        "calls": 712,
+        "triangles": 1882772,
+        "geometries": 230,
+        "textures": 17,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 5612,
+        "foliageLevels": [
+          0,
+          8,
+          16
+        ]
+      },
+      "bankGrounding": {
+        "checks": 85,
+        "maxError": 0.000003327225975624515,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "vortex",
+      "stats": {
+        "calls": 690,
+        "triangles": 1853236,
+        "geometries": 219,
+        "textures": 17,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 4400,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 83,
+        "maxError": 0.000003327225975624515,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "vortex&low",
+      "stats": {
+        "calls": 253,
+        "triangles": 615102,
+        "geometries": 211,
+        "textures": 12,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 4400,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 82,
+        "maxError": 0.000003327225975624515,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "wreck",
+      "stats": {
+        "calls": 697,
+        "triangles": 1606334,
+        "geometries": 223,
+        "textures": 15,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 54,
+        "maxError": 0.0000015319888646558866,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "gorge",
+      "stats": {
+        "calls": 710,
+        "triangles": 1534498,
+        "geometries": 233,
+        "textures": 18,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 3542,
+        "foliageLevels": [
+          1,
+          7,
+          16
+        ]
+      },
+      "bankGrounding": {
+        "checks": 143,
+        "maxError": 0.000005714594973227349,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "bank",
+      "stats": {
+        "calls": 417,
+        "triangles": 1237968,
+        "geometries": 233,
+        "textures": 18,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 3542,
+        "foliageLevels": [
+          2,
+          7,
+          15
+        ]
+      },
+      "bankGrounding": {
+        "checks": 143,
+        "maxError": 0.000005714594973227349,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "bank&low",
+      "stats": {
+        "calls": 112,
+        "triangles": 326728,
+        "geometries": 78,
+        "textures": 12,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 3542,
+        "foliageLevels": [
+          0,
+          9,
+          15
+        ]
+      },
+      "bankGrounding": {
+        "checks": 142,
+        "maxError": 0.000003327225975624515,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "rapids",
+      "stats": {
+        "calls": 688,
+        "triangles": 678030,
+        "geometries": 245,
+        "textures": 19,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          4,
+          4,
+          16
+        ]
+      },
+      "bankGrounding": {
+        "checks": 180,
+        "maxError": 0.000004807212544477579,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "rescue",
+      "stats": {
+        "calls": 681,
+        "triangles": 672292,
+        "geometries": 240,
+        "textures": 17,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          4,
+          4,
+          16
+        ]
+      },
+      "bankGrounding": {
+        "checks": 180,
+        "maxError": 0.000005967438774234779,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "rescue&low",
+      "stats": {
+        "calls": 254,
+        "triangles": 151288,
+        "geometries": 224,
+        "textures": 12,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          0,
+          8,
+          16
+        ]
+      },
+      "bankGrounding": {
+        "checks": 178,
+        "maxError": 0.000004807212544477579,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "timber",
+      "stats": {
+        "calls": 642,
+        "triangles": 477108,
+        "geometries": 227,
+        "textures": 15,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 3,
+        "captureTriangles": 432,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 1140,
+        "foliageLevels": [
+          2,
+          6,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 150,
+        "maxError": 0.000003589559913308449,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "narrows",
+      "stats": {
+        "calls": 626,
+        "triangles": 670610,
+        "geometries": 211,
+        "textures": 15,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          5,
+          3,
+          16
+        ]
+      },
+      "bankGrounding": {
+        "checks": 180,
+        "maxError": 0.000007497355959174001,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "finish",
+      "stats": {
+        "calls": 483,
+        "triangles": 371150,
+        "geometries": 172,
+        "textures": 12,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 2,
+        "captureTriangles": 288,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 3,
+        "vegetationInstances": 684,
+        "foliageLevels": [
+          2,
+          6,
+          4
+        ]
+      },
+      "bankGrounding": {
+        "checks": 90,
+        "maxError": 0.000009601022668448422,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "millstone",
+      "stats": {
+        "calls": 615,
+        "triangles": 586370,
+        "geometries": 209,
+        "textures": 15,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          2,
+          10,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 180,
+        "maxError": 0.0000050276319036868244,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "boulders",
+      "stats": {
+        "calls": 618,
+        "triangles": 537370,
+        "geometries": 218,
+        "textures": 16,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 3,
+        "captureTriangles": 432,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 1140,
+        "foliageLevels": [
+          3,
+          8,
+          9
+        ]
+      },
+      "bankGrounding": {
+        "checks": 150,
+        "maxError": 0.000005250324647931848,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "wheel2",
+      "stats": {
+        "calls": 657,
+        "triangles": 553730,
+        "geometries": 223,
+        "textures": 15,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          2,
+          6,
+          16
+        ]
+      },
+      "bankGrounding": {
+        "checks": 180,
+        "maxError": 0.000006424770180757378,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "haven",
+      "stats": {
+        "calls": 619,
+        "triangles": 475666,
+        "geometries": 211,
+        "textures": 14,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          1,
+          7,
+          16
+        ]
+      },
+      "bankGrounding": {
+        "checks": 180,
+        "maxError": 0.000009601022668448422,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "waterwheel",
+      "stats": {
+        "calls": 328,
+        "triangles": 569056,
+        "geometries": 217,
+        "textures": 12,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 3,
+        "captureTriangles": 432,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          4,
+          6,
+          14
+        ]
+      },
+      "bankGrounding": {
+        "checks": 180,
+        "maxError": 0.000003589559913308449,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "shore",
+      "stats": {
+        "calls": 380,
+        "triangles": 1975716,
+        "geometries": 195,
+        "textures": 12,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          2,
+          6,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 54,
+        "maxError": 0.0000015319888646558866,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "trees",
+      "stats": {
+        "calls": 393,
+        "triangles": 2249364,
+        "geometries": 221,
+        "textures": 13,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          4,
+          4,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 54,
+        "maxError": 0.0000015319888646558866,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "grass",
+      "stats": {
+        "calls": 354,
+        "triangles": 2231316,
+        "geometries": 208,
+        "textures": 13,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          4,
+          4,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 54,
+        "maxError": 0.0000015319888646558866,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    },
+    {
+      "view": "shore&low",
+      "stats": {
+        "calls": 98,
+        "triangles": 574446,
+        "geometries": 63,
+        "textures": 7,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "bankGrounding": {
+        "checks": 50,
+        "maxError": 0.0000015319888646558866,
+        "failures": [],
+        "paintChecks": 8,
+        "paintMaxError": 4.5776367187458367e-7
+      }
+    }
+  ],
+  "residency": [
+    {
+      "cycle": 0,
+      "z": 310,
+      "calls": 170,
+      "triangles": 85712,
+      "geometries": 178,
+      "textures": 11,
+      "reflections": true,
+      "refraction": true,
+      "captureCalls": 0,
+      "captureTriangles": 0,
+      "captureSize": [
+        936,
+        624
+      ],
+      "vegetationChunks": 6,
+      "vegetationInstances": 1368,
+      "foliageLevels": [
+        0,
+        0,
+        24
+      ]
+    },
+    {
+      "cycle": 0,
+      "z": 870,
+      "calls": 161,
+      "triangles": 83692,
+      "geometries": 172,
+      "textures": 11,
+      "reflections": true,
+      "refraction": true,
+      "captureCalls": 0,
+      "captureTriangles": 0,
+      "captureSize": [
+        936,
+        624
+      ],
+      "vegetationChunks": 6,
+      "vegetationInstances": 1368,
+      "foliageLevels": [
+        0,
+        0,
+        24
+      ]
+    },
+    {
+      "cycle": 0,
+      "z": 1390,
+      "calls": 161,
+      "triangles": 82812,
+      "geometries": 172,
+      "textures": 11,
+      "reflections": true,
+      "refraction": true,
+      "captureCalls": 0,
+      "captureTriangles": 0,
+      "captureSize": [
+        936,
+        624
+      ],
+      "vegetationChunks": 3,
+      "vegetationInstances": 684,
+      "foliageLevels": [
+        0,
+        0,
+        12
+      ]
+    },
+    {
+      "cycle": 0,
+      "z": 0,
+      "calls": 529,
+      "triangles": 1328810,
+      "geometries": 175,
+      "textures": 11,
+      "reflections": true,
+      "refraction": true,
+      "captureCalls": 1,
+      "captureTriangles": 144,
+      "captureSize": [
+        936,
+        624
+      ],
+      "vegetationChunks": 5,
+      "vegetationInstances": 5384,
+      "foliageLevels": [
+        0,
+        8,
+        12
+      ]
+    },
+    {
+      "cycle": 1,
+      "z": 310,
+      "calls": 170,
+      "triangles": 85712,
+      "geometries": 178,
+      "textures": 11,
+      "reflections": true,
+      "refraction": true,
+      "captureCalls": 0,
+      "captureTriangles": 0,
+      "captureSize": [
+        936,
+        624
+      ],
+      "vegetationChunks": 6,
+      "vegetationInstances": 1368,
+      "foliageLevels": [
+        0,
+        0,
+        24
+      ]
+    },
+    {
+      "cycle": 1,
+      "z": 870,
+      "calls": 161,
+      "triangles": 83692,
+      "geometries": 172,
+      "textures": 11,
+      "reflections": true,
+      "refraction": true,
+      "captureCalls": 0,
+      "captureTriangles": 0,
+      "captureSize": [
+        936,
+        624
+      ],
+      "vegetationChunks": 6,
+      "vegetationInstances": 1368,
+      "foliageLevels": [
+        0,
+        0,
+        24
+      ]
+    },
+    {
+      "cycle": 1,
+      "z": 1390,
+      "calls": 161,
+      "triangles": 82812,
+      "geometries": 172,
+      "textures": 11,
+      "reflections": true,
+      "refraction": true,
+      "captureCalls": 0,
+      "captureTriangles": 0,
+      "captureSize": [
+        936,
+        624
+      ],
+      "vegetationChunks": 3,
+      "vegetationInstances": 684,
+      "foliageLevels": [
+        0,
+        0,
+        12
+      ]
+    },
+    {
+      "cycle": 1,
+      "z": 0,
+      "calls": 529,
+      "triangles": 1328810,
+      "geometries": 175,
+      "textures": 11,
+      "reflections": true,
+      "refraction": true,
+      "captureCalls": 1,
+      "captureTriangles": 144,
+      "captureSize": [
+        936,
+        624
+      ],
+      "vegetationChunks": 5,
+      "vegetationInstances": 5384,
+      "foliageLevels": [
+        0,
+        8,
+        12
+      ]
+    },
+    {
+      "cycle": 2,
+      "z": 310,
+      "calls": 170,
+      "triangles": 85712,
+      "geometries": 178,
+      "textures": 11,
+      "reflections": true,
+      "refraction": true,
+      "captureCalls": 0,
+      "captureTriangles": 0,
+      "captureSize": [
+        936,
+        624
+      ],
+      "vegetationChunks": 6,
+      "vegetationInstances": 1368,
+      "foliageLevels": [
+        0,
+        0,
+        24
+      ]
+    },
+    {
+      "cycle": 2,
+      "z": 870,
+      "calls": 161,
+      "triangles": 83692,
+      "geometries": 172,
+      "textures": 11,
+      "reflections": true,
+      "refraction": true,
+      "captureCalls": 0,
+      "captureTriangles": 0,
+      "captureSize": [
+        936,
+        624
+      ],
+      "vegetationChunks": 6,
+      "vegetationInstances": 1368,
+      "foliageLevels": [
+        0,
+        0,
+        24
+      ]
+    },
+    {
+      "cycle": 2,
+      "z": 1390,
+      "calls": 161,
+      "triangles": 82812,
+      "geometries": 172,
+      "textures": 11,
+      "reflections": true,
+      "refraction": true,
+      "captureCalls": 0,
+      "captureTriangles": 0,
+      "captureSize": [
+        936,
+        624
+      ],
+      "vegetationChunks": 3,
+      "vegetationInstances": 684,
+      "foliageLevels": [
+        0,
+        0,
+        12
+      ]
+    },
+    {
+      "cycle": 2,
+      "z": 0,
+      "calls": 529,
+      "triangles": 1328810,
+      "geometries": 175,
+      "textures": 11,
+      "reflections": true,
+      "refraction": true,
+      "captureCalls": 1,
+      "captureTriangles": 144,
+      "captureSize": [
+        936,
+        624
+      ],
+      "vegetationChunks": 5,
+      "vegetationInstances": 5384,
+      "foliageLevels": [
+        0,
+        8,
+        12
+      ]
+    }
+  ],
+  "titleViews": [
+    {
+      "width": 1440,
+      "height": 960,
+      "playButton": {
+        "x": 108,
+        "y": 524.34375,
+        "width": 285,
+        "height": 46
+      }
+    },
+    {
+      "width": 907,
+      "height": 510,
+      "playButton": {
+        "x": 68.015625,
+        "y": 280.4375,
+        "width": 230,
+        "height": 34
+      }
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "playButton": {
+        "x": 117.5,
+        "y": 707,
+        "width": 245,
+        "height": 40
+      }
+    }
+  ],
+  "audio": {
+    "audible": {
+      "peak": 0.25976717472076416,
+      "rms": 0.01617737816542905,
+      "left": 2.443082340552639,
+      "right": 0.5137638370757216,
+      "samples": 264600
+    },
+    "muted": {
+      "peak": 0,
+      "rms": 0,
+      "left": 0,
+      "right": 0,
+      "samples": 264600
+    },
+    "scenarios": {
+      "dock": {
+        "whole": {
+          "peak": 0.07488346099853516,
+          "rms": 0.01750060266599865,
+          "left": 35.993068198233445,
+          "right": 35.59228706818136,
+          "stereoDifference": 0.024699196693629178
+        },
+        "tail": {
+          "peak": 0.05756056308746338,
+          "rms": 0.01723970291648128,
+          "left": 9.282755490419284,
+          "right": 9.067421123774452,
+          "stereoDifference": 0.024474071972501184
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "drift": {
+        "whole": {
+          "peak": 0.11767399311065674,
+          "rms": 0.027501163757981884,
+          "left": 88.88240001327993,
+          "right": 87.89238571470514,
+          "stereoDifference": 0.03881330642828506
+        },
+        "tail": {
+          "peak": 0.09045231342315674,
+          "rms": 0.02709096155578379,
+          "left": 22.922722328408604,
+          "right": 22.390978537554254,
+          "stereoDifference": 0.03845925536256979
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "row": {
+        "whole": {
+          "peak": 0.1925148367881775,
+          "rms": 0.04841226611339842,
+          "left": 273.4987927544586,
+          "right": 274.31000030767285,
+          "stereoDifference": 0.06859469032621264
+        },
+        "tail": {
+          "peak": 0.18352782726287842,
+          "rms": 0.04847241767342886,
+          "left": 73.29435125421348,
+          "right": 71.77312538146379,
+          "stereoDifference": 0.06925719302927878
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "rapids": {
+        "whole": {
+          "peak": 0.17323195934295654,
+          "rms": 0.03862353750741773,
+          "left": 176.68787161910123,
+          "right": 171.9883019741451,
+          "stereoDifference": 0.05452031161583378
+        },
+        "tail": {
+          "peak": 0.15476489067077637,
+          "rms": 0.03831286630342198,
+          "left": 46.39960705701283,
+          "right": 44.22997591789715,
+          "stereoDifference": 0.05435136270528616
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "port": {
+        "whole": {
+          "peak": 0.17598271369934082,
+          "rms": 0.035137525288625585,
+          "left": 192.7711272701281,
+          "right": 95.80507760437814,
+          "stereoDifference": 0.046329936318106536
+        },
+        "tail": {
+          "peak": 0.17598271369934082,
+          "rms": 0.03506846222355923,
+          "left": 51.49280187650068,
+          "right": 24.437327135438665,
+          "stereoDifference": 0.04625612086969805
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "starboard": {
+        "whole": {
+          "peak": 0.1725197434425354,
+          "rms": 0.03513368968123567,
+          "left": 97.64499399314906,
+          "right": 190.86821244294902,
+          "stereoDifference": 0.04634729960568964
+        },
+        "tail": {
+          "peak": 0.15132558345794678,
+          "rms": 0.03502682517868917,
+          "left": 25.480951208866994,
+          "right": 50.26898003285574,
+          "stereoDifference": 0.04616898180509712
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "quiet": {
+        "whole": {
+          "peak": 0.029418468475341797,
+          "rms": 0.0068752908452020855,
+          "left": 5.55514985144762,
+          "right": 5.493273953497127,
+          "stereoDifference": 0.009703326414140064
+        },
+        "tail": {
+          "peak": 0.022613048553466797,
+          "rms": 0.006772740513604914,
+          "left": 1.4326701662925885,
+          "right": 1.3994362420855104,
+          "stereoDifference": 0.009614813839915427
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "muted": {
+        "whole": {
+          "peak": 0,
+          "rms": 0,
+          "left": 0,
+          "right": 0,
+          "stereoDifference": 0
+        },
+        "tail": {
+          "peak": 0,
+          "rms": 0,
+          "left": 0,
+          "right": 0,
+          "stereoDifference": 0
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "paused": {
+        "whole": {
+          "peak": 0.08497011661529541,
+          "rms": 0.009128973813751875,
+          "left": 9.780354120103414,
+          "right": 9.69844136900867,
+          "stereoDifference": 0.013014154889952058
+        },
+        "tail": {
+          "peak": 0,
+          "rms": 0,
+          "left": 0,
+          "right": 0,
+          "stereoDifference": 0
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "wreck": {
+        "whole": {
+          "peak": 0.08497011661529541,
+          "rms": 0.009128973813751875,
+          "left": 9.780354120103414,
+          "right": 9.69844136900867,
+          "stereoDifference": 0.013014154889952058
+        },
+        "tail": {
+          "peak": 0,
+          "rms": 0,
+          "left": 0,
+          "right": 0,
+          "stereoDifference": 0
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "complete": {
+        "whole": {
+          "peak": 0.1137990951538086,
+          "rms": 0.01521737335628618,
+          "left": 27.07693192080465,
+          "right": 27.04802547041403,
+          "stereoDifference": 0.013014154950571875
+        },
+        "tail": {
+          "peak": 0,
+          "rms": 0,
+          "left": 0,
+          "right": 0,
+          "stereoDifference": 0
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "inaudible": {
+        "whole": {
+          "peak": 0.08497011661529541,
+          "rms": 0.00840415181602201,
+          "left": 8.322283278812733,
+          "right": 8.186153596169717,
+          "stereoDifference": 0.011965170252974344
+        },
+        "tail": {
+          "peak": 0,
+          "rms": 0,
+          "left": 0,
+          "right": 0,
+          "stereoDifference": 0
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "disabled": {
+        "whole": {
+          "peak": 0.08497011661529541,
+          "rms": 0.00840415181602201,
+          "left": 8.322283278812733,
+          "right": 8.186153596169717,
+          "stereoDifference": 0.011965170252974344
+        },
+        "tail": {
+          "peak": 0,
+          "rms": 0,
+          "left": 0,
+          "right": 0,
+          "stereoDifference": 0
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      },
+      "clear": {
+        "whole": {
+          "peak": 0.08497011661529541,
+          "rms": 0.00840415181602201,
+          "left": 8.322283278812733,
+          "right": 8.186153596169717,
+          "stereoDifference": 0.011965170252974344
+        },
+        "tail": {
+          "peak": 0,
+          "rms": 0,
+          "left": 0,
+          "right": 0,
+          "stereoDifference": 0
+        },
+        "resources": {
+          "ambientLayers": 7,
+          "activeVoices": 0
+        }
+      }
+    },
+    "stress": {
+      "peak": 0.9448018670082092,
+      "rms": 0.10086600608660058,
+      "left": 1372.303566869394,
+      "right": 1319.7239163805295,
+      "stereoDifference": 0.1208260150024474,
+      "peakVoices": 24,
+      "resources": {
+        "ambientLayers": 7,
+        "activeVoices": 0
+      }
+    }
+  },
+  "errors": []
+}

@@ -1,0 +1,141 @@
+{
+  "title": "Cooperative capsize righting",
+  "date": "2026-10-21",
+  "state": "VERIFIED_SCOPED",
+  "protocol": 7,
+  "physics": "basin-0.13",
+  "world": "waterworks-1",
+  "verification": {
+    "fullSuite": "PASS:final142 tests,0 failures,111.994s including neutral-rearm;final duplicate UI acknowledgement removal verified in native eddy/capsize/graphics fixtures afterward",
+    "physics": "PASS:24 real-torque heading/roll/pitch cases;strict3/4 majority,2400Nm assist cap,no pose setters during rescue,no checkpoint/reset/teleport or extra stroke",
+    "guards": "PASS:minority,wrong action,stale/released input,practice1-seat,timeout fallback,reset and lethal priority",
+    "network": "PASS:4 real-socket groups including actual row heartbeat expiry,stale sequence rejection,neutral rearming on entry/success,forgery/minority and disconnect/resume",
+    "native": "PASS:final5 four-Chrome groups;390px prompt,key remapping,arrow,native touch hold/cancel and real delayed-script reload;all peers observe same-hull righting",
+    "nativeRegression": "PASS:27 route views/3 titles,180 camera cases,71 normal controls,7 context/controller,4 reconnect,6 prior0.12 save,3 shallow,4 eddy,8 lobby,6 tracker and local deployment",
+    "roomLoad": "PASS:final4 rooms/16 clients,60.007s,0 recorded violations,clean room disposal;local synthetic workload only",
+    "tracker": "PASS:49 deliverables+90 content tasks;accepted scope2/100,M2 remains3/5,0/14 production regions",
+    "package": "PASS:independent ZIP comparison of4 built runtime files plus4 entrypoint/documentation/check files;no private data included"
+  },
+  "corrections": [
+    "Initial600Nm torque could not overcome stable inverted buoyancy. Final2400Nm cap is explicitly a bounded cooperative gameplay assist,not inferred human-force realism.",
+    "First browser timeout was a fixture race:input was sent before every peer received its unpause snapshot. Final fixture waits for all4 peers and observed3-helper state;original timeout preserved.",
+    "Submerged overturned hull is difficult to locate in Low water. A simple surface rescue ring follows its actual horizontal position and shared water height only during rescue;full swimmer/rope animation remains open.",
+    "Native eddy regression found asynchronous snapshot/save message ordering could replace encounter guidance with redundant Checkpoint saved. Remove only the duplicate save-ack toast,retain actual persistence/error reporting,and pass original instruction plus600ms late-ack check.",
+    "Explicit server neutral rearming now rejects in-flight held actions after capsize entry or success;both transitions clear row controllers and require neutral before powering movement. Real sockets cover both guards."
+  ],
+  "limits": [
+    "Righting torque is gameplay assist,not a swimmer/rope or naval capsize model. Hull/crew can remain submerged until righted;surface ring marks the actual location.",
+    "15-second fallback uses simulation time and pauses with the existing shared disconnect barrier.",
+    "Production swimmer/crew animation,sound/human readability/fairness,full-route human pacing,regional art and Internet/device/long-browser acceptance remain open.",
+    "M2 remains3/5 engineering checks;accepted scope2/100 and0/14 regions."
+  ],
+  "evidence": [
+    "evidence/capsize-physics.json",
+    "evidence/capsize-network.json",
+    "evidence/capsize-browser.json",
+    "evidence/capsize-low-torque-experiment.txt",
+    "evidence/capsize-experiment.txt",
+    "evidence/capsize-targeted-first.txt",
+    "evidence/capsize-network-first.txt",
+    "evidence/capsize-network-final.txt",
+    "evidence/capsize-browser-first.txt",
+    "evidence/capsize-browser-second.txt",
+    "evidence/capsize-tests.txt",
+    "evidence/capsize-final-build.txt",
+    "evidence/capsize-final-tests.txt",
+    "evidence/capsize-native-final.txt",
+    "evidence/capsize-browser.txt",
+    "evidence/capsize-controls.txt",
+    "evidence/capsize-browser.json",
+    "evidence/capsize-accessibility.txt",
+    "evidence/capsize-reconnect.txt",
+    "evidence/capsize-save-browser.txt",
+    "evidence/capsize-bathymetry-browser.txt",
+    "evidence/capsize-rescue.txt",
+    "evidence/capsize-rescue-final.txt",
+    "evidence/capsize-lobby.txt",
+    "evidence/capsize-graphics.txt",
+    "evidence/capsize-camera.txt",
+    "evidence/capsize-tracker-browser.txt",
+    "evidence/capsize-deployment.txt",
+    "evidence/load-phase-2-capsize.json",
+    "evidence/capsize-load.txt",
+    "evidence/capsize-final-typecheck.txt",
+    "evidence/capsize-tracker-check.txt",
+    "evidence/capsize-package.json"
+  ],
+  "executionNotes": [
+    "Normal71-control fixture ran before final server neutral-rearm guard;the guard applies only at rescue transitions. Final142-test suite,real socket guard test,native rescue/eddy/lobby/graphics/camera/deployment run afterward.",
+    "Normal browser/context/reconnect/prior-save/shallow fixtures ran after neutral guard and before the final UI-only redundant-toast deletion. Native eddy/capsize/lobby/graphics/camera/tracker/deployment rerun after deletion.",
+    "Renderer timing from the prior bathymetry phase is retained with High rapids/rescue CPU,High trees GPU and strict frame-interval misses;no new FPS/device claim.",
+    "Native multi-client fixtures throttle frame callbacks to reduce QA contention;not consumer-device performance evidence."
+  ],
+  "roomLoad": {
+    "protocol": 7,
+    "physics": "basin-0.13",
+    "actualSeconds": 60.007,
+    "roomCount": 4,
+    "clientCount": 16,
+    "rooms": [
+      {
+        "packets": 5102,
+        "maxSnapshotGapMs": 89,
+        "resets": 4,
+        "reconnects": 1,
+        "droppedSteps": 0,
+        "tick": 3588,
+        "wirePayloadBytes": {
+          "outBytes": 5186232,
+          "inBytes": 72515,
+          "outMessages": 5128
+        },
+        "averageOutboundBytesPerClientSecond": 21580.798906794207
+      },
+      {
+        "packets": 5097,
+        "maxSnapshotGapMs": 103,
+        "resets": 4,
+        "reconnects": 1,
+        "droppedSteps": 0,
+        "tick": 3588,
+        "wirePayloadBytes": {
+          "outBytes": 5179912,
+          "inBytes": 72515,
+          "outMessages": 5123
+        },
+        "averageOutboundBytesPerClientSecond": 21554.468645324712
+      },
+      {
+        "packets": 5100,
+        "maxSnapshotGapMs": 86,
+        "resets": 4,
+        "reconnects": 0,
+        "droppedSteps": 0,
+        "tick": 3604,
+        "wirePayloadBytes": {
+          "outBytes": 5184408,
+          "inBytes": 72880,
+          "outMessages": 5122
+        },
+        "averageOutboundBytesPerClientSecond": 21573.199793357442
+      },
+      {
+        "packets": 5099,
+        "maxSnapshotGapMs": 69,
+        "resets": 4,
+        "reconnects": 0,
+        "droppedSteps": 0,
+        "tick": 3604,
+        "wirePayloadBytes": {
+          "outBytes": 5179480,
+          "inBytes": 72880,
+          "outMessages": 5118
+        },
+        "averageOutboundBytesPerClientSecond": 21552.668855300217
+      }
+    ],
+    "violations": [],
+    "roomsDisposed": true,
+    "scope": "Local co-hosted authority+SDK clients, synthetic workload; not Internet, browser GPU, maximum capacity or hosting certification. Wire bytes count WS application payloads, excluding WS/TCP framing; per-client average includes setup/reconnect traffic."
+  }
+}

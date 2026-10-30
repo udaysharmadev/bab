@@ -1,0 +1,236 @@
+{
+  "result": "PASS",
+  "createdAt": "2026-10-22T17:11:33.242Z",
+  "scope": "Visual response to owner feedback that the menu became too plain: full harbour backdrop, protected menu zones, playful logo/emblem, richer title water and tactile actions. Physics and authority unchanged.",
+  "checks": {
+    "build": "evidence/fan-personality-build.txt",
+    "landing": {
+      "views": 10,
+      "metrics": {
+        "calls": 122,
+        "triangles": 33912
+      },
+      "errors": [],
+      "log": "evidence/fan-personality-landing.txt"
+    },
+    "gameplay": {
+      "views": 18,
+      "errors": [],
+      "log": "evidence/fan-personality-world.txt"
+    }
+  },
+  "sources": [
+    {
+      "path": "index.html",
+      "sha256": "360204f9590138ae29c4919ff468e9e46e06f226b2f71766b0988f5c36c861e5"
+    },
+    {
+      "path": "legacy.html",
+      "sha256": "b2e51f228e2964609c67a79cc055deb7fd064bcf1327954cf4765dd01a7cdf00"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "71f3fa8dfbf9f6ab168933ea2228285644d8f3817d736a9dca884bf5c076fe69"
+    },
+    {
+      "path": "package.json",
+      "sha256": "016df82730c013294ab8fc75a3ad4d048f6b664f025a6cc7d64302f0f6accab6"
+    },
+    {
+      "path": "src/client/audio.ts",
+      "sha256": "0ffe6a46d59b560b21784ca36e00bd55541f8e82b50e349993b695f1004210aa"
+    },
+    {
+      "path": "src/client/boat-detail.ts",
+      "sha256": "097f310b9d936e6f48446957a576ad0b22872d78eae20cd14883b5d5bcce064f"
+    },
+    {
+      "path": "src/client/camera.ts",
+      "sha256": "654bb1595285e2ad48f656b2c50e2166789cc712f23b7cef7fb9c63238ecc09d"
+    },
+    {
+      "path": "src/client/crew.ts",
+      "sha256": "fb7b7847857325a7b8a847d074d66df0a477d5a1c2265d66c7533e25fed09cb2"
+    },
+    {
+      "path": "src/client/danger.ts",
+      "sha256": "30256bb247b0ebb730e6a1e9238d0db8f5f88876d2cd8b1e375b9799866b5c1b"
+    },
+    {
+      "path": "src/client/fan-feedback.ts",
+      "sha256": "da6a53ab63bdf9a1e2d842d7d847c44799b9f4b8841e674587f5dd18897d43fd"
+    },
+    {
+      "path": "src/client/fan-input.ts",
+      "sha256": "e7e383abe954cd97060b470922f28f15eaebed680e7b4bcc25d0e3067a01865f"
+    },
+    {
+      "path": "src/client/fan-main.ts",
+      "sha256": "9aa903e4d781024347e4b755bc8f2b2a36712da2bf1fa29fef56a41bd320e826"
+    },
+    {
+      "path": "src/client/fan-scene.ts",
+      "sha256": "dba0513dae692838ab2a52f770131f255799dd35a80e97680fa61609053dd867"
+    },
+    {
+      "path": "src/client/fan.css",
+      "sha256": "7b0d2d69fc56d17847b01c9cfac5682f2c5d47d97aa8fdab1bb407296fcf1125"
+    },
+    {
+      "path": "src/client/hull.ts",
+      "sha256": "94e099375e0affff26a108b03df884b2649745edf5022a9452d8f7c9c2e2ab1b"
+    },
+    {
+      "path": "src/client/input.ts",
+      "sha256": "33a867628d4e18232fda4b262b0bb0a5cf924be2812eb1e63372597753f71bfa"
+    },
+    {
+      "path": "src/client/main.ts",
+      "sha256": "b4a0ebfdca3a81305eecd86663dcb10b8467611d01b37fea4df5ec4889b10404"
+    },
+    {
+      "path": "src/client/nature.ts",
+      "sha256": "30fab47350687549618a8cdf06dd24257103cede4577a50190a66d0c7ebd0485"
+    },
+    {
+      "path": "src/client/rehearsal.ts",
+      "sha256": "dd57162fd1464dba14f45ba019b36fdd699e648344dc2093700899840d1d7fe8"
+    },
+    {
+      "path": "src/client/riverbed.ts",
+      "sha256": "e571f7985dddb5a6e05aafe737221ddeb86fe330ea87fdbe1fc4f3112eb3bebe"
+    },
+    {
+      "path": "src/client/scene.ts",
+      "sha256": "faa6ed4ae120b4fb517e842d6adf0f3b74fa18b81559c07eeedb6ba3e1e9ea12"
+    },
+    {
+      "path": "src/client/style.css",
+      "sha256": "5cd003fd2f70ade82ada0a64e3d61221ad736a1264b26786f48aab530108023d"
+    },
+    {
+      "path": "src/client/water.ts",
+      "sha256": "431beeab55914bbb81377af25de820b4cb91d68c7fabc07fde41d8862962e5bb"
+    },
+    {
+      "path": "src/package.json",
+      "sha256": "3ca9d4afd21425087cf31893b8f9f63c81b0b8408db5e343ca76e5f8aa26ab9a"
+    },
+    {
+      "path": "src/server/BoatRoom.ts",
+      "sha256": "72b3d1c7c9e0eb1f58bcb18d0ebbed34296b054499e9a8460fa9bce11b41247c"
+    },
+    {
+      "path": "src/server/FanRoom.ts",
+      "sha256": "708ebaa15e3b10ca33ae2072f336e8e31b35a7ec2370469b564c1f7448799a33"
+    },
+    {
+      "path": "src/server/index.ts",
+      "sha256": "b82137146c4f51a9d32f4f52bf1ffa887522f59d6cc39e35782cd9517c5360c5"
+    },
+    {
+      "path": "src/server/voyages.ts",
+      "sha256": "b4bf293f660d842c1112ec103d1a2b3a9dc2f70fdb7c6fb1a7c84b9affca2aab"
+    },
+    {
+      "path": "src/shared/bathymetry.ts",
+      "sha256": "4b3013ebf7e958171e3479cff2fcb19187e3e75e9af4ac4c8691e349627e889a"
+    },
+    {
+      "path": "src/shared/fan-simulation.ts",
+      "sha256": "10b5e5aa2b6ffbd27c8e68dc72c7ad295d3ed35c754f30d950fff68f7073b279"
+    },
+    {
+      "path": "src/shared/fan.ts",
+      "sha256": "2b630754ece39597648bb562d3db47c11ae80fcf1e620ae461e9886d418f69bf"
+    },
+    {
+      "path": "src/shared/hull.ts",
+      "sha256": "34f7c846d55a406ddd53a44f6076129df5010441cff3a44e35d73544075ed9a6"
+    },
+    {
+      "path": "src/shared/names.ts",
+      "sha256": "69515a0687a2a6813a3116673a39e4014c48ad488632d2d3e063a0fc4517e2e7"
+    },
+    {
+      "path": "src/shared/paddle-blade.ts",
+      "sha256": "685fe4f39c2329dd8666a0162182e17ac31f8498a65d4b0a91969f1c1215bba9"
+    },
+    {
+      "path": "src/shared/paddle-contact.ts",
+      "sha256": "d1b1436858ea9201cdd8abe9755d31b25f2913d946b11eec1bda84142a40eff2"
+    },
+    {
+      "path": "src/shared/protocol.ts",
+      "sha256": "c318902b68cf4f24300c97590a47100cb0c1298b12b066e50e58638f26eaaf54"
+    },
+    {
+      "path": "src/shared/rescue.ts",
+      "sha256": "00537cb88c7a2f8e74700a3186dfa5bc86b48a59936f303f6f0e2f78657d4d68"
+    },
+    {
+      "path": "src/shared/river.ts",
+      "sha256": "60d5a7c7ec86a794e0c3c4a844225556733bcf2d4bd764f92537acfbad460f8c"
+    },
+    {
+      "path": "src/shared/rowing.ts",
+      "sha256": "b6b0ce75a9251eda85076dc291bee302449a76ef6c6b0c2c59dd828e16f30ceb"
+    },
+    {
+      "path": "src/shared/simulation.ts",
+      "sha256": "5cce5137d17076eea3ba3c1aa37000000d645ad9f9cbacca191308f056cc55ed"
+    },
+    {
+      "path": "src/shared/world.ts",
+      "sha256": "7385e727033f22b24f3cdfd5df187d8606058e112f1b2afbc860325b59df08b1"
+    },
+    {
+      "path": "vite.config.ts",
+      "sha256": "4c2a9f059288ff371584de46e03ba99940609bd7c52eff3037ab3f2ff3a46424"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "build/server.mjs",
+      "sha256": "5f1e26622d83a98a7add7f8a7c2f7082320144d2ec35c290beea5e814bf86d9b"
+    },
+    {
+      "path": "build/server.mjs.map",
+      "sha256": "fe4b5c00eee13af5c7a540c04dbbbfd1aaf7a7b602e102bfdb6ce0a944b5b811"
+    },
+    {
+      "path": "dist/assets/legacy-B1QVw8Ot.js",
+      "sha256": "841073993b980daf42c3c390a5b05af2c7e6c8965385390aae5ec49346271628"
+    },
+    {
+      "path": "dist/assets/legacy-CJcCEMWV.css",
+      "sha256": "00e812d95a5f356d99f67b693455f0d03d6489960f046c7bb82ab1d62ecb49b7"
+    },
+    {
+      "path": "dist/assets/main-Bkt-zG8O.css",
+      "sha256": "86c598b6b543191a9ea631422f5d4ebe1c2d7e05ffbc3eccd27b428b8a3015bb"
+    },
+    {
+      "path": "dist/assets/main-CxAx-6-N.js",
+      "sha256": "eb8b93836410107dd833e6088d86e74e537eeb42fd52bd985519e081ccab81a5"
+    },
+    {
+      "path": "dist/assets/names-6bLqNfH-.js",
+      "sha256": "6788daad332af0676411aedba4034a9d4badff7acce98bbc46495cb39c2d069a"
+    },
+    {
+      "path": "dist/index.html",
+      "sha256": "6dabf8066b1d9dfc8cea370afad8f74d6f456d17a770946b5096f183f7173d59"
+    },
+    {
+      "path": "dist/legacy.html",
+      "sha256": "05ff68e86668ad49a75e442190b02b5d6b2879db3cabf855890142f2f17ccb2a"
+    }
+  ],
+  "screenshots": [
+    "evidence/fan-personality-1440x900.png",
+    "evidence/fan-personality-703x857.png",
+    "evidence/fan-personality-390x844.png"
+  ],
+  "humanArtAcceptance": "Open"
+}

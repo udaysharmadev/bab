@@ -81,6 +81,9 @@ export function treeGeometry(variant: number) {
     const a = i * 2.399;
     branch(wood, new T.Vector3(Math.cos(a) * .07, 0, Math.sin(a) * .07), trunkPoint(.11), .009, .018);
   }
+  // At distance the sub-pixel twigs cost more than the leaves. Retain the
+  // curved trunk and grounded roots while sharing this simpler geometry.
+  const distantWood = mergeGeometries(wood)!;
   if (pine) {
     for (let level = 0; level < 9; level++) {
       const y = .22 + level * .083, length = (.27 * (1 - y) + .025) * (variant === 2 ? .85 : 1);
@@ -129,7 +132,7 @@ export function treeGeometry(variant: number) {
   }
   const bark = mergeGeometries(wood)!; wood.forEach(part => part.dispose());
   bark.computeBoundingBox(); bark.computeBoundingSphere();
-  return { wood: bark, leaves: canopy.geometry() };
+  return { wood: bark, distantWood, leaves: canopy.geometry() };
 }
 
 export function grassGeometry(fern = false) {
@@ -164,13 +167,21 @@ export function grassGeometry(fern = false) {
 }
 
 // Retain complete leaves, never isolated triangles; far/Low shares the same silhouette.
-export function distantFoliage(source: T.BufferGeometry, verticesPerLeaf: number) {
+export function distantFoliage(source: T.BufferGeometry, verticesPerLeaf: number, stride = 3, spread = 1) {
   const result=new T.BufferGeometry(),count=source.getAttribute('position').count;
   for(const [name,attribute] of Object.entries(source.attributes)) {
     const values:number[]=[];
-    for(let start=0;start<count;start+=verticesPerLeaf*3) {
+    for(let start=0;start<count;start+=verticesPerLeaf*stride) {
+      const centre = new T.Vector3();
+      if (name === 'position' && spread !== 1) {
+        for(let i=start;i<Math.min(start+verticesPerLeaf,count);i++) centre.add(new T.Vector3().fromBufferAttribute(attribute as T.BufferAttribute,i));
+        centre.divideScalar(Math.min(verticesPerLeaf,count-start));
+      }
       for(let i=start;i<Math.min(start+verticesPerLeaf,count);i++)
-        for(let component=0;component<attribute.itemSize;component++)values.push(attribute.array[i*attribute.itemSize+component]!);
+        for(let component=0;component<attribute.itemSize;component++) {
+          const value = attribute.array[i*attribute.itemSize+component]!;
+          values.push(name === 'position' ? centre.getComponent(component)+(value-centre.getComponent(component))*spread : value);
+        }
     }
     result.setAttribute(name,new T.Float32BufferAttribute(values,attribute.itemSize));
   }
@@ -199,6 +210,7 @@ export class NatureAssets {
   readonly hazard = stoneGeometry(41, true);
   readonly trees = [0, 1, 2, 3].map(treeGeometry);
   readonly distantLeaves = this.trees.map((tree,i)=>distantFoliage(tree.leaves,i===1?12:6));
+  readonly horizonLeaves = this.trees.map((tree,i)=>distantFoliage(tree.leaves,i===1?12:6,9,1.65));
   readonly grass = grassGeometry();
   readonly fern = grassGeometry(true);
   readonly stone: T.MeshStandardMaterial;

@@ -1,0 +1,30 @@
+
+> bad-at-boating@0.1.0 test:fan
+> node --import tsx --test --test-concurrency=1 tests/fan.test.ts tests/fan-network.test.ts
+
+(node:27631) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"case":"fan-network","checks":["Version/name/legacy save rejection","Four-ready cancellation and actual countdown","Neutral rearm, seat forgery, stale input and cadence ownership","Actual socket pause/reconnect retains name/seat; all stale thrust cleared","Distinct majority reset votes","Frozen finish and explicit re-ready replay"]}
+✔ Fan authority: name/version, four-ready cancellation, owned bounded input, real pause/reconnect, reset voting and frozen finish (6214.137041ms)
+✔ Fan wall-clock watchdog clears a held stroke before bounded catch-up after a long server stall (181.277875ms)
+{"case":"fan-opposite-thrust","cases":[{"seat":0,"yaw":0,"speed":0.8722057649605929},{"seat":1,"yaw":0,"speed":0.8722058070581438},{"seat":2,"yaw":0,"speed":0.8722053014326194},{"seat":3,"yaw":0,"speed":0.8722061442804423},{"seat":0,"yaw":1.5707963267948966,"speed":0.8722057227605773},{"seat":1,"yaw":1.5707963267948966,"speed":0.8722059335119794},{"seat":2,"yaw":1.5707963267948966,"speed":0.8722060178279},{"seat":3,"yaw":1.5707963267948966,"speed":0.8722055121728283},{"seat":0,"yaw":3.141592653589793,"speed":0.8722061442804423},{"seat":1,"yaw":3.141592653589793,"speed":0.8722053014326194},{"seat":2,"yaw":3.141592653589793,"speed":0.8722058070581438},{"seat":3,"yaw":3.141592653589793,"speed":0.8722057649605929},{"seat":0,"yaw":-1.5707963267948966,"speed":0.8722054700234105},{"seat":1,"yaw":-1.5707963267948966,"speed":0.8722060178279},{"seat":2,"yaw":-1.5707963267948966,"speed":0.8722059756583685},{"seat":3,"yaw":-1.5707963267948966,"speed":0.8722057649070498}]}
+{"case":"fan-offset-torque","values":[{"seat":0,"direction":-1,"yaw":0.1693904548883438},{"seat":0,"direction":1,"yaw":-0.16951221227645874},{"seat":1,"direction":-1,"yaw":0.1694219559431076},{"seat":1,"direction":1,"yaw":-0.1694607436656952},{"seat":2,"direction":-1,"yaw":0.16939949989318848},{"seat":2,"direction":1,"yaw":-0.16948486864566803},{"seat":3,"direction":-1,"yaw":0.1694379299879074},{"seat":3,"direction":1,"yaw":-0.16946260631084442}]}
+{"case":"fan-buoyancy-60s","maxSpeed":2.661493196064168e-8,"maxYaw":1.4905807971954346,"y":-0.10313277691602707}
+{"case":"fan-course-pilot","seconds":83.55,"maxSpeed":2.608499032868891,"checkpoint":1,"strokes":[72,73,112,111],"scope":"Synthetic input reachability/pacing, not human fun or complete-game duration"}
+✔ Fan input rejects forged seats, nonfinite values, stale/oversized sequences and extra force; touch/keyboard aliases stay independent (3.730083ms)
+✔ Each fan pushes opposite its air at four headings, without a hidden centred yaw command (93.744792ms)
+✔ Opposite fans and four equal radial fans cancel; scooting alone adds no horizontal propulsion (14.807083ms)
+✔ Small player offsets reverse actual torque at every station and stay bounded (26.482166ms)
+✔ Fan cadence is simulation-owned; release/staleness/pause cannot replay held power (9.669375ms)
+✔ Sampled buoyancy stays finite, rights a heel and bounds repeated simultaneous thrust (55.524125ms)
+✔ Real spike contacts including a fast approach fail once, ordinary rocks/banks bump, retry is clear, and finish freezes (20.986625ms)
+✔ A four-seat input pilot traverses the complete feel course without teleports or resets (164.780292ms)
+✔ Predicted spike near misses remain safe until real touch; the actual moving sweeper can strike the raft (5.19075ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8194.15125

@@ -1,0 +1,619 @@
+{
+  "game": "Bad at Boating",
+  "generatedUTC": "2026-10-21T06:16:44.759627Z",
+  "baseCommit": "1dee20db314dda485c734932df48e9780bb53d03",
+  "workingTreeChanges": true,
+  "protocol": 5,
+  "physics": "basin-0.9",
+  "world": "waterworks-1",
+  "scope": "M1 verified; M2 3/5 engineering checks. Scoped D1 lobby, D2 audio, D3 banks, D4 water, D5 camera and D6 boat finish/paddles verified. Full premium art, CPU/GPU/frame targets, human/device and release gates remain open.",
+  "sourceSha256": "f0377ddc2d04454c4dfac48d9ee73cb9956ff3b682d11f13a5b090ff8eba69b9",
+  "sourceHashScope": "Sorted relative path + NUL + bytes + NUL for src/tests/scripts/docs/.github and listed root metadata; excludes generated build/evidence/reference/private data.",
+  "fileCount": 114,
+  "build": "PASS",
+  "typecheck": "PASS",
+  "automatedTests": {
+    "command": "npm test",
+    "passed": 114,
+    "failed": 0,
+    "seconds": 87.705988583,
+    "log": "evidence/phase-2-boat-tests.txt"
+  },
+  "fixtures": {
+    "browser": {
+      "result": "PASS",
+      "evidence": "evidence/browser.json",
+      "executionScope": "RERUN M2-D6: full regression or named native fixture; exact scope in phase-2-boat.json.",
+      "checks": 8
+    },
+    "controls-after": {
+      "result": "PASS",
+      "checks": 71,
+      "errors": [],
+      "evidence": "evidence/controls-after.json",
+      "executionScope": "Retained without rerun in M2-D6; original execution scope preserved in build-phase-2-camera.json. No new human/device/load/optics claim."
+    },
+    "accessibility": {
+      "result": "PASS",
+      "evidence": "evidence/accessibility.json",
+      "executionScope": "RERUN M2-D6: full regression or named native fixture; exact scope in phase-2-boat.json.",
+      "checks": 7
+    },
+    "touch": {
+      "result": "PASS",
+      "evidence": "evidence/touch.json",
+      "executionScope": "Retained without rerun in M2-D6; original execution scope preserved in build-phase-2-camera.json. No new human/device/load/optics claim.",
+      "checks": 5
+    },
+    "reconnect": {
+      "result": "PASS",
+      "evidence": "evidence/reconnect.json",
+      "executionScope": "Retained without rerun in M2-D6; original execution scope preserved in build-phase-2-camera.json. No new human/device/load/optics claim.",
+      "checks": 4
+    },
+    "camera": {
+      "result": "PASS",
+      "evidence": "evidence/camera.json",
+      "executionScope": "RERUN M2-D6: full regression or named native fixture; exact scope in phase-2-boat.json.",
+      "checks": 180
+    },
+    "graphics": {
+      "result": "PASS",
+      "evidence": "evidence/graphics.json",
+      "executionScope": "RERUN M2-D6: full regression or named native fixture; exact scope in phase-2-boat.json.",
+      "checks": 25
+    },
+    "water-depth": {
+      "result": "PASS",
+      "evidence": "evidence/water-depth.json",
+      "executionScope": "Retained without rerun in M2-D6; original execution scope preserved in build-phase-2-camera.json. No new human/device/load/optics claim."
+    },
+    "tracker-browser": {
+      "result": "PASS",
+      "evidence": "evidence/tracker-browser.json",
+      "executionScope": "RERUN M2-D6: full regression or named native fixture; exact scope in phase-2-boat.json.",
+      "checks": 6
+    },
+    "landing": {
+      "result": "PASS",
+      "evidence": "evidence/landing.json",
+      "executionScope": "RERUN M2-D6: full regression or named native fixture; exact scope in phase-2-boat.json.",
+      "checks": 2
+    },
+    "hull-collision": {
+      "result": "PASS",
+      "evidence": "evidence/hull-collision.json",
+      "executionScope": "RERUN M2-D6: full regression or named native fixture; exact scope in phase-2-boat.json.",
+      "checks": 4
+    },
+    "performance": {
+      "result": "PASS",
+      "evidence": "evidence/performance.json",
+      "executionScope": "RERUN M2-D6: full regression or named native fixture; exact scope in phase-2-boat.json.",
+      "checks": 8
+    },
+    "load": {
+      "result": "PASS",
+      "evidence": "evidence/load.json",
+      "executionScope": "Retained without rerun in M2-D6; original execution scope preserved in build-phase-2-camera.json. No new human/device/load/optics claim."
+    },
+    "bends-browser": {
+      "result": "PASS",
+      "checks": 5,
+      "clients": 4,
+      "evidence": "evidence/bends-browser.json",
+      "executionScope": "Retained without rerun in M2-D6; original execution scope preserved in build-phase-2-camera.json. No new human/device/load/optics claim."
+    },
+    "river-bends": {
+      "result": "PASS",
+      "evidence": "evidence/river-bends.json",
+      "executionScope": "RERUN M2-D6: full regression or named native fixture; exact scope in phase-2-boat.json.",
+      "checks": 5
+    },
+    "onboarding": {
+      "result": "PASS",
+      "evidence": "evidence/onboarding.json",
+      "executionScope": "Retained without rerun in M2-D6; original execution scope preserved in build-phase-2-camera.json. No new human/device/load/optics claim.",
+      "checks": 7
+    },
+    "rescue": {
+      "result": "PASS",
+      "evidence": "evidence/rescue.json",
+      "executionScope": "RERUN M2-D6: full regression or named native fixture; exact scope in phase-2-boat.json.",
+      "checks": 4
+    },
+    "rescue-browser": {
+      "result": "PASS",
+      "evidence": "evidence/rescue-browser.json",
+      "executionScope": "Retained without rerun in M2-D6; original execution scope preserved in build-phase-2-camera.json. No new human/device/load/optics claim.",
+      "checks": 4
+    },
+    "lobby": {
+      "result": "PASS",
+      "evidence": "evidence/lobby.json",
+      "executionScope": "Retained without rerun in M2-D6; original execution scope preserved in build-phase-2-camera.json. No new human/device/load/optics claim.",
+      "checks": 7
+    },
+    "audio": {
+      "result": "PASS",
+      "checks": 7,
+      "evidence": "evidence/audio.json",
+      "executionScope": "Retained without rerun in M2-D6; original execution scope preserved in build-phase-2-camera.json. No new human/device/load/optics claim."
+    },
+    "banks": {
+      "result": "PASS",
+      "checks": 3,
+      "evidence": "evidence/banks.json",
+      "executionScope": "RERUN M2-D6: full regression or named native fixture; exact scope in phase-2-boat.json."
+    },
+    "waterEffects": {
+      "result": "PASS",
+      "checks": 7,
+      "evidence": "evidence/water-effects.json",
+      "executionScope": "Retained without rerun in M2-D6; original execution scope preserved in build-phase-2-camera.json. No new human/device/load/optics claim."
+    },
+    "boat-detail": {
+      "result": "PASS",
+      "checks": 3,
+      "evidence": "evidence/phase-2-boat-detail.txt",
+      "executionScope": "M2-D6 final geometry checks; also included in114-test full suite."
+    }
+  },
+  "graphics": {
+    "views": 25,
+    "titleViewports": 3,
+    "maxCalls": 712,
+    "maxTriangles": 2250668,
+    "priorRecordedMaxTriangles": 6033248,
+    "residencyCycles": 3,
+    "maxVegetationChunks": 6,
+    "startRevisitGeometryTextureCounts": [
+      [
+        172,
+        11
+      ],
+      [
+        172,
+        11
+      ],
+      [
+        172,
+        11
+      ]
+    ],
+    "scope": "Full color/reflection/shadow/capture frame counters and bounded three-cycle residency; human/device/90-minute acceptance remains open.",
+    "executionScope": "M2-D6 final25 authored route views/three titles and three residency returns.",
+    "priorMilestoneMaxCalls": 712,
+    "priorMilestoneMaxTriangles": 2249364
+  },
+  "tracker": {
+    "deliverables": 49,
+    "obstacleConcepts": 80,
+    "signatureEncounters": 10,
+    "regionCards": 14,
+    "acceptedScopePoints": 2,
+    "productionReadyRegions": 0,
+    "deliveryPhases": 5,
+    "engineeringVerified": [
+      "M1"
+    ],
+    "engineeringActive": "M2",
+    "engineeringChecksVerified": {
+      "M1": 4,
+      "M2": 3
+    },
+    "remainingEngineeringChecks": [
+      "M2-D presentation",
+      "M2-E human/device acceptance"
+    ],
+    "partialEngineeringChecks": {
+      "M2-D": "D1 lobby, D2 audio, D3 banks, D4 water, D5 camera and D6 boat detail verified as scoped batches; full premium art/performance/human/device gates remain."
+    }
+  },
+  "artifacts": {
+    "dist/index.html": {
+      "bytes": 7544,
+      "sha256": "879e949631226f2c42fc6d2ccc99815106441291c79092ba7e353fd7758c3314"
+    },
+    "build/server.mjs": {
+      "bytes": 59859,
+      "sha256": "1f4b0989764e41d572d563e1d32f5bd72185a7a4d7a929a7a9b743bb4d970758"
+    },
+    "releases/Bad-at-Boating-cPanel.zip": {
+      "bytes": 288017,
+      "sha256": "0d0a7fcd9dd15f01e23c870cec065d70237e04d52c8793918cac6beab84f8cfc"
+    },
+    "dist/assets/index-Dr9dsw28.js": {
+      "bytes": 854559,
+      "sha256": "e35e2f041bf03385357f610b7d2e05ca92cd0bda77b52bdf1b6676275a05cc1e"
+    },
+    "dist/assets/index-FQ1In_a6.css": {
+      "bytes": 8814,
+      "sha256": "e13834a5145e3476fd69b5e07e730c984069fb819d24e8d9634563913bffa14e"
+    }
+  },
+  "preview": "http://localhost:2571",
+  "previewDatabase": "Isolated in-memory QA database; no private durable database replaced.",
+  "cpanel": {
+    "packaged": true,
+    "cleanDependencyInstall": "NOT RERUN; runtime dependencies unchanged",
+    "publicDeployment": "NOT RUN for this release"
+  },
+  "humanPlaytest": false,
+  "physicalControllerTest": false,
+  "namedDevicePerformance": false,
+  "longInternetBrowserSoak": false,
+  "remoteCI": "NOT RUN; workflow updated",
+  "containerExecution": "NOT RUN",
+  "actualCommandOutput": "evidence/phase-2-boat-tests.txt",
+  "finalStaticChecks": "PASS: strict build, tracker freshness,2 integrity tests/6 dashboard groups, git diff --check, source hash and independently matching ZIP dist/server bytes.",
+  "phaseEvidence": "evidence/phase-2-boat.json",
+  "deploymentSmoke": {
+    "result": "PASS",
+    "url": "http://localhost:2571",
+    "evidence": "evidence/phase-2-boat-deployment.txt",
+    "scope": "Local isolated in-memory authority only",
+    "physics": "basin-0.9"
+  },
+  "sourceHashFiles": [
+    ".github/workflows/verify.yml",
+    "Dockerfile",
+    "README.md",
+    "app.cjs",
+    "app.js",
+    "docs/ANALYSIS.md",
+    "docs/CPANEL_SETUP.md",
+    "docs/DECISIONS.md",
+    "docs/GRAPHICS_AUDIT.md",
+    "docs/MULTIPLAYER_AUDIT.md",
+    "docs/PHASE_EXECUTION.md",
+    "docs/PHYSICS_AUDIT.md",
+    "docs/PLAYTEST_KIT.md",
+    "docs/PRD_PROGRESS.md",
+    "docs/PRODUCTION_PLAN.md",
+    "docs/PRODUCTION_TRACKER.html",
+    "docs/PRODUCTION_TRACKER.json",
+    "docs/PRODUCTION_TRACKER.md",
+    "docs/PROJECT_AUDIT.md",
+    "docs/RESEARCH_GAMEPLAY.md",
+    "docs/RESEARCH_VISUALS.md",
+    "docs/ROUTE.md",
+    "docs/STATUS.md",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "scripts/build-server.mjs",
+    "scripts/check-deployment.mjs",
+    "scripts/dev.mjs",
+    "scripts/package-cpanel.mjs",
+    "scripts/tracker.mjs",
+    "src/client/audio.ts",
+    "src/client/boat-detail.ts",
+    "src/client/camera.ts",
+    "src/client/crew.ts",
+    "src/client/hull.ts",
+    "src/client/input.ts",
+    "src/client/main.ts",
+    "src/client/nature.ts",
+    "src/client/rehearsal.ts",
+    "src/client/riverbed.ts",
+    "src/client/scene.ts",
+    "src/client/style.css",
+    "src/client/water.ts",
+    "src/package.json",
+    "src/server/BoatRoom.ts",
+    "src/server/index.ts",
+    "src/server/voyages.ts",
+    "src/shared/hull.ts",
+    "src/shared/names.ts",
+    "src/shared/protocol.ts",
+    "src/shared/rescue.ts",
+    "src/shared/river.ts",
+    "src/shared/rowing.ts",
+    "src/shared/simulation.ts",
+    "src/shared/world.ts",
+    "tests/accessibility.mjs",
+    "tests/animation.html",
+    "tests/animation.mjs",
+    "tests/audio.html",
+    "tests/audio.mjs",
+    "tests/audio.test.ts",
+    "tests/banks.test.ts",
+    "tests/bends-browser.mjs",
+    "tests/bends.test.ts",
+    "tests/boat-detail.test.ts",
+    "tests/browser.mjs",
+    "tests/camera.html",
+    "tests/camera.mjs",
+    "tests/controls.mjs",
+    "tests/crew.test.ts",
+    "tests/finish.test.ts",
+    "tests/graphics.html",
+    "tests/graphics.mjs",
+    "tests/hazards.test.ts",
+    "tests/hull.test.ts",
+    "tests/hydrodynamics.test.ts",
+    "tests/input.test.ts",
+    "tests/landing.html",
+    "tests/landing.mjs",
+    "tests/lifecycle.test.ts",
+    "tests/load.ts",
+    "tests/lobby.mjs",
+    "tests/names.test.ts",
+    "tests/network-stress.test.ts",
+    "tests/network.test.ts",
+    "tests/onboarding.mjs",
+    "tests/package.json",
+    "tests/performance.mjs",
+    "tests/physics.test.ts",
+    "tests/presentation.test.ts",
+    "tests/reconnect.mjs",
+    "tests/rehearsal.test.ts",
+    "tests/rescue-browser.mjs",
+    "tests/rescue.test.ts",
+    "tests/route.test.ts",
+    "tests/rowing.test.ts",
+    "tests/save-browser.mjs",
+    "tests/save-restart.test.ts",
+    "tests/saves.test.ts",
+    "tests/server-reliability.test.ts",
+    "tests/soak.ts",
+    "tests/support/bends-server.ts",
+    "tests/support/rescue-server.ts",
+    "tests/support/save-server.ts",
+    "tests/touch.mjs",
+    "tests/tracker-browser.mjs",
+    "tests/tracker.test.mjs",
+    "tests/water-depth.html",
+    "tests/water-depth.mjs",
+    "tests/water-effects.mjs",
+    "tests/waterwheel.test.ts",
+    "tsconfig.json",
+    "vite.config.ts"
+  ],
+  "priorMilestoneBuild": "evidence/build-phase-2-camera.json",
+  "performanceBudgetAccepted": false,
+  "fixtureCommandOutputs": [
+    "evidence/phase-2-boat-accessibility.txt",
+    "evidence/phase-2-boat-build.txt",
+    "evidence/phase-2-boat-camera.txt",
+    "evidence/phase-2-boat-deployment.txt",
+    "evidence/phase-2-boat-detail.txt",
+    "evidence/phase-2-boat-game-flow.txt",
+    "evidence/phase-2-boat-graphics.txt",
+    "evidence/phase-2-boat-hull.txt",
+    "evidence/phase-2-boat-landing.txt",
+    "evidence/phase-2-boat-package.txt",
+    "evidence/phase-2-boat-performance.txt",
+    "evidence/phase-2-boat-tests.txt",
+    "evidence/phase-2-boat-tracker.txt"
+  ],
+  "audio": {
+    "ambientLayers": 7,
+    "noiseBytesAt44100Hz": 705600,
+    "peakTemporaryVoices": 24,
+    "remainingTemporaryVoices": 0,
+    "stressPeak": 0.9448018670082092,
+    "humanListening": false
+  },
+  "banks": {
+    "seamComparisons": 52074,
+    "seamGap": 0,
+    "independentGroundRays": 3696,
+    "groundMaxErrorMetres": 6.221167370590308e-06,
+    "renderedGroundSamples": 2934,
+    "renderedGroundMaxErrorMetres": 9.601022668448422e-06,
+    "paintMaxErrorMetres": 4.5776367187458367e-07,
+    "textureBytesBeforeMipmaps": 262144
+  },
+  "performance": {
+    "result": "PASS",
+    "framesPerCase": 180,
+    "caseCount": 8,
+    "scope": "Local headless authored scene measurements at1080p with advancing20Hz snapshots/waves/effects, not a named consumer-device matrix, human gameplay or universal60FPS certification. PASS means measurement completed without render errors; target misses remain visible. CPU covers RiverScene.render only; GPU includes its color/reflection/shadow/capture work. Camera, water-update, capture and reflection CPU wall times are nested observations; their percentile values are not additive. Heap/DOM metrics are observations, not leak certification.",
+    "budgetAccepted": false,
+    "cases": [
+      {
+        "view": "crew",
+        "quality": "High",
+        "cpuP95": 4.100000001490116,
+        "gpuP95": 13.605083,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "crew",
+        "quality": "Low",
+        "cpuP95": 3.399999998509884,
+        "gpuP95": 7.598833,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "High",
+        "cpuP95": 4,
+        "gpuP95": 13.765624,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "Low",
+        "cpuP95": 3.3000000044703484,
+        "gpuP95": 12.188291,
+        "frameP95": 16.799999999999955,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "High",
+        "cpuP95": 4.5,
+        "gpuP95": 13.775374,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "Low",
+        "cpuP95": 4.200000002980232,
+        "gpuP95": 6.786708,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rescue",
+        "quality": "High",
+        "cpuP95": 4.899999998509884,
+        "gpuP95": 12.994124,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rescue",
+        "quality": "Low",
+        "cpuP95": 3.899999998509884,
+        "gpuP95": 6.878791,
+        "frameP95": 16.799999999999727,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      }
+    ],
+    "baseline": "evidence/performance-phase-2-camera.json",
+    "comparisonLimit": "Historical before/after captures are host observations, not a controlled causal or named-device study."
+  },
+  "water": {
+    "highCaptureRenders": 1,
+    "lowCaptureRenders": 0,
+    "nativeDepth": true,
+    "controlledBaselineMaxRgbChannelDifference": 0,
+    "captureDrawComparison": [
+      {
+        "view": "crew",
+        "before": 2,
+        "after": 1
+      },
+      {
+        "view": "trees",
+        "before": 8,
+        "after": 4
+      },
+      {
+        "view": "rapids",
+        "before": 8,
+        "after": 4
+      },
+      {
+        "view": "rescue",
+        "before": 8,
+        "after": 4
+      }
+    ],
+    "effectsChecks": 7,
+    "physicsChanged": false,
+    "executionScope": "Retained D4 optics/effects; not rerun in D6 boat-only batch. Dry-deck/native recovery were rerun. See build-phase-2-camera.json."
+  },
+  "cameraBounds": {
+    "result": "PASS",
+    "cases": 180,
+    "comparison": [
+      {
+        "width": 1440,
+        "height": 960,
+        "rays": 768,
+        "hits": 600,
+        "baseline": {
+          "meshes": 4649,
+          "triangles": 2713272
+        },
+        "bounded": {
+          "meshes": 1836,
+          "triangles": 1724444
+        },
+        "vertices": 214909
+      },
+      {
+        "width": 480,
+        "height": 900,
+        "rays": 768,
+        "hits": 600,
+        "baseline": {
+          "meshes": 4746,
+          "triangles": 2812712
+        },
+        "bounded": {
+          "meshes": 1824,
+          "triangles": 1723868
+        },
+        "vertices": 214909
+      }
+    ],
+    "evidence": "evidence/camera.json",
+    "log": "evidence/phase-2-camera-camera.txt",
+    "totalRays": 1536,
+    "totalHits": 1200,
+    "triangleChecks": {
+      "baseline": 5525984,
+      "bounded": 3448312
+    }
+  },
+  "boatDetail": {
+    "maxCalls": 712,
+    "maxTriangles": 2250668,
+    "priorMaxTriangles": 2249364,
+    "triangleIncrease": 1304,
+    "returnResidency": [
+      [
+        172,
+        11
+      ],
+      [
+        172,
+        11
+      ],
+      [
+        172,
+        11
+      ]
+    ],
+    "priorReturnResidency": [
+      175,
+      11
+    ],
+    "paddleTrianglesPerInstance": 148,
+    "ropeTriangles": 960,
+    "extraTextures": 0,
+    "evidence": "evidence/phase-2-boat.json"
+  }
+}

@@ -1,9 +1,25 @@
 import * as T from 'three';
+import { HULL_RING, HULL_BOTTOM, HULL_BASE_SCALE, hullPanelVertices } from '../shared/hull';
+export { HULL_RING } from '../shared/hull';
 
-export const HULL_RING = [
-  [-.12,-2.15],[-.68,-1.6],[-.96,-.6],[-.96,.7],[-.7,1.6],[0,2.25],
-  [.7,1.6],[.96,.7],[.96,-.6],[.68,-1.6],[.12,-2.15],
-] as const;
+export function hullPanel(index:number) {
+  const geometry=new T.BufferGeometry();
+  const vertices=hullPanelVertices(index),a=HULL_RING[index]!;
+  let arc=0;
+  for(let i=0;i<index;i++){const p=HULL_RING[i]!,q=HULL_RING[i+1]!;arc+=Math.hypot(q[0]-p[0],q[1]-p[1]);}
+  const uv:number[]=[],colors:number[]=[];
+  for(let i=0;i<vertices.length;i+=3){
+    const lower=vertices[i+1]===HULL_BOTTOM;
+    const x=vertices[i]!/(lower?HULL_BASE_SCALE.x:1),z=vertices[i+2]!/(lower?HULL_BASE_SCALE.z:1);
+    // Long fibres follow the gunwale, including either convex-panel diagonal.
+    uv.push((vertices[i+1]!-HULL_BOTTOM)*2,(arc+Math.hypot(x-a[0],z-a[1]))*.5);
+    const shade=lower?.76:1;colors.push(shade,shade,shade);
+  }
+  geometry.setAttribute('position',new T.Float32BufferAttribute(vertices,3));
+  geometry.setAttribute('uv',new T.Float32BufferAttribute(uv,2));
+  geometry.setAttribute('color',new T.Float32BufferAttribute(colors,3));
+  geometry.computeVertexNormals();return geometry;
+}
 function clipX(polygon:T.Vector2[], x:number, keepRight:boolean) {
   const out:T.Vector2[]=[];
   for(let i=0;i<polygon.length;i++) {
@@ -30,4 +46,4 @@ export function floorPlank(index:number) {
   const outline=HULL_RING.map(([x,z])=>new T.Vector2(x*.735,z*.90));
   return prism(clipX(clipX(outline,center-.073,true),center+.073,false),-.015,.05);
 }
-export function hullBottom() { return prism(HULL_RING.map(([x,z])=>new T.Vector2(x*.65,z*.88)),-.245,.055); }
+export function hullBottom() { return prism(HULL_RING.map(([x,z])=>new T.Vector2(x*HULL_BASE_SCALE.x,z*HULL_BASE_SCALE.z)),HULL_BOTTOM+.055,.055); }

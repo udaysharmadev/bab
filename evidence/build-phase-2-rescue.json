@@ -1,0 +1,349 @@
+{
+  "game": "Bad at Boating",
+  "generatedUTC": "2026-10-20T16:47:16.593382+00:00",
+  "baseCommit": "1dee20db314dda485c734932df48e9780bb53d03",
+  "workingTreeChanges": true,
+  "protocol": 5,
+  "physics": "basin-0.9",
+  "world": "waterworks-1",
+  "scope": "M1 engineering verified; active M2 has3/5 checks verified: hull, authored bends/camera, recovery/onboarding. M2-D presentation and M2-E human/device acceptance remain; production/release gates open.",
+  "sourceSha256": "1236403d5510ce0385e596de38e05b4741d8594428755ad880b066ffdaea4535",
+  "sourceHashScope": "Sorted relative path + NUL + bytes + NUL for src/tests/scripts/docs/.github and listed root metadata; excludes generated build/evidence/reference/private data.",
+  "fileCount": 106,
+  "build": "PASS",
+  "typecheck": "PASS",
+  "automatedTests": {
+    "command": "npm test",
+    "passed": 104,
+    "failed": 0,
+    "seconds": 79.539527334,
+    "scope": "Full unit/authority regression for0.9 rescue fields and migration; final cue/sign/camera changes covered by final built/browser/graphics/camera fixtures."
+  },
+  "fixtures": {
+    "browser": {
+      "result": "PASS",
+      "evidence": "evidence/browser.json",
+      "executionScope": "RERUN M2-C2; see phase-2-rescue.json for automated scope and open human/device/performance acceptance.",
+      "checks": 8
+    },
+    "controls-after": {
+      "result": "PASS",
+      "checks": 71,
+      "errors": [],
+      "evidence": "evidence/controls-after.json",
+      "executionScope": "Retained prior milestone evidence; not rerun in M2-C2. See build-phase-2-onboarding.json for earlier scope."
+    },
+    "accessibility": {
+      "result": "PASS",
+      "evidence": "evidence/accessibility.json",
+      "executionScope": "RERUN M2-C2; see phase-2-rescue.json for automated scope and open human/device/performance acceptance.",
+      "checks": 7
+    },
+    "touch": {
+      "result": "PASS",
+      "checks": 5,
+      "errors": [],
+      "evidence": "evidence/touch.json",
+      "executionScope": "Retained preceding M2-C1 native held-touch suite; M2-C2 onboarding reruns actual dock touch/release in its own fixture."
+    },
+    "reconnect": {
+      "result": "PASS",
+      "checks": 4,
+      "errors": [],
+      "evidence": "evidence/reconnect.json",
+      "executionScope": "Retained prior milestone evidence; not rerun in M2-C2. See build-phase-2-onboarding.json for earlier scope."
+    },
+    "camera": {
+      "result": "PASS",
+      "evidence": "evidence/camera.json",
+      "executionScope": "RERUN M2-C2; see phase-2-rescue.json for automated scope and open human/device/performance acceptance.",
+      "checks": 180
+    },
+    "graphics": {
+      "result": "PASS",
+      "evidence": "evidence/graphics.json",
+      "executionScope": "RERUN M2-C2; see phase-2-rescue.json for automated scope and open human/device/performance acceptance.",
+      "checks": 23
+    },
+    "water-depth": {
+      "result": "PASS",
+      "evidence": "evidence/water-depth.json",
+      "executionScope": "RERUN M2-C2; see phase-2-rescue.json for automated scope and open human/device/performance acceptance."
+    },
+    "tracker-browser": {
+      "result": "PASS",
+      "evidence": "evidence/tracker-browser.json",
+      "executionScope": "RERUN M2-C2; see phase-2-rescue.json for automated scope and open human/device/performance acceptance.",
+      "checks": 6
+    },
+    "landing": {
+      "result": "PASS",
+      "evidence": "evidence/landing.json",
+      "executionScope": "RERUN M2-C2; see phase-2-rescue.json for automated scope and open human/device/performance acceptance.",
+      "checks": 2
+    },
+    "hull-collision": {
+      "result": "PASS",
+      "evidence": "evidence/hull-collision.json",
+      "executionScope": "RERUN M2-C2; see phase-2-rescue.json for automated scope and open human/device/performance acceptance.",
+      "checks": 4
+    },
+    "performance": {
+      "result": "PASS",
+      "evidence": "evidence/performance.json",
+      "executionScope": "RERUN M2-C2; see phase-2-rescue.json for automated scope and open human/device/performance acceptance.",
+      "checks": 8
+    },
+    "load": {
+      "result": "PASS",
+      "evidence": "evidence/load.json",
+      "executionScope": "RERUN M2-C2; see phase-2-rescue.json for automated scope and open human/device/performance acceptance."
+    },
+    "bends-browser": {
+      "result": "PASS",
+      "checks": 5,
+      "clients": 4,
+      "evidence": "evidence/bends-browser.json",
+      "executionScope": "Retained prior milestone evidence; not rerun in M2-C2. See build-phase-2-onboarding.json for earlier scope."
+    },
+    "river-bends": {
+      "result": "PASS",
+      "evidence": "evidence/river-bends.json",
+      "executionScope": "RERUN M2-C2; see phase-2-rescue.json for automated scope and open human/device/performance acceptance.",
+      "checks": 5
+    },
+    "onboarding": {
+      "result": "PASS",
+      "evidence": "evidence/onboarding.json",
+      "executionScope": "RERUN M2-C2; see phase-2-rescue.json for automated scope and open human/device/performance acceptance.",
+      "checks": 7
+    },
+    "rescue": {
+      "result": "PASS",
+      "evidence": "evidence/rescue.json",
+      "executionScope": "RERUN M2-C2; see phase-2-rescue.json for automated scope and open human/device/performance acceptance.",
+      "checks": 4
+    },
+    "rescue-browser": {
+      "result": "PASS",
+      "evidence": "evidence/rescue-browser.json",
+      "executionScope": "RERUN M2-C2; see phase-2-rescue.json for automated scope and open human/device/performance acceptance.",
+      "checks": 4
+    }
+  },
+  "graphics": {
+    "views": 23,
+    "titleViewports": 3,
+    "maxCalls": 727,
+    "maxTriangles": 2252580,
+    "priorRecordedMaxTriangles": 6033248,
+    "residencyCycles": 3,
+    "maxVegetationChunks": 6,
+    "startRevisitGeometryTextureCounts": [
+      [
+        175,
+        11
+      ],
+      [
+        175,
+        11
+      ],
+      [
+        175,
+        11
+      ]
+    ],
+    "scope": "Complete pass counts and bounded local GPU residency; not FPS or90-minute leak certification.",
+    "executionScope": "M2-C2 final23 route views/3 titles and three residency cycles; timing results are separate and retain target misses."
+  },
+  "tracker": {
+    "deliverables": 49,
+    "obstacleConcepts": 80,
+    "signatureEncounters": 10,
+    "regionCards": 14,
+    "acceptedScopePoints": 2,
+    "productionReadyRegions": 0,
+    "deliveryPhases": 5,
+    "engineeringVerified": [
+      "M1"
+    ],
+    "engineeringActive": "M2",
+    "engineeringChecksVerified": {
+      "M1": 4,
+      "M2": 3
+    },
+    "remainingEngineeringChecks": [
+      "M2-D presentation",
+      "M2-E human/device acceptance"
+    ]
+  },
+  "artifacts": {
+    "dist/index.html": {
+      "bytes": 7151,
+      "sha256": "ad26f7f1df62aba1baf740f44edc60e8c1aa19b0d0506d774b7445fdd4e0b95c"
+    },
+    "build/server.mjs": {
+      "bytes": 59174,
+      "sha256": "722842d7c963e224758c122fbcd102acec4680cec8b640afa2dc3e4cfd831107"
+    },
+    "releases/Bad-at-Boating-cPanel.zip": {
+      "bytes": 281554,
+      "sha256": "76469e3cb6ff5d353efc738dc259462580de64abae34e65d64a0804ccb58c2f8"
+    },
+    "dist/assets/index-6oQ_gw6i.js": {
+      "bytes": 837324,
+      "sha256": "d926cb6ab4eaf848b1a4b24288d11200980619c74ecc488e9277ada0e8f116d6"
+    },
+    "dist/assets/index-BE9tlafO.css": {
+      "bytes": 8369,
+      "sha256": "058b5e5e482f23fcc8deb260a42361611bad396e80ebb75ced112f66428099e1"
+    }
+  },
+  "preview": "http://localhost:2571",
+  "previewDatabase": "Isolated in-memory QA database; no private durable database replaced.",
+  "cpanel": {
+    "packaged": true,
+    "cleanDependencyInstall": "NOT RERUN; runtime dependencies unchanged",
+    "publicDeployment": "NOT RUN for this release"
+  },
+  "humanPlaytest": false,
+  "physicalControllerTest": false,
+  "namedDevicePerformance": false,
+  "longInternetBrowserSoak": false,
+  "remoteCI": "NOT RUN; workflow updated",
+  "containerExecution": "NOT RUN",
+  "actualCommandOutput": "evidence/phase-2-rescue-checks.txt",
+  "finalStaticChecks": "PASS: TypeScript, tracker source/report freshness, two tracker integrity tests and git diff --check",
+  "phaseEvidence": "evidence/phase-2-rescue.json",
+  "deploymentSmoke": {
+    "result": "PASS",
+    "url": "http://localhost:2571",
+    "evidence": "evidence/phase-2-rescue-deployment.txt",
+    "scope": "Local isolated in-memory authority only",
+    "physics": "basin-0.9"
+  },
+  "sourceHashFiles": [
+    ".github/workflows/verify.yml",
+    "Dockerfile",
+    "README.md",
+    "app.cjs",
+    "app.js",
+    "docs/ANALYSIS.md",
+    "docs/CPANEL_SETUP.md",
+    "docs/DECISIONS.md",
+    "docs/GRAPHICS_AUDIT.md",
+    "docs/MULTIPLAYER_AUDIT.md",
+    "docs/PHASE_EXECUTION.md",
+    "docs/PHYSICS_AUDIT.md",
+    "docs/PLAYTEST_KIT.md",
+    "docs/PRD_PROGRESS.md",
+    "docs/PRODUCTION_PLAN.md",
+    "docs/PRODUCTION_TRACKER.html",
+    "docs/PRODUCTION_TRACKER.json",
+    "docs/PRODUCTION_TRACKER.md",
+    "docs/PROJECT_AUDIT.md",
+    "docs/RESEARCH_GAMEPLAY.md",
+    "docs/RESEARCH_VISUALS.md",
+    "docs/ROUTE.md",
+    "docs/STATUS.md",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "scripts/build-server.mjs",
+    "scripts/check-deployment.mjs",
+    "scripts/dev.mjs",
+    "scripts/package-cpanel.mjs",
+    "scripts/tracker.mjs",
+    "src/client/audio.ts",
+    "src/client/camera.ts",
+    "src/client/crew.ts",
+    "src/client/hull.ts",
+    "src/client/input.ts",
+    "src/client/main.ts",
+    "src/client/nature.ts",
+    "src/client/rehearsal.ts",
+    "src/client/riverbed.ts",
+    "src/client/scene.ts",
+    "src/client/style.css",
+    "src/client/water.ts",
+    "src/package.json",
+    "src/server/BoatRoom.ts",
+    "src/server/index.ts",
+    "src/server/voyages.ts",
+    "src/shared/hull.ts",
+    "src/shared/protocol.ts",
+    "src/shared/rescue.ts",
+    "src/shared/river.ts",
+    "src/shared/rowing.ts",
+    "src/shared/simulation.ts",
+    "src/shared/world.ts",
+    "tests/accessibility.mjs",
+    "tests/animation.html",
+    "tests/animation.mjs",
+    "tests/audio.html",
+    "tests/audio.test.ts",
+    "tests/bends-browser.mjs",
+    "tests/bends.test.ts",
+    "tests/browser.mjs",
+    "tests/camera.html",
+    "tests/camera.mjs",
+    "tests/controls.mjs",
+    "tests/crew.test.ts",
+    "tests/finish.test.ts",
+    "tests/graphics.html",
+    "tests/graphics.mjs",
+    "tests/hazards.test.ts",
+    "tests/hull.test.ts",
+    "tests/hydrodynamics.test.ts",
+    "tests/input.test.ts",
+    "tests/landing.html",
+    "tests/landing.mjs",
+    "tests/lifecycle.test.ts",
+    "tests/load.ts",
+    "tests/network-stress.test.ts",
+    "tests/network.test.ts",
+    "tests/onboarding.mjs",
+    "tests/package.json",
+    "tests/performance.mjs",
+    "tests/physics.test.ts",
+    "tests/presentation.test.ts",
+    "tests/reconnect.mjs",
+    "tests/rehearsal.test.ts",
+    "tests/rescue-browser.mjs",
+    "tests/rescue.test.ts",
+    "tests/route.test.ts",
+    "tests/rowing.test.ts",
+    "tests/save-browser.mjs",
+    "tests/save-restart.test.ts",
+    "tests/saves.test.ts",
+    "tests/server-reliability.test.ts",
+    "tests/soak.ts",
+    "tests/support/bends-server.ts",
+    "tests/support/rescue-server.ts",
+    "tests/support/save-server.ts",
+    "tests/touch.mjs",
+    "tests/tracker-browser.mjs",
+    "tests/tracker.test.mjs",
+    "tests/water-depth.html",
+    "tests/water-depth.mjs",
+    "tests/waterwheel.test.ts",
+    "tsconfig.json",
+    "vite.config.ts"
+  ],
+  "priorMilestoneBuild": "evidence/build-phase-2-onboarding.json",
+  "performanceBudgetAccepted": false,
+  "fixtureCommandOutputs": [
+    "evidence/phase-2-rescue-accessibility.txt",
+    "evidence/phase-2-rescue-browser-flow.txt",
+    "evidence/phase-2-rescue-checks.txt",
+    "evidence/phase-2-rescue-deployment.txt",
+    "evidence/phase-2-rescue-graphics.txt",
+    "evidence/phase-2-rescue-landing.txt",
+    "evidence/phase-2-rescue-load.txt",
+    "evidence/phase-2-rescue-onboarding.txt",
+    "evidence/phase-2-rescue-performance.txt",
+    "evidence/phase-2-rescue-rescue-browser.txt",
+    "evidence/phase-2-rescue-tracker.txt",
+    "evidence/phase-2-rescue-water-depth.txt"
+  ]
+}

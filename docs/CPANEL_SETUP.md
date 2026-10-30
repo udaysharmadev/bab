@@ -1,6 +1,6 @@
 # Bad at Boating — cPanel LiteSpeed setup
 
-Target origin: **https://bab.validussentinel.com**. On 2026-10-20, the public `/health` endpoint returned HTTP 200 and `npm run check:deployment -- https://bab.validussentinel.com` passed its four-client HTTPS/WSS smoke test from this workspace. That verified health, title and directory-guard routes, four WebSocket seats, the four-ready launch barrier, advancing server ticks, disconnect pause and same-seat reconnect. The production browser build, authoritative Colyseus rooms and WebSocket endpoint run in the same Node app. On HTTPS the browser automatically uses `wss://bab.validussentinel.com`; development-only `/game` proxying is not used in production. This does not verify cPanel account settings, Node 24 availability, sustained load or human play quality. Earlier public smoke: protocol 3 / basin-0.5 / waterworks-1. Current repository: protocol 5; re-run the public smoke after this release is deployed.
+Target origin: **https://bab.validussentinel.com**. On 2026-10-20, the public `/health` endpoint returned HTTP 200 and `npm run check:deployment -- https://bab.validussentinel.com` passed its four-client HTTPS/WSS smoke test from this workspace. That verified health, title and directory-guard routes, four WebSocket seats, the four-ready launch barrier, advancing server ticks, disconnect pause and same-seat reconnect. The production browser build, authoritative Colyseus rooms and WebSocket endpoint run in the same Node app. On HTTPS the browser automatically uses `wss://bab.validussentinel.com`; development-only `/game` proxying is not used in production. This does not verify cPanel account settings, Node 24 availability, sustained load or human play quality. Earlier public smoke: protocol 3 / basin-0.5 / waterworks-1. Current repository: protocol 7 / basin-0.13; re-run the public smoke after this release is deployed.
 
 ## Hosting requirements
 
@@ -48,7 +48,7 @@ If your account only offers cPanel Application Manager using Apache Passenger (w
    ```
 
    Vite produces `dist/`; esbuild produces `build/server.mjs`; `app.js` is the Passenger entrypoint. Do not upload `node_modules` from another computer. The Node app serves `/`, `/health`, and Colyseus matchmaking/WebSocket routes from this same origin.
-4. Check `https://bab.validussentinel.com/health`. Expect JSON with `status:"ready"`, `protocol:5`, `physics:"basin-0.5"`. Then run the external multiplayer smoke test:
+4. Check `https://bab.validussentinel.com/health`. Expect JSON with `status:"ready"`, `protocol:5`, `physics:"basin-0.9"`. Then run the external multiplayer smoke test:
 
    ```sh
    npm run check:deployment -- https://bab.validussentinel.com
@@ -73,7 +73,7 @@ For release version changes, take a stopped-app backup of the entire private sav
 
 ## Playing, saves and updates
 
-Every player uses their own browser/keyboard. W/Up repeats forward strokes, S/Down reverse, A/Left left turn, D/Right right turn. Four connected players must each Ready before starting. Copy Invite shares the active room. **Copy Voyage Recovery Code** is separate: it is a private bearer credential for checkpoint progress; share only with the crew. The invite URL never contains that credential. Continue Voyage appears after a checkpoint is saved on that device; another device can paste `voyage:…` into Join Crew.
+Every player uses their own browser/keyboard. W/Up repeats forward strokes, S/Down reverse, A/Left left turn, D/Right right turn. Invite URLs join directly and new players enter a display name. Own avatar labels show You, crewmates show their names, and Ready adds an avatar tick. Players may Ready while waiting; all four must be connected/ready before starting. Names remain in the live room and local browser preference, not canonical voyage saves. Copy Invite shares the active room. **Copy Voyage Recovery Code** is separate: it is a private bearer credential for checkpoint progress; share only with the crew. The invite URL never contains that credential. Continue Voyage appears after a checkpoint is saved on that device; another device can paste `voyage:…` into Join Crew.
 
 Progress saves at canonical checkpoints and finish, not at arbitrary midriver positions. A server restart ends in-memory room IDs. Resume saved progress into a new crew, then get all four Ready. Incompatible world/physics saves are retained and rejected rather than silently moved to a different map. Do not delete your save database during an update.
 

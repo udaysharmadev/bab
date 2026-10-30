@@ -1,8 +1,12 @@
 import { Client, CloseCode, type Room } from '@colyseus/sdk';
+import {Vector3} from 'three';
 import { RiverScene } from './scene';
 import { GameAudio } from './audio';
+import { DockRehearsal } from './rehearsal';
+import {channelCenter,sampleRescueCurrent,FINISH_Z,ROUTE_SECTIONS} from '../shared/world';
+import {playerName} from '../shared/names';
 import { PHYSICS_VERSION, PROTOCOL_VERSION, SEATS, type Snapshot } from '../shared/protocol';
-import { PaddleInput, paddleKey } from './input';
+import { DEFAULT_KEYS, PaddleInput, paddleKey, validBindings, type ControlAction, type KeyBindings } from './input';
 import './style.css';
 
 function element<T extends HTMLElement>(id: string): T {
@@ -14,6 +18,10 @@ const title = element('title-screen');
 const menu = element<HTMLDialogElement>('settings-dialog');
 const joinDialog = element<HTMLDialogElement>('join-dialog');
 const controls = element<HTMLDialogElement>('controls-dialog');
+const nameDialog=element<HTMLDialogElement>('name-dialog');
+let profileName:string|undefined;
+let nameConfirmed=false;
+try{profileName=playerName(localStorage.getItem('bad-at-boating-name'));}catch{/* Optional preference storage. */}
 let toastTimer = 0;
 function toast(message: string) {
   element('toast').textContent = message; element('toast').classList.add('show');
@@ -56,8 +64,29 @@ let connecting = false;
 let connected = false;
 let lastCrew = '';
 let lastCheckpoint = 0;
+let rescueHintShown = false;
 let lastSnapshotAt = 0;
 let reconnectStarted = 0;
+let graphicsLost = false;
+let controllerSuspended = false;
+let controllerMenuHeld = false;
+let bindingAction: ControlAction | undefined;
+let keyBindings: KeyBindings = { ...DEFAULT_KEYS };
+let lowQuality = false;
+let controllerEnabled = true;
+let reducedMotionOverride: boolean | undefined;
+try {
+  const saved = JSON.parse(localStorage.getItem('bad-at-boating-controls') ?? '{}');
+  if (validBindings(saved.keys)) keyBindings = saved.keys;
+  if (typeof saved.lowQuality === 'boolean') lowQuality = saved.lowQuality;
+  if (typeof saved.controller === 'boolean') controllerEnabled = saved.controller;
+  if (typeof saved.reducedMotion === 'boolean') reducedMotionOverride = saved.reducedMotion;
+} catch { /* Preferences are optional. */ }
+scene.setLowQuality(lowQuality);
+if (reducedMotionOverride !== undefined) scene.reducedMotion = reducedMotionOverride;
+function saveControls() {
+  try { localStorage.setItem('bad-at-boating-controls', JSON.stringify({keys:keyBindings, lowQuality, controller:controllerEnabled, reducedMotion:reducedMotionOverride})); } catch { /* Preferences are optional. */ }
+}
 type SavedVoyage = {id:string;token:string;checkpoint:number;finished:boolean;savedAt:number;available:boolean;blocked?:boolean};
 let currentVoyage: SavedVoyage | undefined;
 function storedVoyage(): SavedVoyage | undefined {
@@ -68,13 +97,28 @@ function storedVoyage(): SavedVoyage | undefined {
   return undefined;
 }
 const input = new PaddleInput();
+const rehearsal = new DockRehearsal();
 const keys = input.keyboard;
 const dialogOpen = () => !!document.querySelector('dialog[open]');
+const canRow = () => !!room && connected && !graphicsLost && !document.hidden && !dialogOpen()
+  && latest?.stage === 'playing' && latest.condition === 'afloat' && !latest.paused && !latest.complete;
+const canRehearse = () => !!room && connected && seat >= 0 && !graphicsLost && !document.hidden && !dialogOpen()
+  && latest?.stage === 'lobby' && !latest.countdownSeconds && !latest.paused && latest.condition === 'afloat';
+const canPaddle = () => canRow() || canRehearse();
 function sendRow() {
   if (!room || !connected || !room.connection.isOpen || seat < 0 || latest?.stage !== 'playing' || latest.condition !== 'afloat' || latest.paused || latest.complete) return;
   room.send('row', { seq: ++seq, ...input.action() });
 }
-function release() { input.clear(); sendRow(); }
+function release() { input.clear(); rehearsal.clear(); scene.dockPreview = undefined; sendRow(); }
+gameSurface.addEventListener('webglcontextlost', event => {
+  event.preventDefault(); graphicsLost = true; release();
+  element('graphics-recovery').hidden = false;
+});
+gameSurface.addEventListener('webglcontextrestored', () => {
+  graphicsLost = false; release(); element('graphics-recovery').hidden = true;
+  toast('Graphics restored. Your crew is still connected.');
+});
+element('reload-graphics').addEventListener('click', () => location.reload());
 function connectionNotice() {
   if (!room) return;
   element('crew-waiting').hidden = connected && !latest?.paused;
@@ -88,21 +132,25 @@ function closeMenu() { menu.close(); focusGame(); }
 function openMenu() { release(); if (room && !menu.open) menu.showModal(); }
 function showTitle(message = '') {
   scene.presentation = 'title'; title.hidden = false;
-  for (const id of ['lobby', 'failure', 'finish-screen', 'crew-waiting', 'menu-button', 'loading', 'touch-controls', 'reset-vote-banner', 'lobby-countdown']) element(id).hidden = true;
+  for (const id of ['crew', 'lobby', 'failure', 'finish-screen', 'crew-waiting', 'menu-button', 'loading', 'touch-controls', 'reset-vote-banner', 'capsize-rescue', 'lobby-countdown', 'hud-strokes', 'hud-progress']) element(id).hidden = true;
   element('menu-message').textContent = message;
   element('resume-crew').hidden = !sessionStorage.getItem('bad-at-boating-reconnect');
   const stored = storedVoyage();
   element('continue-voyage').hidden = !stored || !!stored.finished;
 }
 function clearRoom() {
+  nameDialog.close();
+  nameConfirmed=false;
   audio.clear();
-  connected = false; release(); seat = -1; latest = undefined; lastCrew = ''; lastCheckpoint = 0; currentVoyage=undefined;
+  connected = false; release(); seat = -1; latest = undefined; lastCrew = ''; lastCheckpoint = 0; rescueHintShown = false; currentVoyage=undefined;
   scene.snapshot = undefined; scene.targetPosition.set(0, 0, 0); scene.targetRotation.identity();
   for (const person of scene.people) person.visible = false;
-  for (const key of ['seat', 'stage', 'mode', 'condition', 'tick', 'strokes', 'position', 'rotation', 'resetId', 'blades', 'ack', 'paused']) delete document.body.dataset[key];
+  for (const key of ['seat', 'stage', 'mode', 'condition', 'tick', 'strokes', 'position', 'rotation', 'resetId', 'blades', 'ack', 'paused','capsize','rightedId']) delete document.body.dataset[key];
   // Hide HUD elements that belong to the game session.
   element('touch-controls').hidden = true;
   element('reset-vote-banner').hidden = true;
+  element('hud-strokes').hidden = true;
+  element('hud-progress').hidden = true;
 }
 async function leaveRoom() {
   const previous = room; room = undefined;
@@ -119,17 +167,47 @@ function renderCrew(snapshot: Snapshot) {
   const signature = JSON.stringify([seat, snapshot.crew]);
   if (signature === lastCrew) return;
   lastCrew = signature;
-  element('crew').innerHTML = SEATS.map((station, i) => {
+  const labels=SEATS.map((station, i) => {
     const member = snapshot.crew.find(m => m.seat === i);
-    return `<li class="crew-seat ${member?.connected ? 'connected' : ''} ${i === seat ? 'mine' : ''}" style="--seat-color:${station.color}"><span class="seat-dot">${member?.ready ? '✓' : i + 1}</span><span>${member?.connected ? (i === seat ? 'You' : 'Crewmate') : 'Empty'}</span></li>`;
-  }).join('');
+    const label=document.createElement('li');label.className=`crew-seat ${member?.connected?'connected':''} ${i===seat?'mine':''}`;label.style.setProperty('--seat-color',station.color);label.dataset.seat=String(i);
+    const tick=document.createElement('span');tick.className='ready-tick';tick.textContent='✓';tick.hidden=!member?.ready;tick.setAttribute('aria-label','Ready');
+    const name=document.createElement('span');name.className='player-label';name.textContent=member?(i===seat?'You':member.name??`Paddler ${i+1}`):'Invite friend';
+    label.title=member?.name??'Empty seat';label.append(tick,name);return label;
+  });
+  element('crew').replaceChildren(...labels);
+  positionCrewLabels();
   const count = snapshot.crew.filter(m => m.connected).length;
-  element('crew-count').textContent = `Crew aboard · ${count} / 4`;
+  element('crew-count').textContent = `${count} / 4 aboard`;
+}
+const crewPoint=new Vector3();
+function positionCrewLabels(){
+  element('crew').hidden=latest?.stage!=='lobby'||!connected||graphicsLost||document.hidden;
+  if(element('crew').hidden)return;
+  for(const label of element('crew').children){
+    if(!(label instanceof HTMLElement))continue;
+    const station=Number(label.dataset.seat),person=scene.people[station];
+    if(!person)continue;
+    person.head.getWorldPosition(crewPoint);crewPoint.y+=.38;crewPoint.project(scene.camera);
+    label.style.left=`${(crewPoint.x+1)*innerWidth/2-SEATS[station]!.side*28}px`;
+    label.style.top=`${(1-crewPoint.y)*innerHeight/2-(SEATS[station]!.z>0?24:0)}px`;
+  }
+}
+// CSS name widths change immediately on resize; do not wait for a throttled
+// animation frame to move their anchors into the new camera/viewport.
+window.addEventListener('resize',()=>{
+  scene.scene.updateMatrixWorld(true);scene.camera.updateMatrixWorld(true);positionCrewLabels();
+});
+function askName(){
+  release();element<HTMLInputElement>('player-name').value=profileName??'';
+  if(!nameDialog.open)nameDialog.showModal();
 }
 function onSnapshot(snapshot: Snapshot) {
   lastSnapshotAt = Date.now();
   const enteringPlay = latest?.stage !== 'playing' && snapshot.stage === 'playing';
-  if (latest && latest.resetId !== snapshot.resetId) release();
+  if (latest?.stage !== snapshot.stage || !!latest?.countdownSeconds !== !!snapshot.countdownSeconds) release();
+  if (latest && latest.resetId !== snapshot.resetId) { release(); rescueHintShown=false; }
+  if(!!latest?.capsize!==!!snapshot.capsize)release();
+  if(latest&&(latest.rightedId??0)!==(snapshot.rightedId??0)){release();toast('Boat righted. Release your controls, then row on.');}
   if (latest && (latest.recoveryId ?? 0) !== (snapshot.recoveryId ?? 0)) {
     release();
     const message = snapshot.recoveryReason === 'grounded'
@@ -152,15 +230,30 @@ function onSnapshot(snapshot: Snapshot) {
   element('finish-screen').hidden = !snapshot.complete || snapshot.condition !== 'afloat';
   connectionNotice();
   renderCrew(snapshot);
+  if(!nameConfirmed&&!nameDialog.open&&!dialogOpen())askName();
   const me = snapshot.crew.find(m => m.seat === seat);
-  element('ready').textContent = me?.ready ? 'Ready ✓' : 'Ready to Row';
-  const fullCrew = snapshot.crew.filter(m => m.connected).length === 4;
-  element<HTMLButtonElement>('ready').disabled = !fullCrew;
-  element('ready').title = fullCrew ? 'All four players must be ready. Click again to cancel.' : 'Waiting for all 4 seats to be filled';
+  element('ready').textContent = me?.ready ? 'Not Ready' : 'Ready';
+  element('ready').classList.toggle('is-ready',!!me?.ready);
+  element<HTMLButtonElement>('ready').disabled = !connected||!nameConfirmed;
+  element('ready').title = 'Launches when all 4 players are ready. Click again to cancel.';
   if (snapshot.checkpoint > lastCheckpoint) toast('Checkpoint reached.');
   lastCheckpoint = snapshot.checkpoint;
+  // Encounter guidance takes priority if a checkpoint and pocket entry arrive
+  // in the same snapshot, including after a reconnect/discontinuity.
+  if(!rescueHintShown&&snapshot.stage==='playing'&&!snapshot.paused&&snapshot.condition==='afloat'
+    &&sampleRescueCurrent(snapshot.position.x-channelCenter(snapshot.position.z),snapshot.position.z).weight>.04){
+    rescueHintShown=true;toast('Recovery eddy. Turn toward the open channel, then row forward.');
+  }
   const stopped = snapshot.stage !== 'playing' || snapshot.condition !== 'afloat' || snapshot.paused || snapshot.complete;
-  if (stopped) release();
+  element('capsize-rescue').hidden=!snapshot.capsize||stopped||dialogOpen();
+  if(snapshot.capsize){
+    element('capsize-hint').textContent=`Hold ${keyBindings.reverse.replace('Key','').replace('Digit','')} / ↓, or the button below. Release other controls.`;
+    element('capsize-effort').textContent=`${snapshot.capsize.helpers}/${snapshot.capsize.needed} crew helping · ${snapshot.capsize.seconds}s until checkpoint rescue`;
+  }
+  if (!canPaddle()) release();
+  element('dock-hint').textContent = snapshot.countdownSeconds
+    ? 'Paddles up. Release your controls; press again after launch.'
+    : `Your paddle: ${SEATS[seat]?.name ?? 'crew seat'}. Try the controls while you wait.`;
   // G2: Lobby countdown display.
   const cdEl = element('lobby-countdown');
   const countdown = snapshot.countdownSeconds;
@@ -188,7 +281,24 @@ function onSnapshot(snapshot: Snapshot) {
     ftEl.textContent = '';
   }
   element('stroke-summary').textContent = `Your strokes: ${snapshot.strokes[seat] ?? 0}`;
-  element('touch-controls').hidden = stopped || !connected;
+  const hudStrokes = element('hud-strokes');
+  const showHud = connected && snapshot.stage === 'playing' && !stopped && seat >= 0;
+  hudStrokes.hidden = !showHud;
+  if (showHud) hudStrokes.textContent = `Strokes: ${snapshot.strokes[seat] ?? 0}`;
+  element('touch-controls').hidden = !!snapshot.capsize || !connected || (stopped && !canRehearse());
+
+  // River progress HUD — shown during active play.
+  const hudProgress = element('hud-progress');
+  const hudBar = element('hud-progress-bar');
+  const hudLabel = element('hud-progress-label');
+  const showProgress = connected && snapshot.stage === 'playing' && !stopped;
+  hudProgress.hidden = !showProgress;
+  if (showProgress) {
+    const pct = Math.max(0, Math.min(100, (snapshot.position.z / FINISH_Z) * 100));
+    hudBar.style.setProperty('--progress', `${pct.toFixed(1)}%`);
+    const section = ROUTE_SECTIONS.find(s => snapshot.position.z >= s.start && snapshot.position.z < s.end);
+    hudLabel.textContent = section?.name ?? '';
+  }
 
   const data = document.body.dataset;
   data.tick = String(snapshot.tick); data.seat = String(seat); data.checkpoint = String(snapshot.checkpoint);
@@ -200,6 +310,7 @@ function onSnapshot(snapshot: Snapshot) {
   data.rotation = JSON.stringify(snapshot.rotation);
   data.resetId = String(snapshot.resetId);
   data.recoveryId = String(snapshot.recoveryId ?? 0); data.recoveryReason = snapshot.recoveryReason ?? 'none';
+  data.capsize=JSON.stringify(snapshot.capsize??null);data.rightedId=String(snapshot.rightedId??0);
   if(enteringPlay)focusGame();
 }
 
@@ -208,9 +319,10 @@ async function connect(mode: 'friends' | 'practice' = 'friends', roomId?: string
   connecting = true; closeMenu(); title.hidden = true; element('loading').hidden = false;
   element('loading').textContent = resume ? 'Rejoining your crew…' : 'Finding your boat…';
   try {
-    const options = { protocol: PROTOCOL_VERSION, physics: PHYSICS_VERSION, mode, ...(saveToken?{saveToken}:{}) };
+    const options = { protocol: PROTOCOL_VERSION, physics: PHYSICS_VERSION, mode, ...(profileName?{name:profileName}:{}), ...(saveToken?{saveToken}:{}) };
     const token = sessionStorage.getItem('bad-at-boating-reconnect');
     const joined = resume && token ? await client.reconnect(token) : roomId ? await client.joinById(roomId, options) : await client.create('boat', options);
+    nameConfirmed=!!profileName&&resume&&sessionStorage.getItem('bad-at-boating-name-confirmed')===joined.roomId;
     room = joined; connected = true; seq = 0; lastCheckpoint = 0;
     lastSnapshotAt = Date.now();
     // Recover even if a connection drops immediately after joining. Defaults
@@ -229,7 +341,8 @@ async function connect(mode: 'friends' | 'practice' = 'friends', roomId?: string
       if (!message.available && currentVoyage?.available !== false) toast(message.blocked?'This voyage is active in another crew. Return to the main menu.':'Checkpoint saving is unavailable. Keep this crew open and try again.');
       if (message.available && (message.checkpoint>0 || storedVoyage()?.id===message.id)) {
         try { localStorage.setItem('bad-at-boating-voyage',JSON.stringify(message)); } catch { /* Recovery code remains available in the menu. */ }
-        if(currentVoyage && message.checkpoint>currentVoyage.checkpoint)toast('Checkpoint saved.');
+        // The snapshot already announces checkpoint progress. A later save
+        // acknowledgement must not overwrite an encounter/recovery instruction.
       }
       currentVoyage=message;
       element<HTMLButtonElement>('copy-recovery').disabled=!message.available;
@@ -246,7 +359,9 @@ async function connect(mode: 'friends' | 'practice' = 'friends', roomId?: string
     joined.onReconnect(() => queueMicrotask(() => {
       if (room !== joined) { joined.reconnection.enabled = false; void joined.leave().catch(() => {}); return; }
       lastSnapshotAt = Date.now();
-      connected = true; release(); joined.send('sync');
+      connected = true; release();
+      if(profileName)joined.send('name',profileName);
+      joined.send('sync');
       sessionStorage.setItem('bad-at-boating-reconnect', joined.reconnectionToken);
       focusGame();
     }));
@@ -257,6 +372,7 @@ async function connect(mode: 'friends' | 'practice' = 'friends', roomId?: string
       clearRoom(); closeMenu(); showTitle('Your crew connection ended. Start or join a boat.');
     });
     joined.onError((_code, message) => { if (room === joined) toast(message ?? 'The crew connection ran into trouble.'); });
+    if(profileName)joined.send('name',profileName);
     joined.send('sync');
     focusGame();
   } catch (error) {
@@ -272,6 +388,18 @@ element('continue-voyage').addEventListener('click', () => {
   const saved=storedVoyage();if(saved)void connect('friends',undefined,false,saved.token);
 });
 element('join-title').addEventListener('click', () => joinDialog.showModal());
+element('name-form').addEventListener('submit',event=>{
+  event.preventDefault();const field=element<HTMLInputElement>('player-name'),name=playerName(field.value);
+  if(!name){field.setCustomValidity('Use 1–20 letters, numbers, spaces, dots, apostrophes or dashes.');field.reportValidity();return;}
+  profileName=name;try{localStorage.setItem('bad-at-boating-name',name);}catch{/* Optional preference storage. */}
+  nameConfirmed=true;
+  if(room)try{sessionStorage.setItem('bad-at-boating-name-confirmed',room.roomId);}catch{/* Confirmation remains valid for this page. */}
+  room?.send('name',name);nameDialog.close();focusGame();
+});
+element('player-name').addEventListener('input',()=>element<HTMLInputElement>('player-name').setCustomValidity(''));
+nameDialog.addEventListener('cancel',event=>{if(!nameConfirmed)event.preventDefault();});
+element('name-leave').addEventListener('click',()=>void leaveRoom());
+element('edit-name').addEventListener('click',()=>{closeMenu();askName();});
 element('join-form').addEventListener('submit', event => {
   event.preventDefault();
   const value = element<HTMLInputElement>('room-code').value.trim();
@@ -308,14 +436,45 @@ element('menu-button').addEventListener('click', openMenu);
 element('resume').addEventListener('click', closeMenu);
 for (const id of ['show-controls']) element(id).addEventListener('click', () => { closeMenu(); controls.showModal(); });
 for (const dialog of [menu, controls, joinDialog]) dialog.addEventListener('close', focusGame);
+function renderBindings() {
+  for (const button of controls.querySelectorAll<HTMLButtonElement>('button[data-bind]')) {
+    const action = button.dataset.bind as ControlAction;
+    button.textContent = bindingAction === action ? 'Press key…' : keyBindings[action].replace(/^(Key|Digit)/, '');
+    button.setAttribute('aria-pressed', String(bindingAction === action));
+  }
+  const bindingNote = `Hold ${keyBindings.forward.replace(/^(Key|Digit)/,'')}/↑ forward · ${keyBindings.reverse.replace(/^(Key|Digit)/,'')}/↓ reverse · ${keyBindings.left.replace(/^(Key|Digit)/,'')}/← ${keyBindings.right.replace(/^(Key|Digit)/,'')}/→ turn. Each player controls their own paddle.`;
+  element('paddle-controls-note').textContent = bindingNote;
+  element('settings-controls-note').textContent = bindingNote;
+}
+for (const button of controls.querySelectorAll<HTMLButtonElement>('button[data-bind]')) button.addEventListener('click', () => {
+  release(); bindingAction = button.dataset.bind as ControlAction;
+  element('binding-message').textContent = 'Press a letter or number. Escape cancels.'; renderBindings();
+});
+controls.addEventListener('close', () => { bindingAction = undefined; renderBindings(); });
+element('restore-keys').addEventListener('click', () => {
+  release(); bindingAction = undefined; keyBindings = { ...DEFAULT_KEYS }; saveControls(); renderBindings();
+  element('binding-message').textContent = 'WASD restored. Arrow keys also work.';
+});
+renderBindings();
+element<HTMLInputElement>('controller-enabled').checked = controllerEnabled;
+element('controller-enabled').addEventListener('change', event => {
+  release(); controllerEnabled = (event.target as HTMLInputElement).checked; saveControls();
+});
 element<HTMLInputElement>('reduced-motion').checked = scene.reducedMotion;
-element('reduced-motion').addEventListener('change', event => scene.reducedMotion = (event.target as HTMLInputElement).checked);
+element('reduced-motion').addEventListener('change', event => {
+  reducedMotionOverride = (event.target as HTMLInputElement).checked;
+  scene.reducedMotion = reducedMotionOverride; saveControls();
+});
 // Sync reduced-motion when the OS preference changes without a reload (U6).
 matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', event => {
+  if (reducedMotionOverride !== undefined) return;
   scene.reducedMotion = event.matches;
   element<HTMLInputElement>('reduced-motion').checked = event.matches;
 });
-element('low-quality').addEventListener('change', event => scene.setLowQuality((event.target as HTMLInputElement).checked));
+element<HTMLInputElement>('low-quality').checked = lowQuality;
+element('low-quality').addEventListener('change', event => {
+  lowQuality = (event.target as HTMLInputElement).checked; scene.setLowQuality(lowQuality); saveControls();
+});
 element<HTMLInputElement>('sound-enabled').checked = audio.enabled;
 element<HTMLInputElement>('sound-volume').value = String(audio.volume);
 element('sound-enabled').addEventListener('change', event => { audio.setEnabled((event.target as HTMLInputElement).checked); saveSound(); unlockSound(); });
@@ -326,23 +485,34 @@ element('fullscreen').addEventListener('click', () => {
 });
 
 window.addEventListener('keydown', event => {
+  if (bindingAction && controls.open) {
+    event.preventDefault();
+    if (event.code === 'Escape') { bindingAction = undefined; element('binding-message').textContent = 'Key change cancelled.'; renderBindings(); return; }
+    if (event.ctrlKey || event.metaKey || event.altKey || !/^(Key[A-Z]|Digit[0-9])$/.test(event.code)) return;
+    const proposed = { ...keyBindings, [bindingAction]: event.code };
+    if (!validBindings(proposed)) { element('binding-message').textContent = 'That key is already assigned. Choose a different key.'; return; }
+    keyBindings = proposed; bindingAction = undefined; saveControls(); renderBindings();
+    element('binding-message').textContent = 'Key saved. Arrow keys also work.'; return;
+  }
   if (event.code === 'Escape') {
     release();
     if (!dialogOpen() && room) { event.preventDefault(); openMenu(); }
     return;
   }
-  if (!room || latest?.stage !== 'playing' || latest.condition !== 'afloat' || dialogOpen() || latest.paused || latest.complete || event.ctrlKey || event.metaKey || event.altKey) return;
+  if (!canPaddle() || event.ctrlKey || event.metaKey || event.altKey) return;
   if (event.target instanceof HTMLElement && (event.target.closest('input, textarea, select') || event.target.isContentEditable)) return;
-  const key=paddleKey(event);
-  if (key) { event.preventDefault(); if (!keys.has(key)) { keys.add(key); sendRow(); } }
+  controllerSuspended = false;
+  const key=paddleKey(event,keyBindings);
+  if (key) { event.preventDefault(); if (!keys.has(key) && !event.repeat) { keys.add(key); sendRow(); } }
 }, {capture:true});
-window.addEventListener('keyup', event => { const key=paddleKey(event);if(key && keys.delete(key))sendRow(); }, {capture:true});
-window.addEventListener('blur', release);
+window.addEventListener('keyup', event => { const key=paddleKey(event,keyBindings);if(key && keys.delete(key))sendRow(); }, {capture:true});
+window.addEventListener('blur', () => { controllerSuspended = true; release(); });
+window.addEventListener('focus', () => { controllerSuspended = false; });
 document.addEventListener('visibilitychange', () => { if (document.hidden) release(); });
-for (const button of element('touch-controls').querySelectorAll<HTMLButtonElement>('button[data-key]')) {
+for (const button of document.querySelectorAll<HTMLButtonElement>('#touch-controls button[data-key],#capsize-rescue button[data-key]')) {
   button.addEventListener('pointerdown', event => {
     event.preventDefault();
-    if (!connected || dialogOpen() || document.hidden || latest?.stage !== 'playing' || latest.condition !== 'afloat' || latest.paused || latest.complete) return;
+    if (!canPaddle()) return;
     button.setPointerCapture(event.pointerId);
     input.touches.set(event.pointerId, button.dataset.key!);
     unlockSound(); focusGame(); sendRow();
@@ -358,15 +528,28 @@ setInterval(() => {
     release(); room.connection.close(CloseCode.MAY_TRY_RECONNECT, 'Snapshot timeout'); return;
   }
   if (seat < 0 || latest?.stage !== 'playing' || latest.condition !== 'afloat') return;
-  if (document.hidden || dialogOpen() || latest.paused || latest.complete) release();
+  if (!canRow()) release();
   else sendRow();
 }, 100);
 let previousTime = performance.now();
 function frame(now: number) {
   const dt = Math.min((now - previousTime) / 1000, 0.05); previousTime = now;
-  audio.setAudible(connected && !document.hidden && !dialogOpen() && title.hidden);
+  let pad: Gamepad | undefined;
+  try { pad = navigator.getGamepads?.().find(pad => pad?.connected && pad.mapping === 'standard') ?? undefined; } catch { /* Controller access can be disabled by an embed policy. */ }
+  const menuPressed = !!pad?.buttons[9]?.pressed;
+  if (menuPressed && !controllerMenuHeld && controllerEnabled && !controllerSuspended && !document.hidden && room && !graphicsLost) {
+    unlockSound(); if (menu.open) closeMenu(); else if (!dialogOpen()) openMenu();
+  }
+  controllerMenuHeld = menuPressed;
+  if (input.updateController(pad, canPaddle() && controllerEnabled && !controllerSuspended)) { unlockSound(); sendRow(); }
+  if (canRehearse()) {
+    const point = rehearsal.sample(input.action(), seat, now / 1000, dt);
+    scene.dockPreview = point ? {seat, point} : undefined;
+  } else { rehearsal.clear(); scene.dockPreview = undefined; }
+  audio.setAudible(connected && !graphicsLost && !document.hidden && !dialogOpen() && title.hidden);
   document.body.dataset.audioState = audio.state; document.body.dataset.audioEnabled = String(audio.enabled); document.body.dataset.audioCues = String(audio.cueCount);
-  scene.render(dt, now / 1000); requestAnimationFrame(frame);
+  if (!graphicsLost) scene.render(dt, now / 1000);
+  positionCrewLabels();requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
 showTitle();

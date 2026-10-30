@@ -1,0 +1,511 @@
+{
+  "game": "Bad at Boating",
+  "generatedUTC": "2026-10-21T15:34:03.432171+00:00",
+  "baseCommit": "1dee20db314dda485c734932df48e9780bb53d03",
+  "workingTreeChanges": true,
+  "protocol": 6,
+  "physics": "basin-0.12",
+  "world": "waterworks-1",
+  "scope": "Shared rendered/physical bathymetry,nonlethal Fern Dock sandbar,bounded near-bed drag and horizontal paddle push-off,High/Low depth cues and stationary-depth cache. Scoped local engineering verification;M2 remains3/5 and all production human/device gates open.",
+  "sourceSha256": "163208deadfec36f669a8d958c742fe5e993aa642b0ba0fa579aa9f7354ce29f",
+  "sourceHashScope": "Sorted relative path + NUL + bytes + NUL for src/tests/scripts/docs/.github and listed root metadata; excludes generated build/evidence/reference/private data.",
+  "fileCount": 132,
+  "sourceHashFiles": [
+    ".github/workflows/verify.yml",
+    "Dockerfile",
+    "README.md",
+    "app.cjs",
+    "app.js",
+    "docs/ANALYSIS.md",
+    "docs/CPANEL_SETUP.md",
+    "docs/DECISIONS.md",
+    "docs/GRAPHICS_AUDIT.md",
+    "docs/MULTIPLAYER_AUDIT.md",
+    "docs/PHASE_EXECUTION.md",
+    "docs/PHYSICS_AUDIT.md",
+    "docs/PLAYTEST_KIT.md",
+    "docs/PRD_PROGRESS.md",
+    "docs/PRODUCTION_PLAN.md",
+    "docs/PRODUCTION_TRACKER.html",
+    "docs/PRODUCTION_TRACKER.json",
+    "docs/PRODUCTION_TRACKER.md",
+    "docs/PROJECT_AUDIT.md",
+    "docs/RESEARCH_GAMEPLAY.md",
+    "docs/RESEARCH_VISUALS.md",
+    "docs/ROUTE.md",
+    "docs/STATUS.md",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "scripts/build-server.mjs",
+    "scripts/check-deployment.mjs",
+    "scripts/dev.mjs",
+    "scripts/package-cpanel.mjs",
+    "scripts/tracker.mjs",
+    "src/client/audio.ts",
+    "src/client/boat-detail.ts",
+    "src/client/camera.ts",
+    "src/client/crew.ts",
+    "src/client/danger.ts",
+    "src/client/hull.ts",
+    "src/client/input.ts",
+    "src/client/main.ts",
+    "src/client/nature.ts",
+    "src/client/rehearsal.ts",
+    "src/client/riverbed.ts",
+    "src/client/scene.ts",
+    "src/client/style.css",
+    "src/client/water.ts",
+    "src/package.json",
+    "src/server/BoatRoom.ts",
+    "src/server/index.ts",
+    "src/server/voyages.ts",
+    "src/shared/bathymetry.ts",
+    "src/shared/hull.ts",
+    "src/shared/names.ts",
+    "src/shared/paddle-blade.ts",
+    "src/shared/paddle-contact.ts",
+    "src/shared/protocol.ts",
+    "src/shared/rescue.ts",
+    "src/shared/river.ts",
+    "src/shared/rowing.ts",
+    "src/shared/simulation.ts",
+    "src/shared/world.ts",
+    "tests/accessibility.mjs",
+    "tests/animation.html",
+    "tests/animation.mjs",
+    "tests/audio.html",
+    "tests/audio.mjs",
+    "tests/audio.test.ts",
+    "tests/banks.test.ts",
+    "tests/bathymetry-browser.mjs",
+    "tests/bathymetry.test.ts",
+    "tests/bends-browser.mjs",
+    "tests/bends.test.ts",
+    "tests/blade.mjs",
+    "tests/blade.test.ts",
+    "tests/boat-detail.test.ts",
+    "tests/browser.mjs",
+    "tests/camera.html",
+    "tests/camera.mjs",
+    "tests/contact.test.ts",
+    "tests/controls.mjs",
+    "tests/crew.test.ts",
+    "tests/danger-browser.mjs",
+    "tests/danger-network.test.ts",
+    "tests/danger.test.ts",
+    "tests/finish.test.ts",
+    "tests/foliage.mjs",
+    "tests/grace.ts",
+    "tests/graphics.html",
+    "tests/graphics.mjs",
+    "tests/handoff.test.ts",
+    "tests/hazards.test.ts",
+    "tests/hull.test.ts",
+    "tests/hydrodynamics.test.ts",
+    "tests/input.test.ts",
+    "tests/landing.html",
+    "tests/landing.mjs",
+    "tests/lifecycle.test.ts",
+    "tests/load.ts",
+    "tests/lobby.mjs",
+    "tests/names.test.ts",
+    "tests/network-stress.test.ts",
+    "tests/network.test.ts",
+    "tests/onboarding.mjs",
+    "tests/package.json",
+    "tests/paddle-contact.mjs",
+    "tests/performance.mjs",
+    "tests/physics.test.ts",
+    "tests/presentation.test.ts",
+    "tests/reconnect.mjs",
+    "tests/rehearsal.test.ts",
+    "tests/rescue-browser.mjs",
+    "tests/rescue.test.ts",
+    "tests/route.test.ts",
+    "tests/rowing.test.ts",
+    "tests/save-browser.mjs",
+    "tests/save-restart.test.ts",
+    "tests/saves.test.ts",
+    "tests/server-reliability.test.ts",
+    "tests/soak.ts",
+    "tests/support/bathymetry-server.ts",
+    "tests/support/bends-server.ts",
+    "tests/support/name.mjs",
+    "tests/support/rescue-server.ts",
+    "tests/support/save-server.ts",
+    "tests/touch.mjs",
+    "tests/tracker-browser.mjs",
+    "tests/tracker.test.mjs",
+    "tests/water-depth.html",
+    "tests/water-depth.mjs",
+    "tests/water-effects.mjs",
+    "tests/waterwheel.test.ts",
+    "tsconfig.json",
+    "vite.config.ts"
+  ],
+  "build": "PASS",
+  "typecheck": "PASS",
+  "buildLog": "evidence/bathymetry-final-build.txt",
+  "automatedTests": {
+    "command": "npm test",
+    "passed": 137,
+    "failed": 0,
+    "seconds": 94.649828167,
+    "log": "evidence/bathymetry-final-tests.txt"
+  },
+  "fixtures": {
+    "bathymetry-browser": {
+      "result": "PASS",
+      "checks": 3,
+      "evidence": "evidence/bathymetry-browser.json",
+      "log": "evidence/bathymetry-cache-native.txt",
+      "executionScope": "Final client cache/native shallow handling"
+    },
+    "controls-after": {
+      "result": "PASS",
+      "checks": 71,
+      "evidence": "evidence/controls-after.json",
+      "log": "evidence/bathymetry-controls.txt",
+      "executionScope": "After final board placement,before client-only depth cache"
+    },
+    "graphics": {
+      "result": "PASS",
+      "checks": 27,
+      "evidence": "evidence/graphics.json",
+      "log": "evidence/bathymetry-graphics-final.txt",
+      "executionScope": "27 views/3 titles after board placement,before depth cache"
+    },
+    "camera": {
+      "result": "PASS",
+      "checks": 180,
+      "evidence": "evidence/camera.json",
+      "log": "evidence/bathymetry-camera.txt",
+      "executionScope": "180 cases after board placement,before depth cache"
+    },
+    "accessibility": {
+      "result": "PASS",
+      "checks": 7,
+      "evidence": "evidence/accessibility.json",
+      "log": "evidence/bathymetry-accessibility.txt",
+      "executionScope": "7 native context/controller groups before final cache"
+    },
+    "reconnect": {
+      "result": "PASS",
+      "checks": 4,
+      "evidence": "evidence/reconnect.json",
+      "log": "evidence/bathymetry-reconnect.txt",
+      "executionScope": "4 native reconnect groups before client-only depth cache"
+    },
+    "save-browser": {
+      "result": "PASS",
+      "checks": 6,
+      "evidence": "evidence/save-browser.json",
+      "log": "evidence/bathymetry-save-browser.txt",
+      "executionScope": "6 groups;actual prior0.11 checkpoint through built0.12 authority,temporary database"
+    },
+    "rescue-browser": {
+      "result": "PASS",
+      "checks": 4,
+      "evidence": "evidence/rescue-browser.json",
+      "log": "evidence/bathymetry-rescue.txt",
+      "executionScope": "4 rendered-client eddy/rejoin groups before client-only cache"
+    },
+    "bends-browser": {
+      "result": "PASS",
+      "checks": 5,
+      "evidence": "evidence/bends-browser.json",
+      "log": "evidence/bathymetry-bends.txt",
+      "executionScope": "5 authored bend poses before client-only cache"
+    },
+    "lobby": {
+      "result": "PASS",
+      "checks": 8,
+      "evidence": "evidence/lobby.json",
+      "log": "evidence/bathymetry-lobby.txt",
+      "executionScope": "8 native lobby/name/Ready groups before client-only cache"
+    },
+    "water-depth": {
+      "result": "PASS",
+      "checks": 0,
+      "evidence": "evidence/water-depth.json",
+      "log": "evidence/bathymetry-cache-water-depth.txt",
+      "executionScope": "Final client-cache native optics"
+    },
+    "water-effects": {
+      "result": "PASS",
+      "checks": 7,
+      "evidence": "evidence/water-effects.json",
+      "log": "evidence/bathymetry-cache-water-effects.txt",
+      "executionScope": "Final client-cache native wake/lifecycle"
+    },
+    "landing": {
+      "result": "PASS",
+      "checks": 2,
+      "evidence": "evidence/landing.json",
+      "log": "evidence/bathymetry-landing.txt",
+      "executionScope": "High/Low dry deck before client-only cache"
+    },
+    "tracker-browser": {
+      "result": "PASS",
+      "checks": 6,
+      "evidence": "evidence/tracker-browser.json",
+      "log": "evidence/bathymetry-tracker-browser.txt",
+      "executionScope": "6 tracker UI groups;production acceptance stays open"
+    },
+    "bathymetry-geometry": {
+      "result": "PASS",
+      "evidence": "evidence/bathymetry-geometry.json",
+      "executionScope": "Final0.12 independent geometry/force/depth regressions in137-test suite."
+    },
+    "bathymetry-lanes": {
+      "result": "PASS",
+      "evidence": "evidence/bathymetry-lanes.json",
+      "executionScope": "Final0.12 independent geometry/force/depth regressions in137-test suite."
+    },
+    "bathymetry-water": {
+      "result": "PASS",
+      "evidence": "evidence/bathymetry-water.json",
+      "executionScope": "Final0.12 independent geometry/force/depth regressions in137-test suite."
+    },
+    "bathymetry-handling": {
+      "result": "PASS",
+      "evidence": "evidence/bathymetry-handling.json",
+      "executionScope": "Final0.12 independent geometry/force/depth regressions in137-test suite."
+    },
+    "load": {
+      "result": "PASS",
+      "evidence": "evidence/load-phase-2-bathymetry.json",
+      "log": "evidence/bathymetry-load.txt",
+      "executionScope": "Final server physics/configuration,4-room/16-client60.014s local synthetic workload;final cache is client-only."
+    },
+    "performance": {
+      "result": "MEASURED_WITH_MISSES",
+      "evidence": "evidence/performance-phase-2-bathymetry.json",
+      "log": "evidence/bathymetry-final-performance.txt",
+      "executionScope": "Final uncapped native8\u00d7180-frame captures after other CPU/browser workers finish. High rapids/rescue CPU,High trees GPU and all strict16.67ms frame intervals miss."
+    }
+  },
+  "tracker": {
+    "deliverables": 49,
+    "obstacleConcepts": 80,
+    "signatureEncounters": 10,
+    "regionCards": 14,
+    "acceptedScopePoints": 2,
+    "productionReadyRegions": 0,
+    "deliveryPhases": 5,
+    "engineeringVerified": [
+      "M1"
+    ],
+    "engineeringActive": "M2",
+    "engineeringChecksVerified": {
+      "M1": 4,
+      "M2": 3
+    },
+    "remainingEngineeringChecks": [
+      "M2-D presentation",
+      "M2-E human/device acceptance"
+    ],
+    "partialEngineeringChecks": {
+      "M2-D": "D1\u2013D7 art/flow retained;shallow-water gameplay and High/Low depth cues verified locally. Complete premium art/performance and human/device gates stay open."
+    }
+  },
+  "bathymetry": {
+    "staticBedMeshes": 25,
+    "triangleRayComparisons": 3600,
+    "safeSpawnSamples": 150,
+    "dragSamples": 2001,
+    "waterDepthAttributeChecks": 14560,
+    "nearBedDragScale": [
+      1,
+      3
+    ],
+    "sandbarMetres": [
+      240,
+      280
+    ],
+    "solidReactionCapNewtons": 260,
+    "clientJsBytes": 860944,
+    "clientJsDeltaBytes": 1911,
+    "evidence": "evidence/phase-2-bathymetry.json"
+  },
+  "graphics": {
+    "views": 27,
+    "titleViewports": 3,
+    "maxCalls": 705,
+    "maxTriangles": 2249368,
+    "returnResidency": [
+      [
+        173,
+        11
+      ],
+      [
+        173,
+        11
+      ],
+      [
+        173,
+        11
+      ]
+    ],
+    "executionScope": "Final board placement,pre-cache graphics;post-cache optics,wakes,shallow handling and renderer measurement rerun."
+  },
+  "performance": [
+    {
+      "view": "crew",
+      "quality": "High",
+      "waterCpuP95ms": 0.5,
+      "cpuP95ms": 4,
+      "gpuP95ms": 8.9565,
+      "targetComparison": {
+        "cpu": "MEETS",
+        "gpu": "MEETS",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "crew",
+      "quality": "Low",
+      "waterCpuP95ms": 0.599999999627471,
+      "cpuP95ms": 1.900000000372529,
+      "gpuP95ms": 3.7835,
+      "targetComparison": {
+        "cpu": "MEETS",
+        "gpu": "MEETS",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "trees",
+      "quality": "High",
+      "waterCpuP95ms": 0.5,
+      "cpuP95ms": 2.799999998882413,
+      "gpuP95ms": 10.735624,
+      "targetComparison": {
+        "cpu": "MEETS",
+        "gpu": "MISSES",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "trees",
+      "quality": "Low",
+      "waterCpuP95ms": 0.6000000014901161,
+      "cpuP95ms": 1.699999999254942,
+      "gpuP95ms": 6.475666,
+      "targetComparison": {
+        "cpu": "MEETS",
+        "gpu": "MEETS",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "rapids",
+      "quality": "High",
+      "waterCpuP95ms": 0.5,
+      "cpuP95ms": 5,
+      "gpuP95ms": 8.90075,
+      "targetComparison": {
+        "cpu": "MISSES",
+        "gpu": "MEETS",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "rapids",
+      "quality": "Low",
+      "waterCpuP95ms": 0.5,
+      "cpuP95ms": 2.5,
+      "gpuP95ms": 3.283833,
+      "targetComparison": {
+        "cpu": "MEETS",
+        "gpu": "MEETS",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "rescue",
+      "quality": "High",
+      "waterCpuP95ms": 0.5,
+      "cpuP95ms": 4.200000001117587,
+      "gpuP95ms": 8.035499,
+      "targetComparison": {
+        "cpu": "MISSES",
+        "gpu": "MEETS",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "rescue",
+      "quality": "Low",
+      "waterCpuP95ms": 0.599999999627471,
+      "cpuP95ms": 2.400000000372529,
+      "gpuP95ms": 2.369125,
+      "targetComparison": {
+        "cpu": "MEETS",
+        "gpu": "MEETS",
+        "frameInterval": "MISSES"
+      }
+    }
+  ],
+  "roomLoad": {
+    "actualSeconds": 60.014,
+    "roomCount": 4,
+    "clientCount": 16,
+    "violations": [],
+    "roomsDisposed": true
+  },
+  "artifacts": {
+    "dist/assets/index-BfqQ5azf.js": {
+      "bytes": 860944,
+      "sha256": "5f289a56f9d8fb12c5a9c84ec0c043152a5aee262a281b024ad38d4d10b27324"
+    },
+    "dist/assets/index-i97Ox2ZC.css": {
+      "bytes": 9408,
+      "sha256": "0d370b6cca6581b51e3f1c10746a8a28735423204c5a9630474d4e80c5c5b864"
+    },
+    "dist/index.html": {
+      "bytes": 8034,
+      "sha256": "e24ca6a3572fe0cbebbd77c62ab17e88a6c0889537de1d37d5bea63c080a8fa9"
+    },
+    "build/server.mjs": {
+      "bytes": 69342,
+      "sha256": "35a022bad65ccc0519eb36dee73d16ecfcc8d771fb1720f173e15f6805a17af3"
+    },
+    "releases/Bad-at-Boating-cPanel.zip": {
+      "bytes": 293053,
+      "sha256": "958d52eeebed8b92910362bd11491b3b673dc8efb9a259f398840baac3a426a6"
+    }
+  },
+  "preview": "http://localhost:2571",
+  "previewDatabase": "Isolated in-memory QA saves;no private durable database modified.",
+  "cpanel": {
+    "packaged": true,
+    "verification": "evidence/bathymetry-package.json",
+    "cleanDependencyInstall": "NOT RERUN;dependencies unchanged",
+    "publicDeployment": "NOT RUN"
+  },
+  "deploymentSmoke": {
+    "result": "PASS",
+    "url": "http://localhost:2571",
+    "physics": "basin-0.12",
+    "protocol": 6,
+    "log": "evidence/bathymetry-release-deployment.txt",
+    "scope": "Final local built authority and static bundle,in-memory saves only."
+  },
+  "historicalEvidence": {
+    "priorPhysicsBuild": "evidence/build-before-bathymetry.json",
+    "firstTiming": "evidence/performance-bathymetry-first.json",
+    "productionGrace": "evidence/grace.json \u2014 actual90-second grace under0.10;transport logic unchanged,not rerun.",
+    "scopeNotes": "evidence/phase-2-bathymetry.json"
+  },
+  "performanceBudgetAccepted": false,
+  "humanPlaytest": false,
+  "physicalControllerTest": false,
+  "namedDevicePerformance": false,
+  "longInternetBrowserSoak": false,
+  "remoteCI": "NOT RUN",
+  "containerExecution": "NOT RUN",
+  "phaseEvidence": "evidence/phase-2-bathymetry.json",
+  "finalStaticChecks": "PASS:132-file source fingerprint,5 artifact hashes,independent ZIP/runtime byte match,tracker integrity/freshness and git diff --check."
+}

@@ -1,0 +1,8 @@
+{
+  "result": "PASS",
+  "renderedDividers": 4,
+  "samples": 1604,
+  "avatarEnvelopeRadius": 0.34,
+  "minimumHorizontalClearanceMetres": 0.2582790397802846,
+  "scope": "Actual makeRaft batched geometry versus every station over the bounded slide; fan leaf reach is separate."
+}

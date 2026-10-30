@@ -1,0 +1,257 @@
+{
+  "title": "Shared bathymetry and shallow-water gameplay",
+  "date": "2026-10-21",
+  "state": "VERIFIED_SCOPED",
+  "protocol": 6,
+  "physics": "basin-0.12",
+  "world": "waterworks-1",
+  "verification": {
+    "fullSuite": "PASS:final137 tests,0 failures,94.650s after board placement and stationary-depth cache",
+    "geometry": "PASS:3600 independent Three/authority triangle rays; analytic height error<0.000000306m,physics ray error<0.00000768m; exact position/normal seams",
+    "depthSafety": "PASS:150 canonical hull/blade lane samples,2001 bounded/dissipative drag samples",
+    "waterSamples": "PASS:shared depth attributes in High/Low and same-tick relocations",
+    "handling": "PASS:1 actual grounded and3 nearby shallow approaches; normal reverse paddles clear the whole keel in5.42\u201319.87 simulated seconds with no reset or wreck",
+    "nativeCrew": "PASS:final3 groups with4 actual Chrome clients,High+Low,normal authority/current; escape in18.204 wall seconds,not human playtesting",
+    "controls": "PASS:71/71 four-player native controls,release/reload/reconnect/menu interruption",
+    "nativeRegression": "PASS:final board relocation,27 route views/3 titles,High/Low optics/dry deck/wakes,180 camera cases,7 context/controller groups,4 reconnect,6 prior-save,4 rescue,5 bends,8 lobby,6 tracker and local4-seat deployment smoke",
+    "depthCache": "PASS:stationary window retains bed buffer version while wave version advances;same-tick relocation invalidates it",
+    "roomLoad": "PASS:4 rooms/16 clients,60.014s,0 recorded violations,0 dropped simulation steps,all rooms disposed;authority unchanged by final client-only cache",
+    "performance": "MEASURED:8 High/Low180-frame captures;water-update CPU p95=0.5\u20130.6ms. High rapids/rescue CPU,High trees GPU and all strict16.67ms frame-interval targets miss.",
+    "package": "PASS:independent ZIP byte match for4 built runtime files plus4 entrypoint/docs/check files;private data excluded",
+    "tracker": "PASS:49 deliverables+90 content tasks,accepted scope2/100,M2 remains3/5,0/14 production regions"
+  },
+  "corrections": [
+    "Initial higher/wider shoal spread its ramp toward the channel centre and over-grounded edge cases. Deep core now starts4m from the left bank at full shoal,crest is22\u201323cm below still water,centre/checkpoint lanes stay unchanged.",
+    "Vertical bed normals previously suppressed all paddle propulsion. Actual bed contact now has bounded tangential slip resistance with the same260N total cap and no vertical contact force; passive/rest/release regressions pass.",
+    "Escape acceptance measures clearance beneath the whole keel rather than requiring an arbitrary20m upstream destination. One actual grounded case and3 nearby shallow cases are explicitly distinguished.",
+    "Native review found an old checkpoint board obstructing the new sandbar approach. Board now stands across the pool; final rerun/screenshot show the boat and water clear.",
+    "First timing capture retains multiple CPU/GPU misses. Removed redundant stationary bed recomputation/uploads; wave and same-tick relocation assertions pass. Final water-update CPU p95 is0.5\u20130.6ms; High rapids/rescue CPU,High trees GPU and all strict frame-interval targets still miss. Unchanged camera/reflection also got faster,so the whole timing difference is not attributed to the cache."
+  ],
+  "limits": [
+    "Near-bed drag is a bounded gameplay approximation,not a shallow-water fluid solver or suction model.",
+    "Ground push uses actual bed contact with bounded viscous tangential response,not a fully articulated paddle with Coulomb load.",
+    "Manual capsize rescue,full-route human pacing,premium art,Internet/device/long-browser acceptance remain open.",
+    "M2 remains3/5 engineering checks,accepted scope2/100 and0/14 production regions."
+  ],
+  "evidence": [
+    "evidence/bathymetry-geometry.json",
+    "evidence/bathymetry-lanes.json",
+    "evidence/bathymetry-water.json",
+    "evidence/bathymetry-handling.json",
+    "evidence/bathymetry-browser.json",
+    "evidence/bathymetry-contact-first.txt",
+    "evidence/bathymetry-contact-second.txt",
+    "evidence/bathymetry-shallower-candidate.txt",
+    "evidence/bathymetry-contact-final.txt",
+    "evidence/bathymetry-tests.txt",
+    "evidence/bathymetry-final-build.txt",
+    "evidence/bathymetry-final-tests.txt",
+    "evidence/bathymetry-final-depth.txt",
+    "evidence/bathymetry-cache-type-first.txt",
+    "evidence/bathymetry-graphics-final.txt",
+    "evidence/bathymetry-native.txt",
+    "evidence/bathymetry-controls.txt",
+    "evidence/bathymetry-water-depth.txt",
+    "evidence/bathymetry-water-effects.txt",
+    "evidence/bathymetry-landing.txt",
+    "evidence/bathymetry-camera.txt",
+    "evidence/bathymetry-accessibility.txt",
+    "evidence/bathymetry-reconnect.txt",
+    "evidence/bathymetry-save-browser.txt",
+    "evidence/bathymetry-rescue.txt",
+    "evidence/bathymetry-bends.txt",
+    "evidence/bathymetry-lobby.txt",
+    "evidence/bathymetry-tracker-browser.txt",
+    "evidence/bathymetry-deployment.txt",
+    "evidence/performance-bathymetry-first.json",
+    "evidence/load-bathymetry-before-depth-cache.json",
+    "evidence/bathymetry-cache-water-depth.txt",
+    "evidence/bathymetry-cache-water-effects.txt",
+    "evidence/bathymetry-cache-native.txt",
+    "evidence/bathymetry-final-performance.txt",
+    "evidence/bathymetry-final-deployment.txt",
+    "evidence/performance-phase-2-bathymetry.json",
+    "evidence/load-phase-2-bathymetry.json",
+    "evidence/bathymetry-load.txt",
+    "evidence/bathymetry-package.json",
+    "evidence/bathymetry-tracker-check.txt"
+  ],
+  "executionNotes": [
+    "Full native/graphics/controls suite ran after cosmetic board relocation and before final client-only stationary-depth cache. Final137 regression,strict build,water optics/wake/native handling,renderer timing and local built deployment reran after the cache. Context/controller checks were before cache; no final-context rerun claimed.",
+    "Authority load ran after all server/bed/force changes; the final cache changes only client rendering,so no new server load configuration is introduced.",
+    "Native multi-client fixtures deliberately throttle render callbacks50ms to measure integration without a device/FPS claim. Performance capture uses uncapped native frames and180 samples per view/quality."
+  ],
+  "roomLoad": {
+    "physics": "basin-0.12",
+    "actualSeconds": 60.014,
+    "roomCount": 4,
+    "clientCount": 16,
+    "rooms": [
+      {
+        "packets": 5108,
+        "maxSnapshotGapMs": 73,
+        "resets": 4,
+        "reconnects": 1,
+        "droppedSteps": 0,
+        "tick": 3586,
+        "wirePayloadBytes": {
+          "outBytes": 5077426,
+          "inBytes": 72143,
+          "outMessages": 5131
+        },
+        "averageOutboundBytesPerClientSecond": 21125.5790315593
+      },
+      {
+        "packets": 5102,
+        "maxSnapshotGapMs": 92,
+        "resets": 4,
+        "reconnects": 1,
+        "droppedSteps": 0,
+        "tick": 3586,
+        "wirePayloadBytes": {
+          "outBytes": 5073676,
+          "inBytes": 72267,
+          "outMessages": 5128
+        },
+        "averageOutboundBytesPerClientSecond": 21109.95767654214
+      },
+      {
+        "packets": 5100,
+        "maxSnapshotGapMs": 81,
+        "resets": 4,
+        "reconnects": 0,
+        "droppedSteps": 0,
+        "tick": 3603,
+        "wirePayloadBytes": {
+          "outBytes": 5071468,
+          "inBytes": 72508,
+          "outMessages": 5122
+        },
+        "averageOutboundBytesPerClientSecond": 21100.759822708034
+      },
+      {
+        "packets": 5099,
+        "maxSnapshotGapMs": 70,
+        "resets": 4,
+        "reconnects": 0,
+        "droppedSteps": 0,
+        "tick": 3603,
+        "wirePayloadBytes": {
+          "outBytes": 5065600,
+          "inBytes": 72508,
+          "outMessages": 5118
+        },
+        "averageOutboundBytesPerClientSecond": 21076.315526377177
+      }
+    ],
+    "violations": [],
+    "roomsDisposed": true,
+    "scope": "Local co-hosted authority+SDK clients, synthetic workload; not Internet, browser GPU, maximum capacity or hosting certification. Wire bytes count WS application payloads, excluding WS/TCP framing; per-client average includes setup/reconnect traffic."
+  },
+  "performance": [
+    {
+      "view": "crew",
+      "quality": "High",
+      "cpuRenderP95ms": 4,
+      "cpuWaterP95ms": 0.5,
+      "gpuP95ms": 8.9565,
+      "frameIntervalP95ms": 16.799999999999272,
+      "targetComparison": {
+        "cpu": "MEETS",
+        "gpu": "MEETS",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "crew",
+      "quality": "Low",
+      "cpuRenderP95ms": 1.900000000372529,
+      "cpuWaterP95ms": 0.599999999627471,
+      "gpuP95ms": 3.7835,
+      "frameIntervalP95ms": 16.700000000000728,
+      "targetComparison": {
+        "cpu": "MEETS",
+        "gpu": "MEETS",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "trees",
+      "quality": "High",
+      "cpuRenderP95ms": 2.799999998882413,
+      "cpuWaterP95ms": 0.5,
+      "gpuP95ms": 10.735624,
+      "frameIntervalP95ms": 16.700000000000728,
+      "targetComparison": {
+        "cpu": "MEETS",
+        "gpu": "MISSES",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "trees",
+      "quality": "Low",
+      "cpuRenderP95ms": 1.699999999254942,
+      "cpuWaterP95ms": 0.6000000014901161,
+      "gpuP95ms": 6.475666,
+      "frameIntervalP95ms": 16.700000000000728,
+      "targetComparison": {
+        "cpu": "MEETS",
+        "gpu": "MEETS",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "rapids",
+      "quality": "High",
+      "cpuRenderP95ms": 5,
+      "cpuWaterP95ms": 0.5,
+      "gpuP95ms": 8.90075,
+      "frameIntervalP95ms": 16.700000000000728,
+      "targetComparison": {
+        "cpu": "MISSES",
+        "gpu": "MEETS",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "rapids",
+      "quality": "Low",
+      "cpuRenderP95ms": 2.5,
+      "cpuWaterP95ms": 0.5,
+      "gpuP95ms": 3.283833,
+      "frameIntervalP95ms": 16.700000000000273,
+      "targetComparison": {
+        "cpu": "MEETS",
+        "gpu": "MEETS",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "rescue",
+      "quality": "High",
+      "cpuRenderP95ms": 4.200000001117587,
+      "cpuWaterP95ms": 0.5,
+      "gpuP95ms": 8.035499,
+      "frameIntervalP95ms": 16.800000000000182,
+      "targetComparison": {
+        "cpu": "MISSES",
+        "gpu": "MEETS",
+        "frameInterval": "MISSES"
+      }
+    },
+    {
+      "view": "rescue",
+      "quality": "Low",
+      "cpuRenderP95ms": 2.400000000372529,
+      "cpuWaterP95ms": 0.599999999627471,
+      "gpuP95ms": 2.369125,
+      "frameIntervalP95ms": 16.799999999999272,
+      "targetComparison": {
+        "cpu": "MEETS",
+        "gpu": "MEETS",
+        "frameInterval": "MISSES"
+      }
+    }
+  ]
+}

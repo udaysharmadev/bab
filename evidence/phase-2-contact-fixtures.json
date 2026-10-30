@@ -1,0 +1,64 @@
+[
+  {
+    "fixture": "paddle-contact",
+    "exitCode": 0,
+    "seconds": 3.55,
+    "executionScope": "Final0.022m native envelope/face comparison; final-shafts.txt"
+  },
+  {
+    "fixture": "browser",
+    "exitCode": 0,
+    "seconds": 46.51,
+    "executionScope": "Final built client after synchronous label reprojection fix"
+  },
+  {
+    "fixture": "accessibility",
+    "exitCode": 0,
+    "seconds": 20.22,
+    "executionScope": "Final built client after synchronous label reprojection fix"
+  },
+  {
+    "fixture": "reconnect",
+    "exitCode": 0,
+    "seconds": 18.0
+  },
+  {
+    "fixture": "controls",
+    "exitCode": 0,
+    "seconds": 179.82
+  },
+  {
+    "fixture": "rescue-browser",
+    "exitCode": 0,
+    "seconds": 43.18
+  },
+  {
+    "fixture": "bends-browser",
+    "exitCode": 0,
+    "seconds": 25.26
+  },
+  {
+    "fixture": "lobby",
+    "exitCode": 0,
+    "seconds": 30.12,
+    "executionScope": "Rerun on final0.022m build after synchronous label fix; final-lobby.txt"
+  },
+  {
+    "fixture": "deployment",
+    "exitCode": 0
+  },
+  {
+    "fixture": "onboarding",
+    "exitCode": 0,
+    "executionScope": "Final built client after synchronous label reprojection fix"
+  },
+  {
+    "fixture": "camera",
+    "exitCode": 0,
+    "executionScope": "Final built client after synchronous label reprojection fix"
+  },
+  {
+    "fixture": "save-browser",
+    "exitCode": 0
+  }
+]

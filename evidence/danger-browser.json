@@ -1,0 +1,319 @@
+{
+  "result": "PASS",
+  "results": [
+    {
+      "view": "crew",
+      "low": false,
+      "checks": [
+        {
+          "phase": 3.725,
+          "maxError": 0
+        },
+        {
+          "phase": 27.5,
+          "maxError": 0
+        },
+        {
+          "phase": 119.999,
+          "maxError": 1.1102230246251565e-16
+        }
+      ],
+      "stats": {
+        "calls": 526,
+        "triangles": 1332394,
+        "geometries": 172,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 1,
+        "captureTriangles": 144,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      }
+    },
+    {
+      "view": "crew",
+      "low": true,
+      "checks": [
+        {
+          "phase": 3.725,
+          "maxError": 0
+        },
+        {
+          "phase": 27.5,
+          "maxError": 0
+        },
+        {
+          "phase": 119.999,
+          "maxError": 1.1102230246251565e-16
+        }
+      ],
+      "stats": {
+        "calls": 174,
+        "triangles": 407290,
+        "geometries": 159,
+        "textures": 6,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      }
+    },
+    {
+      "view": "spikes",
+      "low": false,
+      "checks": [
+        {
+          "phase": 3.725,
+          "maxError": 0
+        },
+        {
+          "phase": 27.5,
+          "maxError": 0
+        },
+        {
+          "phase": 119.999,
+          "maxError": 1.1102230246251565e-16
+        }
+      ],
+      "stats": {
+        "calls": 690,
+        "triangles": 2033192,
+        "geometries": 215,
+        "textures": 15,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 3,
+        "captureTriangles": 432,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          12,
+          8
+        ]
+      }
+    },
+    {
+      "view": "spikes",
+      "low": true,
+      "checks": [
+        {
+          "phase": 3.725,
+          "maxError": 0
+        },
+        {
+          "phase": 27.5,
+          "maxError": 0
+        },
+        {
+          "phase": 119.999,
+          "maxError": 1.1102230246251565e-16
+        }
+      ],
+      "stats": {
+        "calls": 246,
+        "triangles": 667588,
+        "geometries": 206,
+        "textures": 10,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          12,
+          8
+        ]
+      }
+    },
+    {
+      "view": "log",
+      "low": false,
+      "checks": [
+        {
+          "phase": 3.725,
+          "maxError": 0
+        },
+        {
+          "phase": 27.5,
+          "maxError": 0
+        },
+        {
+          "phase": 119.999,
+          "maxError": 1.1102230246251565e-16
+        }
+      ],
+      "stats": {
+        "calls": 701,
+        "triangles": 1885602,
+        "geometries": 222,
+        "textures": 16,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 5612,
+        "foliageLevels": [
+          0,
+          8,
+          16
+        ]
+      }
+    },
+    {
+      "view": "log",
+      "low": true,
+      "checks": [
+        {
+          "phase": 3.725,
+          "maxError": 0
+        },
+        {
+          "phase": 27.5,
+          "maxError": 0
+        },
+        {
+          "phase": 119.999,
+          "maxError": 1.1102230246251565e-16
+        }
+      ],
+      "stats": {
+        "calls": 253,
+        "triangles": 623200,
+        "geometries": 212,
+        "textures": 11,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 5612,
+        "foliageLevels": [
+          0,
+          8,
+          16
+        ]
+      }
+    },
+    {
+      "view": "boulders",
+      "low": false,
+      "checks": [
+        {
+          "phase": 3.725,
+          "maxError": 0
+        },
+        {
+          "phase": 27.5,
+          "maxError": 0
+        },
+        {
+          "phase": 119.999,
+          "maxError": 1.1102230246251565e-16
+        }
+      ],
+      "stats": {
+        "calls": 614,
+        "triangles": 540018,
+        "geometries": 214,
+        "textures": 15,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 3,
+        "captureTriangles": 432,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 1140,
+        "foliageLevels": [
+          3,
+          8,
+          9
+        ]
+      }
+    },
+    {
+      "view": "boulders",
+      "low": true,
+      "checks": [
+        {
+          "phase": 3.725,
+          "maxError": 0
+        },
+        {
+          "phase": 27.5,
+          "maxError": 0
+        },
+        {
+          "phase": 119.999,
+          "maxError": 1.1102230246251565e-16
+        }
+      ],
+      "stats": {
+        "calls": 220,
+        "triangles": 147556,
+        "geometries": 198,
+        "textures": 10,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 1140,
+        "foliageLevels": [
+          0,
+          11,
+          9
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "scope": "Eight native authored High/Low views and three mover phases each. Human instant-danger recognition remains a playtest gate."
+}

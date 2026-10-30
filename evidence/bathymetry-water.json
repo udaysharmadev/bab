@@ -1,0 +1,5 @@
+{
+  "result": "PASS",
+  "checks": 14560,
+  "scope": "Shared depth samples; shader appearance independently checked in native Chrome."
+}

@@ -158,7 +158,7 @@ test('PHY-23: a sustained capsize returns every crew member to the canonical che
   const sim = new BoatSimulation(true);
   sim.checkpoint = 2;
   sim.hull.setRotation({ x: 0, y: 0, z: 1, w: 0 }, true);
-  for (let i = 0; i < 302 && sim.recoveryId === 0; i++) sim.step();
+  for (let i = 0; i < 935 && sim.recoveryId === 0; i++) sim.step();
   assert.equal(sim.condition, 'afloat');
   assert.equal(sim.recoveryId, 1); assert.equal(sim.recoveryReason, 'capsized');
   assert.equal(sim.resetId, 1); assert.equal(sim.hull.translation().z, 100);

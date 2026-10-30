@@ -1,3 +1,4 @@
+import {confirmName} from './support/name.mjs';
 import {chromium} from 'playwright';
 import {Client} from '@colyseus/sdk';
 import assert from 'node:assert/strict';
@@ -5,14 +6,14 @@ import {mkdir,writeFile} from 'node:fs/promises';
 
 const base=process.env.GAME_URL??'http://localhost:2569';
 const health=await fetch(`${base}/health`).then(reply=>reply.json());
-assert.equal(health.protocol,5);
+assert.equal(health.protocol,7);
 const browser=await chromium.launch({channel:process.env.BROWSER_CHANNEL??'chrome',headless:true});
 const members=[],errors=[],checks=[];
 const page=await browser.newPage({viewport:{width:640,height:480}});
 // Keep a real native WebSocket open while withholding only application
 // snapshots from the SDK. This exercises the client watchdog without a
 // protocol-mocking socket or a browser offline/close event.
-await page.addInitScript(()=>{
+await page.addInitScript(()=>{localStorage.setItem('bad-at-boating-name','River Tester');
  const Socket=window.WebSocket;
  window.WebSocket=class extends Socket {
   constructor(url,protocols) {
@@ -40,11 +41,12 @@ try {
  }
  await page.goto(`${base}/?crew=${members[0].roomId}`);
  await page.waitForFunction(()=>document.body.dataset.seat==='3');
+ await confirmName(page);
  await page.getByRole('button',{name:'Open game menu'}).click();
  await page.getByLabel('Lower graphics').check();
  await page.getByRole('button',{name:'Back to the River'}).click();
  members.forEach(member=>member.send('ready',true));
- await page.getByRole('button',{name:'Ready to Row',exact:true}).click();
+ await page.getByRole('button',{name:'Ready',exact:true}).click();
  await page.waitForFunction(()=>document.body.dataset.stage==='playing');
  await page.keyboard.down('w');await wait(800);
  const tick=Number(await data('tick')),oldConnections=connections;

@@ -1,0 +1,5 @@
+
+> bad-at-boating@0.1.0 test:lobby
+> node tests/lobby.mjs
+
+{"result":"PASS","checks":["Remembered names require explicit confirmation for both new hosts and invite joins; Ready stays disabled and Escape cannot skip confirmation","Fresh invite URLs allocate seats directly, then collect valid names; markup is rejected and every client sees You on their own avatar","Server names appear above crewmates and per-seat Ready ticks replicate; Ready works before all four seats fill and can be cancelled","Real water geometry and displayed hull heave/heel advance while authority tick/pose/blades/strokes stay unchanged","Five desktop/portrait/short layouts keep avatar names/ticks visible without overlapping one another or the compact invite panel","All20-character handles can be changed through the menu and stay separated in all five layouts; labels preserve full accessible text/title","Reload keeps the same seat without asking again and restores the remembered name after the actual reconnect handshake","Only all four Ready launch the boat; projected names and lobby controls leave the quiet playing view"],"layouts":5,"errors":[]}

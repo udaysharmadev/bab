@@ -1,4 +1,6 @@
+import {confirmName} from './support/name.mjs';
 import {chromium} from 'playwright';
+import {DatabaseSync} from 'node:sqlite';
 import {Client} from '@colyseus/sdk';
 import {VoyageStore} from '../src/server/voyages.ts';
 import {PROTOCOL_VERSION,PHYSICS_VERSION} from '../src/shared/protocol.ts';
@@ -8,17 +10,22 @@ const base=process.env.GAME_URL??'http://localhost:2570',path=process.env.TEST_S
 assert(path?.startsWith('/tmp/'),'Use an isolated temporary save database, never the production save');
 const store=new VoyageStore(path),seed=store.claim('browser-fixture');
 store.save(seed.voyage.id,'browser-fixture',0,4,false);store.release(seed.voyage.id,'browser-fixture');store.close();
+// Exercise a real prior-physics checkpoint through the built authority/UI.
+const inspect=new DatabaseSync(path);inspect.prepare('UPDATE voyages SET physics=? WHERE id=?').run('basin-0.12',seed.voyage.id);inspect.close();
 const browser=await chromium.launch({channel:'chrome',headless:true}),peers=[],errors=[],checks=[];
 try{
  const context=await browser.newContext({viewport:{width:1100,height:760},permissions:['clipboard-read','clipboard-write']});
  const page=await context.newPage();page.on('pageerror',error=>errors.push(error.message));
+ await page.addInitScript(()=>localStorage.setItem('bad-at-boating-name','River Tester'));
  await page.goto(base);await page.getByRole('button',{name:'Join Crew',exact:true}).click();
  await page.getByLabel('Crew invite link or code').fill(`voyage:${seed.token}`);await page.getByRole('button',{name:'Join Boat',exact:true}).click();
  await page.waitForFunction(()=>document.body.dataset.checkpoint==='4'&&document.body.dataset.stage==='lobby');
- checks.push('Recovery code opens the actual durable checkpoint in a frozen lobby');
+ await confirmName(page);
+ const migrated=new DatabaseSync(path);try{assert.equal(migrated.prepare('SELECT physics FROM voyages WHERE id=?').get(seed.voyage.id).physics,PHYSICS_VERSION);}finally{migrated.close();}
+ checks.push('Prior basin-0.12 recovery code migrates through the built authority and opens the actual durable checkpoint in a frozen lobby');
  const invite=page.url(),roomId=new URL(invite).searchParams.get('crew'),sdk=new Client(base.replace(/^http/,'ws'));
  for(let i=0;i<3;i++){const peer=await sdk.joinById(roomId,{protocol:PROTOCOL_VERSION,physics:PHYSICS_VERSION});peer.onMessage('snapshot',()=>{});peer.onMessage('seat',()=>{});peer.onMessage('voyage',()=>{});peers.push(peer);peer.send('ready',true);}
- await page.getByRole('button',{name:'Ready to Row',exact:true}).click();await page.waitForFunction(()=>document.body.dataset.stage==='playing');
+ await page.getByRole('button',{name:'Ready',exact:true}).click();await page.waitForFunction(()=>document.body.dataset.stage==='playing');
  assert(Math.abs(JSON.parse(await page.locator('body').getAttribute('data-position')).z-260)<.5);
  checks.push('Four-ready launch retains the saved checkpoint rather than resetting to the start');
  await page.getByRole('button',{name:'Open game menu'}).click();await page.getByLabel('Lower graphics').check();
@@ -30,6 +37,7 @@ try{
  await page.screenshot({path:'evidence/voyage-continue.png'});
  await page.getByRole('button',{name:'Continue Voyage',exact:true}).click();
  await page.waitForFunction(()=>document.body.dataset.checkpoint==='4'&&document.body.dataset.stage==='lobby');
+ await confirmName(page);
  checks.push('Continue Voyage creates a fresh crew at the durable checkpoint after the old room closes');
  await page.reload();await page.waitForFunction(()=>document.body.dataset.checkpoint==='4'&&document.body.dataset.seat==='0');
  checks.push('Browser refresh retains the resumed room and seat');
@@ -37,5 +45,5 @@ try{
  await assert.rejects(sdk.create('boat',{protocol:PROTOCOL_VERSION,physics:PHYSICS_VERSION,mode:'friends',saveToken:seed.token}),/already active/);
  checks.push('A second live room cannot fork the same saved voyage');
  await page.getByRole('button',{name:'Open game menu'}).click();await page.getByRole('button',{name:'Main Menu',exact:true}).click();
- assert.deepEqual(errors,[]);const result={result:'PASS',checks,errors,seededServerFixture:true,humanPlaytest:false};await writeFile('evidence/save-browser.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));
+ assert.deepEqual(errors,[]);const result={result:'PASS',checks,errors,migratedFrom:'basin-0.12',physics:PHYSICS_VERSION,seededServerFixture:true,humanPlaytest:false};await writeFile('evidence/save-browser.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));
 }finally{for(const peer of peers)await peer.leave().catch(()=>{});await browser.close();}

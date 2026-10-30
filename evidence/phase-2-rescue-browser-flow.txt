@@ -1,0 +1,68 @@
+
+> bad-at-boating@0.1.0 test:browser
+> node tests/browser.mjs
+
+Four clients ready. Verifying own-seat input.
+Shared sink confirmed; checking refresh during failure.
+Refresh retained the wreck; sending checkpoint retry.
+Conditions after retry: [ 'afloat', 'afloat', 'afloat', 'afloat' ]
+Browser: Failed to load resource: the server responded with a status of 522 (unknown)
+Browser: Failed to load resource: the server responded with a status of 522 (unknown)
+{
+  "date": "2026-10-20T16:41:57.056Z",
+  "base": "http://localhost:2571",
+  "automated": true,
+  "humanPlaytest": false,
+  "checks": [
+    "Main menu appears before a room is created; only Play with Friends and Join Crew are shown; extra title text/buttons are absent",
+    "Private crew is frozen safely at the dock; join form and invite links allocate four distinct seats",
+    "Four ready clients launch; ordinary gameplay shows only the small menu button",
+    "Mouse has no paddle effect; holding Up alone repeats at least two server-confirmed strokes on the local seat",
+    "Refresh rejoins the same crew and seat",
+    "Boat and paddles remain framed in landscape and portrait, with no permanent HUD panels",
+    "Actual rock contact produces one shared break/sink event; refresh retains the wreck and one retry restores the crew checkpoint",
+    "Full/expired invites return an actionable title-menu error and never create an unrelated crew"
+  ],
+  "firstObservedFailure": "breaking",
+  "seats": [
+    "0",
+    "1",
+    "2",
+    "3"
+  ],
+  "layouts": [
+    {
+      "width": 907,
+      "height": 510,
+      "bounds": {
+        "left": 0.39128150732323513,
+        "right": 0.647047361584292,
+        "top": 0.4219687429496384,
+        "bottom": 0.7771855226174537
+      }
+    },
+    {
+      "width": 700,
+      "height": 982,
+      "bounds": {
+        "left": 0.31450087768529783,
+        "right": 0.7600779064130712,
+        "top": 0.4411805144937399,
+        "bottom": 0.702656552859338
+      }
+    },
+    {
+      "width": 480,
+      "height": 900,
+      "bounds": {
+        "left": 0.3248077288696951,
+        "right": 0.7485454195910938,
+        "top": 0.4544117281840005,
+        "bottom": 0.6498840841910475
+      }
+    }
+  ],
+  "browser": "155.0.8059.82",
+  "errors": [],
+  "result": "PASS"
+}

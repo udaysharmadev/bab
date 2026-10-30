@@ -1,0 +1,12 @@
+{"angle":3.141592653589793,"crew":1,"t":930,"entered":true,"righted":0,"recovery":1,"position":{"x":0,"y":0.07999999821186066,"z":260},"up":{"x":0,"y":1,"z":0},"w":{"x":0,"y":0,"z":0}}
+{"angle":3.141592653589793,"crew":3,"t":930,"entered":true,"righted":0,"recovery":1,"position":{"x":0,"y":0.07999999821186066,"z":260},"up":{"x":0,"y":1,"z":0},"w":{"x":0,"y":0,"z":0}}
+{"angle":3.141592653589793,"crew":4,"t":930,"entered":true,"righted":0,"recovery":1,"position":{"x":0,"y":0.07999999821186066,"z":260},"up":{"x":0,"y":1,"z":0},"w":{"x":0,"y":0,"z":0}}
+{"angle":2,"crew":1,"t":930,"entered":true,"righted":0,"recovery":1,"position":{"x":0,"y":0.07999999821186066,"z":260},"up":{"x":0,"y":1,"z":0},"w":{"x":0,"y":0,"z":0}}
+{"angle":2,"crew":3,"t":930,"entered":true,"righted":0,"recovery":1,"position":{"x":0,"y":0.07999999821186066,"z":260},"up":{"x":0,"y":1,"z":0},"w":{"x":0,"y":0,"z":0}}
+{"angle":2,"crew":4,"t":930,"entered":true,"righted":0,"recovery":1,"position":{"x":0,"y":0.07999999821186066,"z":260},"up":{"x":0,"y":1,"z":0},"w":{"x":0,"y":0,"z":0}}
+{"angle":-2,"crew":1,"t":930,"entered":true,"righted":0,"recovery":1,"position":{"x":0,"y":0.07999999821186066,"z":260},"up":{"x":0,"y":1,"z":0},"w":{"x":0,"y":0,"z":0}}
+{"angle":-2,"crew":3,"t":930,"entered":true,"righted":0,"recovery":1,"position":{"x":0,"y":0.07999999821186066,"z":260},"up":{"x":0,"y":1,"z":0},"w":{"x":0,"y":0,"z":0}}
+{"angle":-2,"crew":4,"t":930,"entered":true,"righted":0,"recovery":1,"position":{"x":0,"y":0.07999999821186066,"z":260},"up":{"x":0,"y":1,"z":0},"w":{"x":0,"y":0,"z":0}}
+{"angle":-3.141592653589793,"crew":1,"t":930,"entered":true,"righted":0,"recovery":1,"position":{"x":0,"y":0.07999999821186066,"z":260},"up":{"x":0,"y":1,"z":0},"w":{"x":0,"y":0,"z":0}}
+{"angle":-3.141592653589793,"crew":3,"t":930,"entered":true,"righted":0,"recovery":1,"position":{"x":0,"y":0.07999999821186066,"z":260},"up":{"x":0,"y":1,"z":0},"w":{"x":0,"y":0,"z":0}}
+{"angle":-3.141592653589793,"crew":4,"t":930,"entered":true,"righted":0,"recovery":1,"position":{"x":0,"y":0.07999999821186066,"z":260},"up":{"x":0,"y":1,"z":0},"w":{"x":0,"y":0,"z":0}}

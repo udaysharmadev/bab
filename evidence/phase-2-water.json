@@ -1,0 +1,307 @@
+{
+  "phase": "M2",
+  "check": "M2-D",
+  "subcheck": "M2-D4",
+  "title": "Single-pass transmission and current-relative wake",
+  "engineeringState": "VERIFIED",
+  "parentCheckState": "PENDING",
+  "phaseEngineeringState": "ACTIVE",
+  "productionGate": "OPEN",
+  "localDate": "2026-10-21",
+  "protocol": 5,
+  "physics": "basin-0.9",
+  "world": "waterworks-1",
+  "implemented": [
+    "Actual submerged colour and native depth captured in one WebGL2 target/pass; removed packed-depth material/target/pass",
+    "Capture resolution and High/Low optical behavior retained",
+    "Wake direction/strength use horizontal hull velocity relative to the shared current; reverse and sideways travel supported; passive drift has no powered wake",
+    "Advected crest froth replaces crossed-sine checker pattern",
+    "Exact scalar sampler for cosmetic particle/foam heights; distant whirlpool skips tracer advection and buffer uploads",
+    "Profiling now records nested camera/capture/reflection CPU observations as well as water-update and total frame timings"
+  ],
+  "automatedTests": {
+    "command": "npm test",
+    "passed": 111,
+    "failed": 0,
+    "seconds": 86.653282,
+    "log": "evidence/phase-2-water-tests.txt",
+    "scope": "Full unit/authority suite for the render batch. Final crest-froth shader refinement is covered by final GPU/route/optics/effects fixtures; no shared physics/server/save change."
+  },
+  "optics": {
+    "result": "PASS",
+    "evidence": "evidence/water-depth.json",
+    "nativeDepth": true,
+    "highCaptureRenderCalls": [
+      1
+    ],
+    "lowCaptureRenderCalls": [
+      0
+    ],
+    "exceptionRestored": true,
+    "controlledBaselineMaxRgbChannelDifference": 0,
+    "baseline": "evidence/water-depth-phase-2-banks.json"
+  },
+  "effects": {
+    "result": "PASS",
+    "checks": 7,
+    "evidence": "evidence/water-effects.json",
+    "log": "evidence/phase-2-water-effects.txt"
+  },
+  "verification": {
+    "unit": {
+      "result": "PASS",
+      "tests": 111,
+      "log": "evidence/phase-2-water-tests.txt"
+    },
+    "finalRoute": {
+      "result": "PASS",
+      "views": 25
+    },
+    "dryDeck": {
+      "result": "PASS",
+      "phases": 14,
+      "log": "evidence/phase-2-water-landing.txt"
+    },
+    "nativeContextRecovery": {
+      "result": "PASS",
+      "groups": 7,
+      "log": "evidence/phase-2-water-accessibility.txt"
+    },
+    "camera": {
+      "result": "PASS",
+      "cases": 180,
+      "log": "evidence/phase-2-water-camera.txt"
+    },
+    "normalGameFlow": {
+      "result": "PASS",
+      "groups": 8,
+      "log": "evidence/phase-2-water-game-flow.txt",
+      "scope": "Render-batch gameplay flow; final crest refinement covered by final route/effects/optics/native recovery."
+    },
+    "timing": {
+      "result": "PASS",
+      "budgetAccepted": false,
+      "log": "evidence/phase-2-water-performance.txt"
+    },
+    "tracker": {
+      "result": "PASS",
+      "integrityTests": 2,
+      "browserGroups": 6,
+      "evidence": "evidence/tracker-browser.json",
+      "log": "evidence/phase-2-water-tracker.txt"
+    },
+    "deploymentSmoke": {
+      "result": "PASS",
+      "checks": 8,
+      "scope": "Local in-memory authority only",
+      "log": "evidence/phase-2-water-deployment.txt"
+    }
+  },
+  "humanPlaytest": false,
+  "humanWaterTruthReview": false,
+  "namedDevicePerformance": false,
+  "performanceBudgetAccepted": false,
+  "publicDeployment": false,
+  "privateDatabaseModified": false,
+  "corrections": [
+    "Final route/title smoke could not reach the stopped localhost preview; restored port2571 with an isolated in-memory database before completing the built-game checks.",
+    "Visual wake review retained too much continuous white rail; final advected crests lower the continuous component and produce moving froth gaps."
+  ],
+  "remaining": [
+    "Premium boat/crew/hero-water/regional assets and material/lighting/sound polish",
+    "Unmet CPU/GPU/frame and named-device performance gates",
+    "Genuine human water/readability/full-route/newcomer acceptance"
+  ],
+  "priorBuild": "evidence/build-phase-2-banks.json",
+  "priorPerformance": "evidence/performance-phase-2-banks.json",
+  "verifiedUTC": "2026-10-21T05:27:55.447Z",
+  "build": {
+    "result": "PASS",
+    "typecheck": "PASS",
+    "log": "evidence/phase-2-water-build.txt",
+    "bundleAdvisory": "Existing >500kB chunk advisory remains open."
+  },
+  "graphics": {
+    "result": "PASS",
+    "views": 25,
+    "titleViewports": 3,
+    "maxCalls": 712,
+    "maxTriangles": 2249364,
+    "revisitResources": [
+      [
+        175,
+        11
+      ],
+      [
+        175,
+        11
+      ],
+      [
+        175,
+        11
+      ]
+    ],
+    "evidence": "evidence/graphics.json",
+    "log": "evidence/phase-2-water-graphics.txt",
+    "errors": []
+  },
+  "performance": {
+    "result": "PASS",
+    "framesPerCase": 180,
+    "caseCount": 8,
+    "scope": "Local headless authored scene measurements at1080p with advancing20Hz snapshots/waves/effects, not a named consumer-device matrix, human gameplay or universal60FPS certification. PASS means measurement completed without render errors; target misses remain visible. CPU covers RiverScene.render only; GPU includes its color/reflection/shadow/capture work. Camera, water-update, capture and reflection CPU wall times are nested observations; their percentile values are not additive. Heap/DOM metrics are observations, not leak certification.",
+    "budgetAccepted": false,
+    "cases": [
+      {
+        "view": "crew",
+        "quality": "High",
+        "cpuP95": 4.199999995529652,
+        "gpuP95": 9.408749,
+        "frameP95": 16.799999999999727,
+        "cameraP95": 0.09999999403953552,
+        "captureP95": 0.3999999985098839,
+        "reflectionP95": 1.3000000044703484,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "crew",
+        "quality": "Low",
+        "cpuP95": 2.100000001490116,
+        "gpuP95": 3.700125,
+        "frameP95": 16.700000000000273,
+        "cameraP95": 0.10000000149011612,
+        "captureP95": 0,
+        "reflectionP95": 0,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "High",
+        "cpuP95": 3,
+        "gpuP95": 10.434583,
+        "frameP95": 16.799999999999727,
+        "cameraP95": 0.09999999403953552,
+        "captureP95": 0.3999999985098839,
+        "reflectionP95": 0.8000000044703484,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "Low",
+        "cpuP95": 1.7000000029802322,
+        "gpuP95": 6.243124,
+        "frameP95": 16.700000000000273,
+        "cameraP95": 0.10000000149011612,
+        "captureP95": 0,
+        "reflectionP95": 0,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "High",
+        "cpuP95": 5.5,
+        "gpuP95": 8.842333,
+        "frameP95": 16.700000000000273,
+        "cameraP95": 0.9000000059604645,
+        "captureP95": 0.3999999985098839,
+        "reflectionP95": 1.6999999955296516,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "Low",
+        "cpuP95": 3.100000001490116,
+        "gpuP95": 4.417374,
+        "frameP95": 16.700000000000273,
+        "cameraP95": 1,
+        "captureP95": 0,
+        "reflectionP95": 0,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rescue",
+        "quality": "High",
+        "cpuP95": 5.0999999940395355,
+        "gpuP95": 8.069499,
+        "frameP95": 16.700000000000273,
+        "cameraP95": 1,
+        "captureP95": 0.3999999985098839,
+        "reflectionP95": 1.3999999985098839,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rescue",
+        "quality": "Low",
+        "cpuP95": 2.899999998509884,
+        "gpuP95": 2.360416,
+        "frameP95": 16.700000000000273,
+        "cameraP95": 1.1000000014901161,
+        "captureP95": 0,
+        "reflectionP95": 0,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      }
+    ],
+    "baseline": "evidence/performance-phase-2-banks.json",
+    "comparisonLimit": "Historical before/after captures are host observations, not a controlled causal or named-device study."
+  },
+  "retainedEvidence": {
+    "lobby": "M2-D1 named lobby flow and responsive labels; no entry/Ready flow change",
+    "audio": "M2-D2 full seven-group sound/lifecycle fixture; basic offline PCM rerun in graphics",
+    "load": "M2-D1 four-room/16-client120.079s load retained; no authority/wire/save changes"
+  },
+  "finalStaticChecks": "PASS: TypeScript, generated tracker freshness, two tracker integrity tests and git diff --check",
+  "captureDrawComparison": [
+    {
+      "view": "crew",
+      "before": 2,
+      "after": 1
+    },
+    {
+      "view": "trees",
+      "before": 8,
+      "after": 4
+    },
+    {
+      "view": "rapids",
+      "before": 8,
+      "after": 4
+    },
+    {
+      "view": "rescue",
+      "before": 8,
+      "after": 4
+    }
+  ]
+}

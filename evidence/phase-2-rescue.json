@@ -1,0 +1,234 @@
+{
+  "phase": "M2",
+  "check": "M2-C",
+  "subcheck": "M2-C2",
+  "title": "Stillwater recovery eddy and waiting-dock onboarding",
+  "engineeringState": "VERIFIED",
+  "phaseEngineeringState": "ACTIVE",
+  "productionGate": "OPEN",
+  "date": "2026-10-20T16:44:02.405996+00:00",
+  "protocol": 5,
+  "physics": "basin-0.9",
+  "world": "waterworks-1",
+  "scope": "One authored nonlethal recovery pocket in the existing Stillwater bay, plus the previously verified local waiting-dock rehearsal. Does not grant immunity after lethal contact, teleport the hull or certify human fairness/comprehension. No production scope points awarded.",
+  "implemented": [
+    "Compact smooth elliptical curl current in shared water sampling; ordinary immersed drag moves the hull",
+    "Green safe-bank paint, upstream recovery and downstream rejoin signs,48 current-advected foam streaks; field and foam pause with crew disconnect",
+    "One brief entry cue; checkpoint notification cannot overwrite it; normal gameplay keeps its quiet HUD",
+    "Large checkpoint board moved to the opposite bank so it does not cover crews using the pocket",
+    "Existing canonical checkpoint indices/poses, mass/buoyancy/paddle caps, hazard rules and clocks preserved; reviewed0.5\u20130.8 canonical save migration only in the existing claim transaction"
+  ],
+  "automatedTests": {
+    "command": "npm test",
+    "passed": 104,
+    "failed": 0,
+    "seconds": 79.539527334,
+    "log": "evidence/phase-2-rescue-checks.txt"
+  },
+  "evidence": [
+    "evidence/rescue.json",
+    "evidence/rescue-browser.json",
+    "evidence/onboarding.json",
+    "evidence/camera.json",
+    "evidence/graphics.json",
+    "evidence/performance.json",
+    "evidence/load.json"
+  ],
+  "corrections": [
+    "First browser test found the recovery entry cue immediately overwritten by the checkpoint toast on a discontinuity. Encounter guidance now runs after checkpoint notification.",
+    "Actual recovery screenshot exposed the existing checkpoint board covering the crew near the rescue bank. Its placement is moved across the pool and48 near-bank/reverse camera cases were added without relaxing limits."
+  ],
+  "humanPlaytest": false,
+  "physicalControllerTest": false,
+  "namedDevicePerformance": false,
+  "publicDeployment": false,
+  "privateDatabaseModified": false,
+  "remaining": [
+    "M2-D near-field boat/crew/water/audio and cliff/material polish",
+    "M2-E genuine continuous four-human traversal, newcomer comprehension and named device acceptance",
+    "Shallow-water grounding/bathymetry and manual capsize rescue interaction",
+    "Previously measured CPU/GPU gaps, broad Internet/hosting/endurance/release gates"
+  ],
+  "verifiedUTC": "2026-10-20T16:46:31.172907+00:00",
+  "engineeringChecksVerified": 3,
+  "engineeringChecksTotal": 5,
+  "verification": {
+    "rescue": {
+      "result": "PASS",
+      "evidence": "evidence/rescue.json"
+    },
+    "rescue-browser": {
+      "result": "PASS",
+      "evidence": "evidence/rescue-browser.json",
+      "groups": 4
+    },
+    "onboarding": {
+      "result": "PASS",
+      "evidence": "evidence/onboarding.json",
+      "groups": 7
+    },
+    "browser": {
+      "result": "PASS",
+      "evidence": "evidence/browser.json",
+      "groups": 8
+    },
+    "accessibility": {
+      "result": "PASS",
+      "evidence": "evidence/accessibility.json",
+      "groups": 7
+    },
+    "camera": {
+      "result": "PASS",
+      "evidence": "evidence/camera.json",
+      "cases": 180
+    },
+    "graphics": {
+      "result": "PASS",
+      "evidence": "evidence/graphics.json",
+      "views": 23,
+      "maxCalls": 727,
+      "maxTriangles": 2252580,
+      "revisitResources": [
+        [
+          175,
+          11
+        ],
+        [
+          175,
+          11
+        ],
+        [
+          175,
+          11
+        ]
+      ]
+    },
+    "water-depth": {
+      "result": "PASS",
+      "evidence": "evidence/water-depth.json"
+    },
+    "landing": {
+      "result": "PASS",
+      "evidence": "evidence/landing.json"
+    },
+    "performance": {
+      "result": "PASS",
+      "evidence": "evidence/performance.json",
+      "cases": 8,
+      "framesPerCase": 90,
+      "targetsAccepted": false,
+      "targetComparison": [
+        {
+          "view": "crew",
+          "quality": "High",
+          "cpu": "MISSES",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        },
+        {
+          "view": "crew",
+          "quality": "Low",
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        },
+        {
+          "view": "trees",
+          "quality": "High",
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        },
+        {
+          "view": "trees",
+          "quality": "Low",
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        },
+        {
+          "view": "rapids",
+          "quality": "High",
+          "cpu": "MISSES",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        },
+        {
+          "view": "rapids",
+          "quality": "Low",
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        },
+        {
+          "view": "rescue",
+          "quality": "High",
+          "cpu": "MISSES",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        },
+        {
+          "view": "rescue",
+          "quality": "Low",
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      ]
+    },
+    "load": {
+      "result": "PASS",
+      "evidence": "evidence/load.json",
+      "actualSeconds": 120.059,
+      "rooms": 4,
+      "clients": 16,
+      "resets": 32,
+      "reconnects": 4,
+      "violations": [],
+      "roomsDisposed": true
+    },
+    "logs": [
+      "evidence/phase-2-rescue-accessibility.txt",
+      "evidence/phase-2-rescue-browser-flow.txt",
+      "evidence/phase-2-rescue-checks.txt",
+      "evidence/phase-2-rescue-deployment.txt",
+      "evidence/phase-2-rescue-graphics.txt",
+      "evidence/phase-2-rescue-landing.txt",
+      "evidence/phase-2-rescue-load.txt",
+      "evidence/phase-2-rescue-onboarding.txt",
+      "evidence/phase-2-rescue-performance.txt",
+      "evidence/phase-2-rescue-rescue-browser.txt",
+      "evidence/phase-2-rescue-tracker.txt",
+      "evidence/phase-2-rescue-water-depth.txt"
+    ],
+    "tracker": {
+      "result": "PASS",
+      "records": 139,
+      "integrityTests": 2,
+      "browserChecks": 6,
+      "acceptedScopePoints": 2,
+      "engineeringChecksVerified": 3,
+      "engineeringChecksTotal": 5
+    },
+    "deploymentSmoke": {
+      "result": "PASS",
+      "origin": "http://localhost:2571",
+      "physics": "basin-0.9",
+      "checks": 8,
+      "scope": "Local in-memory authority only"
+    },
+    "staticChecks": "PASS: TypeScript, tracker source/report freshness, two tracker integrity tests and git diff --check"
+  },
+  "cpanel": {
+    "result": "PASS",
+    "archive": "releases/Bad-at-Boating-cPanel.zip",
+    "matchedSha256": {
+      "dist/index.html": "ad26f7f1df62aba1baf740f44edc60e8c1aa19b0d0506d774b7445fdd4e0b95c",
+      "build/server.mjs": "722842d7c963e224758c122fbcd102acec4680cec8b640afa2dc3e4cfd831107",
+      "dist/assets/index-BE9tlafO.css": "058b5e5e482f23fcc8deb260a42361611bad396e80ebb75ced112f66428099e1",
+      "dist/assets/index-6oQ_gw6i.js": "d926cb6ab4eaf848b1a4b24288d11200980619c74ecc488e9277ada0e8f116d6"
+    },
+    "privateDataShipped": false,
+    "publicDeployment": false
+  }
+}

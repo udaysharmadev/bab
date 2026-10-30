@@ -8,7 +8,7 @@
     "KeyA: native held touch repeats strokes and releases blade",
     "KeyS: native held touch repeats strokes and releases blade",
     "KeyD: native held touch repeats strokes and releases blade",
-    "Menu releases touch input; lobby hides controls"
+    "Menu releases touch input; waiting dock exposes rehearsal controls and countdown hides/releases them"
   ],
   "errors": []
 }

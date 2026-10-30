@@ -1,0 +1,632 @@
+{
+  "game": "Bad at Boating",
+  "generatedUTC": "2026-10-21T11:22:54.797585+00:00",
+  "baseCommit": "1dee20db314dda485c734932df48e9780bb53d03",
+  "workingTreeChanges": true,
+  "protocol": 6,
+  "physics": "basin-0.9",
+  "world": "waterworks-1",
+  "scope": "Readable danger and shared randomized mover phase verified locally. M2 remains 3/5; full art, human pacing and device/performance acceptance open. Name confirmation fix: strict build and eight native lobby groups pass; broader suite results retained from prior batch.",
+  "sourceSha256": "c52fcb33fc4168c6480e261b85c0451a540983a086c844b7e68d6e4cc59a7293",
+  "sourceHashScope": "Sorted relative path + NUL + bytes + NUL for src/tests/scripts/docs/.github and listed root metadata; excludes generated build/evidence/reference/private data.",
+  "fileCount": 119,
+  "build": "PASS",
+  "typecheck": "PASS",
+  "automatedTests": {
+    "command": "npm test",
+    "passed": 120,
+    "failed": 0,
+    "seconds": 90.141449042,
+    "log": "evidence/danger-tests.txt",
+    "executionScope": "Prior danger batch; not rerun for name-confirmation-only fix."
+  },
+  "fixtures": {
+    "browser": {
+      "result": "PASS",
+      "evidence": "evidence/browser.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix.",
+      "checks": 8
+    },
+    "controls-after": {
+      "result": "PASS",
+      "checks": 71,
+      "errors": [],
+      "evidence": "evidence/controls-after.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix."
+    },
+    "accessibility": {
+      "result": "PASS",
+      "evidence": "evidence/accessibility.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix.",
+      "checks": 7
+    },
+    "touch": {
+      "result": "PASS",
+      "evidence": "evidence/touch.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix.",
+      "checks": 5
+    },
+    "reconnect": {
+      "result": "PASS",
+      "evidence": "evidence/reconnect.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix.",
+      "checks": 4
+    },
+    "camera": {
+      "result": "PASS",
+      "evidence": "evidence/camera.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix.",
+      "checks": 180
+    },
+    "graphics": {
+      "result": "PASS",
+      "evidence": "evidence/graphics.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix.",
+      "checks": 25
+    },
+    "water-depth": {
+      "result": "PASS",
+      "evidence": "evidence/water-depth.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix."
+    },
+    "tracker-browser": {
+      "result": "PASS",
+      "evidence": "evidence/tracker-browser.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix.",
+      "checks": 6
+    },
+    "landing": {
+      "result": "PASS",
+      "evidence": "evidence/landing.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix.",
+      "checks": 2
+    },
+    "hull-collision": {
+      "result": "PASS",
+      "evidence": "evidence/hull-collision.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix.",
+      "checks": 4
+    },
+    "performance": {
+      "result": "PASS",
+      "evidence": "evidence/performance.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix.",
+      "checks": 8
+    },
+    "load": {
+      "result": "PASS",
+      "evidence": "evidence/load.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix."
+    },
+    "bends-browser": {
+      "result": "PASS",
+      "checks": 5,
+      "clients": 4,
+      "evidence": "evidence/bends-browser.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix."
+    },
+    "river-bends": {
+      "result": "PASS",
+      "evidence": "evidence/river-bends.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix.",
+      "checks": 5
+    },
+    "onboarding": {
+      "result": "PASS",
+      "evidence": "evidence/onboarding.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix.",
+      "checks": 7
+    },
+    "rescue": {
+      "result": "PASS",
+      "evidence": "evidence/rescue.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix.",
+      "checks": 4
+    },
+    "rescue-browser": {
+      "result": "PASS",
+      "evidence": "evidence/rescue-browser.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix.",
+      "checks": 4
+    },
+    "lobby": {
+      "result": "PASS",
+      "evidence": "evidence/lobby.json",
+      "executionScope": "Rerun for saved-name confirmation fix; evidence/name-confirmation-lobby.txt",
+      "checks": 8
+    },
+    "audio": {
+      "result": "PASS",
+      "checks": 7,
+      "evidence": "evidence/audio.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix."
+    },
+    "banks": {
+      "result": "PASS",
+      "checks": 3,
+      "evidence": "evidence/banks.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix."
+    },
+    "waterEffects": {
+      "result": "PASS",
+      "checks": 7,
+      "evidence": "evidence/water-effects.json",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix."
+    },
+    "boat-detail": {
+      "result": "PASS",
+      "checks": 3,
+      "evidence": "evidence/phase-2-boat-detail.txt",
+      "executionScope": "Retained from preceding batch; not rerun for name-confirmation fix."
+    }
+  },
+  "graphics": {
+    "views": 25,
+    "titleViewports": 3,
+    "maxCalls": 703,
+    "maxTriangles": 2249368,
+    "priorRecordedMaxTriangles": 6033248,
+    "residencyCycles": 3,
+    "maxVegetationChunks": 6,
+    "startRevisitGeometryTextureCounts": [
+      [
+        173,
+        11
+      ],
+      [
+        173,
+        11
+      ],
+      [
+        173,
+        11
+      ]
+    ],
+    "scope": "Full color/reflection/shadow/capture frame counters and bounded three-cycle residency; human/device/90-minute acceptance remains open.",
+    "executionScope": "Readable-danger batch native route captures.",
+    "priorMilestoneMaxCalls": 712,
+    "priorMilestoneMaxTriangles": 2249364
+  },
+  "tracker": {
+    "deliverables": 49,
+    "obstacleConcepts": 80,
+    "signatureEncounters": 10,
+    "regionCards": 14,
+    "acceptedScopePoints": 2,
+    "productionReadyRegions": 0,
+    "deliveryPhases": 5,
+    "engineeringVerified": [
+      "M1"
+    ],
+    "engineeringActive": "M2",
+    "engineeringChecksVerified": {
+      "M1": 4,
+      "M2": 3
+    },
+    "remainingEngineeringChecks": [
+      "M2-D presentation",
+      "M2-E human/device acceptance"
+    ],
+    "partialEngineeringChecks": {
+      "M2-D": "D1 lobby, D2 audio, D3 banks, D4 water, D5 camera and D6 boat detail verified as scoped batches; full premium art/performance/human/device gates remain."
+    }
+  },
+  "artifacts": {
+    "dist/index.html": {
+      "bytes": 8032,
+      "sha256": "6d9f4e2405fc30d423acc902ca1480267aa0b8172f0d68cc5c00e1f2559bc78b"
+    },
+    "dist/assets/index-BA7Tl4Dm.js": {
+      "bytes": 858406,
+      "sha256": "f54ea197cc46eb7d06568c1a6a797277b3a54b9c763e2003be19f22687a99bb8"
+    },
+    "dist/assets/index-i97Ox2ZC.css": {
+      "bytes": 9408,
+      "sha256": "0d370b6cca6581b51e3f1c10746a8a28735423204c5a9630474d4e80c5c5b864"
+    },
+    "build/server.mjs": {
+      "bytes": 60270,
+      "sha256": "500a26121048345c74297e6b8daaa33c57d01693c2aac1ef8b2c10ada6638f05"
+    },
+    "releases/Bad-at-Boating-cPanel.zip": {
+      "bytes": 289558,
+      "sha256": "30912fd8a324d3989d37cf760f6fe7e897513713d202c14b68f1a207241b0dc5"
+    }
+  },
+  "preview": "http://localhost:2571",
+  "previewDatabase": "Isolated in-memory QA database; no private durable database replaced.",
+  "cpanel": {
+    "packaged": true,
+    "cleanDependencyInstall": "NOT RERUN; runtime dependencies unchanged",
+    "publicDeployment": "NOT RUN for this release"
+  },
+  "humanPlaytest": false,
+  "physicalControllerTest": false,
+  "namedDevicePerformance": false,
+  "longInternetBrowserSoak": false,
+  "remoteCI": "NOT RUN; workflow updated",
+  "containerExecution": "NOT RUN",
+  "actualCommandOutput": "evidence/danger-tests.txt",
+  "finalStaticChecks": "PASS: strict build/typecheck, tracker freshness, git diff --check and independent ZIP/runtime byte comparison.",
+  "phaseEvidence": "evidence/danger-update.json",
+  "deploymentSmoke": {
+    "result": "PASS",
+    "url": "http://localhost:2571",
+    "evidence": "evidence/danger-deployment.txt",
+    "scope": "Local isolated in-memory authority only",
+    "physics": "basin-0.9",
+    "protocol": 6
+  },
+  "sourceHashFiles": [
+    ".github/workflows/verify.yml",
+    "Dockerfile",
+    "README.md",
+    "app.cjs",
+    "app.js",
+    "docs/ANALYSIS.md",
+    "docs/CPANEL_SETUP.md",
+    "docs/DECISIONS.md",
+    "docs/GRAPHICS_AUDIT.md",
+    "docs/MULTIPLAYER_AUDIT.md",
+    "docs/PHASE_EXECUTION.md",
+    "docs/PHYSICS_AUDIT.md",
+    "docs/PLAYTEST_KIT.md",
+    "docs/PRD_PROGRESS.md",
+    "docs/PRODUCTION_PLAN.md",
+    "docs/PRODUCTION_TRACKER.html",
+    "docs/PRODUCTION_TRACKER.json",
+    "docs/PRODUCTION_TRACKER.md",
+    "docs/PROJECT_AUDIT.md",
+    "docs/RESEARCH_GAMEPLAY.md",
+    "docs/RESEARCH_VISUALS.md",
+    "docs/ROUTE.md",
+    "docs/STATUS.md",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "scripts/build-server.mjs",
+    "scripts/check-deployment.mjs",
+    "scripts/dev.mjs",
+    "scripts/package-cpanel.mjs",
+    "scripts/tracker.mjs",
+    "src/client/audio.ts",
+    "src/client/boat-detail.ts",
+    "src/client/camera.ts",
+    "src/client/crew.ts",
+    "src/client/danger.ts",
+    "src/client/hull.ts",
+    "src/client/input.ts",
+    "src/client/main.ts",
+    "src/client/nature.ts",
+    "src/client/rehearsal.ts",
+    "src/client/riverbed.ts",
+    "src/client/scene.ts",
+    "src/client/style.css",
+    "src/client/water.ts",
+    "src/package.json",
+    "src/server/BoatRoom.ts",
+    "src/server/index.ts",
+    "src/server/voyages.ts",
+    "src/shared/hull.ts",
+    "src/shared/names.ts",
+    "src/shared/protocol.ts",
+    "src/shared/rescue.ts",
+    "src/shared/river.ts",
+    "src/shared/rowing.ts",
+    "src/shared/simulation.ts",
+    "src/shared/world.ts",
+    "tests/accessibility.mjs",
+    "tests/animation.html",
+    "tests/animation.mjs",
+    "tests/audio.html",
+    "tests/audio.mjs",
+    "tests/audio.test.ts",
+    "tests/banks.test.ts",
+    "tests/bends-browser.mjs",
+    "tests/bends.test.ts",
+    "tests/boat-detail.test.ts",
+    "tests/browser.mjs",
+    "tests/camera.html",
+    "tests/camera.mjs",
+    "tests/controls.mjs",
+    "tests/crew.test.ts",
+    "tests/danger-browser.mjs",
+    "tests/danger-network.test.ts",
+    "tests/danger.test.ts",
+    "tests/finish.test.ts",
+    "tests/graphics.html",
+    "tests/graphics.mjs",
+    "tests/handoff.test.ts",
+    "tests/hazards.test.ts",
+    "tests/hull.test.ts",
+    "tests/hydrodynamics.test.ts",
+    "tests/input.test.ts",
+    "tests/landing.html",
+    "tests/landing.mjs",
+    "tests/lifecycle.test.ts",
+    "tests/load.ts",
+    "tests/lobby.mjs",
+    "tests/names.test.ts",
+    "tests/network-stress.test.ts",
+    "tests/network.test.ts",
+    "tests/onboarding.mjs",
+    "tests/package.json",
+    "tests/performance.mjs",
+    "tests/physics.test.ts",
+    "tests/presentation.test.ts",
+    "tests/reconnect.mjs",
+    "tests/rehearsal.test.ts",
+    "tests/rescue-browser.mjs",
+    "tests/rescue.test.ts",
+    "tests/route.test.ts",
+    "tests/rowing.test.ts",
+    "tests/save-browser.mjs",
+    "tests/save-restart.test.ts",
+    "tests/saves.test.ts",
+    "tests/server-reliability.test.ts",
+    "tests/soak.ts",
+    "tests/support/bends-server.ts",
+    "tests/support/rescue-server.ts",
+    "tests/support/save-server.ts",
+    "tests/touch.mjs",
+    "tests/tracker-browser.mjs",
+    "tests/tracker.test.mjs",
+    "tests/water-depth.html",
+    "tests/water-depth.mjs",
+    "tests/water-effects.mjs",
+    "tests/waterwheel.test.ts",
+    "tsconfig.json",
+    "vite.config.ts"
+  ],
+  "priorMilestoneBuild": "evidence/build-before-danger.json",
+  "performanceBudgetAccepted": false,
+  "fixtureCommandOutputs": [
+    "evidence/danger-accessibility.txt",
+    "evidence/danger-browser.txt",
+    "evidence/danger-build.txt",
+    "evidence/danger-camera.txt",
+    "evidence/danger-deployment.txt",
+    "evidence/danger-game-flow.txt",
+    "evidence/danger-graphics.txt",
+    "evidence/danger-network.txt",
+    "evidence/danger-package.txt",
+    "evidence/danger-performance.txt",
+    "evidence/danger-targeted.txt",
+    "evidence/danger-tests-first.txt",
+    "evidence/danger-tests.txt",
+    "evidence/danger-tracker.txt",
+    "evidence/name-confirmation-build.txt",
+    "evidence/name-confirmation-lobby.txt",
+    "evidence/name-confirmation-package.txt"
+  ],
+  "audio": {
+    "ambientLayers": 7,
+    "noiseBytesAt44100Hz": 705600,
+    "peakTemporaryVoices": 24,
+    "remainingTemporaryVoices": 0,
+    "stressPeak": 0.9448018670082092,
+    "humanListening": false
+  },
+  "banks": {
+    "seamComparisons": 52074,
+    "seamGap": 0,
+    "independentGroundRays": 3696,
+    "groundMaxErrorMetres": 6.221167370590308e-06,
+    "renderedGroundSamples": 2934,
+    "renderedGroundMaxErrorMetres": 9.601022668448422e-06,
+    "paintMaxErrorMetres": 4.5776367187458367e-07,
+    "textureBytesBeforeMipmaps": 262144
+  },
+  "performance": {
+    "result": "PASS",
+    "framesPerCase": 180,
+    "caseCount": 8,
+    "scope": "Local headless authored scene measurements at1080p with advancing20Hz snapshots/waves/effects, not a named consumer-device matrix, human gameplay or universal60FPS certification. PASS means measurement completed without render errors; target misses remain visible. CPU covers RiverScene.render only; GPU includes its color/reflection/shadow/capture work. Camera, water-update, capture and reflection CPU wall times are nested observations; their percentile values are not additive. Heap/DOM metrics are observations, not leak certification.",
+    "budgetAccepted": false,
+    "cases": [
+      {
+        "view": "crew",
+        "quality": "High",
+        "cpuP95": 4,
+        "gpuP95": 14.105666,
+        "frameP95": 16.799999999999727,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "crew",
+        "quality": "Low",
+        "cpuP95": 3.7000000001862645,
+        "gpuP95": 7.307166,
+        "frameP95": 16.799999999999727,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "High",
+        "cpuP95": 3.7999999998137355,
+        "gpuP95": 14.530124,
+        "frameP95": 16.799999999999727,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "Low",
+        "cpuP95": 3.7999999998137355,
+        "gpuP95": 13.640958,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "High",
+        "cpuP95": 4.8999999994412065,
+        "gpuP95": 14.185291,
+        "frameP95": 16.800000000000182,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "Low",
+        "cpuP95": 3.400000000372529,
+        "gpuP95": 6.042125,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rescue",
+        "quality": "High",
+        "cpuP95": 4.7999999998137355,
+        "gpuP95": 14.088625,
+        "frameP95": 16.799999999999955,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rescue",
+        "quality": "Low",
+        "cpuP95": 3.7000000001862645,
+        "gpuP95": 5.489916,
+        "frameP95": 16.800000000000182,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      }
+    ],
+    "baseline": "evidence/performance-before-danger.json",
+    "comparisonLimit": "Historical before/after captures are host observations, not a controlled causal or named-device study."
+  },
+  "water": {
+    "highCaptureRenders": 1,
+    "lowCaptureRenders": 0,
+    "nativeDepth": true,
+    "controlledBaselineMaxRgbChannelDifference": 0,
+    "captureDrawComparison": [
+      {
+        "view": "crew",
+        "before": 2,
+        "after": 1
+      },
+      {
+        "view": "trees",
+        "before": 8,
+        "after": 4
+      },
+      {
+        "view": "rapids",
+        "before": 8,
+        "after": 4
+      },
+      {
+        "view": "rescue",
+        "before": 8,
+        "after": 4
+      }
+    ],
+    "effectsChecks": 7,
+    "physicsChanged": false,
+    "executionScope": "Retained D4 optics/effects; not rerun in D6 boat-only batch. Dry-deck/native recovery were rerun. See build-phase-2-camera.json."
+  },
+  "cameraBounds": {
+    "result": "PASS",
+    "cases": 180,
+    "comparison": [
+      {
+        "width": 1440,
+        "height": 960,
+        "rays": 768,
+        "hits": 600,
+        "baseline": {
+          "meshes": 4649,
+          "triangles": 2713272
+        },
+        "bounded": {
+          "meshes": 1836,
+          "triangles": 1724444
+        },
+        "vertices": 214909
+      },
+      {
+        "width": 480,
+        "height": 900,
+        "rays": 768,
+        "hits": 600,
+        "baseline": {
+          "meshes": 4746,
+          "triangles": 2812712
+        },
+        "bounded": {
+          "meshes": 1824,
+          "triangles": 1723868
+        },
+        "vertices": 214909
+      }
+    ],
+    "evidence": "evidence/camera.json",
+    "log": "evidence/phase-2-camera-camera.txt",
+    "totalRays": 1536,
+    "totalHits": 1200,
+    "triangleChecks": {
+      "baseline": 5525984,
+      "bounded": 3448312
+    },
+    "executionScope": "Historical D5 comparison numbers retained; current 180-case rerun is evidence/camera.json and danger-camera.txt."
+  },
+  "boatDetail": {
+    "maxCalls": 712,
+    "maxTriangles": 2250668,
+    "priorMaxTriangles": 2249364,
+    "triangleIncrease": 1304,
+    "returnResidency": [
+      [
+        172,
+        11
+      ],
+      [
+        172,
+        11
+      ],
+      [
+        172,
+        11
+      ]
+    ],
+    "priorReturnResidency": [
+      175,
+      11
+    ],
+    "paddleTrianglesPerInstance": 148,
+    "ropeTriangles": 960,
+    "extraTextures": 0,
+    "evidence": "evidence/phase-2-boat.json",
+    "executionScope": "Historical D6 measurements; current render metrics in graphics and danger-update.json."
+  }
+}

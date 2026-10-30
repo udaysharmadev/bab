@@ -13,5 +13,5 @@ export default defineConfig({
       },
     },
   },
-  build: { target: 'es2022', outDir: process.env.BOAT_CLIENT_OUT ?? 'dist' },
+  build: { target: 'es2022', outDir: process.env.BOAT_CLIENT_OUT ?? 'dist', rollupOptions:{input:{main:'index.html',legacy:'legacy.html'}} },
 });

@@ -1,0 +1,49 @@
+{
+  "result": "PASS",
+  "browser": "155.0.8059.82",
+  "checks": [
+    "Four native clients: required invite-name confirmation, own You/other names, explicit unready lobby",
+    "Anchored lobby still animates real water pixels and rendered raft bob",
+    "Four explicit Ready ticks and countdown launch",
+    "Space repeats only the owned fan; D moves the player within bounds; release stops repeat",
+    "Game menu blocks fan input",
+    "Real Chrome touch hold operates its fan; native touch cancellation releases it",
+    "Actual page reload pauses the shared raft, restores the same named seat, and resumes without held fans",
+    "Recorded desktop/phone scene counters stay below 150 calls and 250k triangles (not a device FPS certification)"
+  ],
+  "metrics": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "calls": 120,
+      "triangles": 62604
+    },
+    {
+      "viewport": {
+        "width": 700,
+        "height": 480
+      },
+      "calls": 116,
+      "triangles": 62444
+    },
+    {
+      "viewport": {
+        "width": 700,
+        "height": 480
+      },
+      "calls": 116,
+      "triangles": 62444
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "calls": 121,
+      "triangles": 62652
+    }
+  ],
+  "errors": []
+}

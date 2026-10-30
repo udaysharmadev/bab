@@ -1,0 +1,199 @@
+{
+  "phase": "M2",
+  "check": "M2-D",
+  "subcheck": "M2-D6",
+  "title": "Boat finish and shaped paddle detail",
+  "engineeringState": "VERIFIED",
+  "parentCheckState": "PENDING",
+  "phaseEngineeringState": "ACTIVE",
+  "productionGate": "OPEN",
+  "localDate": "2026-10-21",
+  "protocol": 5,
+  "physics": "basin-0.9",
+  "world": "waterworks-1",
+  "implemented": [
+    "Hull fibres follow the actual convex panel triangulation with shared adjacent-panel UV coordinates",
+    "Existing256px wood texture reused for hull/gunwale grain, subtle bump and finish; no additional texture",
+    "Rounded bevelled blades stay inside original0.21x0.42x0.055m envelope and retain shared attachment centres; one geometry reused by four paddles",
+    "Compact three-turn rope coil rests on the bow floor"
+  ],
+  "automatedTests": {
+    "command": "npm test",
+    "passed": 114,
+    "failed": 0,
+    "seconds": 87.705988583,
+    "log": "evidence/phase-2-boat-tests.txt"
+  },
+  "verification": {
+    "strictBuild": "PASS",
+    "fullRegression": "PASS:114 tests",
+    "geometry": "PASS:3 detail groups and original structural hull/contact regression",
+    "route": "PASS:25 route views/3 title sizes",
+    "camera": "PASS:180 cases and1536 exact bounded/unbounded rays",
+    "dryDeck": "PASS:7 phases per High/Low quality",
+    "nativeRecovery": "PASS:7 groups",
+    "builtGame": "PASS:8 normal four-browser groups",
+    "performance": "PASS:measurement completed; budget acceptance remains FAIL/OPEN",
+    "tracker": "PASS:2 integrity tests/6 dashboard groups/fresh generation",
+    "package": "PASS:ZIP matches current dist/server bytes; private data excluded",
+    "localDeployment": "PASS:8 isolated in-memory checks"
+  },
+  "renderBudget": {
+    "maxCalls": 712,
+    "maxTriangles": 2250668,
+    "priorMaxTriangles": 2249364,
+    "triangleIncrease": 1304,
+    "returnResidency": [
+      [
+        172,
+        11
+      ],
+      [
+        172,
+        11
+      ],
+      [
+        172,
+        11
+      ]
+    ],
+    "priorReturnResidency": [
+      175,
+      11
+    ],
+    "paddleTrianglesPerInstance": 148,
+    "ropeTriangles": 960,
+    "extraTextures": 0
+  },
+  "corrections": [
+    "Bevel mitre initially protruded68 micrometres beyond the original blade envelope. Moved the tip inward and retained the original envelope assertion.",
+    "Visual close-up found the new blade neck pointing away from the handle. Rotated local geometry to match the existing +Y shaft convention and added neck-versus-bowl ray coverage."
+  ],
+  "retainedScope": "Dedicated water optics/effects, native audio and room-load fixtures were not rerun; their original execution scope is preserved in build-phase-2-camera.json. Shared water physics remains unchanged.",
+  "limits": [
+    "Scoped procedural boat-detail batch only; existing crew assets remain, and full premium boat/crew/material/animation art review is open",
+    "M2 remains3/5; full M2-D PENDING; accepted scope2/100 and0/14 regions",
+    "No public deployment or private-save modification; human/device/Internet/long-soak gates remain open"
+  ],
+  "performance": {
+    "framesPerCase": 180,
+    "evidence": "evidence/performance.json",
+    "baseline": "evidence/performance-phase-2-camera.json",
+    "cases": [
+      {
+        "view": "crew",
+        "quality": "High",
+        "cpuP95": 4.100000001490116,
+        "gpuP95": 13.605083,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "crew",
+        "quality": "Low",
+        "cpuP95": 3.399999998509884,
+        "gpuP95": 7.598833,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "High",
+        "cpuP95": 4,
+        "gpuP95": 13.765624,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "trees",
+        "quality": "Low",
+        "cpuP95": 3.3000000044703484,
+        "gpuP95": 12.188291,
+        "frameP95": 16.799999999999955,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "High",
+        "cpuP95": 4.5,
+        "gpuP95": 13.775374,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rapids",
+        "quality": "Low",
+        "cpuP95": 4.200000002980232,
+        "gpuP95": 6.786708,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rescue",
+        "quality": "High",
+        "cpuP95": 4.899999998509884,
+        "gpuP95": 12.994124,
+        "frameP95": 16.700000000000273,
+        "targetComparison": {
+          "cpu": "MISSES",
+          "gpu": "MISSES",
+          "frameInterval": "MISSES"
+        }
+      },
+      {
+        "view": "rescue",
+        "quality": "Low",
+        "cpuP95": 3.899999998509884,
+        "gpuP95": 6.878791,
+        "frameP95": 16.799999999999727,
+        "targetComparison": {
+          "cpu": "MEETS",
+          "gpu": "MEETS",
+          "frameInterval": "MISSES"
+        }
+      }
+    ],
+    "scope": "Isolated180-frame1080p advancing-clock authored scenes. All High GPU, Low trees GPU, High crew/rapids/rescue CPU, Low rapids CPU and all strict frame intervals miss. These less favourable observations are retained. Historical captures do not isolate material cost from host variation or establish named-device acceptance."
+  },
+  "budgetAccepted": false,
+  "commandLogs": [
+    "evidence/phase-2-boat-accessibility.txt",
+    "evidence/phase-2-boat-build.txt",
+    "evidence/phase-2-boat-camera.txt",
+    "evidence/phase-2-boat-deployment.txt",
+    "evidence/phase-2-boat-detail.txt",
+    "evidence/phase-2-boat-game-flow.txt",
+    "evidence/phase-2-boat-graphics.txt",
+    "evidence/phase-2-boat-hull.txt",
+    "evidence/phase-2-boat-landing.txt",
+    "evidence/phase-2-boat-package.txt",
+    "evidence/phase-2-boat-performance.txt",
+    "evidence/phase-2-boat-tests.txt",
+    "evidence/phase-2-boat-tracker.txt"
+  ],
+  "releaseEvidence": "evidence/phase-2-boat-package.json"
+}

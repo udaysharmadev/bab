@@ -1,0 +1,37 @@
+{
+  "title": "External Claude handoff integration review",
+  "date": "2026-10-21",
+  "state": "VERIFIED_SCOPED_FIXES",
+  "implemented": [
+    "Initialize foam-nearest-obstacle cache before movement threshold checks",
+    "Publish conflicted voyages as unavailable/blocked independently of storage failures",
+    "Stop stale-owner save and heartbeat retries after lease conflict"
+  ],
+  "verification": {
+    "targeted": "PASS:2 tests",
+    "typecheck": "PASS",
+    "build": "PASS",
+    "camera": "PASS:180 cases",
+    "optics": "PASS",
+    "fullSuite": "PASS:116 tests,0 failures including local network authority",
+    "tracker": "PASS:freshness and2 integrity tests"
+  },
+  "logs": [
+    "evidence/handoff-targeted.txt",
+    "evidence/handoff-tests.txt",
+    "evidence/handoff-build.txt",
+    "evidence/handoff-camera.txt",
+    "evidence/handoff-optics.txt"
+  ],
+  "reviewFindings": [
+    "External allocation reductions exist; no measured120+ allocation or60FPS claim independently certified",
+    "Sign texture cache deduplicates content, but prior unique signs were not proven a leak",
+    "Only vegetation telemetry is throttled; renderInfo serialization remains every frame",
+    "External live HUD changes earlier quiet-gameplay presentation and needs product/UX regression review",
+    "HTML maxlength20 counts UTF-16 units while playerName allows20 Unicode code points; these limits are not equivalent",
+    "parseInt port fallback accepts partially numeric strings and does not validate TCP range; hardening is incomplete"
+  ],
+  "phase": "M2 ACTIVE;3/5 checks; full M2-D PENDING",
+  "productionAccepted": false,
+  "release": "Existing cPanel archive/build manifest are previous D6 evidence, not certification of external changes; no package/public deployment in this review batch"
+}

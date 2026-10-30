@@ -1,5 +1,17 @@
 <!doctype html><html><head><meta charset="utf-8"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"><title>Audio render fixture</title></head><body><script type="module">
 import {GameAudio} from '/src/client/audio.ts';
+import {sampleWater} from '/src/shared/world.ts';
+import {PROTOCOL_VERSION,PHYSICS_VERSION} from '/src/shared/protocol.ts';
+const snap=(extra={})=>({protocol:PROTOCOL_VERSION,physics:PHYSICS_VERSION,tick:100,position:{x:0,y:0,z:0},rotation:{x:0,y:0,z:0,w:1},velocity:{x:0,y:0,z:0},blades:[],ack:[0,0,0,0],crew:[],checkpoint:0,revision:0,resetId:1,mode:'expedition',paused:false,complete:false,stage:'playing',condition:'afloat',wreckAge:0,crashId:0,obstacleId:null,strokes:[0,0,0,0],droppedSteps:0,...extra});
+function measure(buffer,start=.35,end=buffer.duration){
+ let peak=0,left=0,right=0,count=0,difference=0;
+ const a=buffer.getChannelData(0),b=buffer.getChannelData(1);
+ for(let i=Math.floor(start*buffer.sampleRate);i<Math.floor(end*buffer.sampleRate);i++){
+  if(!Number.isFinite(a[i])||!Number.isFinite(b[i]))throw Error('Non-finite audio');
+  peak=Math.max(peak,Math.abs(a[i]),Math.abs(b[i]));left+=a[i]*a[i];right+=b[i]*b[i];difference+=(a[i]-b[i])**2;count++;
+ }
+ return {peak,rms:Math.sqrt((left+right)/(count*2)),left,right,stereoDifference:Math.sqrt(difference/count)};
+}
 const render=async(muted)=>{
  const context=new OfflineAudioContext(2,44100*3,44100),audio=new GameAudio(context);audio.setVolume(muted?0:.55);
  audio.play({kind:'stroke',seat:0,effort:1},.05);audio.play({kind:'stroke',seat:1,effort:.7},.5);audio.play({kind:'break'},1);audio.play({kind:'checkpoint'},2);
@@ -7,5 +19,27 @@ const render=async(muted)=>{
  for(let c=0;c<2;c++)for(let i=0;i<buffer.length;i++){const sample=buffer.getChannelData(c)[i];if(!Number.isFinite(sample))throw Error('Non-finite audio');peak=Math.max(peak,Math.abs(sample));sum+=sample*sample;count++;if(i<44100*.4){if(c===0)left+=sample*sample;else right+=sample*sample;}}
  return {peak,rms:Math.sqrt(sum/count),left,right,samples:count};
 };
-try{document.body.dataset.result=JSON.stringify({audible:await render(false),muted:await render(true)});}catch(error){document.body.dataset.error=String(error);}
+const ambient=async(snapshot,volume=1,transition)=>{
+ const context=new OfflineAudioContext(2,44100*3,44100),audio=new GameAudio(context);
+ audio.setVolume(volume); audio.update(snapshot);
+ if(transition)context.suspend(.6).then(()=>{transition(audio,snapshot);return context.resume();});
+ const buffer=await context.startRendering();
+ return {whole:measure(buffer),tail:measure(buffer,2.3),resources:audio.resources};
+};
+try{
+ const base=snap(),flow=sampleWater(0,0,base.tick/60).velocity,drift={...base,velocity:flow};
+ const blade={x:0,y:0,z:0,immersion:1,force:420,state:'BRACE'};
+ const scenarios={};
+ for(const [name,snapshot] of Object.entries({dock:snap({stage:'lobby'}),drift,row:snap({velocity:{...flow,z:flow.z+3}}),rapids:snap({position:{x:0,y:0,z:310},velocity:sampleWater(0,310,base.tick/60).velocity}),port:snap({blades:[blade]}),starboard:snap({blades:[{...blade,state:'AIR'},blade]})}))scenarios[name]=await ambient(snapshot);
+ scenarios.quiet=await ambient(drift,.25);scenarios.muted=await ambient(drift,0);
+ for(const [name,transition] of Object.entries({paused:(a,s)=>a.update({...s,paused:true}),wreck:(a,s)=>a.update({...s,condition:'breaking'}),complete:(a,s)=>a.update({...s,complete:true}),inaudible:a=>a.setAudible(false),disabled:a=>a.setEnabled(false),clear:a=>a.clear()}))scenarios[name]=await ambient(drift,1,transition);
+ const context=new OfflineAudioContext(2,44100*3,44100),audio=new GameAudio(context);
+ audio.setVolume(1);audio.update(snap({position:{x:0,y:0,z:310},velocity:{x:3,y:0,z:3},blades:Array.from({length:4},()=>blade)}));
+ for(let i=0;i<200;i++)audio.play({kind:'break'});
+ const peakVoices=audio.resources.activeVoices;
+ const stress=measure(await context.startRendering(),0);
+ // Native ended callbacks run after the offline render promise on some browsers.
+ await new Promise(resolve=>setTimeout(resolve,30));
+ document.body.dataset.result=JSON.stringify({audible:await render(false),muted:await render(true),scenarios,stress:{...stress,peakVoices,resources:audio.resources}});
+}catch(error){document.body.dataset.error=String(error);}
 </script></body></html>

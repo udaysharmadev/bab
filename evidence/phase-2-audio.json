@@ -1,0 +1,90 @@
+{
+  "phase": "M2",
+  "check": "M2-D",
+  "subcheck": "M2-D2",
+  "title": "Current-relative stereo water and spatial paddle audio",
+  "engineeringState": "VERIFIED",
+  "parentCheckState": "PENDING",
+  "phaseEngineeringState": "ACTIVE",
+  "productionGate": "OPEN",
+  "verifiedUTC": "2026-10-20T18:19:53.906Z",
+  "protocol": 5,
+  "physics": "basin-0.9",
+  "world": "waterworks-1",
+  "implemented": [
+    "Quiet stereo dock and river ambience",
+    "Water-relative hull wash; smooth shared rapid intensity",
+    "Four immersed seat-panned brace layers",
+    "Seven fixed loops share one 705600-byte two-channel noise buffer at44100Hz; short seam crossfade",
+    "24 temporary source ceiling, ended graph disconnection and native soft output guard"
+  ],
+  "corrections": [
+    "The full-volume correlated transient fixture exceeded full scale. Faster/higher-ratio compression alone still reached1.360779; a soft output guard fixed the failure while retaining the peak<1 assertion.",
+    "The old preview process was no longer running; restored port2571 with in-memory saves before built-game checks."
+  ],
+  "automatedTests": {
+    "command": "npm test",
+    "passed": 107,
+    "failed": 0,
+    "seconds": 84.536174375,
+    "log": "evidence/phase-2-audio-tests.txt",
+    "scope": "Full unit/authority regression; final Web Audio graph is separately covered by strict build and actual PCM/native-browser checks."
+  },
+  "audio": {
+    "result": "PASS",
+    "groups": 7,
+    "evidence": "evidence/audio.json",
+    "browser": "155.0.8059.82",
+    "stressPeak": 0.9448018670082092,
+    "peakTemporaryVoices": 24,
+    "remainingTemporaryVoices": 0,
+    "ambientLayers": 7
+  },
+  "build": "PASS",
+  "verification": {
+    "audio": {
+      "result": "PASS",
+      "groups": 7,
+      "evidence": "evidence/audio.json",
+      "log": "evidence/phase-2-audio-browser.txt"
+    },
+    "gameFlow": {
+      "result": "PASS",
+      "groups": 8,
+      "evidence": "evidence/browser.json",
+      "log": "evidence/phase-2-audio-game-flow.txt"
+    },
+    "tracker": {
+      "result": "PASS",
+      "integrityTests": 2,
+      "browserGroups": 6,
+      "evidence": "evidence/tracker-browser.json",
+      "log": "evidence/phase-2-audio-tracker.txt"
+    },
+    "deploymentSmoke": {
+      "result": "PASS",
+      "checks": 8,
+      "scope": "Local in-memory preview only",
+      "log": "evidence/phase-2-audio-deployment.txt"
+    }
+  },
+  "humanListening": false,
+  "humanPlaytest": false,
+  "namedDevicePerformance": false,
+  "publicDeployment": false,
+  "privateDatabaseModified": false,
+  "remaining": [
+    "Full M2-D boat/crew/hero water/cliff/material presentation",
+    "Regional/contact palette, recordings/music and human listening mix",
+    "Existing CPU/GPU/frame timing and named-device performance gates",
+    "M2-E genuine full-route four-human/newcomer acceptance"
+  ],
+  "priorEvidence": "evidence/phase-2-lobby.json",
+  "buildLog": "evidence/phase-2-audio-build.txt",
+  "retainedEvidence": {
+    "graphics": "M2-D1 23 route views/3 title viewports; no geometry/render changes in this batch",
+    "camera": "M2-D1 180 cases; no camera changes",
+    "performance": "M2-C2 CPU/GPU/frame budget misses retained; not rerun or accepted",
+    "load": "M2-D1 4 rooms/16 clients/120.079s; unchanged authority, not rerun"
+  }
+}

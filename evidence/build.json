@@ -1,78 +1,383 @@
 {
   "game": "Bad at Boating",
-  "protocol": 3,
-  "physics": "basin-0.5",
+  "generatedUTC": "2026-10-21T16:13:50.232619+00:00",
+  "baseCommit": "1dee20db314dda485c734932df48e9780bb53d03",
+  "workingTreeChanges": true,
+  "protocol": 7,
+  "physics": "basin-0.13",
   "world": "waterworks-1",
-  "sourceSha256": "9581f46a374938af22a38217a11f0fc8e487850f07feb66d92247e92720c8d89",
-  "sourceHashScope": "All src/tests/scripts files + package/lock/TS/Vite/index + app.cjs/Docker/compose/ignore/CI config",
-  "sourceHashAlgorithm": "Sorted relative path + NUL + file bytes + NUL, SHA256",
-  "fileCount": 52,
-  "generatedUTC": "2026-10-19T17:03:21.585930+00:00",
+  "scope": "Cooperative same-hull capsize righting via validated reverse majority,capped torque,neutral input rearming,paused15-second rescue window/timed fallback,temporary keyboard/touch prompt and surface locator. Fix redundant save-ack toast overwriting encounter guidance. Scoped local implementation;all human/device/complete-game gates open.",
+  "sourceSha256": "bc37309636e16c85bb0f43c4cc96f968f28bb298bdb90508335945f2c1971c3b",
+  "sourceHashScope": "Sorted relative path + NUL + bytes + NUL for src/tests/scripts/docs/.github and listed root metadata; excludes generated build/evidence/reference/private data.",
+  "fileCount": 136,
+  "sourceHashFiles": [
+    ".github/workflows/verify.yml",
+    "Dockerfile",
+    "README.md",
+    "app.cjs",
+    "app.js",
+    "docs/ANALYSIS.md",
+    "docs/CPANEL_SETUP.md",
+    "docs/DECISIONS.md",
+    "docs/GRAPHICS_AUDIT.md",
+    "docs/MULTIPLAYER_AUDIT.md",
+    "docs/PHASE_EXECUTION.md",
+    "docs/PHYSICS_AUDIT.md",
+    "docs/PLAYTEST_KIT.md",
+    "docs/PRD_PROGRESS.md",
+    "docs/PRODUCTION_PLAN.md",
+    "docs/PRODUCTION_TRACKER.html",
+    "docs/PRODUCTION_TRACKER.json",
+    "docs/PRODUCTION_TRACKER.md",
+    "docs/PROJECT_AUDIT.md",
+    "docs/RESEARCH_GAMEPLAY.md",
+    "docs/RESEARCH_VISUALS.md",
+    "docs/ROUTE.md",
+    "docs/STATUS.md",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "scripts/build-server.mjs",
+    "scripts/check-deployment.mjs",
+    "scripts/dev.mjs",
+    "scripts/package-cpanel.mjs",
+    "scripts/tracker.mjs",
+    "src/client/audio.ts",
+    "src/client/boat-detail.ts",
+    "src/client/camera.ts",
+    "src/client/crew.ts",
+    "src/client/danger.ts",
+    "src/client/hull.ts",
+    "src/client/input.ts",
+    "src/client/main.ts",
+    "src/client/nature.ts",
+    "src/client/rehearsal.ts",
+    "src/client/riverbed.ts",
+    "src/client/scene.ts",
+    "src/client/style.css",
+    "src/client/water.ts",
+    "src/package.json",
+    "src/server/BoatRoom.ts",
+    "src/server/index.ts",
+    "src/server/voyages.ts",
+    "src/shared/bathymetry.ts",
+    "src/shared/hull.ts",
+    "src/shared/names.ts",
+    "src/shared/paddle-blade.ts",
+    "src/shared/paddle-contact.ts",
+    "src/shared/protocol.ts",
+    "src/shared/rescue.ts",
+    "src/shared/river.ts",
+    "src/shared/rowing.ts",
+    "src/shared/simulation.ts",
+    "src/shared/world.ts",
+    "tests/accessibility.mjs",
+    "tests/animation.html",
+    "tests/animation.mjs",
+    "tests/audio.html",
+    "tests/audio.mjs",
+    "tests/audio.test.ts",
+    "tests/banks.test.ts",
+    "tests/bathymetry-browser.mjs",
+    "tests/bathymetry.test.ts",
+    "tests/bends-browser.mjs",
+    "tests/bends.test.ts",
+    "tests/blade.mjs",
+    "tests/blade.test.ts",
+    "tests/boat-detail.test.ts",
+    "tests/browser.mjs",
+    "tests/camera.html",
+    "tests/camera.mjs",
+    "tests/capsize-browser.mjs",
+    "tests/capsize-network.test.ts",
+    "tests/capsize.test.ts",
+    "tests/contact.test.ts",
+    "tests/controls.mjs",
+    "tests/crew.test.ts",
+    "tests/danger-browser.mjs",
+    "tests/danger-network.test.ts",
+    "tests/danger.test.ts",
+    "tests/finish.test.ts",
+    "tests/foliage.mjs",
+    "tests/grace.ts",
+    "tests/graphics.html",
+    "tests/graphics.mjs",
+    "tests/handoff.test.ts",
+    "tests/hazards.test.ts",
+    "tests/hull.test.ts",
+    "tests/hydrodynamics.test.ts",
+    "tests/input.test.ts",
+    "tests/landing.html",
+    "tests/landing.mjs",
+    "tests/lifecycle.test.ts",
+    "tests/load.ts",
+    "tests/lobby.mjs",
+    "tests/names.test.ts",
+    "tests/network-stress.test.ts",
+    "tests/network.test.ts",
+    "tests/onboarding.mjs",
+    "tests/package.json",
+    "tests/paddle-contact.mjs",
+    "tests/performance.mjs",
+    "tests/physics.test.ts",
+    "tests/presentation.test.ts",
+    "tests/reconnect.mjs",
+    "tests/rehearsal.test.ts",
+    "tests/rescue-browser.mjs",
+    "tests/rescue.test.ts",
+    "tests/route.test.ts",
+    "tests/rowing.test.ts",
+    "tests/save-browser.mjs",
+    "tests/save-restart.test.ts",
+    "tests/saves.test.ts",
+    "tests/server-reliability.test.ts",
+    "tests/soak.ts",
+    "tests/support/bathymetry-server.ts",
+    "tests/support/bends-server.ts",
+    "tests/support/capsize-server.ts",
+    "tests/support/name.mjs",
+    "tests/support/rescue-server.ts",
+    "tests/support/save-server.ts",
+    "tests/touch.mjs",
+    "tests/tracker-browser.mjs",
+    "tests/tracker.test.mjs",
+    "tests/water-depth.html",
+    "tests/water-depth.mjs",
+    "tests/water-effects.mjs",
+    "tests/waterwheel.test.ts",
+    "tsconfig.json",
+    "vite.config.ts"
+  ],
   "build": "PASS",
-  "modules": 65,
-  "clientJSKb": 806.65,
-  "gzipKb": 223.42,
+  "typecheck": "PASS",
+  "buildLog": "evidence/capsize-final-build.txt",
+  "typecheckLog": "evidence/capsize-final-typecheck.txt",
   "automatedTests": {
-    "passed": 58,
+    "command": "npm test",
+    "passed": 142,
     "failed": 0,
-    "command": "npm test (serial node:test)"
+    "seconds": 111.993764958,
+    "log": "evidence/capsize-final-tests.txt",
+    "executionScope": "Final neutral-rearm/server/ring source;UI-only duplicate save-toast removal verified afterward through final native fixtures."
   },
-  "controlsChecks": 25,
-  "browserAcceptanceGroups": 8,
-  "saveBrowserChecks": 6,
-  "graphicsFixtures": 17,
-  "titleViewports": 3,
-  "networkStress": "evidence/network-stress.json; three profiles + blackout/race/simultaneous/expiry/burst; ordered application-message drop, not TCP loss",
-  "deploymentSmoke": "evidence/deployment-local.json",
-  "cpanel": {
-    "archive": "releases/Bad-at-Boating-cPanel.zip",
-    "sha256": "4a201be48ea85f97269ba31664979e11c3183e5220339a1ae3e38980d359db29",
-    "bytes": 264707,
-    "files": [
-      "dist/",
-      "dist/index.html",
-      "dist/assets/",
-      "dist/assets/index-sR-JagkH.js",
-      "dist/assets/index-DZvHYWVR.css",
-      "CPANEL_SETUP.md",
-      "public/",
-      "public/.keep",
-      "package-lock.json",
-      "package.json",
-      "app.cjs",
-      "scripts/",
-      "scripts/check-deployment.mjs",
-      "build/",
-      "build/server.mjs",
-      "app.js"
+  "fixtures": {
+    "capsize-browser": {
+      "result": "PASS",
+      "checks": 5,
+      "evidence": "evidence/capsize-browser.json",
+      "log": "evidence/capsize-native-final.txt",
+      "executionScope": "Final neutral guard/ring/save-toast fix;5 real4-client key/arrow/touch-hold/cancel/reload groups"
+    },
+    "capsize-network": {
+      "result": "PASS",
+      "checks": 4,
+      "evidence": "evidence/capsize-network.json",
+      "log": "evidence/capsize-final-tests.txt",
+      "executionScope": "Final142-test suite;4 real-socket groups covering neutral guards,expiry and reconnect"
+    },
+    "capsize-physics": {
+      "result": "PASS",
+      "checks": 24,
+      "evidence": "evidence/capsize-physics.json",
+      "log": "evidence/capsize-final-tests.txt",
+      "executionScope": "Final142-test suite;24 real-torque heading/roll/pitch cases plus guards/timeout/lethal priority"
+    },
+    "controls-after": {
+      "result": "PASS",
+      "checks": 71,
+      "evidence": "evidence/controls-after.json",
+      "log": "evidence/capsize-controls.txt",
+      "executionScope": "71 normal controls before final neutral guard,which only applies at rescue transitions"
+    },
+    "browser": {
+      "result": "PASS",
+      "checks": 8,
+      "evidence": "evidence/browser.json",
+      "log": "evidence/capsize-browser.txt",
+      "executionScope": "Final neutral guard,prior UI-only duplicate save-toast removal;8 normal4-player flow groups"
+    },
+    "accessibility": {
+      "result": "PASS",
+      "checks": 7,
+      "evidence": "evidence/accessibility.json",
+      "log": "evidence/capsize-accessibility.txt",
+      "executionScope": "7 final-guard context/controller groups before UI-only toast removal"
+    },
+    "reconnect": {
+      "result": "PASS",
+      "checks": 4,
+      "evidence": "evidence/reconnect.json",
+      "log": "evidence/capsize-reconnect.txt",
+      "executionScope": "4 final-guard native reconnect groups before UI-only toast removal"
+    },
+    "save-browser": {
+      "result": "PASS",
+      "checks": 6,
+      "evidence": "evidence/save-browser.json",
+      "log": "evidence/capsize-save-browser.txt",
+      "executionScope": "6 final built0.13 authority groups migrating a temporary0.12 saved voyage"
+    },
+    "bathymetry-browser": {
+      "result": "PASS",
+      "checks": 3,
+      "evidence": "evidence/bathymetry-browser.json",
+      "log": "evidence/capsize-bathymetry-browser.txt",
+      "executionScope": "3 actual4-client shallow escape groups,final guard,before UI-only toast removal"
+    },
+    "rescue-browser": {
+      "result": "PASS",
+      "checks": 4,
+      "evidence": "evidence/rescue-browser.json",
+      "log": "evidence/capsize-rescue-final.txt",
+      "executionScope": "4 final native eddy/rejoin groups after duplicate-toast fix;original guidance assertion plus600ms late-ack check"
+    },
+    "lobby": {
+      "result": "PASS",
+      "checks": 8,
+      "evidence": "evidence/lobby.json",
+      "log": "evidence/capsize-lobby.txt",
+      "executionScope": "8 final name/Ready/lobby groups"
+    },
+    "graphics": {
+      "result": "PASS",
+      "checks": 27,
+      "evidence": "evidence/graphics.json",
+      "log": "evidence/capsize-graphics.txt",
+      "executionScope": "Final27 route views/3 titles and3 residency cycles;ring hidden during normal gameplay"
+    },
+    "camera": {
+      "result": "PASS",
+      "checks": 180,
+      "evidence": "evidence/camera.json",
+      "log": "evidence/capsize-camera.txt",
+      "executionScope": "180 final native camera cases"
+    },
+    "tracker-browser": {
+      "result": "PASS",
+      "checks": 6,
+      "evidence": "evidence/tracker-browser.json",
+      "log": "evidence/capsize-tracker-browser.txt",
+      "executionScope": "6 native tracker groups;latest generated content also passes freshness/integrity validation"
+    },
+    "load": {
+      "result": "PASS",
+      "evidence": "evidence/load-phase-2-capsize.json",
+      "log": "evidence/capsize-load.txt",
+      "executionScope": "Final protocol7/0.13 authority,4 rooms/16 real local WebSocket clients for60.007s after other QA workers finished. Not hosting capacity/Internet/device acceptance."
+    }
+  },
+  "tracker": {
+    "deliverables": 49,
+    "obstacleConcepts": 80,
+    "signatureEncounters": 10,
+    "regionCards": 14,
+    "acceptedScopePoints": 2,
+    "productionReadyRegions": 0,
+    "deliveryPhases": 5,
+    "engineeringVerified": [
+      "M1"
     ],
-    "startup": "app.js (CommonJS)",
-    "runtime": "Node24.11.0 tested",
-    "cleanProductionInstall": "98 packages; final offline install PASS",
-    "localSmoke": "evidence/cpanel-package-smoke.json;8 checks PASS",
-    "publicDeployment": "NOT RUN; user will set up cPanel; no domain/account accessed",
-    "requirements": [
-      "Node24",
-      "HTTPS/WSS forwarding",
-      "one persistent authority process",
-      "private persistent local SQLite path"
+    "engineeringActive": "M2",
+    "engineeringChecksVerified": {
+      "M1": 4,
+      "M2": 3
+    },
+    "remainingEngineeringChecks": [
+      "M2-D presentation",
+      "M2-E human/device acceptance"
+    ],
+    "partialEngineeringChecks": {
+      "M2-D": "Cooperative rescue interaction and surface locator are verified locally;production swimmer/rope/crew rescue art,audio,human/device and retained performance gates remain open."
+    }
+  },
+  "capsize": {
+    "rightingTorqueCapNm": 2400,
+    "majorityForFour": 3,
+    "rescueWindowSimulationSeconds": 15,
+    "successUprightTicks": 30,
+    "physicalPoseCases": 24,
+    "clientJsBytes": 861893,
+    "clientJsDeltaBytes": 949,
+    "evidence": "evidence/phase-2-capsize.json"
+  },
+  "graphics": {
+    "views": 27,
+    "titleViewports": 3,
+    "maxCalls": 705,
+    "maxTriangles": 2249368,
+    "returnResidency": [
+      [
+        173,
+        11
+      ],
+      [
+        173,
+        11
+      ],
+      [
+        173,
+        11
+      ]
     ]
   },
-  "audio": "Offline bounded stereo output/mute PASS; human mix NOT RUN",
-  "humanPlaytest": "NOT RUN; kit in docs/PLAYTEST_KIT.md",
-  "productionReadyRegions": 0,
-  "phaseCounts": {
-    "partialReview": 9,
-    "notStarted": 4,
-    "signedOff": 0
+  "roomLoad": {
+    "actualSeconds": 60.007,
+    "roomCount": 4,
+    "clientCount": 16,
+    "violations": [],
+    "roomsDisposed": true
   },
-  "finalPreview": "http://localhost:2569",
-  "previewSmoke": "Matching protocol3 client/authority rolled forward; old volatile room expired; fresh crew required",
-  "scope": "Durable canonical checkpoint recovery, physical shared-clock wheel, network/operational preparation; whole PRD remains partial",
-  "remoteCI": "NOT RUN; workflow defined",
-  "docker": "NOT RUN; Docker unavailable",
-  "landingRegression": "Historical evidence/landing.json; no water shader change this batch",
-  "browserEvidence": "evidence/browser.json; Chrome155 isolated automation",
-  "graphicsScope": "Authored fixture views, not human route completion or named-device FPS",
-  "verificationRecovery": "Sandbox listener denial resolved with authorized local networking; reconnect fixture now waits for replacement-socket snapshot after JOIN; FIFO relay ordering; final58/58 pass; completed save reopening is rejected with regression coverage"
+  "artifacts": {
+    "dist/assets/index-BwNxNgt5.js": {
+      "bytes": 861893,
+      "sha256": "3a645c6d489f9f794cdfede56390aca094a61920aa9f08951d135275b8fd2d3a"
+    },
+    "dist/assets/index-CJcCEMWV.css": {
+      "bytes": 9645,
+      "sha256": "00e812d95a5f356d99f67b693455f0d03d6489960f046c7bb82ab1d62ecb49b7"
+    },
+    "dist/index.html": {
+      "bytes": 8312,
+      "sha256": "bb0197745f202ebb460715442286ba8a5ba224a3212feb87eca1bd9a67f1e7e4"
+    },
+    "build/server.mjs": {
+      "bytes": 71762,
+      "sha256": "812c07e1e0df2fb91ddadc38fb382ed4dacae6d20e3bea0b359faf8fcadf3237"
+    },
+    "releases/Bad-at-Boating-cPanel.zip": {
+      "bytes": 293988,
+      "sha256": "59733e9774ab15a61af1a0ca64c4a2ed276e380159ceb96e52053272f00d4247"
+    }
+  },
+  "preview": "http://localhost:2571",
+  "previewDatabase": "Isolated in-memory QA saves;no private durable database modified.",
+  "cpanel": {
+    "packaged": true,
+    "verification": "evidence/capsize-package.json",
+    "cleanDependencyInstall": "NOT RERUN;dependencies unchanged",
+    "publicDeployment": "NOT RUN"
+  },
+  "deploymentSmoke": {
+    "result": "PASS",
+    "url": "http://localhost:2571",
+    "physics": "basin-0.13",
+    "protocol": 7,
+    "log": "evidence/capsize-deployment.txt",
+    "scope": "Final local built authority/in-memory saves."
+  },
+  "historicalEvidence": {
+    "priorPhysicsBuild": "evidence/build-before-capsize.json",
+    "rendererTiming": "evidence/performance-phase-2-bathymetry.json \u2014 retained0.12 measurements with High rapids/rescue CPU,High trees GPU and all strict frame-interval misses;no new FPS claim.",
+    "productionGrace": "evidence/grace.json \u2014 actual90-second grace under0.10;transport logic unchanged,not rerun.",
+    "scopeNotes": "evidence/phase-2-capsize.json"
+  },
+  "performanceBudgetAccepted": false,
+  "humanPlaytest": false,
+  "physicalControllerTest": false,
+  "namedDevicePerformance": false,
+  "longInternetBrowserSoak": false,
+  "remoteCI": "NOT RUN",
+  "containerExecution": "NOT RUN",
+  "phaseEvidence": "evidence/phase-2-capsize.json",
+  "finalStaticChecks": "PASS:136-file source fingerprint,5 artifact hashes,independent ZIP/runtime byte match,tracker integrity/freshness and git diff --check."
 }

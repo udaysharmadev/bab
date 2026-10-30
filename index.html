@@ -1,62 +1,60 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#153b33" />
-  <meta name="description" content="A co-op multiplayer rowing game. Four friends, one boat, a lot of river." />
-  <meta property="og:title" content="Bad at Boating" />
-  <meta property="og:description" content="A co-op multiplayer rowing game. Four friends, one boat, a lot of river." />
-  <meta property="og:type" content="website" />
-  <title>Bad at Boating</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23183d35'/%3E%3Cpath d='M7 20h26l-7 11H14z' fill='%23efbf6e'/%3E%3Cpath d='M12 9l16 19' stroke='%23e27c46' stroke-width='4'/%3E%3C/svg%3E">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#e1f0df"><meta name="description" content="Four friends. One raft. Ridiculously big hand fans. A cooperative browser obstacle game.">
+  <title>Bad at Boating · Fan Club</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='13' fill='%233fc9da'/%3E%3Cpath d='M8 28a16 16 0 0132 0L24 35z' fill='%23ffce55'/%3E%3Cpath d='M24 19v22M13 20l11 15 11-15' stroke='%23926b48' stroke-width='2' fill='none'/%3E%3C/svg%3E">
 </head>
 <body>
-  <div id="world" aria-label="River, obstacles and the shared wooden boat"></div>
-  <main id="title-screen" class="title-screen" aria-label="Main menu">
-    <div class="title-content">
-    <h1><small>BAD AT</small><br><span>BOATING</span><i aria-hidden="true"></i></h1>
-    <nav aria-label="Start game">
-      <button id="play-friends" class="primary" aria-label="Play with Friends">Play with Friends</button>
-      <button id="join-title">Join Crew</button>
-      <button id="resume-crew" hidden>Resume Crew</button>
-      <button id="continue-voyage" hidden>Continue Voyage</button>
-    </nav>
-    <p id="menu-message" role="status"></p>
+  <div id="world"></div>
+  <main id="title-screen" class="title-panel">
+    <div class="title-brand">
+      <h1 aria-label="Bad at Boating">
+        <svg class="game-logo" viewBox="0 0 560 190" aria-hidden="true">
+          <g transform="rotate(-3 280 100)" font-family="'Arial Rounded MT Bold', 'Arial Black', system-ui, sans-serif" font-weight="1000" stroke="#244458" stroke-width="7" stroke-linejoin="round" paint-order="stroke fill">
+            <text x="26" y="76" font-size="69" fill="#244458" transform="translate(0 5)" textLength="275" lengthAdjust="spacingAndGlyphs">BAD AT</text>
+            <text x="26" y="76" font-size="69" fill="#ffd264" textLength="275" lengthAdjust="spacingAndGlyphs">BAD AT</text>
+            <text x="22" y="166" font-size="103" fill="#244458" transform="translate(0 5)" textLength="516" lengthAdjust="spacingAndGlyphs">BOATING</text>
+            <text x="22" y="166" font-size="103" fill="#fff8df" textLength="516" lengthAdjust="spacingAndGlyphs">BOATING</text>
+          </g>
+          <g transform="translate(419 56) rotate(16)" stroke="#244458" stroke-linejoin="round">
+            <path d="M0 14 0 39" stroke-width="9"/><path d="M0 14 0 37" stroke="#bf8759" stroke-width="4"/>
+            <path d="M0 18-53-17Q-39-57 0-57 39-57 53-17Z" fill="#69c8bc" stroke-width="7"/>
+            <path d="M0 18-33-43M0 18 0-57M0 18 33-43" stroke="#fff5ce" stroke-width="4"/>
+          </g>
+        </svg>
+      </h1>
+      <p class="tagline">Four friends. One very bad plan.</p>
+    </div>
+    <div id="title-stage" aria-hidden="true"></div>
+    <div class="title-actions">
+      <button id="play-friends" class="primary">Play with Friends <span aria-hidden="true">→</span></button>
+      <button id="practice" class="secondary"><span class="practice-icon" aria-hidden="true">↗</span> Practice solo</button>
+      <p id="menu-message" role="status"></p>
+      <a id="legacy-link" href="/legacy.html" hidden>Open previous crew</a>
     </div>
   </main>
-  <button id="menu-button" aria-label="Open game menu" hidden>☰</button>
-  <nav id="touch-controls" aria-label="Touch paddle controls" hidden>
-    <button data-key="KeyW" aria-label="Row forward">↑</button><button data-key="KeyA" aria-label="Turn left">←</button><button data-key="KeyS" aria-label="Row backward">↓</button><button data-key="KeyD" aria-label="Turn right">→</button>
-  </nav>
-  <section id="lobby" class="lobby" aria-label="Crew lobby" hidden>
-    <h2>All hands aboard.</h2><p id="crew-count">Waiting for your crew · 1 / 4</p>
-    <ol id="crew" aria-label="Crew seats"></ol>
-    <!-- G2: Countdown display -->
-    <div id="lobby-countdown" hidden></div>
-    <div class="lobby-actions"><button id="invite">Copy Invite</button><button id="ready" class="primary" disabled title="Waiting for all 4 seats to be filled">Ready to Row</button></div>
-    <p class="control-note">Hold W/↑ forward · S/↓ reverse · A/← D/→ turn<br>Each player controls their own paddle.</p>
+  <header id="run-hud" hidden><span id="course-label">Fan Camp</span><span id="timer">0:00</span><button id="menu-button" aria-label="Open game menu">☰</button><progress id="progress" max="156" value="0" aria-label="Course progress"></progress></header>
+  <div id="crew-labels" aria-label="Crew names"></div>
+  <section id="lobby" class="card dock" aria-label="Crew lobby" hidden>
+    <p class="eyebrow">THE FAN CLUB</p><h2>Make some waves.</h2><p id="crew-count">1 / 4 aboard</p>
+    <div class="actions"><button id="invite" class="secondary">Copy Invite</button><button id="ready" class="primary">Ready</button></div>
+    <p id="countdown" role="status"></p>
+    <p class="controls-note"><kbd>A</kbd> <kbd>D</kbd> scoot a little &nbsp; <kbd>SPACE</kbd> fan</p>
   </section>
-  <div id="loading" class="notice" role="status" hidden>Finding your boat…</div>
-  <div id="crew-waiting" class="notice" role="status" hidden><p id="connection-message">Reconnecting to your crew…</p><button id="connection-leave">Main Menu</button></div>
-  <section id="failure" class="result-screen" aria-label="Boat lost" hidden>
-    <h2>All hands.<br>No boat.</h2><p>A collision broke the hull.<span id="obstacle-name"></span></p><button id="retry-checkpoint" class="primary">Retry Checkpoint</button><button id="failure-leave" class="quiet">Main Menu</button>
-  </section>
-  <!-- G1: Reset vote banner — shown when a mid-run checkpoint vote is in progress -->
-  <div id="reset-vote-banner" class="notice" hidden><p id="reset-vote-text" role="status"></p><button id="agree-reset">Agree</button><button id="withdraw-reset" hidden>Withdraw</button></div>
-  <section id="finish-screen" class="result-screen" aria-label="River complete" hidden><h2>Still friends.<br>Still floating.</h2><p>You made it through the river.</p><p id="finish-time" class="finish-time"></p><button id="replay" class="primary">Row Again</button><button id="finish-leave" class="quiet">Main Menu</button></section>
-  <div id="toast" role="status" aria-live="polite"></div>
-  <dialog id="join-dialog" aria-label="Join crew"><form method="dialog"><button class="dialog-close" aria-label="Close join">×</button></form><h2>Join your crew.</h2><form id="join-form"><label for="room-code">Crew invite link or code</label><input id="room-code" autocomplete="off" required placeholder="Paste your invite" /><button class="primary" type="submit">Join Boat</button></form></dialog>
-  <dialog id="settings-dialog" aria-label="Game menu">
-    <form method="dialog"><button class="dialog-close" aria-label="Close game menu">×</button></form>
-    <h2>Bad at Boating</h2><p id="seat-name"></p><p id="stroke-summary"></p>
-    <button id="resume" class="primary">Back to the River</button>
-    <div class="menu-actions"><button id="invite-menu">Copy Crew Invite</button><button id="copy-recovery" disabled>Copy Voyage Recovery Code</button><button id="show-controls">Controls</button><button id="reset">Return to Checkpoint</button><button id="fullscreen">Fullscreen</button><button id="leave">Main Menu</button></div>
-    <label class="setting">Sound effects <input id="sound-enabled" type="checkbox" checked /></label>
-    <label class="setting">Sound volume <input id="sound-volume" type="range" min="0" max="1" step="0.05" value="0.55" /></label>
-    <label class="setting">Gentler camera <input id="reduced-motion" type="checkbox" /></label><label class="setting">Lower graphics <input id="low-quality" type="checkbox" /></label>
-  </dialog>
-  <dialog id="controls-dialog" aria-label="Paddle controls"><form method="dialog"><button class="dialog-close" aria-label="Close controls">×</button></form><h2>Hold a key. Keep rowing.</h2><dl><dt>W ↑</dt><dd>Row forwards continuously</dd><dt>S ↓</dt><dd>Row backwards / slow forward drift</dd><dt>A ←</dt><dd>Turn the boat left</dd><dt>D →</dt><dd>Turn the boat right</dd></dl><p>Hold to repeat complete strokes. Combine forward and turn to curve. Release to lift your paddle; the boat keeps its momentum. Each player controls their own paddle, so coordinate with your crew. Red-marked obstacles break the boat on contact.</p><p>On touchscreens: hold a directional button to repeat its action. Combine forward and turn to curve.</p><p>Escape opens the game menu.</p></dialog>
-  <script type="module" src="/src/client/main.ts"></script>
-</body>
-</html>
+  <aside id="play-hint" aria-label="Your fan controls" hidden>
+    <div class="fan-state"><span id="fan-feedback">Ready</span><progress id="fan-meter" max="1" value="1" aria-label="Fan stroke recovery"></progress></div>
+    <div class="control-line"><span><kbd>A</kbd> <kbd>D</kbd> scoot</span><span><kbd>SPACE</kbd> fan</span></div>
+  </aside>
+  <p id="lesson" role="status" hidden></p>
+  <nav id="touch-controls" aria-label="Fan controls" hidden><div><button data-control="KeyA" aria-label="Scoot left">←</button><button data-control="KeyD" aria-label="Scoot right">→</button></div><button data-control="Space" class="fan-button" aria-label="Hold to fan">FAN!</button></nav>
+  <section id="notice" class="card notice" role="status" hidden><h2 id="notice-title"></h2><p id="notice-copy"></p><button id="notice-leave" class="secondary">Main Menu</button></section>
+  <section id="result" class="card dock" aria-label="Course result" hidden><h2 id="result-title"></h2><p id="result-copy"></p><button id="retry" class="primary">Retry Checkpoint</button></section>
+  <p id="reset-vote" hidden role="status"></p>
+  <p id="toast" role="status" aria-live="polite"></p>
+  <dialog id="name-dialog" aria-labelledby="name-heading"><h2 id="name-heading">Who’s joining the fan club?</h2><form id="name-form"><label for="player-name">Your name</label><input id="player-name" autocomplete="nickname" maxlength="80" required autofocus placeholder="Enter your name"><p id="name-message">Up to 20 letters, numbers or spaces.</p><button id="name-submit" class="primary" type="submit">Hop Aboard</button></form><button id="cancel-name" class="quiet">Back</button></dialog>
+  <dialog id="settings-dialog" aria-labelledby="settings-heading"><h2 id="settings-heading">Take a breather.</h2><p>Your fan pushes the raft opposite the air. Scoot a little to change the turning force. Coordinate who fans and who waits.</p><p><kbd>A</kbd> <kbd>D</kbd> / ← → scoot · <kbd>SPACE</kbd> fan</p><button id="resume" class="primary">Back to the Raft</button><div class="actions"><button id="menu-invite" class="secondary">Copy Invite</button><button id="reset" class="secondary">Return to Checkpoint</button></div><label class="setting">Lower graphics <input id="low-graphics" type="checkbox"></label><button id="leave" class="quiet">Main Menu</button></dialog>
+  <dialog id="invite-dialog" aria-label="Crew invite"><h2>Bring your fan club.</h2><p>Send this link to your friends.</p><input id="invite-link" readonly aria-label="Invite link"><button id="close-invite" class="primary">Done</button></dialog>
+  <script type="module" src="/src/client/fan-main.ts"></script>
+</body></html>

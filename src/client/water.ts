@@ -1,7 +1,26 @@
 import * as T from 'three';
-import { HULL_RING } from './hull';
+import { HULL_PLANES, HULL_TOP, HULL_BOTTOM } from '../shared/hull';
+import {bedRow,bedHeight} from '../shared/bathymetry';
 import { Water } from 'three/addons/objects/Water.js';
-import { sampleWater, channelHalfWidth, ROCKS, PYLONS, SPIKES } from '../shared/world';
+import { sampleWaterHeight, rapidStrength, channelCenter, bankEdge, ROCKS, PYLONS, SPIKES } from '../shared/world';
+
+const WATER_COLUMNS = 33;
+// The river is a warped height grid. Central differences avoid rebuilding
+// triangle normals on every wave update; compensate for changing bank width.
+export function updateWaterNormals(geometry: T.BufferGeometry, columns: number) {
+  const position=geometry.getAttribute('position'),normal=geometry.getAttribute('normal');
+  if(columns<2||position.count%columns!==0||position.count<columns*2)throw new Error('Water normals require a rectangular grid');
+  const p=position.array,n=normal.array;
+  for(let i=0;i<position.count;i++){
+    const column=i%columns,left=(column?i-1:i)*3,right=(column<columns-1?i+1:i)*3;
+    const top=(i>=columns?i-columns:i)*3,bottom=(i+columns<position.count?i+columns:i)*3;
+    const slopeX=(p[right+2]!-p[left+2]!)/(p[right]!-p[left]!);
+    const slopeY=(p[bottom+2]!-p[top+2]!-slopeX*(p[bottom]!-p[top]!))/(p[bottom+1]!-p[top+1]!);
+    const inverse=1/Math.hypot(slopeX,slopeY,1),offset=i*3;
+    n[offset]=-slopeX*inverse;n[offset+1]=-slopeY*inverse;n[offset+2]=inverse;
+  }
+  normal.needsUpdate=true;
+}
 
 // Periodic slope texture, generated locally. Fine ripples are cosmetic; the
 // displaced geometry below samples the exact authoritative water surface.
@@ -24,11 +43,10 @@ function rippleNormals() {
 
 export class RiverWater extends Water {
   private lastGeometryTime = -1;
+  private lastBedZ = NaN;
   private low = false;
   private transmission = true;
   private refractionTarget?: T.WebGLRenderTarget;
-  private depthTarget?: T.WebGLRenderTarget;
-  private readonly depthMaterial = new T.MeshDepthMaterial({ depthPacking: T.RGBADepthPacking, blending: T.NoBlending });
   readonly captureSize = new T.Vector2();
   captureFrames = 0;
   private readonly normalizedX: Float32Array;
@@ -36,8 +54,12 @@ export class RiverWater extends Water {
   // Cached scratch objects for the per-frame update() hot path — avoids GC pressure.
   private readonly _scaleOne = new T.Vector3(1, 1, 1);
   private readonly _forward = new T.Vector3(0, 0, 1);
+  // Sorted nearest-obstacle cache: re-sort only when the boat moves >2m.
+  private readonly _nearestFoam: T.Vector3[] = Array.from({length:12},()=>new T.Vector3(1000,1000,0));
+  private _lastFoamX = NaN;
+  private _lastFoamZ = NaN;
   constructor() {
-    super(new T.PlaneGeometry(26, 174, 48, 320), {
+    super(new T.PlaneGeometry(26, 174, WATER_COLUMNS-1, 192), {
       textureWidth: 768, textureHeight: 768, waterNormals: rippleNormals(),
       sunDirection: new T.Vector3(-.42, .7, .58).normalize(), sunColor: '#fff0ce',
       waterColor: '#197b77', distortionScale: 1.3, fog: true,
@@ -47,13 +69,15 @@ export class RiverWater extends Water {
     const vertices = this.geometry.getAttribute('position');
     this.normalizedX = Float32Array.from({length:vertices.count}, (_,i)=>vertices.getX(i)/13);
     this.geometry.setAttribute('channelWidth', new T.Float32BufferAttribute(new Float32Array(vertices.count).fill(12.5),1));
+    this.geometry.setAttribute('channelCenter', new T.Float32BufferAttribute(new Float32Array(vertices.count),1));
+    this.geometry.setAttribute('bedLevel',new T.Float32BufferAttribute(new Float32Array(vertices.count).fill(-1.8),1));
     const material = this.material;
     material.uniforms.boatPosition = { value: new T.Vector2() };
     material.uniforms.boatDirection = { value: new T.Vector2(0, 1) };
     material.uniforms.boatSpeed = { value: 0 };
     material.uniforms.hullWorldInverse = { value: new T.Matrix4() };
     material.uniforms.dryHull = { value: 1 };
-    material.uniforms.hullOutline = { value: HULL_RING.map(([x,z])=>new T.Vector2(x,z)) };
+    material.uniforms.hullPlanes = { value: HULL_PLANES.map(([x,y,z,w])=>new T.Vector4(x,y,z,w)) };
     material.uniforms.lowQuality = { value: 0 };
     material.uniforms.sceneColor = { value: null };
     material.uniforms.sceneDepth = { value: null };
@@ -62,15 +86,15 @@ export class RiverWater extends Water {
     const obstacles = Array.from({length:12},()=>new T.Vector3(1000,1000,0));
     material.uniforms.obstacles = { value: obstacles };
     material.vertexShader = material.vertexShader
-      .replace('varying vec4 mirrorCoord;', 'attribute float channelWidth; varying float riverHalfWidth; varying vec3 riverNormal; varying vec4 riverClip; varying vec4 mirrorCoord;')
+      .replace('varying vec4 mirrorCoord;', 'attribute float bedLevel; varying float riverBedLevel; attribute float channelWidth; attribute float channelCenter; varying float riverHalfWidth; varying float riverCenter; varying vec3 riverNormal; varying vec4 riverClip; varying vec4 mirrorCoord;')
       .replace('gl_Position = projectionMatrix * mvPosition;', 'gl_Position = projectionMatrix * mvPosition; riverClip = gl_Position;')
-      .replace('mirrorCoord = modelMatrix', 'riverHalfWidth = channelWidth; riverNormal = normalize(mat3(modelMatrix) * normal);\n mirrorCoord = modelMatrix');
+      .replace('mirrorCoord = modelMatrix', 'riverBedLevel = bedLevel; riverHalfWidth = channelWidth; riverCenter = channelCenter; riverNormal = normalize(mat3(modelMatrix) * normal);\n mirrorCoord = modelMatrix');
     material.fragmentShader = material.fragmentShader
-      .replace('varying vec4 mirrorCoord;', `varying float riverHalfWidth; varying vec3 riverNormal; varying vec4 riverClip;
+      .replace('varying vec4 mirrorCoord;', `varying float riverBedLevel; varying float riverHalfWidth; varying float riverCenter; varying vec3 riverNormal; varying vec4 riverClip;
         uniform sampler2D sceneColor; uniform sampler2D sceneDepth;
         uniform float refractionReady; uniform vec2 cameraNearFar;
         uniform mat4 hullWorldInverse; uniform float dryHull;
-        uniform vec2 hullOutline[${HULL_RING.length}];
+        uniform vec4 hullPlanes[${HULL_PLANES.length}];
         uniform vec2 boatPosition; uniform vec2 boatDirection;
         uniform float boatSpeed; uniform float lowQuality;
         uniform vec3 obstacles[${obstacles.length}]; varying vec4 mirrorCoord;`)
@@ -79,17 +103,12 @@ export class RiverWater extends Water {
         // rendered boat frame, including draft, roll and pitch; wrecks flood.
         if (dryHull > .5) {
           vec3 local = (hullWorldInverse * vec4(worldPosition.xyz,1.0)).xyz;
-          if (abs(local.x) < 1.0 && abs(local.z) < 2.3 && local.y >= -.30 && local.y <= .47) {
-            float height = clamp((local.y + .25)/.72,0.0,1.0);
-            vec2 section = local.xz / vec2(.65+.35*height,.88+.12*height);
-            bool positive = false; bool negative = false;
-            for (int i=0;i<${HULL_RING.length};i++) {
-              vec2 a=hullOutline[i], b=hullOutline[(i+1)%${HULL_RING.length}];
-              float edge=(b.x-a.x)*(section.y-a.y)-(b.y-a.y)*(section.x-a.x);
-              positive = positive || edge > .0001;
-              negative = negative || edge < -.0001;
+          if (abs(local.x) < 1.0 && abs(local.z) < 2.3 && local.y >= ${HULL_BOTTOM} && local.y <= ${HULL_TOP}) {
+            bool inside = true;
+            for (int i=0;i<${HULL_PLANES.length};i++) {
+              if (dot(hullPlanes[i].xyz,local) > hullPlanes[i].w + .0001) inside = false;
             }
-            if (!(positive && negative)) discard;
+            if (inside) discard;
           }
         }
       `)
@@ -97,9 +116,10 @@ export class RiverWater extends Water {
       .replace('normalize( noise.xzy * vec3( 1.5, 1.0, 1.5 ) )',
         'normalize(riverNormal + vec3(noise.x, 0.0, noise.y) * 0.55)')
       .replace('vec3 outgoingLight = albedo;', `
-        // Low keeps the inexpensive analytic tint. High samples the actual
+        // Low tints from the shared physical bed. High samples the actual
         // opaque scene behind the surface, with view-depth absorption.
-        float depth = .45 + 2.7 * (1.0 - pow(clamp(abs(worldPosition.x)/(riverHalfWidth+.4),0.0,1.0), 4.0));
+        float riverLateral = worldPosition.x - riverCenter;
+        float depth = max(.03,worldPosition.y-riverBedLevel);
         float bed = sin(worldPosition.x * 2.8 + sin(worldPosition.z * 1.7)) * sin(worldPosition.z * 3.1) * .05;
         float caustic = pow(max(0.0, sin(worldPosition.x*4.0+time*.9+sin(worldPosition.z*3.0-time*.7))), 10.0);
         vec3 transmitted = mix(vec3(.018,.16,.13), vec3(.22,.33,.15) + bed + caustic*.055, exp(-depth*.8));
@@ -107,11 +127,11 @@ export class RiverWater extends Water {
         if (refractionReady > .5) {
           vec2 screenUV = riverClip.xy / riverClip.w * .5 + .5;
           float surfaceZ = -perspectiveDepthToViewZ(riverClip.z / riverClip.w * .5 + .5, cameraNearFar.x, cameraNearFar.y);
-          float sceneDepthSample = unpackRGBAToDepth(texture2D(sceneDepth,screenUV));
+          float sceneDepthSample = texture2D(sceneDepth,screenUV).r;
           float sceneZ = -perspectiveDepthToViewZ(sceneDepthSample,cameraNearFar.x,cameraNearFar.y);
           float thickness = clamp(sceneZ - surfaceZ, 0.0, 12.0);
           vec2 refractedUV = clamp(screenUV + surfaceNormal.xz * .012 * smoothstep(0.0,1.0,thickness),vec2(.002),vec2(.998));
-          float refractedDepth = unpackRGBAToDepth(texture2D(sceneDepth,refractedUV));
+          float refractedDepth = texture2D(sceneDepth,refractedUV).r;
           float refractedZ = -perspectiveDepthToViewZ(refractedDepth,cameraNearFar.x,cameraNearFar.y);
           // Do not pull above-water players, banks or hull into the river.
           if (refractedZ < surfaceZ + .025) { refractedUV = screenUV; refractedDepth = sceneDepthSample; refractedZ = sceneZ; }
@@ -131,13 +151,14 @@ export class RiverWater extends Water {
         float nearest = 100.0;
         for(int i=0;i<${obstacles.length};i++) nearest = min(nearest, abs(length(worldPosition.xz-obstacles[i].xy)-obstacles[i].z));
         float edgeFoam = (1.0-smoothstep(.025,.20,nearest)) * (.6+.4*sin(worldPosition.z*18.0+time*3.0));
-        edgeFoam += smoothstep(riverHalfWidth-.05,riverHalfWidth+.4,abs(worldPosition.x))*.45;
+        edgeFoam += smoothstep(riverHalfWidth-.05,riverHalfWidth+.4,abs(riverLateral))*.45;
         vec2 relative = worldPosition.xz - boatPosition;
         float aft = -dot(relative,boatDirection), lateral = abs(dot(relative,vec2(boatDirection.y,-boatDirection.x)));
         float wake = (1.0-smoothstep(.04,.18,abs(lateral-(.85+aft*.29)))) * smoothstep(1.0,2.0,aft) * (1.0-smoothstep(2.0,8.5,aft)) * clamp(boatSpeed*.5,0.0,.65);
         // Break long chalk-white wake lines into softer, moving froth.
-        float froth = smoothstep(-.25,.55,sin(worldPosition.x*35.0+time)*sin(worldPosition.z*29.0-time*1.7)+noise.z*.35);
-        wake *= .28 + .4 * froth;
+        float crest = sin(aft*9.0-time*(2.0+clamp(boatSpeed,0.0,4.0)*7.0)+sin(lateral*11.0+time*.7)*.6);
+        float froth = smoothstep(-.1,.65,crest*.65+noise.x*.35+noise.y*.2);
+        wake *= .08 + .42 * froth;
         outgoingLight = mix(outgoingLight, vec3(.78,.91,.84),clamp(edgeFoam*.38+contactFoam*.34+wake,0.0,.65));
       `);
     const reflect = this.onBeforeRender;
@@ -149,7 +170,6 @@ export class RiverWater extends Water {
     this.low = low; this.material.uniforms.lowQuality!.value = low ? 1 : 0;
     if (low) {
       this.refractionTarget?.dispose(); this.refractionTarget = undefined; this.captureSize.set(0,0);
-      this.depthTarget?.dispose(); this.depthTarget = undefined;
       for (const name of ['sceneColor','sceneDepth']) this.material.uniforms[name]!.value = null;
       this.material.uniforms.refractionReady!.value = 0;
     }
@@ -170,40 +190,36 @@ export class RiverWater extends Water {
     const size = renderer.getDrawingBufferSize(new T.Vector2());
     const scale = Math.min(.65, 1280 / size.x, 960 / size.y);
     const width = Math.max(1, Math.round(size.x * scale)), height = Math.max(1, Math.round(size.y * scale));
-    if (!this.refractionTarget || !this.depthTarget) {
+    if (!this.refractionTarget) {
       this.refractionTarget = new T.WebGLRenderTarget(width,height,{type:T.HalfFloatType});
-      this.depthTarget = new T.WebGLRenderTarget(width,height);
-      this.depthTarget.texture.minFilter = this.depthTarget.texture.magFilter = T.NearestFilter;
+      this.refractionTarget.depthTexture = new T.DepthTexture(width,height,T.UnsignedIntType);
+      this.refractionTarget.depthTexture.minFilter = this.refractionTarget.depthTexture.magFilter = T.NearestFilter;
       this.refractionTarget.texture.name = 'river-scene-transmission';
-      this.depthTarget.texture.name = 'river-scene-packed-depth';
+      this.refractionTarget.depthTexture.name = 'river-scene-native-depth';
     }
     if (this.refractionTarget.width !== width || this.refractionTarget.height !== height) {
-      this.refractionTarget.setSize(width,height); this.depthTarget.setSize(width,height);
+      this.refractionTarget.setSize(width,height);
     }
     const target = renderer.getRenderTarget(), visible = this.visible, layers = camera.layers.mask;
     const shadows = renderer.shadowMap.autoUpdate, shadowEnabled = renderer.shadowMap.enabled, xr = renderer.xr.enabled;
     const viewport = renderer.getViewport(new T.Vector4()), scissor = renderer.getScissor(new T.Vector4()), scissorTest = renderer.getScissorTest();
-    const overrideMaterial = scene.overrideMaterial, clearColor = renderer.getClearColor(new T.Color()), clearAlpha = renderer.getClearAlpha();
     try {
       // Riverbed transmission needs material color and geometry depth, not
       // sunlight shadows. Keeping shadow samplers out of this offscreen pass
       // also makes the capture compatible with the reflected-water program.
       this.visible = false; camera.layers.set(1); renderer.shadowMap.autoUpdate = false; renderer.shadowMap.enabled = false; renderer.xr.enabled = false;
       renderer.setRenderTarget(this.refractionTarget); renderer.setScissorTest(false); renderer.clear(); renderer.render(scene,camera);
-      scene.overrideMaterial = this.depthMaterial; renderer.setClearColor(0xffffff,1);
-      renderer.setRenderTarget(this.depthTarget); renderer.clear(); renderer.render(scene,camera);
       this.captureSize.set(width,height); this.captureFrames++;
       this.material.uniforms.sceneColor!.value = this.refractionTarget.texture;
-      this.material.uniforms.sceneDepth!.value = this.depthTarget.texture;
+      this.material.uniforms.sceneDepth!.value = this.refractionTarget.depthTexture;
       this.material.uniforms.refractionReady!.value = 1;
       (this.material.uniforms.cameraNearFar!.value as T.Vector2).set(camera.near,camera.far);
     } finally {
       this.visible = visible; camera.layers.mask = layers; renderer.shadowMap.autoUpdate = shadows; renderer.shadowMap.enabled = shadowEnabled; renderer.xr.enabled = xr;
-      scene.overrideMaterial = overrideMaterial; renderer.setClearColor(clearColor,clearAlpha);
       renderer.setRenderTarget(target); renderer.setViewport(viewport); renderer.setScissor(scissor); renderer.setScissorTest(scissorTest);
     }
   }
-  update(time: number, camera: T.Camera, position: T.Vector3, rotation: T.Quaternion, speed: number, intact = true) {
+  update(time: number, camera: T.Camera, position: T.Vector3, rotation: T.Quaternion, speed: number, intact = true, motion?: T.Vector2) {
     const uniforms = this.material.uniforms;
     uniforms.time!.value = time;
     uniforms.dryHull!.value = intact ? 1 : 0;
@@ -211,7 +227,9 @@ export class RiverWater extends Water {
     (uniforms.eye!.value as T.Vector3).copy(camera.position);
     (uniforms.boatPosition!.value as T.Vector2).set(position.x, position.z);
     this._forward.set(0, 0, 1).applyQuaternion(rotation);
-    (uniforms.boatDirection!.value as T.Vector2).set(this._forward.x, this._forward.z).normalize();
+    const direction=uniforms.boatDirection!.value as T.Vector2;
+    if(motion&&motion.lengthSq()>.0001)direction.copy(motion).normalize();
+    else direction.set(this._forward.x, this._forward.z).normalize();
     uniforms.boatSpeed!.value = speed;
     // Geometry runs at 20 Hz; shader normals/reflections run at display rate.
     // Checkpoint/reconnect can relocate the hull without advancing server time.
@@ -219,16 +237,25 @@ export class RiverWater extends Water {
     if (Math.abs(time - this.lastGeometryTime) < .05 && Math.abs(position.z + 65 - this.position.z) < .5) return;
     this.lastGeometryTime = time;
     this.position.z = position.z + 65;
-    const p = this.geometry.getAttribute('position'), widths = this.geometry.getAttribute('channelWidth');
-    let width = 12.5;
+    const updateBed=this.lastBedZ!==this.position.z;
+    const p = this.geometry.getAttribute('position'), widths = this.geometry.getAttribute('channelWidth'),centres=this.geometry.getAttribute('channelCenter'),levels=this.geometry.getAttribute('bedLevel');
+    let width = 12.5, rapids = 0,centre=0,fieldCentre=0;
+    let bedA=bedRow(0),bedB=bedRow(5);
     for (let i = 0; i < p.count; i++) {
       const z = this.position.z - p.getY(i);
-      if(i%49===0)width=channelHalfWidth(z);
-      p.setX(i, this.normalizedX[i]! * (width + .4)); widths.setX(i,width);
-      p.setZ(i, sampleWater(p.getX(i), z, time).height - .015);
+      if(i%WATER_COLUMNS===0){const left=bankEdge(z,-1),right=bankEdge(z,1);width=(right-left)/2;centre=(right+left)/2;fieldCentre=channelCenter(z);rapids=rapidStrength(z);if(updateBed){const row=Math.floor(z/5)*5;bedA=bedRow(row);bedB=bedRow(row+5);}}
+      p.setX(i, centre+this.normalizedX[i]! * (width + .4)); widths.setX(i,width);centres.setX(i,centre);
+      p.setZ(i, sampleWaterHeight(p.getX(i), z, time, rapids,fieldCentre) - .015);
+      if(updateBed)levels.setX(i,bedHeight(p.getX(i),z,bedA,bedB));
     }
-    const nearest = this.foamObstacles.slice().sort((a,b)=>Math.hypot(a.x-position.x,a.y-position.z)-Math.hypot(b.x-position.x,b.y-position.z)).slice(0,12);
-    const foam = uniforms.obstacles!.value as T.Vector3[]; nearest.forEach((point,i)=>foam[i]!.copy(point));
-    widths.needsUpdate = true; p.needsUpdate = true; this.geometry.computeVertexNormals();
+    // Re-sort nearest obstacles only when the boat has moved >2m — avoids per-geometry-update allocation.
+    if (!Number.isFinite(this._lastFoamX) || Math.hypot(position.x - this._lastFoamX, position.z - this._lastFoamZ) > 2) {
+      this._lastFoamX = position.x; this._lastFoamZ = position.z;
+      const sorted = this.foamObstacles.slice().sort((a,b)=>Math.hypot(a.x-position.x,a.y-position.z)-Math.hypot(b.x-position.x,b.y-position.z));
+      for (let i = 0; i < 12; i++) this._nearestFoam[i]!.copy(sorted[i]!);
+    }
+    const foam = uniforms.obstacles!.value as T.Vector3[]; this._nearestFoam.forEach((point,i)=>foam[i]!.copy(point));
+    if(updateBed){levels.needsUpdate=true;this.lastBedZ=this.position.z;}
+    widths.needsUpdate = centres.needsUpdate = true; p.needsUpdate = true; updateWaterNormals(this.geometry,WATER_COLUMNS);
   }
 }

@@ -1,6 +1,6 @@
 {
   "result": "PASS",
-  "date": "2026-10-19T20:52:43.244Z",
+  "date": "2026-10-21T15:48:56.249Z",
   "base": "http://localhost:2571",
   "automated": true,
   "humanPlaytest": false,
@@ -35,8 +35,8 @@
     {
       "name": "seat 0: w moves in the visible requested direction",
       "pass": true,
-      "z": 1.962455153465271,
-      "screenHeading": 0.00004368845982111701
+      "z": 1.9801994562149048,
+      "screenHeading": 0.00002911274978536875
     },
     {
       "name": "seat 0: held s repeats own paddle",
@@ -47,8 +47,8 @@
     {
       "name": "seat 0: s moves in the visible requested direction",
       "pass": true,
-      "z": -1.372490406036377,
-      "screenHeading": -0.00003618592712724671
+      "z": -1.3845455646514893,
+      "screenHeading": -0.000029786724900527153
     },
     {
       "name": "seat 0: held a repeats own paddle",
@@ -59,8 +59,8 @@
     {
       "name": "seat 0: a moves in the visible requested direction",
       "pass": true,
-      "z": 1.5417197942733765,
-      "screenHeading": -0.10118114800285617
+      "z": 1.5620572566986084,
+      "screenHeading": -0.1013755203239269
     },
     {
       "name": "seat 0: held d repeats own paddle",
@@ -71,8 +71,8 @@
     {
       "name": "seat 0: d moves in the visible requested direction",
       "pass": true,
-      "z": -0.9979007840156555,
-      "screenHeading": 0.09341176561461803
+      "z": -0.9885855913162231,
+      "screenHeading": 0.09327838190906276
     },
     {
       "name": "seat 1: held w repeats own paddle",
@@ -83,8 +83,8 @@
     {
       "name": "seat 1: w moves in the visible requested direction",
       "pass": true,
-      "z": 1.960614562034607,
-      "screenHeading": 0.00006590640064630619
+      "z": 2.008439064025879,
+      "screenHeading": 0.000058367737948848
     },
     {
       "name": "seat 1: held s repeats own paddle",
@@ -95,8 +95,8 @@
     {
       "name": "seat 1: s moves in the visible requested direction",
       "pass": true,
-      "z": -1.3886154890060425,
-      "screenHeading": -0.000037709262766499885
+      "z": -1.392649531364441,
+      "screenHeading": -0.00003986925795416291
     },
     {
       "name": "seat 1: held a repeats own paddle",
@@ -107,8 +107,8 @@
     {
       "name": "seat 1: a moves in the visible requested direction",
       "pass": true,
-      "z": -0.9941449761390686,
-      "screenHeading": -0.09091209830860485
+      "z": -1.0156694650650024,
+      "screenHeading": -0.09127553564905189
     },
     {
       "name": "seat 1: held d repeats own paddle",
@@ -119,8 +119,8 @@
     {
       "name": "seat 1: d moves in the visible requested direction",
       "pass": true,
-      "z": 1.5244134664535522,
-      "screenHeading": 0.10401665469215599
+      "z": 1.5376434326171875,
+      "screenHeading": 0.10411799601356639
     },
     {
       "name": "seat 2: held w repeats own paddle",
@@ -131,8 +131,8 @@
     {
       "name": "seat 2: w moves in the visible requested direction",
       "pass": true,
-      "z": 1.9612146615982056,
-      "screenHeading": 0.00003227190702702158
+      "z": 1.9602752923965454,
+      "screenHeading": 0.000043587520174683154
     },
     {
       "name": "seat 2: held s repeats own paddle",
@@ -143,8 +143,8 @@
     {
       "name": "seat 2: s moves in the visible requested direction",
       "pass": true,
-      "z": -1.3780039548873901,
-      "screenHeading": -0.00001030684285222537
+      "z": -1.3632032871246338,
+      "screenHeading": -0.00002943630246122434
     },
     {
       "name": "seat 2: held a repeats own paddle",
@@ -155,8 +155,8 @@
     {
       "name": "seat 2: a moves in the visible requested direction",
       "pass": true,
-      "z": 1.535842776298523,
-      "screenHeading": -0.10044881796521943
+      "z": 1.5566473007202148,
+      "screenHeading": -0.10075956273862265
     },
     {
       "name": "seat 2: held d repeats own paddle",
@@ -167,8 +167,8 @@
     {
       "name": "seat 2: d moves in the visible requested direction",
       "pass": true,
-      "z": -0.9969117045402527,
-      "screenHeading": 0.09396465861675256
+      "z": -0.9986595511436462,
+      "screenHeading": 0.09388804429952963
     },
     {
       "name": "seat 3: held w repeats own paddle",
@@ -179,8 +179,8 @@
     {
       "name": "seat 3: w moves in the visible requested direction",
       "pass": true,
-      "z": 1.9887489080429077,
-      "screenHeading": -0.000009149126440176
+      "z": 1.9712578058242798,
+      "screenHeading": 0.00000909309347473311
     },
     {
       "name": "seat 3: held s repeats own paddle",
@@ -191,8 +191,8 @@
     {
       "name": "seat 3: s moves in the visible requested direction",
       "pass": true,
-      "z": -1.378422498703003,
-      "screenHeading": 0.00003550040282587503
+      "z": -1.3771919012069702,
+      "screenHeading": 0.000012414656672055796
     },
     {
       "name": "seat 3: held a repeats own paddle",
@@ -203,8 +203,8 @@
     {
       "name": "seat 3: a moves in the visible requested direction",
       "pass": true,
-      "z": -1.0078489780426025,
-      "screenHeading": -0.09180697349494396
+      "z": -0.9980148077011108,
+      "screenHeading": -0.09165400984846915
     },
     {
       "name": "seat 3: held d repeats own paddle",
@@ -215,8 +215,8 @@
     {
       "name": "seat 3: d moves in the visible requested direction",
       "pass": true,
-      "z": 1.548427700996399,
-      "screenHeading": 0.1035383896318494
+      "z": 1.5317085981369019,
+      "screenHeading": 0.10335022679587642
     },
     {
       "name": "seat 3: held ArrowUp repeats own paddle",
@@ -227,8 +227,8 @@
     {
       "name": "seat 3: ArrowUp moves in the visible requested direction",
       "pass": true,
-      "z": 1.95875883102417,
-      "screenHeading": -0.000036012575980337407
+      "z": 1.97041916847229,
+      "screenHeading": -0.000021586838228631125
     },
     {
       "name": "seat 3: held ArrowDown repeats own paddle",
@@ -239,8 +239,8 @@
     {
       "name": "seat 3: ArrowDown moves in the visible requested direction",
       "pass": true,
-      "z": -1.365844964981079,
-      "screenHeading": 0.00004894938669694222
+      "z": -1.3785698413848877,
+      "screenHeading": 0.000049730728177601116
     },
     {
       "name": "seat 3: held ArrowLeft repeats own paddle",
@@ -251,8 +251,8 @@
     {
       "name": "seat 3: ArrowLeft moves in the visible requested direction",
       "pass": true,
-      "z": -1.0036691427230835,
-      "screenHeading": -0.09183026155857192
+      "z": -1.0110783576965332,
+      "screenHeading": -0.09183453483700343
     },
     {
       "name": "seat 3: held ArrowRight repeats own paddle",
@@ -263,8 +263,8 @@
     {
       "name": "seat 3: ArrowRight moves in the visible requested direction",
       "pass": true,
-      "z": 1.5268909931182861,
-      "screenHeading": 0.10304869741741074
+      "z": 1.5259379148483276,
+      "screenHeading": 0.10306422447997068
     },
     {
       "name": "all four players: simultaneous w",
@@ -275,8 +275,8 @@
         2,
         2
       ],
-      "z": 4.117959499359131,
-      "screenHeading": -0.00006967491765118294
+      "z": 4.066496849060059,
+      "screenHeading": -0.00007289647241761482
     },
     {
       "name": "all four players: simultaneous s",
@@ -287,8 +287,8 @@
         2,
         2
       ],
-      "z": -3.334887981414795,
-      "screenHeading": 0.00004641301808102835
+      "z": -3.3501577377319336,
+      "screenHeading": 0.00008163866055815785
     },
     {
       "name": "all four players: simultaneous a",
@@ -299,8 +299,8 @@
         2,
         2
       ],
-      "z": 0.3800123333930969,
-      "screenHeading": -0.2143174194617298
+      "z": 0.3827321529388428,
+      "screenHeading": -0.21443339864871458
     },
     {
       "name": "all four players: simultaneous d",
@@ -311,8 +311,8 @@
         2,
         2
       ],
-      "z": 0.38416218757629395,
-      "screenHeading": 0.2360926821920849
+      "z": 0.38890063762664795,
+      "screenHeading": 0.236368070618699
     },
     {
       "name": "all four players: W+A curves in requested direction",
@@ -323,7 +323,7 @@
         2,
         0
       ],
-      "screenHeading": -0.12459837818846355
+      "screenHeading": -0.12472892196999937
     },
     {
       "name": "all four players: W+D curves in requested direction",
@@ -334,7 +334,7 @@
         0,
         2
       ],
-      "screenHeading": 0.12922600110640295
+      "screenHeading": 0.12932390768926294
     },
     {
       "name": "uppercase key-only W repeats strokes",
@@ -361,8 +361,8 @@
     {
       "name": "seat 3: w moves in the visible requested direction",
       "pass": true,
-      "z": 1.983486294746399,
-      "screenHeading": 0.000037726952546366516
+      "z": 1.985171914100647,
+      "screenHeading": 0.00002637162336812434
     },
     {
       "name": "reload retains seat 0",
@@ -377,8 +377,8 @@
     {
       "name": "seat 0: w moves in the visible requested direction",
       "pass": true,
-      "z": 1.9761255979537964,
-      "screenHeading": 0.00005441397161420371
+      "z": 1.9639581441879272,
+      "screenHeading": 0.000041249853796456425
     },
     {
       "name": "reload retains seat 1",
@@ -393,8 +393,8 @@
     {
       "name": "seat 1: w moves in the visible requested direction",
       "pass": true,
-      "z": 1.9596112966537476,
-      "screenHeading": 0.00005025931537306662
+      "z": 1.9791769981384277,
+      "screenHeading": 0.00003686455556284069
     },
     {
       "name": "reload retains seat 2",
@@ -409,8 +409,8 @@
     {
       "name": "seat 2: w moves in the visible requested direction",
       "pass": true,
-      "z": 1.9553993940353394,
-      "screenHeading": 0.000027096299373047077
+      "z": 1.9644575119018555,
+      "screenHeading": 0.000025459576231508067
     },
     {
       "name": "reload retains seat 3",
@@ -425,8 +425,8 @@
     {
       "name": "seat 3: w moves in the visible requested direction",
       "pass": true,
-      "z": 1.983478307723999,
-      "screenHeading": 0.00003226148107182605
+      "z": 1.9548453092575073,
+      "screenHeading": 0.000039113218850680975
     },
     {
       "name": "blur lifts blade and cancels held action",

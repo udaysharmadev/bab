@@ -1,0 +1,231 @@
+{
+  "result": "PASS",
+  "cases": [
+    {
+      "seat": 0,
+      "hullSpeed": 0,
+      "solidSpeed": 0,
+      "force": 0,
+      "maxImpulse": 0
+    },
+    {
+      "seat": 0,
+      "hullSpeed": 1,
+      "solidSpeed": 1,
+      "force": 0,
+      "maxImpulse": 0
+    },
+    {
+      "seat": 0,
+      "hullSpeed": 1,
+      "solidSpeed": 0,
+      "force": 90.46155416156785,
+      "maxImpulse": 1.507692569359464
+    },
+    {
+      "seat": 0,
+      "hullSpeed": 3,
+      "solidSpeed": 2,
+      "force": 90.46155416156785,
+      "maxImpulse": 1.507692569359464
+    },
+    {
+      "seat": 0,
+      "hullSpeed": 0,
+      "solidSpeed": -1,
+      "force": 90.46155416156785,
+      "maxImpulse": 1.507692569359464
+    },
+    {
+      "seat": 0,
+      "hullSpeed": 0,
+      "solidSpeed": 1,
+      "force": 0,
+      "maxImpulse": 0
+    },
+    {
+      "seat": 0,
+      "hullSpeed": 0,
+      "solidSpeed": 20,
+      "force": 0,
+      "maxImpulse": 0
+    },
+    {
+      "seat": 0,
+      "hullSpeed": 20,
+      "solidSpeed": 0,
+      "force": 225.74323654177587,
+      "maxImpulse": 3.7623872756962644
+    },
+    {
+      "seat": 1,
+      "hullSpeed": 0,
+      "solidSpeed": 0,
+      "force": 0,
+      "maxImpulse": 0
+    },
+    {
+      "seat": 1,
+      "hullSpeed": 1,
+      "solidSpeed": 1,
+      "force": 0,
+      "maxImpulse": 0
+    },
+    {
+      "seat": 1,
+      "hullSpeed": 1,
+      "solidSpeed": 0,
+      "force": 90.46154174125367,
+      "maxImpulse": 1.5076923623542278
+    },
+    {
+      "seat": 1,
+      "hullSpeed": 3,
+      "solidSpeed": 2,
+      "force": 90.46154174125367,
+      "maxImpulse": 1.5076923623542278
+    },
+    {
+      "seat": 1,
+      "hullSpeed": 0,
+      "solidSpeed": -1,
+      "force": 90.46154174125367,
+      "maxImpulse": 1.5076923623542278
+    },
+    {
+      "seat": 1,
+      "hullSpeed": 0,
+      "solidSpeed": 1,
+      "force": 0,
+      "maxImpulse": 0
+    },
+    {
+      "seat": 1,
+      "hullSpeed": 0,
+      "solidSpeed": 20,
+      "force": 0,
+      "maxImpulse": 0
+    },
+    {
+      "seat": 1,
+      "hullSpeed": 20,
+      "solidSpeed": 0,
+      "force": 225.7432210445788,
+      "maxImpulse": 3.7623870174096465
+    },
+    {
+      "seat": 2,
+      "hullSpeed": 0,
+      "solidSpeed": 0,
+      "force": 0,
+      "maxImpulse": 0
+    },
+    {
+      "seat": 2,
+      "hullSpeed": 1,
+      "solidSpeed": 1,
+      "force": 0,
+      "maxImpulse": 0
+    },
+    {
+      "seat": 2,
+      "hullSpeed": 1,
+      "solidSpeed": 0,
+      "force": 90.46155416156785,
+      "maxImpulse": 1.507692569359464
+    },
+    {
+      "seat": 2,
+      "hullSpeed": 3,
+      "solidSpeed": 2,
+      "force": 90.46155416156785,
+      "maxImpulse": 1.507692569359464
+    },
+    {
+      "seat": 2,
+      "hullSpeed": 0,
+      "solidSpeed": -1,
+      "force": 90.46155416156785,
+      "maxImpulse": 1.507692569359464
+    },
+    {
+      "seat": 2,
+      "hullSpeed": 0,
+      "solidSpeed": 1,
+      "force": 0,
+      "maxImpulse": 0
+    },
+    {
+      "seat": 2,
+      "hullSpeed": 0,
+      "solidSpeed": 20,
+      "force": 0,
+      "maxImpulse": 0
+    },
+    {
+      "seat": 2,
+      "hullSpeed": 20,
+      "solidSpeed": 0,
+      "force": 225.74323654177587,
+      "maxImpulse": 3.7623872756962644
+    },
+    {
+      "seat": 3,
+      "hullSpeed": 0,
+      "solidSpeed": 0,
+      "force": 0,
+      "maxImpulse": 0
+    },
+    {
+      "seat": 3,
+      "hullSpeed": 1,
+      "solidSpeed": 1,
+      "force": 0,
+      "maxImpulse": 0
+    },
+    {
+      "seat": 3,
+      "hullSpeed": 1,
+      "solidSpeed": 0,
+      "force": 90.46154174125367,
+      "maxImpulse": 1.5076923623542278
+    },
+    {
+      "seat": 3,
+      "hullSpeed": 3,
+      "solidSpeed": 2,
+      "force": 90.46154174125367,
+      "maxImpulse": 1.5076923623542278
+    },
+    {
+      "seat": 3,
+      "hullSpeed": 0,
+      "solidSpeed": -1,
+      "force": 90.46154174125367,
+      "maxImpulse": 1.5076923623542278
+    },
+    {
+      "seat": 3,
+      "hullSpeed": 0,
+      "solidSpeed": 1,
+      "force": 0,
+      "maxImpulse": 0
+    },
+    {
+      "seat": 3,
+      "hullSpeed": 0,
+      "solidSpeed": 20,
+      "force": 0,
+      "maxImpulse": 0
+    },
+    {
+      "seat": 3,
+      "hullSpeed": 20,
+      "solidSpeed": 0,
+      "force": 225.7432210445788,
+      "maxImpulse": 3.7623870174096465
+    }
+  ],
+  "forceCapNewtons": 260,
+  "perSeatImpulseCapNs": 4.333333333333333
+}

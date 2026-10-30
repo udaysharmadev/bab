@@ -1,0 +1,24 @@
+{
+  "result": "PASS",
+  "physics": "basin-0.10",
+  "productionGraceSeconds": 90,
+  "clock": "actual wall time; no shortened grace or fake timers",
+  "checks": [
+    {
+      "case": "real45SecondAbsence",
+      "milliseconds": 46851,
+      "sameSeatNameCheckpointPhase": true,
+      "frozenClock": true,
+      "noStaleStroke": true
+    },
+    {
+      "case": "real90SecondExpiry",
+      "expiryMs": 90011,
+      "expiredTokenRejected": true,
+      "seatReclaimed": true,
+      "checkpointPreserved": true,
+      "fourReadyRelaunch": true
+    }
+  ],
+  "scope": "Local real WebSocket disconnect/reconnect/expiry. Real Internet/TCP loss, physical network changes and long browser soak remain open."
+}

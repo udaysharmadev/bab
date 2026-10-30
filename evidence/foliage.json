@@ -1,0 +1,407 @@
+{
+  "result": "PASS",
+  "results": [
+    {
+      "view": "crew",
+      "quality": "High",
+      "meshes": 30,
+      "current": {
+        "calls": 524,
+        "triangles": 1332034,
+        "geometries": 172,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 1,
+        "captureTriangles": 144,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "prior": {
+        "calls": 524,
+        "triangles": 1332034,
+        "geometries": 172,
+        "textures": 11,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 1,
+        "captureTriangles": 144,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "meanChannelDelta": 0.15344521604938272,
+      "changedPixelFraction": 0.0468872974537037,
+      "largeDeltaPixelFraction": 0
+    },
+    {
+      "view": "crew",
+      "quality": "Low",
+      "meshes": 30,
+      "current": {
+        "calls": 173,
+        "triangles": 406930,
+        "geometries": 159,
+        "textures": 6,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "prior": {
+        "calls": 173,
+        "triangles": 406930,
+        "geometries": 159,
+        "textures": 6,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "meanChannelDelta": 0.12539183063271606,
+      "changedPixelFraction": 0.028836082175925926,
+      "largeDeltaPixelFraction": 0
+    },
+    {
+      "view": "trees",
+      "quality": "High",
+      "meshes": 30,
+      "current": {
+        "calls": 384,
+        "triangles": 2249368,
+        "geometries": 215,
+        "textures": 13,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          4,
+          4,
+          12
+        ]
+      },
+      "prior": {
+        "calls": 384,
+        "triangles": 2249368,
+        "geometries": 215,
+        "textures": 13,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          4,
+          4,
+          12
+        ]
+      },
+      "meanChannelDelta": 0.5980707465277778,
+      "changedPixelFraction": 0.13799262152777778,
+      "largeDeltaPixelFraction": 0
+    },
+    {
+      "view": "trees",
+      "quality": "Low",
+      "meshes": 30,
+      "current": {
+        "calls": 100,
+        "triangles": 582458,
+        "geometries": 62,
+        "textures": 7,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "prior": {
+        "calls": 100,
+        "triangles": 582458,
+        "geometries": 62,
+        "textures": 7,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "meanChannelDelta": 0.5573869116512346,
+      "changedPixelFraction": 0.11961299189814815,
+      "largeDeltaPixelFraction": 0
+    },
+    {
+      "view": "grass",
+      "quality": "High",
+      "meshes": 30,
+      "current": {
+        "calls": 347,
+        "triangles": 2231184,
+        "geometries": 202,
+        "textures": 13,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          4,
+          4,
+          12
+        ]
+      },
+      "prior": {
+        "calls": 347,
+        "triangles": 2231184,
+        "geometries": 202,
+        "textures": 13,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          4,
+          4,
+          12
+        ]
+      },
+      "meanChannelDelta": 0.8481520061728395,
+      "changedPixelFraction": 0.20601996527777777,
+      "largeDeltaPixelFraction": 0
+    },
+    {
+      "view": "grass",
+      "quality": "Low",
+      "meshes": 30,
+      "current": {
+        "calls": 82,
+        "triangles": 573414,
+        "geometries": 48,
+        "textures": 7,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "prior": {
+        "calls": 82,
+        "triangles": 573414,
+        "geometries": 48,
+        "textures": 7,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 5,
+        "vegetationInstances": 5384,
+        "foliageLevels": [
+          0,
+          8,
+          12
+        ]
+      },
+      "meanChannelDelta": 0.77087890625,
+      "changedPixelFraction": 0.17904658564814815,
+      "largeDeltaPixelFraction": 0
+    },
+    {
+      "view": "rapids",
+      "quality": "High",
+      "meshes": 36,
+      "current": {
+        "calls": 677,
+        "triangles": 680768,
+        "geometries": 238,
+        "textures": 18,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          4,
+          4,
+          16
+        ]
+      },
+      "prior": {
+        "calls": 677,
+        "triangles": 680768,
+        "geometries": 238,
+        "textures": 18,
+        "reflections": true,
+        "refraction": true,
+        "captureCalls": 4,
+        "captureTriangles": 576,
+        "captureSize": [
+          936,
+          624
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          4,
+          4,
+          16
+        ]
+      },
+      "meanChannelDelta": 0.030190731095679012,
+      "changedPixelFraction": 0.01705512152777778,
+      "largeDeltaPixelFraction": 0
+    },
+    {
+      "view": "rapids",
+      "quality": "Low",
+      "meshes": 36,
+      "current": {
+        "calls": 252,
+        "triangles": 163686,
+        "geometries": 221,
+        "textures": 13,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          0,
+          8,
+          16
+        ]
+      },
+      "prior": {
+        "calls": 252,
+        "triangles": 163686,
+        "geometries": 221,
+        "textures": 13,
+        "reflections": false,
+        "refraction": false,
+        "captureCalls": 0,
+        "captureTriangles": 0,
+        "captureSize": [
+          0,
+          0
+        ],
+        "vegetationChunks": 6,
+        "vegetationInstances": 1368,
+        "foliageLevels": [
+          0,
+          8,
+          16
+        ]
+      },
+      "meanChannelDelta": 0.018881172839506175,
+      "changedPixelFraction": 0.007158564814814815,
+      "largeDeltaPixelFraction": 0
+    }
+  ],
+  "errors": [],
+  "scope": "Rejected Lambert experiment versus retained production Standard material. Native diffuse foliage/material comparison at identical authored poses. Geometry/instance colours/shadows/fog retained; pixel differences bounded. Human art/device acceptance remains open."
+}

@@ -1,0 +1,17 @@
+✔ Blade pose matches renderer for zero-length, vertical and near-antiparallel directions (4.686542ms)
+✔ Shared rounded blade preserves original render geometry and both convex cores stay inside its faces (7.73875ms)
+✔ Rounded volume catches edge-only contacts and sweeps, while shoulder gaps, sensors and own hull remain clear (33.109459ms)
+✔ Blade-only bracing is bounded, passive and nonlethal across seats, headings and heels (488.534459ms)
+✔ Blade-only moving-frame response, saturation, resting contact and release stay bounded (133.549417ms)
+✔ Persistent shaft-only contacts are nonlethal and dissipative across every seat, heading and heel (541.77875ms)
+✔ Holding a dipped shaft still produces no free force; release and inactive paddles stop bracing (15.019917ms)
+✔ Shaft queries exclude own hull, sensors and separated solids (4.034334ms)
+✔ Moving-solid relative velocity and saturated impacts remain bounded for every seat (129.664625ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 926.634792
