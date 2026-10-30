@@ -3,15 +3,23 @@ import { setTimeout as delay } from 'node:timers/promises';
 import { Client } from '@colyseus/sdk';
 
 const target = new URL(process.argv[2] ?? 'http://localhost:2569');
+assert(process.argv.slice(3).every(arg=>arg==='--wait'),'Only --wait is supported after the origin');
 assert(['http:', 'https:'].includes(target.protocol) && target.pathname === '/' && !target.search && !target.username && !target.password, 'Use the dedicated application origin, e.g. https://play.example.com');
 const http = target.origin;
-const health = await fetch(`${http}/health`, { signal: AbortSignal.timeout(15000) });
-assert.equal(health.status, 200, 'Health request failed');
-const info = await health.json();
-assert.equal(info.protocol, 7, 'Client/server protocol mismatch');
-assert.equal(info.physics, 'basin-0.13');
-assert.equal(info.status, 'ready');
-assert.deepEqual(info.fan,{protocol:1,physics:'fan-raft-0.2',world:'toy-bend-1'},'Fan-world client/server mismatch');
+const deadline=Date.now()+(process.argv.includes('--wait')?60000:0);
+let info;
+for(;;) {
+  try {
+    const health = await fetch(`${http}/health`, { cache:'no-store',signal: AbortSignal.timeout(5000) });
+    assert.equal(health.status, 200, 'Health request failed');
+    info = await health.json();
+    assert.equal(info.protocol, 7, 'Running backend is stale: rebuild build/server.mjs and restart the cPanel app');
+    assert.equal(info.physics, 'basin-0.13');
+    assert.equal(info.status, 'ready');
+    assert.deepEqual(info.fan,{protocol:1,physics:'fan-raft-0.2',world:'toy-bend-1'},'Fan room is unavailable or stale: rebuild both outputs and restart app.js');
+    break;
+  }catch(error){if(Date.now()>=deadline)throw error;await delay(2000);}
+}
 const title = await fetch(http, { signal: AbortSignal.timeout(15000) });
 assert.equal(title.status, 200);
 assert((await title.text()).includes('Bad at Boating'));

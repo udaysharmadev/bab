@@ -1,5 +1,29 @@
 # Bad at Boating — cPanel LiteSpeed setup
 
+## Current fan-game deployment — 30 October 2026
+
+The public join failure `provided room name "fan-raft" not defined` was diagnosed: `/` serves the Fan Club frontend, but `/health` still reports the old protocol3 / basin-0.5 process with no `fan` field. This is a running-backend mismatch. Pushing source or copying `dist/` alone does **not** restart Passenger or rebuild `build/server.mjs`.
+
+After pushing, activate the Node24 environment command shown in **Setup Node.js App**, enter that app's configured repository root and run:
+
+```sh
+bash deploy.sh
+```
+
+Current `deploy.sh` rebuilds **both** frontend and authority, requests restart and then waits up to60 seconds for matching health before opening four real clients for Ready/countdown/pause/reconnect verification. It exits with failure if verification fails; a restart request alone is not a successful deployment. `DEPLOY_ORIGIN` can override the default `https://bab.validussentinel.com`.
+
+If old health persists, press **Restart** in Setup Node.js App. Confirm **startup file `app.js`**, **Node24**, and **application root pointing to this same checkout**, then run:
+
+```sh
+node scripts/check-deployment.mjs https://bab.validussentinel.com --wait
+```
+
+Expected current health: top-level protocol7 / basin-0.13 and `fan: {protocol:1,physics:"fan-raft-0.2",world:"toy-bend-1"}`, status `ready`. Keep the private database and its environment variable. Restart ends active in-memory crews; start a fresh crew. Fan Camp controls are **A/D to scoot, Space to fan**. Durable fan-world saves remain pending; older wooden-boat saves belong to `/legacy.html`.
+
+The client now checks backend compatibility before create, invite join and reload reconnect, preserves the entered name and shows a retryable message when the backend is stale. This protects players from raw framework errors; it cannot restart the hosting process. [Diagnosis and verification](FAN_DEPLOYMENT_FIX.md).
+
+## Historical hosting setup and public checks
+
 Target origin: **https://bab.validussentinel.com**. On 2026-10-20, the public `/health` endpoint returned HTTP 200 and `npm run check:deployment -- https://bab.validussentinel.com` passed its four-client HTTPS/WSS smoke test from this workspace. That verified health, title and directory-guard routes, four WebSocket seats, the four-ready launch barrier, advancing server ticks, disconnect pause and same-seat reconnect. The production browser build, authoritative Colyseus rooms and WebSocket endpoint run in the same Node app. On HTTPS the browser automatically uses `wss://bab.validussentinel.com`; development-only `/game` proxying is not used in production. This does not verify cPanel account settings, Node 24 availability, sustained load or human play quality. Earlier public smoke: protocol 3 / basin-0.5 / waterworks-1. Current repository: protocol 7 / basin-0.13; re-run the public smoke after this release is deployed.
 
 ## Hosting requirements
@@ -48,7 +72,7 @@ If your account only offers cPanel Application Manager using Apache Passenger (w
    ```
 
    Vite produces `dist/`; esbuild produces `build/server.mjs`; `app.js` is the Passenger entrypoint. Do not upload `node_modules` from another computer. The Node app serves `/`, `/health`, and Colyseus matchmaking/WebSocket routes from this same origin.
-4. Check `https://bab.validussentinel.com/health`. Expect JSON with `status:"ready"`, `protocol:5`, `physics:"basin-0.9"`. Then run the external multiplayer smoke test:
+4. Check `https://bab.validussentinel.com/health`. Expect JSON with `status:"ready"`, top-level `protocol:7`, `physics:"basin-0.13"`, and `fan:{protocol:1,physics:"fan-raft-0.2",world:"toy-bend-1"}`. Then run the external multiplayer smoke test:
 
    ```sh
    npm run check:deployment -- https://bab.validussentinel.com
@@ -65,7 +89,7 @@ cd /home/USER/bad-at-boating
 bash deploy.sh
 ```
 
-The script requires a clean checkout on the selected branch, fast-forward pulls `origin/main` by default (or `PRODUCTION_BRANCH`), installs the locked dependencies, builds into a staging directory, prunes development dependencies, publishes the frontend/server artifacts, and touches `tmp/restart.txt` only after a successful build. On a build or publish failure before the restart request, it restores the previous `dist/` and `build/server.mjs`. It never resets local commits or deletes save data. After each update, verify `/health` and run the deployment smoke test.
+The script requires a clean checkout on the selected branch, fast-forward pulls `origin/main` by default (or `PRODUCTION_BRANCH`), installs the locked dependencies, builds into a staging directory, prunes development dependencies, publishes the frontend/server artifacts, and touches `tmp/restart.txt` only after a successful build. On a build or publish failure before the restart request, it restores the previous `dist/` and `build/server.mjs`. It never resets local commits or deletes save data. It then verifies matching live health and the four-seat smoke. Failure after the restart request is reported without automatically restoring a potentially incompatible running release; inspect the panel and rerun verification.
 
 The held-action controls update uses **protocol 5**. Restart the authority and refresh all four crew browsers together; a cached protocol-3 tab receives a version-mismatch error. The earlier public smoke result above describes the protocol-3 build, not verification of this new release. The world/checkpoint save format remains compatible.
 

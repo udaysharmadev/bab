@@ -1,0 +1,16 @@
+✔ Fan preflight rejects the deployed legacy authority and incompatible identities (0.3615ms)
+✔ Join failures never expose raw framework errors and keep stale worker races actionable (0.228959ms)
+✔ Preflight fetch is uncached, bounded, rejects HTTP/JSON failures and retries recovered health (7.873958ms)
+(node:57515) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"case":"fan-network","checks":["Version/name/legacy save rejection","Four-ready cancellation and actual countdown","Neutral rearm, seat forgery, stale input and cadence ownership","Actual socket pause/reconnect retains name/seat; all stale thrust cleared","Distinct majority reset votes","Frozen finish and explicit re-ready replay"]}
+✔ Fan authority: name/version, four-ready cancellation, owned bounded input, real pause/reconnect, reset voting and frozen finish (6240.247833ms)
+✔ Fan wall-clock watchdog clears a held stroke before bounded catch-up after a long server stall (195.079333ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7803.351666

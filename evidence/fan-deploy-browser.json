@@ -1,0 +1,14 @@
+{
+  "result": "PASS",
+  "browser": "156.0.8078.79",
+  "checks": [
+    "Legacy protocol3/no-fan health,503 and malformed JSON: no room request; clear accessible message, retained name and working retry",
+    "Worker switches between health and matchmaking: raw room-not-defined error is translated",
+    "Same form/name retries successfully into a real fan room after server recovery",
+    "Invite join uses the same preflight guard, then joins the actual crew on retry",
+    "Solo practice also rejects stale backend and recovers to actual gameplay",
+    "Stale health during reload preserves the reconnect token; a later healthy reload restores the reserved seat without a duplicate join/name prompt"
+  ],
+  "errors": [],
+  "scope": "Native request interception reproduces the exact observed public health mismatch; healthy recovery uses the real local authority. Not a public rollout."
+}

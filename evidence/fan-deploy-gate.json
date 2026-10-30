@@ -1,0 +1,9 @@
+{
+  "result": "PASS",
+  "checks": [
+    "Stale production identity fails before matchmaking with rebuild/restart guidance",
+    "--wait retries stale health until identity recovers, then proceeds to the actual title gate; deliberate503 correctly fails"
+  ],
+  "healthCalls": 3,
+  "matchmaking": 0
+}

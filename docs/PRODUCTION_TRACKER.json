@@ -1,9 +1,9 @@
 {
   "title": "Bad at Boating complete production",
-  "updated": "2026-10-22",
+  "updated": "2026-10-30",
   "directionChange": {
     "title": "Current direction: toy raft + giant funny hand fans",
-    "summary": "R1 is locally playable: round toy raft, giant hand fans, small A/D player slide, Space fan strokes, four-ready crew and a 156 m obstacle course. P1 delivers a richer harbour landing with protected menu text, expressive toy crew, quieter water/wakes, owned fan feedback and a hands-on solo lesson. The menu is checked across 10 layouts. Four dividers keep player corridors clear. Physics0.2 removes passive current and gives measured coast-to-rest after release; four-client and camera checks pass. R1 human/art/timing gates and the complete 4–4.5 minute R2 course remain open. The ledger and M1–M5 checks below are historical paddle-prototype evidence; their PASS counts do not transfer to the fan game.",
+    "summary": "Live deployment incident: public frontend is newer than the running legacy backend. Local connection/deployment fix is verified; user push and cPanel rebuild/restart/public smoke remain pending (docs/FAN_DEPLOYMENT_FIX.md). R1 is locally playable: round toy raft, giant hand fans, small A/D player slide, Space fan strokes, four-ready crew and a 156 m obstacle course. P1 delivers a richer harbour landing with protected menu text, expressive toy crew, quieter water/wakes, owned fan feedback and a hands-on solo lesson. The menu is checked across 10 layouts. Four dividers keep player corridors clear. Physics0.2 removes passive current and gives measured coast-to-rest after release; four-client and camera checks pass. R1 human/art/timing gates and the complete 4–4.5 minute R2 course remain open. The ledger and M1–M5 checks below are historical paddle-prototype evidence; their PASS counts do not transfer to the fan game.",
     "document": "docs/GAME_POLISH_PHASES.md",
     "phases": [
       { "id": "R0", "title": "Design and controls", "status": "CONTROLS CONFIRMED", "remaining": "Owner toy-art/feel review remains open." },
@@ -28,6 +28,8 @@
       "evidence": [
         "docs/FAN_RAFT_REBOOT.md",
         "docs/GAME_POLISH_PHASES.md",
+        "docs/FAN_DEPLOYMENT_FIX.md",
+        "evidence/fan-deploy-fix.json",
         "evidence/fan-polish.json",
         "evidence/fan-personality.json",
         "docs/FAN_RAFT_IMPLEMENTATION.md",

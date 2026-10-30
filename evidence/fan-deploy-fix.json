@@ -1,0 +1,62 @@
+{
+  "result": "PASS_LOCAL_LIVE_PENDING",
+  "createdAt": "2026-10-30T14:39:38.139Z",
+  "publicOrigin": "https://bab.validussentinel.com",
+  "observedPublicHealth": {
+    "protocol": 3,
+    "physics": "basin-0.5",
+    "world": "waterworks-1",
+    "status": "ready",
+    "fan": null
+  },
+  "diagnosis": "New Fan Club HTML with stale running legacy backend; fan room absent",
+  "publicDeploymentPerformed": false,
+  "checks": {
+    "build": "evidence/fan-deploy-build.txt",
+    "affectedTests": {
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "log": "evidence/fan-deploy-tests.txt"
+    },
+    "native": "evidence/fan-deploy-browser.json",
+    "fourBrowserFlow": "evidence/fan-deploy-multiplayer.txt",
+    "localProductionEntrypointSmoke": "evidence/fan-deploy-local-smoke.json",
+    "deploymentGate": "evidence/fan-deploy-gate.json"
+  },
+  "files": [
+    {
+      "path": "src/client/fan-connection.ts",
+      "sha256": "cddbbf997024577ccf4efac73d94d99d3b19379395e79b648318610abf31d761"
+    },
+    {
+      "path": "src/client/fan-main.ts",
+      "sha256": "0a9abe736f73ca1e6d414abb33511143fcf82041ecb7a62554cc525461bc2533"
+    },
+    {
+      "path": "index.html",
+      "sha256": "9e554f321fd9e46aae4d95d24f0b2403b699d438ed66ae27fdb916c25b569fc8"
+    },
+    {
+      "path": "scripts/check-deployment.mjs",
+      "sha256": "c427a062459d557e720c4bd1b83915ea8ac3a00ba271442f3b53b3e9bca99bad"
+    },
+    {
+      "path": "deploy.sh",
+      "sha256": "070875f15abb30f5d77da5eca755c6936224513f3dc1494a1a7519a88e022f99"
+    },
+    {
+      "path": "tests/fan-connection.test.ts",
+      "sha256": "35176e9a740876ea4b0c39e723a79249416e543cbfa315232aa448bbc28e6d10"
+    },
+    {
+      "path": "tests/fan-connection.mjs",
+      "sha256": "272ef486787c5380cc7b11e38558077e64532987a16243f1b5d48129c6074f3e"
+    },
+    {
+      "path": "docs/CPANEL_SETUP.md",
+      "sha256": "e471ff5afa398e6ef1a89906e5ff9bbf30b9b7089b4e2f156d4e97f0c43d1972"
+    }
+  ],
+  "remaining": "User push then cPanel bash deploy.sh; verify public health and four-seat smoke. No claim of repaired production."
+}

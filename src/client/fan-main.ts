@@ -5,6 +5,7 @@ import {FanControls,fanKey} from './fan-input';
 import {advanceFanLesson,fanFeedback,lessonCopy,type FanLesson} from './fan-feedback';
 import {FAN_PROTOCOL,FAN_PHYSICS,FAN_WORLD,FAN_SEATS,COURSE_END,type FanSnapshot} from '../shared/fan';
 import {playerName} from '../shared/names';
+import {checkFanServer,fanJoinProblem} from './fan-connection';
 import './fan.css';
 
 function el<T extends HTMLElement=HTMLElement>(id:string) {
@@ -105,7 +106,11 @@ function update(s:FanSnapshot){
 }
 async function connect(mode:'friends'|'practice',id?:string,token?:string){
   if(busy||room)return;busy=true;el<HTMLButtonElement>('name-submit').disabled=true;notice('Finding your raft…','Fans at the ready.');
+  el('name-message').textContent='Connecting to your raft…';
+  let serverChecked=false;
   try {
+    await checkFanServer(`${import.meta.env.DEV?'/game':''}/health`);
+    serverChecked=true;
     const options={protocol:FAN_PROTOCOL,physics:FAN_PHYSICS,world:FAN_WORLD,name:profile,mode};
     const joined=token?await client.reconnect(token):id?await client.joinById(id,options):await client.create('fan-raft',options);
     room=joined;connected=true;seq=0;lastSnapshot=performance.now();
@@ -118,9 +123,11 @@ async function connect(mode:'friends'|'practice',id?:string,token?:string){
     joined.onLeave(()=>{if(room!==joined)return;room=undefined;connected=false;clear();try{sessionStorage.removeItem('fan-raft-session');}catch{}title('This crew has ended. Start a new fan club.');});
     joined.onError((_code,message)=>{if(room===joined)toast(message??'Connection trouble.');});
     names.close();joined.send('sync');focus();
-  }catch(error){el('notice').hidden=true;const message=error instanceof Error?error.message:'Could not reach the crew.';
+  }catch(error){el('notice').hidden=true;const message=fanJoinProblem(error);
     el('name-message').textContent=message;el('menu-message').textContent=message;
-    if(token){try{sessionStorage.removeItem('fan-raft-session');}catch{}if(id)ask('friends',id);}
+    // A failed health probe does not invalidate a reserved reconnect seat.
+    if(token&&!serverChecked){title(`${message} Reload this page to rejoin.`);return;}
+    if(token){try{sessionStorage.removeItem('fan-raft-session');}catch{}if(id){ask('friends',id);el('name-message').textContent=message;}}
   }finally{busy=false;el<HTMLButtonElement>('name-submit').disabled=false;}
 }
 

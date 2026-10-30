@@ -1,0 +1,24 @@
+{
+  "result": "PASS",
+  "origin": "http://localhost:2571",
+  "protocol": 1,
+  "physics": "fan-raft-0.2",
+  "world": "toy-bend-1",
+  "seats": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "checks": [
+    "health",
+    "title",
+    "directory guard",
+    "four fan WebSocket seats",
+    "four-ready launch",
+    "60Hz clock advances",
+    "drop pauses crew",
+    "reconnect resumes same seat"
+  ],
+  "scope": "Automated private fan crew; destination browser/human/performance tests remain"
+}

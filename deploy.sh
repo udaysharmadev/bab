@@ -61,4 +61,7 @@ mkdir -p "$APP_ROOT/tmp"
 touch "$APP_ROOT/tmp/restart.txt"
 restart_done=1
 printf 'deploy: updated %s from origin/%s and requested Passenger restart.\n' "$(git rev-parse --short HEAD)" "$branch"
-printf 'deploy: verify https://bab.validussentinel.com/health and run npm run check:deployment -- https://bab.validussentinel.com\n'
+origin="${DEPLOY_ORIGIN:-https://bab.validussentinel.com}"
+printf 'deploy: verifying the restarted authority and four-player WebSocket flow at %s\n' "$origin"
+node scripts/check-deployment.mjs "$origin" --wait
+printf 'deploy: verified matching backend, four-player launch and reconnect at %s\n' "$origin"
